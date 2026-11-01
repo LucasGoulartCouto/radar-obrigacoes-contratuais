@@ -71,7 +71,8 @@ Agenda com um aviso confirmado, referência explícita e contratos pendentes:
 | [Validação da conferência](docs/validacao-conferencia-manual.md) | Candidatos, evidências, confirmação separada e preservação do histórico |
 | [Validação da agenda](docs/validacao-agenda.md) | Prazos, filtros, cobertura, origem e matriz de testes da entrega |
 | [Evidências dos PRs anteriores](docs/evidencias-testes-por-pr.md) | Testes e registros de execução ligados às funcionalidades de cada PR |
-| [Agent Harness](docs/agent-harness.md) | Uso do Codex, contexto, automações e direção humana |
+| [Mapa dos agentes](AGENTS.md) | Rotas de leitura por tarefa, limites essenciais e comandos |
+| [Agent Harness](docs/agents/harness.md) | Uso do Codex, contexto, automações e direção humana |
 | [Governança do repositório](docs/governanca-repositorio.md) | Histórico Git, CI executada e controles ativos na principal |
 | [Validação da publicação](docs/validacao-publicacao.md) | Repositório, PR, CI real e prova do bloqueio da principal |
 | [ADR-001 — recorte aceito](docs/adrs/001-recorte-do-produto.md) | Escolha de produto feita por Lucas, alternativas e consequências |
@@ -88,7 +89,7 @@ Agenda com um aviso confirmado, referência explícita e contratos pendentes:
 | [Plano de entrega](docs/plano-de-entrega.md) | Marcos, dependências, primeiras tarefas e roteiro de demonstração |
 | [Planejamento inicial](docs/planejamento-inicial.md) | Exigências oficiais, comparação de ideias e calendário provisório |
 
-O próximo marco é preparar a comparação de alternativas de extração contra os casos anotados, antes de escolher fornecedor ou assumir despesas. O [plano de entrega](docs/plano-de-entrega.md) mantém os passos de produto e a proposta futura de evolução para escala e desempenho. Os PRs continuam separados para revisão de Lucas; desempenho sob carga e qualidade da extração ainda não foram avaliados.
+A prioridade desta retomada é organizar a [documentação dos agentes](docs/agents/fontes-e-organizacao.md), com [validação registrada](docs/validacao-documentacao-agentes.md). O próximo marco de produto é preparar a comparação de alternativas de extração contra os casos anotados, antes de escolher fornecedor ou assumir despesas. O [plano de entrega](docs/plano-de-entrega.md) mantém os passos de produto e a proposta futura de evolução para escala e desempenho. Os PRs continuam separados para revisão de Lucas; desempenho sob carga e qualidade da extração ainda não foram avaliados.
 
 ## Referências oficiais
 
