@@ -2,7 +2,7 @@
 
 Data: 31/10/2026.
 
-**Status: proposto.** Material para decisão de Lucas; nenhum componente foi implementado.
+**Status: aceito por Lucas em 01/11/2026.** A aritmética já existe na fundação; extração, revisão documental, confirmação e agenda ainda não foram implementadas.
 
 ## Contexto
 
@@ -14,9 +14,9 @@ Uma sugestão plausível pode conter uma data sem suporte, uma referência incor
 2. Cadastro inteiramente manual com validações: facilita conferir regras e controlar custo; preserva maior esforço de transcrição e deve servir como comparação inicial.
 3. Extrator substituível propõe campos com evidências; código calcula datas por regras do case; usuário confirma: separa responsabilidades, mas acrescenta estados, conferência e gestão de revisões.
 
-## Proposta
+## Decisão
 
-Adotar a separação da alternativa 3, avaliando a alternativa 2 como baseline. O método de extração poderá ser simples ou usar IA, conforme experimento. Nenhum extrator terá autoridade para confirmar eventos ou acionar sistemas externos.
+Adotar a separação da alternativa 3, avaliando a alternativa 2 como baseline. Lucas escolheu “Adotar essa regra” ao revisar a separação entre sugestão, cálculo e conferência, com bloqueio por unidade ambígua, conflito de datas ou aditivo. O método de extração poderá ser simples ou usar IA, conforme experimento. Nenhum extrator terá autoridade para confirmar eventos ou acionar sistemas externos.
 
 Conferência vinculada à revisão documental, ao resultado selecionado e à versão das regras. Alteração relevante exige reconferência. Na primeira versão, aditivos ficam como pendência explícita, sem consolidação automática.
 
@@ -28,8 +28,8 @@ Conferência vinculada à revisão documental, ao resultado selecionado e à ver
 - A experiência precisa tornar a revisão útil e evitar que a confirmação vire uma ação mecânica.
 - Não prometemos eliminar erros ou ataques; reduzimos a autoridade de uma saída incorreta e avaliamos falhas conhecidas.
 
-## Critério para aceitar ou rever
+## Critério para avaliar o extrator e rever a decisão
 
-Comparar alternativas com os cenários da SPEC, esforço de revisão, custo e facilidade de manutenção. A escolha de ferramentas no ADR-004 não altera o status proposto desta decisão sobre extração e confirmação; Lucas a revisará com os requisitos detalhados. Se o extrator não trouxer benefício verificável, o fluxo com cadastro manual e regras continua sendo uma alternativa legítima.
+Comparar métodos de extração com os cenários da SPEC, esforço de revisão, custo e facilidade de manutenção. A decisão aceita define responsabilidades e bloqueios, mas não escolhe fornecedor de IA nem aprova todos os detalhes operacionais. Se o extrator não trouxer benefício verificável, o fluxo com cadastro manual e regras continua sendo uma alternativa legítima. Os [exemplos e limites iniciais](../decisoes-primeiro-fluxo.md) distinguem a decisão aceita dos detalhes ainda propostos.
 
 Referências: [SPEC](../specs/001-primeiro-fluxo.md), [arquitetura](../arquitetura.md), [OWASP Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/) e [OWASP Misinformation](https://genai.owasp.org/llmrisk/llm092025-misinformation/).

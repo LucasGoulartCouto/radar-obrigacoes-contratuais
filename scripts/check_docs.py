@@ -5,7 +5,12 @@ from pathlib import Path
 from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[1]
-documents = [ROOT / "README.md", ROOT / "AGENTS.md", *ROOT.joinpath("docs").rglob("*.md")]
+documents = [
+    ROOT / "README.md",
+    ROOT / "AGENTS.md",
+    *ROOT.joinpath("docs").rglob("*.md"),
+    *ROOT.joinpath("tests", "fixtures").rglob("*.md"),
+]
 failures = []
 checked = 0
 for document in documents:
