@@ -8,7 +8,7 @@
 
 - Projeto local: `D:\Projetos\Git\desafio_jornadadados`.
 - Repositório: [LucasGoulartCouto/radar-obrigacoes-contratuais](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais).
-- Branch de trabalho: `codex/ia-local`, criada de `codex/avaliacao-extracao` no commit `40a69cde2351b435dcbb37b3a61fdf741d8c7473`, com Git limpo. PR #7 conferido aberto nesse HEAD; publicação da nova etapa ainda pendente.
+- Branch de trabalho: `codex/ia-local`, criada de `codex/avaliacao-extracao` no commit `40a69cde2351b435dcbb37b3a61fdf741d8c7473`, com Git limpo. PR #7 conferido aberto nesse HEAD. Nova branch publicada no commit `b4254973905d691c541ed7701bca32cf2270500a`, com árvore remota idêntica ao índice local; [PR #8](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/8) aberto em rascunho, base `codex/avaliacao-extracao`, sem merge.
 - Última versão funcional verificada: `8a8c8b9ef741dac8acfdfeaf3dabed91d2c766e8`. Atualizações posteriores deste checkpoint podem mudar o HEAD sem alterar a aplicação.
 - A `main` ainda contém a documentação anterior à implementação. Abrir um clone na `main` não equivale a abrir a versão funcional mais recente.
 - Na retomada, o HEAD local coincidiu com o HEAD remoto do PR #5. Havia somente a alteração pendente deste checkpoint. PRs #1–#5 conferidos pelo conector: todos abertos, sem merge e com as bases indicadas abaixo. Consultar Git/plataforma para mudanças posteriores.
@@ -24,6 +24,7 @@
 | Agenda e cobertura | Referência explícita, filtros, origem e todos os contratos visíveis; PR aberto para revisão de Lucas | [PR #5](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/5), base `feat/candidatos-e-conferencia` |
 | Documentação dos agentes | Mapa, seis guias, pontes e retomada preservada; PR aberto para revisão de Lucas | [PR #6](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/6), base `feat/agenda-e-cobertura` |
 | Comparação de extração | Experimento offline, 20 casos/21 documentos, falhas medidas; sem integração do baseline | [PR #7](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/7), base `codex/docs-agentes` |
+| IA local de desenvolvimento | Runtime/modelo provisório operaram; candidato com falhas, sem integração; PR em rascunho | [PR #8](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/8), base `codex/avaliacao-extracao` |
 | Verificação da versão funcional | 165 testes locais aprovados e CI aprovada em Windows/Linux | [Validação da agenda](validacao-agenda.md) e [execução 41330174954](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41330174954) |
 
 Os PRs são encadeados. Depois de integrar um anterior, conferir a base e o diff do seguinte antes de integrá-lo. Check automático aprovado não representa revisão humana concluída. Não fazer merge por inferência de uma instrução genérica para continuar o desenvolvimento.
@@ -48,11 +49,13 @@ Os PRs são encadeados. Depois de integrar um anterior, conferir a base e o diff
 
 **Decisão de Lucas em 01/11/2026:** usar IA local durante o desenvolvimento. Planejamento de IA em produção e escolha do melhor modelo ficam para depois da aplicação concluída. Um modelo provisório pode ser usado para desenvolver/validar a fronteira, sem alegar seleção para produção. API paga segue fora do escopo.
 
-**Bloco atual em andamento:** ambiente sem Ollama disponível nos caminhos/portas conferidos; memória ~28 GB e NVIDIA RTX 3050 Laptop com 4 GB verificados. Escolha técnica provisória: Ollama portátil oficial em `.tools/`, somente loopback, nuvem desabilitada e pesos locais de Qwen3 4B Instruct Q4. Não alterar PATH global, serviços ou inicialização do Windows. Download verificado por SHA; pesos/modelo fora do Git.
+**Bloco atual em andamento:** ambiente sem Ollama disponível nos caminhos/portas conferidos; memória física reportada ~27,7 GiB e NVIDIA RTX 3050 Laptop com 4 GB verificados. Escolha técnica provisória: Ollama portátil oficial em `.tools/`, somente loopback, nuvem desabilitada e pesos locais de Qwen3 4B Instruct Q4. Não alterar PATH global, serviços ou inicialização do Windows. Download verificado por SHA; pesos/modelo fora do Git.
 
 **Último bloco comprovado:** runtime/pesos conferidos, processo local e GPU Vulkan identificados em `.tools/ollama/runtime.json`; preparo reutilizado sem servidor duplicado. Adaptador e 242 testes completos aprovados. Smoke V1 encontrou falhas; prompt V2 ajustado no desenvolvimento. [Rodada real de 20 casos](evidencias/ia-local-v2.json): 6 casos integrais, 3 respostas rejeitadas, 19 candidatos indevidos, 9 casos com impedimento não reconhecido e 2 bloqueados com falha técnica. Não integrar essa versão à aplicação. [Validação](validacao-ia-local.md) distingue erros do método de testes aprovados.
 
-**Pendências deste bloco:** publicação em PR próprio/CI. Revisão local concluída com 242 testes, Ruff/formatação, lock/dependências, 41 arquivos/269 links, sintaxe dos scripts, reutilização do runtime e rejeição de destinos sem nova inferência. **Próxima ação após publicar:** revisar schema/prompt e checagem de bloqueios da extração local; preservar estas falhas e o caráter de desenvolvimento. Não iniciar comparação ampla de modelos de produção. Integração à aplicação só depois de evidências adequadas; manter confirmação humana, revisão da base e `AVISO_CORRIDOS_V1`. C20 completo segue pendente.
+**Publicação deste bloco:** commit `b4254973905d691c541ed7701bca32cf2270500a` e PR #8 em rascunho publicados; árvore `c26cefdd093f0d95ecb0d18e8ad07aaf90064858` igual ao índice local. Nenhum merge ou revisão humana concluída. Revisão local concluída com 242 testes, Ruff/formatação, lock/dependências, 41 arquivos/269 links, sintaxe dos scripts, reutilização do runtime e rejeição de destinos sem nova inferência. **Próxima ação após publicar:** revisar schema/prompt e checagem de bloqueios da extração local; preservar estas falhas e o caráter de desenvolvimento. Não iniciar comparação ampla de modelos de produção. Integração à aplicação só depois de evidências adequadas; manter confirmação humana, revisão da base e `AVISO_CORRIDOS_V1`. C20 completo segue pendente.
+
+**Fechamento deste registro:** esta atualização documental pode gerar outro HEAD. Conferir SHA/CI/matriz finais na descrição do PR #8 antes de retomar; não repetir publicação interrompida sem reconciliar Git/plataforma. O rascunho preserva o trabalho, sem declarar o candidato pronto para integração ou entrada na main.
 
 ## Decisões que devem orientar a próxima etapa
 
@@ -95,6 +98,8 @@ Consulte [o que persiste e o que precisa ser redescoberto](agents/continuidade.m
 **01/11/2026 — Retomada e organização dos agentes concluída.** Pedido de continuação revogou a pausa. Git/PRs reconciliados; pendência do checkpoint preservada na branch própria. Publicados mapa e seis guias no PR #6; evidências documentais e CI inicial aprovadas. Este fechamento mantém a referência do HEAD/CI finais na descrição do PR, evitando atualização autorreferente. Descoberta automática em nova sessão e ganho de custo/qualidade não foram medidos; extração não iniciada.
 
 **01/11/2026 — Experimento de extração publicado.** PR #7 com baseline offline e avaliador, 20 casos de desenvolvimento e gabaritos anteriores preservados. 208 testes locais e execução do método comprovados; matrizes e resultados finais de CI na descrição do PR. A precisão de candidatos foi 11/18 e cinco impedimentos passaram sem reconhecimento. Não houve IA, despesa, migração ou integração à agenda. Próxima rodada depende de ambiente/fornecedor, orçamento, critérios e avaliação reservada, sem tratar exemplos visíveis como independentes.
+
+**01/11/2026 — IA local preparada e avaliada.** Lucas escolheu execução local e adiou planejamento/seleção de produção até a aplicação concluída. Runtime e candidato provisório operaram no computador; 242 testes passaram. A rodada V2 teve 19 candidatos indevidos e 3 respostas rejeitadas, preservadas no PR #8 em rascunho. Próximo bloco: revisar schema/prompt e bloqueios, sem integrar essa versão nem iniciar seleção de produção.
 
 ## Mensagem curta para outra conversa
 
