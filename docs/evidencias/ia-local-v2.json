@@ -1,0 +1,1083 @@
+{
+  "schema_version": 1,
+  "method_version": "OLLAMA_LOCAL_EXPERIMENT_V1",
+  "method_sha256": "e53b699b7c5513af922ca7b2443f15b76a7c33e6954c47b5d9dc33451323c383",
+  "evaluator_sha256": "bfce838945fd0c7f95e2d53cfff519e7e270a7424847b5bbfaa39e94222d9bad",
+  "catalog_sha256": "70c82d2815e41bf5c6bb140caa03cca525e98341ff9edd64f512e4ec1ed31e4c",
+  "document_sha256": {
+    "documents/DEV-001-base.txt": "cbfdbaee00d6954b4e70d054360bcfda1f642d88b55853c62ffe973eafbf52a6",
+    "documents/DEV-002-base.txt": "858de9ea2c46ef4456f4401a57c57395372de1a457b2889ed4265d155a791b01",
+    "documents/DEV-003-base.txt": "19e8b8c2a130a077859d5d91878ca16a4bc2aa6c62b8c55f957132c932449ef9",
+    "documents/DEV-004-base.txt": "530e34e9de65b3a50a83f905e9d012cb86c120111db4b0f32ccea2cd0ef9c714",
+    "documents/DEV-004-aditivo.txt": "894c59b211366b02911c64d2c98419e7e9b8cf3d9a9e4c52f1f4feee737f501c",
+    "documents/DEV-005-base.txt": "e42c1eb74ebbf802d0a3cc070b087044a7bf93f07f7e0195e150c560fc229ff9",
+    "documents/DEV-006-base.txt": "73db456cac43471e1cd7c612b3676d823e359afa680ae2f1591e5a546f2a11a7",
+    "documents/DEV-007-base.txt": "adc1131876930c2bc8dfd7c80ed6a549de449efa19b0017e38e679177bd781e1",
+    "documents/DEV-008-base.txt": "4d9b0804841815ed21621eb5f576d3eeb0dcfbc5d2a4a54a3fdab47043d427ad",
+    "documents/DEV-009-base.txt": "06b5ea401d6665eacb7a79020bf2a23134e2e9cf022fc535d972074bf96da389",
+    "documents/DEV-010-base.txt": "819d5123ddfd0017a45c9d50016ad1519ae882252369d9837345cfc923980f66",
+    "documents/DEV-011-base.txt": "1d1cf62f5416ef1e381b2a2ce6ce5dc7a4bf1dd50a073f6537ec6453c7aa9888",
+    "documents/DEV-012-base.txt": "ed3dd3533e34bb71586b00a51e8dd2df0bd1de6afe72ff22e535d73c7196bb3f",
+    "documents/DEV-013-base.txt": "687aef8d66d7a2dfe92e28f581a5ba0dfe1fe815c9c2a4751efbacce72600b6a",
+    "documents/DEV-014-base.txt": "726407cb699d95b2c5bf85f3b12403d15c7ea19cf359fb987042997e42946439",
+    "documents/DEV-015-base.txt": "999f3a842cc90630a9bcb86ca05d12c184d142f473c08148b54cd69cd89404f4",
+    "documents/DEV-016-base.txt": "297e2b265f1e5eb1223be58f9a8bed5438eaf92f67347bc20d8efef3997f83fd",
+    "documents/DEV-017-base.txt": "4a14a46b54fbaa3d5008dde448c5eeddab0a11b23231d2426a885c49a2692578",
+    "documents/DEV-018-base.txt": "925b6539e357c3a61164c94804eeb454df5dafe6c370f965994605361c7a53b1",
+    "documents/DEV-019-base.txt": "aaba6e6dc409201c01667839388d69acd3dac0e6d63067c646a21f3eb44efe47",
+    "documents/DEV-020-base.txt": "b156b596b85aa475c5cc7e4063701375dfdd6df1e098b133f2519309259c27a2"
+  },
+  "split": "development",
+  "independent_evaluation": false,
+  "integrated_with_application": false,
+  "api_calls": 22,
+  "api_cost": 0,
+  "totals": {
+    "cases": 20,
+    "failed_cases": 3,
+    "abstained_cases": 0,
+    "exact_cases": 6,
+    "cases_missing_blockers": 9,
+    "expected_blocked_cases": 11,
+    "failed_blocked_cases": 2,
+    "cases_extra_blockers": 0,
+    "invalid_evidence": 0,
+    "facts": {
+      "tp": 23,
+      "fp": 11,
+      "fn": 6,
+      "precision": 0.6764705882352942,
+      "recall": 0.7931034482758621
+    },
+    "events": {
+      "tp": 11,
+      "fp": 19,
+      "fn": 2,
+      "precision": 0.36666666666666664,
+      "recall": 0.8461538461538461
+    }
+  },
+  "timing_ms": {
+    "scope": "extração + pontuação; sem leitura de arquivos, confirmação ou esforço humano",
+    "median": 11180.11155,
+    "max": 16874.7
+  },
+  "cases": [
+    {
+      "id": "DEV-001",
+      "abstained": false,
+      "facts": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": true,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-002",
+      "abstained": false,
+      "facts": {
+        "tp": 1,
+        "fp": 1,
+        "fn": 1
+      },
+      "events": {
+        "tp": 0,
+        "fp": 2,
+        "fn": 0
+      },
+      "blockers_missing": [
+        "undefined_day_unit"
+      ],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": false,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-003",
+      "abstained": false,
+      "facts": {
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "blockers_missing": [
+        "conflicting_end_dates"
+      ],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": false,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-004",
+      "failed": true,
+      "error_type": "LocalInferenceError"
+    },
+    {
+      "id": "DEV-005",
+      "abstained": false,
+      "facts": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": true,
+      "expected_empty": true
+    },
+    {
+      "id": "DEV-006",
+      "abstained": false,
+      "facts": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": true,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-007",
+      "abstained": false,
+      "facts": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": true,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-008",
+      "abstained": false,
+      "facts": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": true,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-009",
+      "abstained": false,
+      "facts": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": true,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-010",
+      "abstained": false,
+      "facts": {
+        "tp": 1,
+        "fp": 1,
+        "fn": 0
+      },
+      "events": {
+        "tp": 1,
+        "fp": 1,
+        "fn": 0
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": false,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-011",
+      "failed": true,
+      "error_type": "LocalInferenceError"
+    },
+    {
+      "id": "DEV-012",
+      "abstained": false,
+      "facts": {
+        "tp": 1,
+        "fp": 1,
+        "fn": 0
+      },
+      "events": {
+        "tp": 0,
+        "fp": 2,
+        "fn": 0
+      },
+      "blockers_missing": [
+        "unsupported_anchor"
+      ],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": false,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-013",
+      "abstained": false,
+      "facts": {
+        "tp": 1,
+        "fp": 1,
+        "fn": 0
+      },
+      "events": {
+        "tp": 0,
+        "fp": 2,
+        "fn": 0
+      },
+      "blockers_missing": [
+        "unsupported_day_unit"
+      ],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": false,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-014",
+      "abstained": false,
+      "facts": {
+        "tp": 1,
+        "fp": 1,
+        "fn": 0
+      },
+      "events": {
+        "tp": 0,
+        "fp": 2,
+        "fn": 0
+      },
+      "blockers_missing": [
+        "unsupported_day_unit"
+      ],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": false,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-015",
+      "abstained": false,
+      "facts": {
+        "tp": 1,
+        "fp": 1,
+        "fn": 0
+      },
+      "events": {
+        "tp": 0,
+        "fp": 2,
+        "fn": 0
+      },
+      "blockers_missing": [
+        "invalid_notice_days"
+      ],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": false,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-016",
+      "abstained": false,
+      "facts": {
+        "tp": 1,
+        "fp": 1,
+        "fn": 0
+      },
+      "events": {
+        "tp": 0,
+        "fp": 2,
+        "fn": 0
+      },
+      "blockers_missing": [
+        "invalid_notice_days"
+      ],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": false,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-017",
+      "abstained": false,
+      "facts": {
+        "tp": 1,
+        "fp": 1,
+        "fn": 0
+      },
+      "events": {
+        "tp": 0,
+        "fp": 2,
+        "fn": 0
+      },
+      "blockers_missing": [
+        "conflicting_notice_days"
+      ],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": false,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-018",
+      "abstained": false,
+      "facts": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 0,
+        "fp": 2,
+        "fn": 0
+      },
+      "blockers_missing": [
+        "amendment_not_supported"
+      ],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": false,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-019",
+      "failed": true,
+      "error_type": "LocalInferenceError"
+    },
+    {
+      "id": "DEV-020",
+      "abstained": false,
+      "facts": {
+        "tp": 0,
+        "fp": 3,
+        "fn": 1
+      },
+      "events": {
+        "tp": 0,
+        "fp": 2,
+        "fn": 1
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": false,
+      "expected_empty": false
+    }
+  ],
+  "prompt_version": "EXTRACAO_LOCAL_V2",
+  "model": "qwen3:4b-instruct-2507-q4_K_M",
+  "model_digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+  "local_inference_requests": 20,
+  "local_metadata_requests": 2,
+  "runtime_version": "0.40.13",
+  "api_scope": "HTTP local, sem nuvem",
+  "observations": [
+    {
+      "ok": true,
+      "prompt_tokens": 780,
+      "output_tokens": 221,
+      "proposal": {
+        "facts": [
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 5,
+              "quote": "Término do ciclo informado: 30/06/2027.",
+              "start_line": 5
+            },
+            "field": "end_date",
+            "value": "2027-06-30"
+          },
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 6,
+              "quote": "Para não renovar, a contratante deverá comunicar sua decisão com 30 dias corridos de antecedência em relação à data de término.",
+              "start_line": 6
+            },
+            "field": "notice_rule",
+            "value": {
+              "anchor": "end_date",
+              "days": 30,
+              "unit": "calendar_days"
+            }
+          }
+        ],
+        "blockers": [],
+        "abstained": false
+      },
+      "elapsed_s": 10.987,
+      "case_id": "DEV-001"
+    },
+    {
+      "ok": true,
+      "prompt_tokens": 779,
+      "output_tokens": 219,
+      "proposal": {
+        "facts": [
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 5,
+              "quote": "Término do ciclo informado: 30/06/2027.",
+              "start_line": 5
+            },
+            "field": "end_date",
+            "value": "2027-06-30"
+          },
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 6,
+              "quote": "Para não renovar, a contratante deverá comunicar sua decisão com 30 dias de antecedência em relação à data de término.",
+              "start_line": 6
+            },
+            "field": "notice_rule",
+            "value": {
+              "anchor": "end_date",
+              "days": 30,
+              "unit": "calendar_days"
+            }
+          }
+        ],
+        "blockers": [],
+        "abstained": false
+      },
+      "elapsed_s": 10.907,
+      "case_id": "DEV-002"
+    },
+    {
+      "ok": true,
+      "prompt_tokens": 825,
+      "output_tokens": 319,
+      "proposal": {
+        "facts": [
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 5,
+              "quote": "Cláusula 4: o ciclo informado termina em 30/06/2027.",
+              "start_line": 5
+            },
+            "field": "end_date",
+            "value": "2027-06-30"
+          },
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 6,
+              "quote": "Cláusula 8: o mesmo ciclo informado termina em 31/07/2027.",
+              "start_line": 6
+            },
+            "field": "end_date",
+            "value": "2027-07-31"
+          },
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 7,
+              "quote": "Para não renovar, a contratante deverá comunicar sua decisão com 30 dias corridos de antecedência em relação à data de término.",
+              "start_line": 7
+            },
+            "field": "notice_rule",
+            "value": {
+              "anchor": "end_date",
+              "days": 30,
+              "unit": "calendar_days"
+            }
+          }
+        ],
+        "blockers": [],
+        "abstained": false
+      },
+      "elapsed_s": 16.429,
+      "case_id": "DEV-003"
+    },
+    {
+      "ok": false,
+      "error_type": "LocalInferenceError",
+      "error_code": "LOCAL_INVALID_EVIDENCE",
+      "elapsed_s": 16.875,
+      "case_id": "DEV-004"
+    },
+    {
+      "ok": true,
+      "prompt_tokens": 779,
+      "output_tokens": 22,
+      "proposal": {
+        "facts": [],
+        "blockers": [],
+        "abstained": false
+      },
+      "elapsed_s": 1.893,
+      "case_id": "DEV-005"
+    },
+    {
+      "ok": true,
+      "prompt_tokens": 778,
+      "output_tokens": 219,
+      "proposal": {
+        "facts": [
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 5,
+              "quote": "Término do ciclo informado: 01/03/2028.",
+              "start_line": 5
+            },
+            "field": "end_date",
+            "value": "2028-03-01"
+          },
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 6,
+              "quote": "Para não renovar, a contratante deverá comunicar sua decisão com 1 dia corrido de antecedência em relação à data de término.",
+              "start_line": 6
+            },
+            "field": "notice_rule",
+            "value": {
+              "anchor": "end_date",
+              "days": 1,
+              "unit": "calendar_days"
+            }
+          }
+        ],
+        "blockers": [],
+        "abstained": false
+      },
+      "elapsed_s": 11.991,
+      "case_id": "DEV-006"
+    },
+    {
+      "ok": true,
+      "prompt_tokens": 773,
+      "output_tokens": 215,
+      "proposal": {
+        "facts": [
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 5,
+              "quote": "Término do ciclo informado: 01/05/2027.",
+              "start_line": 5
+            },
+            "field": "end_date",
+            "value": "2027-05-01"
+          },
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 6,
+              "quote": "Para não renovar, o aviso tem antecedência expressa de 0 dias corridos em relação à data de término.",
+              "start_line": 6
+            },
+            "field": "notice_rule",
+            "value": {
+              "anchor": "end_date",
+              "days": 0,
+              "unit": "calendar_days"
+            }
+          }
+        ],
+        "blockers": [],
+        "abstained": false
+      },
+      "elapsed_s": 11.604,
+      "case_id": "DEV-007"
+    },
+    {
+      "ok": true,
+      "prompt_tokens": 800,
+      "output_tokens": 221,
+      "proposal": {
+        "facts": [
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 5,
+              "quote": "Término do ciclo informado: 30/06/2027.",
+              "start_line": 5
+            },
+            "field": "end_date",
+            "value": "2027-06-30"
+          },
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 6,
+              "quote": "Para não renovar, a contratante deverá comunicar sua decisão com 30 dias corridos de antecedência em relação à data de término.",
+              "start_line": 6
+            },
+            "field": "notice_rule",
+            "value": {
+              "anchor": "end_date",
+              "days": 30,
+              "unit": "calendar_days"
+            }
+          }
+        ],
+        "blockers": [],
+        "abstained": false
+      },
+      "elapsed_s": 11.361,
+      "case_id": "DEV-008"
+    },
+    {
+      "ok": true,
+      "prompt_tokens": 754,
+      "output_tokens": 219,
+      "proposal": {
+        "facts": [
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 5,
+              "quote": "Término do ciclo informado: 01/03/2027.",
+              "start_line": 5
+            },
+            "field": "end_date",
+            "value": "2027-03-01"
+          },
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 6,
+              "quote": "Para não renovar, a contratante deverá comunicar sua decisão com 1 dias corridos de antecedência em relação à data de término.",
+              "start_line": 6
+            },
+            "field": "notice_rule",
+            "value": {
+              "anchor": "end_date",
+              "days": 1,
+              "unit": "calendar_days"
+            }
+          }
+        ],
+        "blockers": [],
+        "abstained": false
+      },
+      "elapsed_s": 11.248,
+      "case_id": "DEV-009"
+    },
+    {
+      "ok": true,
+      "prompt_tokens": 737,
+      "output_tokens": 202,
+      "proposal": {
+        "facts": [
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 5,
+              "quote": "Término do ciclo informado: 30/09/2027.",
+              "start_line": 5
+            },
+            "field": "end_date",
+            "value": "2027-09-30"
+          },
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 6,
+              "quote": "Não é exigido aviso de não renovação neste ciclo.",
+              "start_line": 6
+            },
+            "field": "notice_rule",
+            "value": {
+              "anchor": "end_date",
+              "days": 0,
+              "unit": "calendar_days"
+            }
+          }
+        ],
+        "blockers": [],
+        "abstained": false
+      },
+      "elapsed_s": 10.505,
+      "case_id": "DEV-010"
+    },
+    {
+      "ok": false,
+      "error_type": "LocalInferenceError",
+      "error_code": "LOCAL_INVALID_DATE",
+      "elapsed_s": 6.339,
+      "case_id": "DEV-011"
+    },
+    {
+      "ok": true,
+      "prompt_tokens": 749,
+      "output_tokens": 215,
+      "proposal": {
+        "facts": [
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 5,
+              "quote": "Término do ciclo informado: 30/06/2027.",
+              "start_line": 5
+            },
+            "field": "end_date",
+            "value": "2027-06-30"
+          },
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 6,
+              "quote": "Para não renovar, comunicar com 30 dias corridos após a entrega, cuja data não foi informada.",
+              "start_line": 6
+            },
+            "field": "notice_rule",
+            "value": {
+              "anchor": "end_date",
+              "days": 30,
+              "unit": "calendar_days"
+            }
+          }
+        ],
+        "blockers": [],
+        "abstained": false
+      },
+      "elapsed_s": 11.485,
+      "case_id": "DEV-012"
+    },
+    {
+      "ok": true,
+      "prompt_tokens": 749,
+      "output_tokens": 215,
+      "proposal": {
+        "facts": [
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 5,
+              "quote": "Término do ciclo informado: 30/06/2027.",
+              "start_line": 5
+            },
+            "field": "end_date",
+            "value": "2027-06-30"
+          },
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 6,
+              "quote": "Para não renovar, comunicar com 10 dias úteis de antecedência em relação à data de término.",
+              "start_line": 6
+            },
+            "field": "notice_rule",
+            "value": {
+              "anchor": "end_date",
+              "days": 10,
+              "unit": "calendar_days"
+            }
+          }
+        ],
+        "blockers": [],
+        "abstained": false
+      },
+      "elapsed_s": 10.754,
+      "case_id": "DEV-013"
+    },
+    {
+      "ok": true,
+      "prompt_tokens": 745,
+      "output_tokens": 211,
+      "proposal": {
+        "facts": [
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 5,
+              "quote": "Término do ciclo informado: 30/06/2027.",
+              "start_line": 5
+            },
+            "field": "end_date",
+            "value": "2027-06-30"
+          },
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 6,
+              "quote": "Para não renovar, comunicar com 2 meses de antecedência em relação à data de término.",
+              "start_line": 6
+            },
+            "field": "notice_rule",
+            "value": {
+              "anchor": "end_date",
+              "days": 60,
+              "unit": "calendar_days"
+            }
+          }
+        ],
+        "blockers": [],
+        "abstained": false
+      },
+      "elapsed_s": 10.748,
+      "case_id": "DEV-014"
+    },
+    {
+      "ok": true,
+      "prompt_tokens": 754,
+      "output_tokens": 219,
+      "proposal": {
+        "facts": [
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 5,
+              "quote": "Término do ciclo informado: 30/06/2027.",
+              "start_line": 5
+            },
+            "field": "end_date",
+            "value": "2027-06-30"
+          },
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 6,
+              "quote": "Para não renovar, a contratante deverá comunicar sua decisão com -3 dias corridos de antecedência em relação à data de término.",
+              "start_line": 6
+            },
+            "field": "notice_rule",
+            "value": {
+              "anchor": "end_date",
+              "days": 3,
+              "unit": "calendar_days"
+            }
+          }
+        ],
+        "blockers": [],
+        "abstained": false
+      },
+      "elapsed_s": 10.89,
+      "case_id": "DEV-015"
+    },
+    {
+      "ok": true,
+      "prompt_tokens": 756,
+      "output_tokens": 221,
+      "proposal": {
+        "facts": [
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 5,
+              "quote": "Término do ciclo informado: 30/06/2027.",
+              "start_line": 5
+            },
+            "field": "end_date",
+            "value": "2027-06-30"
+          },
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 6,
+              "quote": "Para não renovar, a contratante deverá comunicar sua decisão com 1,5 dias corridos de antecedência em relação à data de término.",
+              "start_line": 6
+            },
+            "field": "notice_rule",
+            "value": {
+              "anchor": "end_date",
+              "days": 1,
+              "unit": "calendar_days"
+            }
+          }
+        ],
+        "blockers": [],
+        "abstained": false
+      },
+      "elapsed_s": 11.112,
+      "case_id": "DEV-016"
+    },
+    {
+      "ok": true,
+      "prompt_tokens": 752,
+      "output_tokens": 218,
+      "proposal": {
+        "facts": [
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 5,
+              "quote": "Término do ciclo informado: 30/06/2027.",
+              "start_line": 5
+            },
+            "field": "end_date",
+            "value": "2027-06-30"
+          },
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 6,
+              "quote": "Para não renovar, comunicar com 30 (sessenta) dias corridos de antecedência em relação à data de término.",
+              "start_line": 6
+            },
+            "field": "notice_rule",
+            "value": {
+              "anchor": "end_date",
+              "days": 30,
+              "unit": "calendar_days"
+            }
+          }
+        ],
+        "blockers": [],
+        "abstained": false
+      },
+      "elapsed_s": 11.424,
+      "case_id": "DEV-017"
+    },
+    {
+      "ok": true,
+      "prompt_tokens": 798,
+      "output_tokens": 221,
+      "proposal": {
+        "facts": [
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 5,
+              "quote": "Término do ciclo informado: 30/06/2027.",
+              "start_line": 5
+            },
+            "field": "end_date",
+            "value": "2027-06-30"
+          },
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 6,
+              "quote": "Para não renovar, a contratante deverá comunicar sua decisão com 30 dias corridos de antecedência em relação à data de término.",
+              "start_line": 6
+            },
+            "field": "notice_rule",
+            "value": {
+              "anchor": "end_date",
+              "days": 30,
+              "unit": "calendar_days"
+            }
+          }
+        ],
+        "blockers": [],
+        "abstained": false
+      },
+      "elapsed_s": 11.548,
+      "case_id": "DEV-018"
+    },
+    {
+      "ok": false,
+      "error_type": "LocalInferenceError",
+      "error_code": "LOCAL_INVALID_EVIDENCE",
+      "elapsed_s": 6.136,
+      "case_id": "DEV-019"
+    },
+    {
+      "ok": true,
+      "prompt_tokens": 768,
+      "output_tokens": 300,
+      "proposal": {
+        "facts": [
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 6,
+              "quote": "Término do ciclo informado: 30/06/2027.",
+              "start_line": 6
+            },
+            "field": "end_date",
+            "value": "2027-06-30"
+          },
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 7,
+              "quote": "A vigência efetiva encerra-se em 31/08/2027.",
+              "start_line": 7
+            },
+            "field": "amendment_end_date",
+            "value": "2027-08-31"
+          },
+          {
+            "evidence": {
+              "document_id": "base",
+              "end_line": 7,
+              "quote": "A vigência efetiva encerra-se em 31/08/2027.",
+              "start_line": 7
+            },
+            "field": "notice_rule",
+            "value": {
+              "anchor": "end_date",
+              "days": 30,
+              "unit": "calendar_days"
+            }
+          }
+        ],
+        "blockers": [],
+        "abstained": false
+      },
+      "elapsed_s": 16.856,
+      "case_id": "DEV-020"
+    }
+  ],
+  "parameters": {
+    "num_ctx": 8192,
+    "num_predict": 1536,
+    "temperature": 0,
+    "seed": 42
+  }
+}

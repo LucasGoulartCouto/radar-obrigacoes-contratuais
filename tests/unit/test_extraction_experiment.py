@@ -156,8 +156,9 @@ def test_extractor_only_receives_documents_and_report_fingerprints_inputs():
     report = evaluate(CATALOG, abstain, method_version="ABSTAIN_TEST")
     assert len(calls) == 20
     assert len(report["document_sha256"]) == 21
-    assert len(report["catalog_sha256"]) == len(report["method_sha256"]) == 64
-    assert report["api_calls"] == report["api_cost"] == 0
+    assert len(report["catalog_sha256"]) == len(report["evaluator_sha256"]) == 64
+    assert report["method_sha256"] is None
+    assert report["api_calls"] is report["api_cost"] is None
     assert report["independent_evaluation"] is False
     assert report["integrated_with_application"] is False
 

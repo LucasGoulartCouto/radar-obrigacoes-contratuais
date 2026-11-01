@@ -29,6 +29,8 @@ M3 é um passo de engenharia para verificar regras e formar uma comparação; n�
 
 **Comparação inicial de extração em 01/11/2026:** [experimento offline](comparacao-extracao.md), com 20 casos de desenvolvimento/21 documentos e medição do baseline por regras. Sete candidatos indevidos e cinco impedimentos perdidos impedem recomendar sua integração. Avaliador/testes não equivalem a extrator integrado; IA, conjunto reservado, fornecedor, orçamento e estados de recuperação continuam pendentes. Decisão técnica no [ADR-009](adrs/009-experimento-offline-de-extracao.md).
 
+**Decisão e operação de IA local em 01/11/2026:** [ADR-010](adrs/010-ia-local-no-desenvolvimento.md) aceita IA local para desenvolvimento e adia produção/seleção definitiva até a aplicação concluída. Runtime/modelo provisório preparados, 20 casos executados e falhas preservadas na [validação](validacao-ia-local.md). O candidato ainda não está apto a alimentar a aplicação; revisar schema/prompt e bloqueios antes da integração.
+
 ## Primeiras unidades de trabalho depois de fechar a proposta técnica
 
 Antes das funcionalidades, a fundação deverá validar a combinação de ferramentas aceita no [ADR-004](adrs/004-proposta-tecnologias-locais.md): instalação isolada, formulário local, migração, transação interrompida, submissão repetida e backup/restauração. Essa verificação não é uma demonstração de extração de contratos.

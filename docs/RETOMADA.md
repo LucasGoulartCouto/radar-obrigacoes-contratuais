@@ -8,7 +8,7 @@
 
 - Projeto local: `D:\Projetos\Git\desafio_jornadadados`.
 - Repositório: [LucasGoulartCouto/radar-obrigacoes-contratuais](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais).
-- Branch de trabalho: `codex/avaliacao-extracao`, criada de `codex/docs-agentes` no commit `0ac98d72bb3dd17c2625fc15dbb55a6f75fe82bd`, com Git limpo. Branch publicada no commit `b48a82f31c1bd73419f84f2f241cde25ea441b94`, com árvore remota idêntica ao índice local. [PR #7](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/7) aberto com base em `codex/docs-agentes`, sem merge.
+- Branch de trabalho: `codex/ia-local`, criada de `codex/avaliacao-extracao` no commit `40a69cde2351b435dcbb37b3a61fdf741d8c7473`, com Git limpo. PR #7 conferido aberto nesse HEAD; publicação da nova etapa ainda pendente.
 - Última versão funcional verificada: `8a8c8b9ef741dac8acfdfeaf3dabed91d2c766e8`. Atualizações posteriores deste checkpoint podem mudar o HEAD sem alterar a aplicação.
 - A `main` ainda contém a documentação anterior à implementação. Abrir um clone na `main` não equivale a abrir a versão funcional mais recente.
 - Na retomada, o HEAD local coincidiu com o HEAD remoto do PR #5. Havia somente a alteração pendente deste checkpoint. PRs #1–#5 conferidos pelo conector: todos abertos, sem merge e com as bases indicadas abaixo. Consultar Git/plataforma para mudanças posteriores.
@@ -46,7 +46,13 @@ Os PRs são encadeados. Depois de integrar um anterior, conferir a base e o diff
 
 **Fechamento de publicação:** esta atualização documental registra branch/PR e pode gerar outro HEAD. CI remota, commit e matriz finais ficam na descrição do [PR #7](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/7); conferir esse fechamento antes de nova etapa. Se interrompido, comparar Git/plataforma antes de repetir. Nenhum PR integrado e nenhuma revisão humana de Lucas comprovada. Os erros do método são resultados mensurados, sem serem ocultados por testes verdes.
 
-**Depois deste experimento:** definir com Lucas fornecedor/ambiente e orçamento antes de qualquer API paga; congelar método, limiares e conjunto reservado antes da avaliação final. Integração produtiva exige política de execução/recuperação e evidências de revisão/concorrência. Não alegar extrator integrado ou C20 completo; evolução para escala continua posterior.
+**Decisão de Lucas em 01/11/2026:** usar IA local durante o desenvolvimento. Planejamento de IA em produção e escolha do melhor modelo ficam para depois da aplicação concluída. Um modelo provisório pode ser usado para desenvolver/validar a fronteira, sem alegar seleção para produção. API paga segue fora do escopo.
+
+**Bloco atual em andamento:** ambiente sem Ollama disponível nos caminhos/portas conferidos; memória ~28 GB e NVIDIA RTX 3050 Laptop com 4 GB verificados. Escolha técnica provisória: Ollama portátil oficial em `.tools/`, somente loopback, nuvem desabilitada e pesos locais de Qwen3 4B Instruct Q4. Não alterar PATH global, serviços ou inicialização do Windows. Download verificado por SHA; pesos/modelo fora do Git.
+
+**Último bloco comprovado:** runtime/pesos conferidos, processo local e GPU Vulkan identificados em `.tools/ollama/runtime.json`; preparo reutilizado sem servidor duplicado. Adaptador e 242 testes completos aprovados. Smoke V1 encontrou falhas; prompt V2 ajustado no desenvolvimento. [Rodada real de 20 casos](evidencias/ia-local-v2.json): 6 casos integrais, 3 respostas rejeitadas, 19 candidatos indevidos, 9 casos com impedimento não reconhecido e 2 bloqueados com falha técnica. Não integrar essa versão à aplicação. [Validação](validacao-ia-local.md) distingue erros do método de testes aprovados.
+
+**Pendências deste bloco:** publicação em PR próprio/CI. Revisão local concluída com 242 testes, Ruff/formatação, lock/dependências, 41 arquivos/269 links, sintaxe dos scripts, reutilização do runtime e rejeição de destinos sem nova inferência. **Próxima ação após publicar:** revisar schema/prompt e checagem de bloqueios da extração local; preservar estas falhas e o caráter de desenvolvimento. Não iniciar comparação ampla de modelos de produção. Integração à aplicação só depois de evidências adequadas; manter confirmação humana, revisão da base e `AVISO_CORRIDOS_V1`. C20 completo segue pendente.
 
 ## Decisões que devem orientar a próxima etapa
 
@@ -60,7 +66,7 @@ Consultar os documentos de origem, sem tratar este resumo como nova autorizaçã
 - [ADR-008](adrs/008-agenda-e-cobertura-da-carteira.md): agenda de consulta, horizonte de 30 dias, filtros e cobertura independente; limitações do caminho manual.
 - [Plano de entrega](plano-de-entrega.md): dependências e marcos seguintes.
 
-Somente dados sintéticos. Publicação no repositório e PRs estão autorizados; isso não autoriza mensagens a fornecedores, posts, despesas de API ou hospedagem. Fornecedor e orçamento de IA continuam em aberto. A proposta de evolução para escala fica depois de validar o fluxo local.
+Somente dados sintéticos. Publicação no repositório e PRs estão autorizados; isso não autoriza mensagens a fornecedores, posts, despesas de API ou hospedagem. IA local no desenvolvimento está decidida; planejamento e seleção da IA de produção ficam depois da aplicação concluída. A proposta de evolução para escala fica depois de validar o fluxo local.
 
 ## Como retomar depois de interrupção
 
