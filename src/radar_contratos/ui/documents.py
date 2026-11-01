@@ -9,6 +9,7 @@ from radar_contratos.application.documents import DocumentService
 from radar_contratos.domain.contracts import Contract
 from radar_contratos.domain.documents import DocumentInput, DocumentRole
 from radar_contratos.errors import RadarError, StaleRecordError, ValidationError
+from radar_contratos.ui.session import refresh_document_context
 
 ROLE_LABELS = {
     DocumentRole.BASE: "Documento base",
@@ -48,8 +49,7 @@ def render_documents(service: DocumentService, contract: Contract) -> None:
     generation = st.session_state[generation_key]
     prefix = f"documents:{contract.id}:{generation}"
     if st.button("Atualizar documentos", key=f"refresh:{contract.id}"):
-        st.session_state.pop(snapshot_key, None)
-        st.session_state[generation_key] += 1
+        refresh_document_context(contract.id)
         st.rerun()
     if st.session_state[snapshot_key] != contract.document_version:
         st.error("Os documentos mudaram em outro envio. Atualize antes de salvar.")
@@ -135,8 +135,7 @@ def render_documents(service: DocumentService, contract: Contract) -> None:
                 else f"Mesmo conjunto documental: revisão {receipt.revision_number} mantida. "
                 "O arquivo recebido foi preservado no histórico de envios."
             )
-            st.session_state.pop(snapshot_key, None)
-            st.session_state[generation_key] += 1
+            refresh_document_context(contract.id)
             st.rerun()
 
     if not revisions:

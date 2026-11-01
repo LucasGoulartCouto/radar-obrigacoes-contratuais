@@ -32,6 +32,7 @@ def _contract(row: ContractRow) -> Contract:
         row.created_at_utc,
         row.updated_at_utc,
         row.document_version,
+        row.analysis_version,
     )
 
 

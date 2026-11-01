@@ -1,6 +1,6 @@
 # SPEC-001 — Do contrato sintético à agenda conferida
 
-Versão 0.3 · 01/11/2026 · Entrada e revisões implementadas; análise, conferência e agenda futuras.
+Versão 0.4 · 01/11/2026 · Entrada, levantamento manual e conferência implementados; extrator e agenda temporal completa futuros.
 
 Referência: [PRD](../PRD.md). Esta SPEC define regras do case fictício, sem estabelecer interpretação jurídica para contratos reais. A separação entre extração, cálculo e confirmação e o bloqueio por ambiguidade, conflito ou aditivo foram aceitos por Lucas no ADR-002. Limites, nomes de estados e outros detalhes técnicos continuam sujeitos à revisão.
 
@@ -146,3 +146,7 @@ Metas de qualidade do extrator serão tratadas no PRD após o experimento inicia
 ## 10. Exemplos iniciais disponíveis
 
 O [conjunto de desenvolvimento](../../tests/fixtures/contracts/README.md) contém oito casos com documentos e gabarito, ligados aos cenários C01, C02, C04, C05, C07, C10, C14 e C16. Eles concretizam entradas e respostas esperadas; não comprovam a implementação desses cenários. Mudanças de revisão, concorrência, repetição, falhas e limites ainda precisam de casos de fluxo próprios. Consulte também as [decisões e propostas operacionais](../decisoes-primeiro-fluxo.md).
+
+## 11. Verificação do caminho manual
+
+O [registro da conferência](../validacao-conferencia-manual.md) identifica os testes de candidatos/evidências, confirmação separada, correção justificada, resultado vazio e invalidação por revisão/regra. O levantamento é manual: conflitos e conteúdo não suportado ainda precisam ser identificados pelo operador. Localização de evidência não comprova suporte semântico. Esses resultados não representam uma avaliação de extração automática nem a conclusão de toda a SPEC.

@@ -21,12 +21,14 @@ class ContractRow(Base):
     __table_args__ = (
         CheckConstraint("record_version >= 1", name="ck_contract_version"),
         CheckConstraint("document_version >= 0", name="ck_contract_document_version"),
+        CheckConstraint("analysis_version >= 0", name="ck_contract_analysis_version"),
     )
 
     id: Mapped[str] = mapped_column(String(36), primary_key=True)
     title: Mapped[str] = mapped_column(String(200))
     record_version: Mapped[int]
     document_version: Mapped[int] = mapped_column(default=0, server_default="0")
+    analysis_version: Mapped[int] = mapped_column(default=0, server_default="0")
     created_at_utc: Mapped[str] = mapped_column(String(40))
     updated_at_utc: Mapped[str] = mapped_column(String(40))
 
@@ -92,3 +94,47 @@ class DocumentUploadRow(Base):
     reference_text: Mapped[str] = mapped_column(Text)
     reference_sha256: Mapped[str] = mapped_column(String(64))
     normalization_version: Mapped[str] = mapped_column(String(40))
+
+
+class AnalysisRow(Base):
+    __tablename__ = "manual_analyses"
+    __table_args__ = (
+        UniqueConstraint("contract_id", "number", name="uq_analysis_number"),
+        CheckConstraint("number >= 1", name="ck_analysis_number"),
+        CheckConstraint("candidate_count BETWEEN 0 AND 2", name="ck_analysis_candidate_count"),
+    )
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    contract_id: Mapped[str] = mapped_column(ForeignKey("contracts.id"), index=True)
+    revision_id: Mapped[str] = mapped_column(ForeignKey("document_revisions.id"), index=True)
+    number: Mapped[int]
+    fingerprint: Mapped[str] = mapped_column(String(64))
+    payload: Mapped[dict] = mapped_column(JSON)
+    rule_version: Mapped[str] = mapped_column(String(40))
+    blocked: Mapped[bool]
+    candidate_count: Mapped[int]
+    change_reason: Mapped[str] = mapped_column(String(500))
+    actor: Mapped[str] = mapped_column(String(80))
+    created_at_utc: Mapped[str] = mapped_column(String(40))
+
+
+class ReviewRow(Base):
+    __tablename__ = "human_reviews"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    analysis_id: Mapped[str] = mapped_column(ForeignKey("manual_analyses.id"), unique=True)
+    actor: Mapped[str] = mapped_column(String(80))
+    reviewed_at_utc: Mapped[str] = mapped_column(String(40))
+
+
+class ConfirmedEventRow(Base):
+    __tablename__ = "confirmed_events"
+    __table_args__ = (
+        UniqueConstraint("review_id", "kind", name="uq_review_event_kind"),
+        CheckConstraint("kind IN ('termination', 'non_renewal_notice')", name="ck_event_kind"),
+    )
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    review_id: Mapped[str] = mapped_column(ForeignKey("human_reviews.id"), index=True)
+    kind: Mapped[str] = mapped_column(String(30))
+    event_date: Mapped[str] = mapped_column(String(10))

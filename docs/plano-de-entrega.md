@@ -23,6 +23,8 @@ M3 é um passo de engenharia para verificar regras e formar uma comparação; n�
 
 **Avanço da entrada documental em 01/11/2026:** limites de recebimento adotados no ADR-006, originais preservados, revisões e reenvio implementados, migração do banco local com backup e verificação de envio/download pela interface. Veja a [validação documental](validacao-entrada-documental.md). Candidatos, conferência, confirmação e agenda continuam como próximas entregas; limites de processamento e orçamento do extrator ainda estão abertos.
 
+**Avanço do caminho manual em 01/11/2026:** candidatos com evidências, cálculo, confirmação separada, resultado vazio e correção justificada foram implementados conforme [ADR-007](adrs/007-levantamento-manual-e-conferencia.md). A [validação](validacao-conferencia-manual.md) registra 123 testes locais e conferência simulada no navegador. A lista atual só mostra eventos de base válida; agenda temporal completa, extrator e sua avaliação continuam pendentes. A revisão de Lucas dos PRs também continua pendente.
+
 ## Primeiras unidades de trabalho depois de fechar a proposta técnica
 
 Antes das funcionalidades, a fundação deverá validar a combinação de ferramentas aceita no [ADR-004](adrs/004-proposta-tecnologias-locais.md): instalação isolada, formulário local, migração, transação interrompida, submissão repetida e backup/restauração. Essa verificação não é uma demonstração de extração de contratos.
