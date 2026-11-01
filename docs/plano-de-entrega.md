@@ -17,6 +17,8 @@
 
 M3 é um passo de engenharia para verificar regras e formar uma comparação; não representa desistir da extração automática. M4 decide como implementá-la com evidências. Publicações e comunicações externas não serão executadas sem instrução explícita de Lucas.
 
+**Atualização da fundação em 01/11/2026:** ambiente, módulos, cadastro, migração inicial, backup, harness e verificações locais executados. A parte local de M2 está preparada; CI remota/proteções ainda estão pendentes. Regras de datas e cadastro iniciam parte de M3, mas o fluxo com evidências documentais e conferência ainda não está pronto. Veja o [registro de validação](validacao-fundacao.md).
+
 ## Primeiras unidades de trabalho depois de fechar a proposta técnica
 
 Antes das funcionalidades, a fundação deverá validar a combinação de ferramentas aceita no [ADR-004](adrs/004-proposta-tecnologias-locais.md): instalação isolada, formulário local, migração, transação interrompida, submissão repetida e backup/restauração. Essa verificação não é uma demonstração de extração de contratos.
@@ -44,4 +46,4 @@ Cada unidade deverá apontar para requisito, cenário de aceitação, mudança p
 
 ## O que foi feito nesta etapa
 
-O case, o recorte, o direcionamento local modular e as ferramentas foram aceitos; foram escritos rascunhos de PRD, SPEC, arquitetura, ADRs e plano de entrega. A [proposta futura de evolução](evolucao-arquitetural.md) foi incluída por solicitação de Lucas em 01/11/2026. Python e Git foram localizados e consultados; a instalação conjunta das dependências não foi feita. Ainda não foram criados o produto, os casos de dados, os testes automatizados, o repositório Git ou os controles remotos. Cálculos pontuais e consistência documental são conferidos separadamente, sem confundi-los com testes do produto.
+O case, o recorte, o direcionamento e as ferramentas foram aceitos. A fundação foi implementada com 34 testes locais aprovados, Git, scripts e CI preparada. A [proposta futura de evolução](evolucao-arquitetural.md) permanece planejada. Produto documental completo, conjunto de avaliação da extração e controles remotos ainda não foram entregues; testes de fundação não são prova dessas etapas.

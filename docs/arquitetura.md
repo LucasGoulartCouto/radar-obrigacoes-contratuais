@@ -1,6 +1,6 @@
 # Arquitetura — aplicação local modular
 
-Aplicação local com módulos separados aceita por Lucas no [ADR-003](adrs/003-aplicacao-local-modular.md). As ferramentas foram aceitas em 01/11/2026 no [ADR-004](adrs/004-proposta-tecnologias-locais.md); ainda não foram instaladas ou testadas em conjunto. Fornecedor de IA continua em aberto. A proposta posterior de evolução para escala e desempenho está registrada no [plano de evolução](evolucao-arquitetural.md).
+Aplicação local com módulos separados aceita por Lucas no [ADR-003](adrs/003-aplicacao-local-modular.md). As ferramentas do [ADR-004](adrs/004-proposta-tecnologias-locais.md) foram instaladas e verificadas na fundação em 01/11/2026; consulte as [evidências e limitações](validacao-fundacao.md). Fornecedor de IA continua em aberto. A proposta posterior de evolução para escala e desempenho está registrada no [plano de evolução](evolucao-arquitetural.md).
 
 ## 1. Visão do fluxo
 
@@ -31,25 +31,24 @@ Execução escolhida: Python em ambiente isolado, interface Streamlit no endere�
 
 ## 3. Módulos e direção das dependências
 
-Estrutura prevista, ainda não criada:
+Estrutura da fundação implementada:
 
 ```text
 src/radar_contratos/
     domain/           regras de datas, entidades e invariantes do negocio
     application/      casos de uso e contratos de acesso a dados/extracao
-    infrastructure/   persistencia, extratores e integracoes concretas
-    ui/               telas de cadastro, conferencia, agenda e cobertura
+    infrastructure/
+        persistence/  banco, transacoes, backup e migracoes empacotadas
+    ui/               cadastro e edicao de nome, nesta entrega
     bootstrap.py      configuracao e ligacao dos componentes
 tests/
     unit/             regras do dominio
     integration/      banco, migracoes, concorrencia e recuperacao
     scenarios/        fluxos de negocio da SPEC
-data/synthetic/       casos sinteticos de desenvolvimento e avaliacao
-migrations/           evolucao versionada do esquema com Alembic
 var/                  banco e backups locais, fora do versionamento
 ```
 
-O domínio não importa Streamlit, SQLAlchemy nem SDK de modelo. A aplicação usa o domínio e define as interfaces necessárias para persistir e extrair. A infraestrutura implementa essas interfaces; a interface chama os casos de uso. A inicialização conecta as implementações às dependências exigidas.
+O domínio não importa Streamlit, SQLAlchemy nem SDK de modelo. A aplicação usa o domínio e define a fronteira de persistência do cadastro. A infraestrutura a implementa; a interface chama os casos de uso. A inicialização conecta os componentes. Extrator, evidências e telas de conferência/agenda ainda serão acrescentados. O desenho de fluxo da seção 1 descreve o produto planejado, não o alcance completo da fundação.
 
 Não precisamos criar uma abstração para cada função ou uma interface por tabela. As fronteiras principais são persistência/transação e extração: elas permitem verificar as regras e comparar métodos sem reescrever as telas.
 
@@ -98,9 +97,9 @@ SQLite permite um escritor por vez. Por isso, a implementação precisará de tr
 
 O primeiro ambiente será uma simulação com dados sintéticos. Identificar o revisor local não comprova autenticação de produção; histórico lógico não é uma trilha inviolável. Precisamos documentar o que for efetivamente implementado.
 
-A aplicação local modular e as ferramentas do ADR-004 estão aceitas. A validação de compatibilidade continua pendente. Permanecem abertos o extrator, os limites operacionais, o orçamento de IA e os detalhes de backup e automação.
+A aplicação local modular e as ferramentas do ADR-004 estão aceitas e a fundação foi validada no Windows. Permanecem abertos o extrator, os limites de documentos, o orçamento de IA e os controles de revisão documental. Backup inicial e verificações automatizadas locais foram implementados; operação remota da CI ainda está pendente.
 
-Python e Git foram localizados e responderam às consultas de versão; o conjunto de dependências proposto ainda não foi preparado. A fundação precisa verificar instalação isolada, formulário de conferência, persistência entre reaberturas, migração, transação interrompida e submissão repetida.
+O [registro de validação](validacao-fundacao.md) distingue os testes de cadastro, datas e persistência dos cenários de análise documental ainda não implementados. A preparação do [Agent Harness](agent-harness.md) e da [governança](governanca-repositorio.md) também está documentada.
 
 ## 8. Fontes e limites de validação
 
