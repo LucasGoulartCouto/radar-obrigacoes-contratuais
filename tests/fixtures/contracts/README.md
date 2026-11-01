@@ -1,6 +1,6 @@
 # Casos sintéticos do Radar
 
-01/11/2026 · Material de desenvolvimento. **Lucas aceitou a separação entre extração, cálculo e confirmação e o bloqueio por ambiguidade, conflito ou aditivo.** O [registro do primeiro fluxo](../../../docs/decisoes-primeiro-fluxo.md) distingue essa decisão dos limites operacionais ainda propostos.
+01/11/2026 · Material de desenvolvimento. **Lucas aceitou a separação entre extração, cálculo e confirmação e o bloqueio por ambiguidade, conflito ou aditivo.** O [registro do primeiro fluxo](../../../docs/decisoes-primeiro-fluxo.md) distingue essa decisão dos limites de entrada implementados e das escolhas futuras de processamento.
 
 Todos os personagens, fornecedores e documentos deste conjunto são fictícios. Os textos são trechos mínimos construídos para exercitar decisões do produto; não são modelos de contrato nem uma amostra representativa de contratos reais.
 

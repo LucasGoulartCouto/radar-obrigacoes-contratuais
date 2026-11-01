@@ -2,7 +2,7 @@
 
 Data: 31/10/2026.
 
-**Status: aceito por Lucas em 01/11/2026.** A aritmética já existe na fundação; extração, revisão documental, confirmação e agenda ainda não foram implementadas.
+**Status: aceito por Lucas em 01/11/2026.** Aritmética, entrada e revisões documentais estão implementadas; extração, conferência humana, confirmação e agenda ainda não foram implementadas.
 
 ## Contexto
 

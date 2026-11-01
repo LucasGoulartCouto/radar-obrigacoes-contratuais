@@ -19,7 +19,9 @@ M3 é um passo de engenharia para verificar regras e formar uma comparação; n�
 
 **Atualização da fundação em 01/11/2026:** ambiente, cadastro, migração, backup e harness verificados. A publicação concluiu os controles de M2: PR aberto, CI aprovada em Windows/Linux e principal protegida, incluindo prova negativa de bloqueio. A revisão humana do PR continua pendente. Regras de datas e cadastro iniciam parte de M3; evidências documentais e conferência ainda não estão prontas. Veja os registros de [fundação](validacao-fundacao.md) e [publicação](validacao-publicacao.md).
 
-**Avanço de regras e casos em 01/11/2026:** Lucas aceitou o ADR-002. Foram preparados [oito casos de desenvolvimento](../tests/fixtures/contracts/README.md), nove documentos e gabarito com evidências. Os [limites operacionais](decisoes-primeiro-fluxo.md) continuam propostos; M1 ainda precisa concluir esses detalhes antes da entrada documental. Não há avaliação reservada nem extrator implementado.
+**Avanço de regras e casos em 01/11/2026:** Lucas aceitou o ADR-002. Foram preparados [oito casos de desenvolvimento](../tests/fixtures/contracts/README.md), nove documentos e gabarito com evidências. Nessa entrega, os limites ainda eram propostas; os limites da entrada foram aplicados na etapa seguinte. Não há avaliação reservada nem extrator implementado.
+
+**Avanço da entrada documental em 01/11/2026:** limites de recebimento adotados no ADR-006, originais preservados, revisões e reenvio implementados, migração do banco local com backup e verificação de envio/download pela interface. Veja a [validação documental](validacao-entrada-documental.md). Candidatos, conferência, confirmação e agenda continuam como próximas entregas; limites de processamento e orçamento do extrator ainda estão abertos.
 
 ## Primeiras unidades de trabalho depois de fechar a proposta técnica
 

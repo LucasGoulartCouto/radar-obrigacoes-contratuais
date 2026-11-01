@@ -66,7 +66,7 @@ Não precisamos criar uma abstração para cada função ou uma interface por ta
 
 O armazenamento deve distinguir contrato, revisão documental, documento, execução, candidato e conferência. Antes de escolher tabelas, validaremos as relações previstas na [SPEC](specs/001-primeiro-fluxo.md). Logs não substituem o histórico de negócio.
 
-Proposta para o primeiro volume sintético: preservar bytes originais, texto de referência e metadados no SQLite, junto ao histórico transacional. Isso permite manter os dados do caso em um armazenamento local coerente, sem depender de arquivos externos que possam mudar após a conferência. Um diretório de casos sintéticos versionados alimentará a demonstração; o banco gerado em execução ficará em `var/`, fora do Git.
+Implementado para o primeiro volume sintético: bytes originais, texto de referência e metadados no SQLite, junto ao histórico transacional, conforme [ADR-006](adrs/006-entrada-e-revisoes-documentais.md). Isso mantém os dados em um armazenamento local coerente, sem depender de arquivos externos que possam mudar após a conferência. O diretório de casos sintéticos alimenta a demonstração; o banco gerado fica em `var/`, fora do Git.
 
 Mudanças de esquema serão versionadas. Backup/restauração deverá usar um mecanismo consistente do SQLite e ser verificado; copiar indiscriminadamente um arquivo aberto não será o procedimento documentado. Organização física, limites de tamanho e política de backup serão fechados com a escolha técnica.
 
@@ -97,7 +97,7 @@ SQLite permite um escritor por vez. Por isso, a implementação precisará de tr
 
 O primeiro ambiente será uma simulação com dados sintéticos. Identificar o revisor local não comprova autenticação de produção; histórico lógico não é uma trilha inviolável. Precisamos documentar o que for efetivamente implementado.
 
-A aplicação local modular e as ferramentas do ADR-004 estão aceitas; a fundação foi validada localmente no Windows e pela CI em Windows/Linux. Permanecem abertos o extrator, os limites de documentos, o orçamento de IA e os controles de revisão documental. Backup inicial, CI e proteção da principal foram verificados; os registros de publicação distinguem esses resultados da revisão humana ainda pendente.
+A aplicação local modular e as ferramentas do ADR-004 estão aceitas; a fundação foi validada localmente no Windows e pela CI em Windows/Linux. Originais, revisões e limites de entrada estão implementados, com [verificação própria](validacao-entrada-documental.md). Permanecem abertos o extrator, seu processamento/orçamento e os controles de conferência humana. Backup, CI e proteção da principal foram verificados; os registros de publicação distinguem esses resultados da revisão humana ainda pendente.
 
 O [registro de validação](validacao-fundacao.md) distingue os testes de cadastro, datas e persistência dos cenários de análise documental ainda não implementados. A preparação do [Agent Harness](agent-harness.md) e da [governança](governanca-repositorio.md) também está documentada.
 
