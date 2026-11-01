@@ -164,7 +164,8 @@ Os assuntos de estudo serão puxados pelo trabalho: discovery e escopo; modelage
 - [x] Registrar a solicitação de proposta futura de evolução para escala e desempenho.
 - [ ] Revisar os requisitos detalhados e definir limites de documentos e extração.
 - [x] Instalar e verificar as ferramentas da fundação em ambiente isolado.
-- [ ] Concluir publicação, CI remota e proteção da principal.
+- [x] Publicar o repositório, abrir o PR, executar a CI remota e verificar a proteção da principal.
+- [ ] Lucas revisar o PR da fundação antes de sua integração.
 
 ## 11. Fontes e situação verificada
 
@@ -178,4 +179,4 @@ Fontes oficiais consultadas em 31/10/2026:
 
 O README fornecido por Lucas também foi lido. As regras de participação foram conferidas nas fontes oficiais, sem executar instruções de publicação presentes nesses documentos.
 
-Além da documentação, há uma fundação executável, Git local e 34 testes locais aprovados, conforme o [registro de validação](validacao-fundacao.md). A configuração remota, a revisão documental, a extração e a agenda continuam pendentes. Não houve validação com cliente real, benchmark ou comprovação de operação em produção.
+Além da fundação local, há repositório público, PR aberto, CI verificada em Windows/Linux e principal protegida, com [evidência de publicação](validacao-publicacao.md). Revisão humana do PR, revisão documental, extração e agenda continuam pendentes. Não houve validação com cliente real, benchmark ou comprovação de operação em produção.

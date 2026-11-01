@@ -97,7 +97,7 @@ SQLite permite um escritor por vez. Por isso, a implementação precisará de tr
 
 O primeiro ambiente será uma simulação com dados sintéticos. Identificar o revisor local não comprova autenticação de produção; histórico lógico não é uma trilha inviolável. Precisamos documentar o que for efetivamente implementado.
 
-A aplicação local modular e as ferramentas do ADR-004 estão aceitas e a fundação foi validada no Windows. Permanecem abertos o extrator, os limites de documentos, o orçamento de IA e os controles de revisão documental. Backup inicial e verificações automatizadas locais foram implementados; operação remota da CI ainda está pendente.
+A aplicação local modular e as ferramentas do ADR-004 estão aceitas; a fundação foi validada localmente no Windows e pela CI em Windows/Linux. Permanecem abertos o extrator, os limites de documentos, o orçamento de IA e os controles de revisão documental. Backup inicial, CI e proteção da principal foram verificados; os registros de publicação distinguem esses resultados da revisão humana ainda pendente.
 
 O [registro de validação](validacao-fundacao.md) distingue os testes de cadastro, datas e persistência dos cenários de análise documental ainda não implementados. A preparação do [Agent Harness](agent-harness.md) e da [governança](governanca-repositorio.md) também está documentada.
 

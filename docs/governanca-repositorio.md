@@ -6,7 +6,9 @@ O Git foi inicializado localmente com `main`. A documentação existente foi reg
 
 O perfil GitHub conectado informou o usuário `LucasGoulartCouto`. A autoria local utiliza o nome público retornado pelo conector e o endereço de privacidade do GitHub. A configuração foi aplicada somente a este repositório.
 
-Ainda não há repositório remoto criado/publicado por esta entrega. A CI foi escrita para pull requests e atualizações da `main`, mas não executou no GitHub. Não há proteção remota ativada ou bloqueio de merge demonstrado.
+O [repositório público](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais) foi criado após autorização de Lucas. O [PR #1](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/1) permanece aberto para sua revisão. A CI foi executada em Windows e Linux, e a proteção da `main` foi ativada e verificada, conforme o [registro de publicação](validacao-publicacao.md).
+
+A publicação foi feita pelo conector GitHub. Isso gerou identificadores de commit remotos diferentes dos originais locais; as árvores de arquivos foram comparadas e são idênticas. Os commits originais foram preservados em `local/bootstrap-documentacao` e `local/fundacao-original`. As branches de trabalho passaram a acompanhar o histórico remoto, sem descartar conteúdo.
 
 ## Material preparado
 
@@ -18,17 +20,17 @@ Ainda não há repositório remoto criado/publicado por esta entrega. A CI foi e
 - `.gitignore` para ferramentas locais, ambientes, bancos, logs e arquivos de segredo.
 - Contexto de execução e revisão do agente em `AGENTS.md`.
 
-## Configuração a concluir no GitHub
+## Controles ativos no GitHub
 
-1. Criar o repositório próprio e publicar o bootstrap da documentação e a branch da fundação.
-2. Abrir um PR da fundação e verificar as execuções reais de `qualidade (ubuntu-latest)` e `qualidade (windows-latest)`.
-3. Exigir PR para a `main`, verificações obrigatórias, resolução de conversas e bloqueio de force push/exclusão. Conferir os nomes reais dos checks antes de configurá-los como obrigatórios.
-4. Aplicar as regras também ao administrador, quando configurável, e verificar seu efeito.
-5. Demonstrar que um PR com uma verificação falha não pode integrar a principal.
+1. A `main` exige PR e os checks `qualidade (ubuntu-latest)` e `qualidade (windows-latest)`, aceitando resultados do GitHub Actions.
+2. A branch precisa estar atualizada com a principal, e conversas precisam ser resolvidas.
+3. Histórico linear é exigido; force push e exclusão da principal permanecem desabilitados.
+4. As regras também se aplicam ao administrador. A API da branch confirmou checks com nível de aplicação `everyone`.
+5. A prova negativa falhou intencionalmente nos dois ambientes. O GitHub informou `mergeable_state: blocked`, com o botão de integração desabilitado. O arquivo da prova foi removido e não alterou a `main`.
 
 A revisão humana será feita por Lucas. Não declararemos aprovação independente sem outro revisor real. A política inicial para um projeto individual não deve exigir um aprovador fictício nem produzir um bloqueio impossível de atender.
 
-A publicação do projeto, o PR e os controles remotos devem ter evidências próprias. A presença dos arquivos de configuração na pasta não comprova sua operação no GitHub.
+A revisão de Lucas ainda está pendente; a integração do PR não foi realizada pelo agente. As [evidências remotas](validacao-publicacao.md) identificam as execuções observadas e distinguem essa revisão dos checks automáticos.
 
 ## Referências
 

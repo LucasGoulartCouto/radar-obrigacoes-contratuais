@@ -11,7 +11,7 @@ O contexto persistente fica em [AGENTS.md](../AGENTS.md), com limites do produto
 - Preparação isolada com o gerenciador de dependências fixado.
 - Inicialização/evolução do banco por migrações.
 - Verificação de código, testes, links locais da documentação e consistência das dependências.
-- Fluxo de CI preparado para PRs; operação remota ainda pendente.
+- Fluxo de CI executado em Windows/Linux e exigido pela proteção da principal; prova negativa de bloqueio registrada.
 - Cadastro com recibo de operação, histórico atômico e controle de versão para evitar sobrescritas silenciosas.
 
 Não foram criadas skills, hooks ou automações externas adicionais. Os comandos e as verificações existentes são o harness inicial; não precisamos simular mecanismos que ainda não usamos.

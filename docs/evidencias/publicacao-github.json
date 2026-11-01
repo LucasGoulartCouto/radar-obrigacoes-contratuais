@@ -1,0 +1,77 @@
+{
+  "date": "2026-11-01",
+  "repository": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais",
+  "pull_request": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/1",
+  "snapshots": {
+    "documentation": {
+      "local_commit": "148b5e6d1cd4ad09ab3498e271e57bd4fef1933b",
+      "remote_commit": "d389ec2987df20d547096e56a03d7f44c6ea357b",
+      "tree": "2056afc9f2489c5c98ac1556eac6aa201bc1ed9b"
+    },
+    "foundation": {
+      "local_commit": "444dfe7e3d6d2c848ac0ba1b9cc516256efb0986",
+      "remote_commit": "86992dc97c1b36e45809c6a531dc2f47e6b0178a",
+      "tree": "4557b46d94c6d024fc30bef474040dba210bb766"
+    }
+  },
+  "baseline": {
+    "run_id": 41306712660,
+    "jobs": [
+      {
+        "id": 124848490098,
+        "name": "qualidade (ubuntu-latest)",
+        "conclusion": "success",
+        "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41306712660/job/124848490098"
+      },
+      {
+        "id": 124848490839,
+        "name": "qualidade (windows-latest)",
+        "conclusion": "success",
+        "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41306712660/job/124848490839"
+      }
+    ]
+  },
+  "protection": {
+    "branch": "main",
+    "protected": true,
+    "enabled": true,
+    "required_status_checks": {
+      "enforcement_level": "everyone",
+      "contexts": [
+        "qualidade (ubuntu-latest)",
+        "qualidade (windows-latest)"
+      ],
+      "checks": [
+        {
+          "context": "qualidade (ubuntu-latest)",
+          "app_id": 15368
+        },
+        {
+          "context": "qualidade (windows-latest)",
+          "app_id": 15368
+        }
+      ]
+    }
+  },
+  "negative": {
+    "runId": 41307069366,
+    "commit": "1d630d6943b1a99a5741940a06c037b2f1adb2e1",
+    "jobs": [
+      {
+        "id": 124849539376,
+        "name": "qualidade (windows-latest)",
+        "conclusion": "failure",
+        "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41307069366/job/124849539376"
+      },
+      {
+        "id": 124849539838,
+        "name": "qualidade (ubuntu-latest)",
+        "conclusion": "failure",
+        "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41307069366/job/124849539838"
+      }
+    ],
+    "mergeable_state": "blocked",
+    "merged": false
+  },
+  "cleanup_commit": "3e85319958b1629cd539f12d54d5748d8d6234ba"
+}

@@ -17,7 +17,7 @@
 
 M3 é um passo de engenharia para verificar regras e formar uma comparação; não representa desistir da extração automática. M4 decide como implementá-la com evidências. Publicações e comunicações externas não serão executadas sem instrução explícita de Lucas.
 
-**Atualização da fundação em 01/11/2026:** ambiente, módulos, cadastro, migração inicial, backup, harness e verificações locais executados. A parte local de M2 está preparada; CI remota/proteções ainda estão pendentes. Regras de datas e cadastro iniciam parte de M3, mas o fluxo com evidências documentais e conferência ainda não está pronto. Veja o [registro de validação](validacao-fundacao.md).
+**Atualização da fundação em 01/11/2026:** ambiente, cadastro, migração, backup e harness verificados. A publicação concluiu os controles de M2: PR aberto, CI aprovada em Windows/Linux e principal protegida, incluindo prova negativa de bloqueio. A revisão humana do PR continua pendente. Regras de datas e cadastro iniciam parte de M3; evidências documentais e conferência ainda não estão prontas. Veja os registros de [fundação](validacao-fundacao.md) e [publicação](validacao-publicacao.md).
 
 ## Primeiras unidades de trabalho depois de fechar a proposta técnica
 
@@ -46,4 +46,4 @@ Cada unidade deverá apontar para requisito, cenário de aceitação, mudança p
 
 ## O que foi feito nesta etapa
 
-O case, o recorte, o direcionamento e as ferramentas foram aceitos. A fundação foi implementada com 34 testes locais aprovados, Git, scripts e CI preparada. A [proposta futura de evolução](evolucao-arquitetural.md) permanece planejada. Produto documental completo, conjunto de avaliação da extração e controles remotos ainda não foram entregues; testes de fundação não são prova dessas etapas.
+O case, o recorte, o direcionamento e as ferramentas foram aceitos. A fundação foi implementada com 34 testes locais aprovados, scripts, PR público, CI executada nos dois sistemas e proteção da principal verificada. A [proposta futura de evolução](evolucao-arquitetural.md) permanece planejada. Produto documental completo e conjunto de avaliação da extração ainda não foram entregues; testes de fundação não são prova dessas etapas.
