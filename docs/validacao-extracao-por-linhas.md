@@ -33,7 +33,7 @@ Resultado V1: 18/20 correspondências integrais, 0 falhas técnicas, 29 fatos co
 
 Mediana V1 4,924 s/caso, máximo 8,027 s, extração + pontuação. V2 anterior tinha 19 candidatos indevidos e 3 falhas; esta é melhora da combinação de classificação/interpretação neste desenvolvimento, sem avaliação independente.
 
-**Snapshot V1 preservado:** `fd37c91ca662e397b9d783cdeccc970be1b4aee8`. Depois, o prompt `LINE_CLASSIFICATION_V2` esclareceu pedidos ao assistente e condições ilustrativas. O smoke corrigiu DEV-008 e manteve DEV-020 retido. A [rodada V2 completa](evidencias/ia-local-linhas-v2.json) regrediu: 16/20 casos integrais, 27 fatos corretos/0 indevidos/2 omitidos; 10 candidatos corretos/0 indevidos/3 omitidos; 1 código de impedimento esperado perdido e 4 casos com bloqueios extras. Não houve falha técnica. DEV-011 permaneceu retido como escopo não suportado, mas perdeu a classificação específica de data inválida; DEV-001 e DEV-018 perderam fatos de término. **V2 rejeitada; preservar seus resultados e restaurar V1 como referência.** Não escolher uma rodada pelo smoke isolado.
+**Snapshot V1 preservado:** `fd37c91ca662e397b9d783cdeccc970be1b4aee8`. Depois, o prompt `LINE_CLASSIFICATION_V2` esclareceu pedidos ao assistente e condições ilustrativas. O smoke corrigiu DEV-008 e manteve DEV-020 retido. A [rodada V2 completa](evidencias/ia-local-linhas-v2.json) regrediu: 16/20 casos integrais, 27 fatos corretos/0 indevidos/2 omitidos; 10 candidatos corretos/0 indevidos/3 omitidos; 1 código de impedimento esperado perdido e 4 casos com bloqueios extras. Não houve falha técnica. DEV-011 permaneceu retido como escopo não suportado, mas perdeu a classificação específica de data inválida; DEV-001 e DEV-018 perderam fatos de término. **V2 rejeitada; resultados e código preservados no snapshot `004e902ba3fd9e4deddb651dc976a15f896dc157`. V1 restaurada como referência ativa, com hash idêntico ao da rodada preservada em `fd37c91ca662e397b9d783cdeccc970be1b4aee8`.** Não escolher uma rodada pelo smoke isolado.
 
 O wrapper foi analisado no PowerShell e testado nos modos linhas/v2 contra destino com parcial anterior: ambos rejeitaram antes de inferir, mantendo hash do parcial e contagem de gerações. A suíte final tem 273 testes; 64 testes focados passaram após o ajuste de prompt, e o teste adicional de fonte modificada passou na suíte completa.
 
@@ -42,3 +42,17 @@ O wrapper foi analisado no PowerShell e testado nos modos linhas/v2 contra desti
 As 20 anotações continuam visíveis e usadas no desenvolvimento; sem avaliação reservada ou revisão humana independente. O modelo não foi trocado. Citações agora são montadas pelo código, portanto a ausência de citação literal inválida não mede a capacidade da IA de transcrever uma fonte. A taxa representa o fluxo combinado, não o modelo sozinho.
 
 Gramática limitada a formatos/âncoras explícitos; datas por extenso, duração em palavras fora do suporte, conteúdo multilinha ou contexto ambíguo podem gerar retenção. Reconhecimento lexical e classificação de todas as linhas não provam completude semântica. A aplicação permanece manual; sem migração, confirmação automática ou C20 completo.
+
+## Comparação preservada e referência escolhida
+
+| Método/rodada | Casos integrais | Fatos TP/FP/FN | Candidatos TP/FP/FN | Falhas técnicas | Impedimentos esperados sem correspondência |
+|---|---|---|---|---|---|
+| Valores normalizados pelo modelo, V2 anterior | 6/20 | 23/11/6 | 11/19/2 | 3 | 9 casos, mais 2 com falha técnica |
+| Linhas, prompt V1 — referência ativa | 18/20 | 29/0/0 | 10/0/3 | 0 | 0/11 |
+| Linhas, prompt V2 — tentativa rejeitada | 16/20 | 27/0/2 | 10/0/3 | 0 | 1/11, retido genericamente |
+
+A referência ativa teve precisão de candidatos 10/10 e recuperação 10/13. As omissões vêm das duas retenções extras, não de resultados confirmados ausentes na agenda: nenhum resultado deste experimento foi gravado. A referência não resolve esses dois casos automaticamente. O custo/tempo humano de revisar as retenções não foi medido.
+
+Os tempos dos métodos por linhas incluem também a gravação de progresso por tentativa. Houve uma execução de desenvolvimento por prompt, com ajuste sobre exemplos conhecidos e possível efeito de cache; não é estimativa estatística, benchmark de produção ou prova de generalização. O escopo desta comparação é a combinação IA + interpretação/guardas, mantendo o mesmo modelo. As propostas preservadas e os findings permitem identificar qual parte tomou cada decisão.
+
+A fonte oficial de [saída estruturada do Ollama](https://docs.ollama.com/capabilities/structured-outputs), reaberta em 01/11/2026, recomenda explicitar o schema também no prompt. A documentação orientou o formato; os resultados acima vêm da execução real. A origem do erro anterior continua hipótese de desenho, sem prova causal isolada do efeito de cada mudança.
