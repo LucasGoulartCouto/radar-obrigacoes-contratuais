@@ -69,7 +69,8 @@ def test_annotated_cases_match_manual_rules_without_claiming_extraction(case):
         )
 
     fields = {item["field"]: item for item in case["facts"]}
-    if case["id"] in {"DEV-003", "DEV-004"}:
+    # O operador informa os impedimentos anotados; isto não simula sua detecção.
+    if any(b["code"] != "undefined_day_unit" for b in case["blockers"]):
         blocker = case["blockers"][0]
         draft = ManualDraft(
             mode="blocked",
@@ -79,15 +80,19 @@ def test_annotated_cases_match_manual_rules_without_claiming_extraction(case):
     elif not fields:
         draft = ManualDraft(mode="empty")
     else:
-        end, notice = fields["end_date"], fields["notice_rule"]
+        end, notice = fields["end_date"], fields.get("notice_rule")
         draft = ManualDraft(
             end_date=date.fromisoformat(end["value"]),
             end_evidence=annotation(end["evidence"]),
-            notice_days=notice["value"]["days"],
-            notice_evidence=annotation(notice["evidence"]),
-            notice_unit=notice["value"]["unit"] or "undefined",
+            notice_days=notice["value"]["days"] if notice else None,
+            notice_evidence=annotation(notice["evidence"]) if notice else None,
+            notice_unit=(notice["value"]["unit"] or "undefined") if notice else "calendar_days",
         )
-    result = prepare_manual_analysis(draft, documents, known_amendment=case["id"] == "DEV-004")
+    result = prepare_manual_analysis(
+        draft,
+        documents,
+        known_amendment=any(d["role"] == "aditivo" for d in case["documents"]),
+    )
     assert bool(result["blockers"]) == bool(case["blockers"])
     assert result["candidate_events"] == [
         {"kind": item["kind"], "date": item["date"]}
