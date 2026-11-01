@@ -8,7 +8,7 @@
 
 - Projeto local: `D:\Projetos\Git\desafio_jornadadados`.
 - Repositório: [LucasGoulartCouto/radar-obrigacoes-contratuais](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais).
-- Branch de trabalho: `codex/ia-local-estruturada`, criada de `codex/ia-local` no commit `2ecc473b9b40aaa3c06982788989f8e90413c820`, com Git limpo. PR #8 reconferido aberto/em rascunho, CI final aprovada; nenhuma publicação repetida. Nova branch ainda local.
+- Branch de trabalho: `codex/ia-local-estruturada`, criada de `codex/ia-local` no commit `2ecc473b9b40aaa3c06982788989f8e90413c820`, com Git limpo. PR #8 reconferido aberto/em rascunho, CI final aprovada; nenhuma publicação repetida. Snapshot V1 publicado em `fd37c91ca662e397b9d783cdeccc970be1b4aee8`, branch acompanhando origin, sem PR próprio ainda.
 - Última versão funcional verificada: `8a8c8b9ef741dac8acfdfeaf3dabed91d2c766e8`. Atualizações posteriores deste checkpoint podem mudar o HEAD sem alterar a aplicação.
 - A `main` ainda contém a documentação anterior à implementação. Abrir um clone na `main` não equivale a abrir a versão funcional mais recente.
 - Na retomada, o HEAD local coincidiu com o HEAD remoto do PR #5. Havia somente a alteração pendente deste checkpoint. PRs #1–#5 conferidos pelo conector: todos abertos, sem merge e com as bases indicadas abaixo. Consultar Git/plataforma para mudanças posteriores.
@@ -45,7 +45,7 @@ Os PRs são encadeados. Depois de integrar um anterior, conferir a base e o diff
 
 **Última ação comprovada:** protocolo/interpretador literal implementados; 272 testes completos passaram. Rodada V1 dos mesmos 20 casos concluída e preservada: 18 casos integrais, zero falhas/candidatos indevidos, todos os 11 impedimentos reconhecidos. Duas retenções extras (DEV-008/020) omitiram 3 candidatos válidos. [Validação](validacao-extracao-por-linhas.md) e [JSON](evidencias/ia-local-linhas-v1.json) identificam fontes e limites.
 
-**Próxima ação:** publicar snapshot V1 para preservar proveniência antes de ajustar o prompt de classificação dos dois casos retidos. Continuar na mesma branch, com novo prompt versionado, sem mudar modelo/digest, cálculo, conjunto ou guardas. Depois executar a rodada completa e comparar resultados; não chamar esses exemplos visíveis de avaliação independente. Nenhuma UI/banco alterado; integração continua posterior às evidências.
+**Snapshot V1 preservado:** `fd37c91ca662e397b9d783cdeccc970be1b4aee8`. Prompt V2 testado nos 20 casos e rejeitado por regressão (16/20 integrais, 1 impedimento específico perdido, 4 retenções extras). **Próxima ação:** preservar o snapshot V2 e seus hashes antes de restaurar V1 como referência; não alterar modelo/guardas para forçar acerto. Continuar na mesma branch, com novo prompt versionado, sem mudar modelo/digest, cálculo, conjunto ou guardas. Depois executar a rodada completa e comparar resultados; não chamar esses exemplos visíveis de avaliação independente. Nenhuma UI/banco alterado; integração continua posterior às evidências.
 
 ## Decisões que devem orientar a próxima etapa
 

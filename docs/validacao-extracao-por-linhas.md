@@ -4,7 +4,7 @@
 
 ## O que mudou e como foi verificado
 
-Testes novos em [test_literal_extraction.py](../tests/unit/test_literal_extraction.py) e [test_line_local_ai.py](../tests/unit/test_line_local_ai.py). A regressão completa executou **272 testes aprovados**, incluindo os 242 anteriores; Ruff, formatação e lock/dependências aprovados.
+Testes novos em [test_literal_extraction.py](../tests/unit/test_literal_extraction.py) e [test_line_local_ai.py](../tests/unit/test_line_local_ai.py). A regressão completa executou **273 testes aprovados**, incluindo os 242 anteriores; Ruff, formatação e lock/dependências aprovados.
 
 | Comportamento | Cenário/resultado esperado | Evidência |
 |---|---|---|
@@ -19,7 +19,7 @@ Testes novos em [test_literal_extraction.py](../tests/unit/test_literal_extracti
 | Repetição de regra | Aviso idêntico não duplica candidato e conserva registro da fonte adicional | `test_repeated_notice_keeps_one_candidate_and_additional_source_record` |
 | Schema e entrada múltipla | Schema no decoder e no prompt, sem valores/eventos de saída; aditivo completo cabe sem truncar | `test_dynamic_schema_requires_all_nonempty_lines_and_is_grounded_in_prompt`, `test_existing_multidocument_case_fits_without_truncating_sources` |
 | Proveniência | Código monta citação da origem; observação separa classificação e normalização | `test_evidence_is_assembled_from_source_and_observation_separates_model_and_code` |
-| Continuidade da rodada | Progresso, hashes e contagens registrados; interrupção não vira conclusão e impede repetição silenciosa | Testes de rodada completa e interrompida no runner |
+| Continuidade da rodada | Progresso, hashes e contagens registrados; interrupção não vira conclusão e impede repetição silenciosa | Testes de rodada completa/interrompida e `test_changed_source_invalidates_round_without_hiding_its_observations` |
 
 A primeira checagem de estilo encontrou nomes de variável ambíguos; corrigidos. A expansão inicial do schema ultrapassou o orçamento de contexto do caso com dois documentos; schema passou a compartilhar o enum por referência local, com teste explícito da entrada completa. Limite não foi aumentado nem texto truncado.
 
@@ -33,7 +33,9 @@ Resultado V1: 18/20 correspondências integrais, 0 falhas técnicas, 29 fatos co
 
 Mediana V1 4,924 s/caso, máximo 8,027 s, extração + pontuação. V2 anterior tinha 19 candidatos indevidos e 3 falhas; esta é melhora da combinação de classificação/interpretação neste desenvolvimento, sem avaliação independente.
 
-**Próximo ajuste do bloco:** preservar o snapshot V1 e esclarecer no prompt o papel de pedidos ao assistente e condições ilustrativas. Rodada posterior terá prompt versionado, sem mudança de modelo, gabarito ou guardas.
+**Snapshot V1 preservado:** `fd37c91ca662e397b9d783cdeccc970be1b4aee8`. Depois, o prompt `LINE_CLASSIFICATION_V2` esclareceu pedidos ao assistente e condições ilustrativas. O smoke corrigiu DEV-008 e manteve DEV-020 retido. A [rodada V2 completa](evidencias/ia-local-linhas-v2.json) regrediu: 16/20 casos integrais, 27 fatos corretos/0 indevidos/2 omitidos; 10 candidatos corretos/0 indevidos/3 omitidos; 1 código de impedimento esperado perdido e 4 casos com bloqueios extras. Não houve falha técnica. DEV-011 permaneceu retido como escopo não suportado, mas perdeu a classificação específica de data inválida; DEV-001 e DEV-018 perderam fatos de término. **V2 rejeitada; preservar seus resultados e restaurar V1 como referência.** Não escolher uma rodada pelo smoke isolado.
+
+O wrapper foi analisado no PowerShell e testado nos modos linhas/v2 contra destino com parcial anterior: ambos rejeitaram antes de inferir, mantendo hash do parcial e contagem de gerações. A suíte final tem 273 testes; 64 testes focados passaram após o ajuste de prompt, e o teste adicional de fonte modificada passou na suíte completa.
 
 ## Limites
 
