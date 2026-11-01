@@ -25,6 +25,8 @@ M3 é um passo de engenharia para verificar regras e formar uma comparação; n�
 
 **Avanço do caminho manual em 01/11/2026:** candidatos com evidências, cálculo, confirmação separada, resultado vazio e correção justificada foram implementados conforme [ADR-007](adrs/007-levantamento-manual-e-conferencia.md). A [validação](validacao-conferencia-manual.md) registra 123 testes locais e conferência simulada no navegador. A lista atual só mostra eventos de base válida; agenda temporal completa, extrator e sua avaliação continuam pendentes. A revisão de Lucas dos PRs também continua pendente.
 
+**Avanço da agenda em 01/11/2026:** agenda temporal com referência explícita, filtros, origem e cobertura independente implementada conforme [ADR-008](adrs/008-agenda-e-cobertura-da-carteira.md). A [matriz da entrega](validacao-agenda.md) relaciona funcionalidades a testes e demonstração. O caminho manual agora chega à agenda; extração e seus estados de execução continuam pendentes, sem C20 completo comprovado. O próximo bloco é preparar a comparação de alternativas de extração e definir avaliação/orçamento antes de qualquer API paga. Revisão dos PRs por Lucas e evolução para escala permanecem separadas.
+
 ## Primeiras unidades de trabalho depois de fechar a proposta técnica
 
 Antes das funcionalidades, a fundação deverá validar a combinação de ferramentas aceita no [ADR-004](adrs/004-proposta-tecnologias-locais.md): instalação isolada, formulário local, migração, transação interrompida, submissão repetida e backup/restauração. Essa verificação não é uma demonstração de extração de contratos.

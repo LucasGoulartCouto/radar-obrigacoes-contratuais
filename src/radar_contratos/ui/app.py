@@ -1,12 +1,18 @@
-"""Primeira tela funcional: cadastro de contratos fictícios."""
+"""Agenda, cobertura e manutenção dos contratos fictícios."""
 
 from uuid import uuid4
 
 import streamlit as st
 
-from radar_contratos.bootstrap import build_document_service, build_review_service, build_service
+from radar_contratos.bootstrap import (
+    build_agenda_service,
+    build_document_service,
+    build_review_service,
+    build_service,
+)
 from radar_contratos.config import Settings
 from radar_contratos.errors import RadarError
+from radar_contratos.ui.agenda import render_agenda
 from radar_contratos.ui.documents import render_documents
 from radar_contratos.ui.reviews import render_reviews
 
@@ -15,13 +21,14 @@ def render() -> None:
     st.set_page_config(page_title="Radar de Obrigações Contratuais", page_icon="◉", layout="wide")
     st.title("Radar de Obrigações Contratuais")
     st.caption("Agência Prisma · Ambiente de estudo com dados sintéticos")
-    st.write("Organize os contratos fictícios que serão acompanhados pelo Radar.")
+    st.write("Consulte os prazos conferidos e acompanhe as pendências dos contratos fictícios.")
 
     try:
         settings = Settings.from_environment()
         service, engine = build_service(settings)
         documents = build_document_service(settings, engine)
         reviews = build_review_service(engine)
+        agenda = build_agenda_service(engine)
     except RadarError as exc:
         st.error(str(exc))
         st.stop()
@@ -52,31 +59,15 @@ def render() -> None:
                         "Contrato cadastrado. Você já pode adicionar os documentos sintéticos."
                     )
 
+        try:
+            render_agenda(agenda, reviews)
+        except RadarError as exc:
+            st.error(str(exc))
         contracts = service.list_contracts()
-        states = documents.current_states()
-        states.update(reviews.current_states())
-        st.subheader("Contratos cadastrados")
-        st.metric(
-            "Aguardando documentos",
-            sum(
-                states.get(contract.id, "Aguardando documentos") == "Aguardando documentos"
-                for contract in contracts
-            ),
-        )
+        st.subheader("Documentos e conferência por contrato")
         if not contracts:
             st.info("Cadastre o primeiro contrato fictício para começar.")
         else:
-            st.dataframe(
-                [
-                    {
-                        "Contrato": contract.title,
-                        "Situação": states.get(contract.id, "Aguardando documentos"),
-                    }
-                    for contract in contracts
-                ],
-                hide_index=True,
-                width="stretch",
-            )
             by_id = {contract.id: contract for contract in contracts}
             selected_id = st.selectbox(
                 "Contrato para editar o nome",
@@ -107,8 +98,8 @@ def render() -> None:
             render_documents(documents, selected)
             render_reviews(reviews, documents, selected)
         st.caption(
-            "Levantamento manual e conferência disponíveis. "
-            "Extração automática e agenda temporal completa virão depois."
+            "Levantamento manual, conferência e agenda disponíveis. "
+            "A extração automática ainda não foi implementada."
         )
     finally:
         engine.dispose()
