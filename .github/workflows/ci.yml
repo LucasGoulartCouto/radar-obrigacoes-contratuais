@@ -36,6 +36,6 @@ jobs:
       - run: uv lock --check
       - run: uv run --locked ruff check .
       - run: uv run --locked ruff format --check .
-      - run: uv run --locked pytest
+      - run: uv run --locked pytest --verbose
       - run: uv run --locked python scripts/check_docs.py
       - run: uv pip check
