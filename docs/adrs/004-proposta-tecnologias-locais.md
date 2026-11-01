@@ -45,7 +45,7 @@ Essa comparação é uma avaliação de engenharia para este projeto, não um be
 
 No diagnóstico anterior à implementação, foram verificados Python **3.14.3**, SQLite **3.50.4** e Git **2.53.0.windows.2**. As ferramentas faltantes foram então instaladas em diretórios isolados do projeto: uv em `.tools/bootstrap` e dependências em `.venv`. As versões resolvidas constam em `uv.lock`.
 
-A documentação consultada lista suporte à série 3.14. Nesta etapa, a compatibilidade da fundação foi verificada também por execução local, 34 testes e uma segunda instalação usando o wheel gerado e o mesmo lock/cache. Isso não equivale a validação em Linux ou do produto completo.
+A documentação consultada lista suporte à série 3.14. A fundação foi verificada por execução local, 34 testes, segunda instalação do wheel e, após publicação, CI em Windows/Linux. Isso não equivale a validação do produto documental completo ou de desempenho sob carga.
 
 ## Como validar antes de iniciar o produto
 

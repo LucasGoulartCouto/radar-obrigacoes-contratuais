@@ -22,7 +22,7 @@ As dependências foram resolvidas a partir do índice público PyPI e fixadas em
 | Verificação | Resultado e alcance |
 |---|---|
 | Testes automatizados | **34 passaram**: 14 de datas, 16 de persistência/validação e 4 de interface via AppTest |
-| Código e formatação | Ruff sem erros; formatação conferida |
+| Código e formatação | Ruff sem erros; formatação conferida localmente e na CI remota |
 | Dependências | `uv pip check` informou compatibilidade entre os 44 pacotes instalados |
 | Esquema | Migração inicial aplicada; repetição com dados preservada; versão de esquema verificada |
 | Atomicidade | Falha provocada no histórico desfez cadastro e recibo de operação na mesma transação |
@@ -55,8 +55,11 @@ Nesta sessão, a pasta temporária dos testes foi direcionada para `.tools/test-
 - Extração de candidatos, confirmação de obrigações e agenda: ainda não implementadas.
 - Cobertura dos 22 cenários completos da SPEC: testes de datas verificam partes dos exemplos C01–C04 e C19; testes de cadastro não substituem os cenários documentais C08/C12/C17.
 - Evolução entre versões diferentes de esquema: a verificação atual cobre criação e reexecução da migração inicial com dados. A primeira migração evolutiva deverá ter teste próprio de preservação.
-- CI no GitHub, proteção da principal ou bloqueio real de merge: arquivos preparados, operação remota pendente.
-- Linux: previsto na matriz de CI, ainda sem execução comprovada.
+- Qualidade de extração e produto documental completo, mesmo com a fundação aprovada na CI.
 - Desempenho sob carga, segurança de produção, identidade autenticada ou auditoria inviolável.
 
 O cadastro usa uma versão de registro para controlar edições de nome. Essa versão não deve ser apresentada como revisão documental de contrato. O nome informado como revisor/operador é um identificador da simulação, não prova de autenticação.
+
+## 5. Validação remota posterior
+
+A publicação acrescentou execução real da CI em Windows e Linux e uma prova negativa de proteção da principal. Essas evidências estão no [registro de publicação](validacao-publicacao.md). Elas complementam a validação local, sem transformar a fundação em produto documental completo.

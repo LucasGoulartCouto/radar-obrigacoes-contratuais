@@ -6,7 +6,7 @@
 - Radar de Obrigações Contratuais: case fictício da Agência Prisma. Somente dados sintéticos e ações de negócio simuladas.
 - Consulte [PRD](docs/PRD.md), [SPEC](docs/specs/001-primeiro-fluxo.md), [arquitetura](docs/arquitetura.md) e [ADRs](docs/adrs/001-recorte-do-produto.md) conforme a tarefa. Distinga decisão aceita de proposta.
 - Stack aceita: Python, Streamlit, SQLite, SQLAlchemy, Alembic, uv, pytest e Ruff. Consulte documentação primária para APIs e informações que possam mudar.
-- Nenhum fornecedor de IA, orçamento de API ou publicação externa está definido por esta fundação.
+- Publicação autorizada por Lucas em `LucasGoulartCouto/radar-obrigacoes-contratuais`, com PR e proteção da principal. Não enviar posts, avisos de negócio ou mensagens externas fora desse escopo. Fornecedor de IA e orçamento de API continuam em aberto.
 
 ## Organização e limites
 

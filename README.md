@@ -2,7 +2,9 @@
 
 Aplicação local para o Desafio Livre de novembro/dezembro de 2026 da Jornada de Dados.
 
-**Situação em 01/11/2026:** fundação executável e verificada no Windows, com ambiente isolado, módulos separados, banco com migração, cadastro/edição de contratos fictícios, histórico e backup. **34 testes passaram.** O repositório Git é local; publicação, CI remota e proteção da principal ainda estão pendentes.
+**Situação em 01/11/2026:** fundação executável, com ambiente isolado, módulos separados, cadastro/edição de contratos fictícios, histórico e backup. **34 testes passaram localmente, e a CI também passou em Windows e Linux.** O [repositório é público](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais) e a `main` está protegida por PR e duas verificações obrigatórias.
+
+A implementação está no [PR #1](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/1), aberto para revisão de Lucas. A principal mantém a documentação anterior ao código enquanto o PR não for integrado. Uma falha temporária comprovou o bloqueio da integração; o arquivo da prova foi removido. Veja a [validação da publicação](docs/validacao-publicacao.md).
 
 A primeira versão de produto acompanhará renovações e avisos prévios de contratos da Agência Prisma, um negócio fictício. A fundação atual permite cadastrar e editar nomes; extração, revisão documental e agenda ainda serão implementadas. Não há IA nem comunicação externa nesta entrega.
 
@@ -48,7 +50,8 @@ Cadastro fictício conferido no navegador e preservado após recarregar:
 | [Arquitetura](docs/arquitetura.md) | Aplicação local, módulos, dependências, dados e tratamento de reexecuções/falhas |
 | [Validação da fundação](docs/validacao-fundacao.md) | Ambiente, verificações executadas e limites do que está comprovado |
 | [Agent Harness](docs/agent-harness.md) | Uso do Codex, contexto, automações e direção humana |
-| [Governança do repositório](docs/governanca-repositorio.md) | Git local, CI preparada e controles remotos ainda pendentes |
+| [Governança do repositório](docs/governanca-repositorio.md) | Histórico Git, CI executada e controles ativos na principal |
+| [Validação da publicação](docs/validacao-publicacao.md) | Repositório, PR, CI real e prova do bloqueio da principal |
 | [ADR-001 — recorte aceito](docs/adrs/001-recorte-do-produto.md) | Escolha de produto feita por Lucas, alternativas e consequências |
 | [ADR-002 — separação de responsabilidades](docs/adrs/002-proposta-limites-extracao-e-confirmacao.md) | Proposta de separar extração, cálculo e confirmação; ainda não aceita |
 | [ADR-003 — aplicação local modular](docs/adrs/003-aplicacao-local-modular.md) | Direcionamento escolhido por Lucas, alternativas e limites |
