@@ -1,0 +1,68 @@
+# Ponto de retomada do Radar
+
+Última conferência: **01/11/2026, 11:02, America/Sao_Paulo**. Este arquivo é um checkpoint do trabalho, não uma transcrição do chat. Revalidar os fatos que podem mudar antes de agir.
+
+## Onde continuar
+
+- Projeto local: `D:\Projetos\Git\desafio_jornadadados`.
+- Repositório: [LucasGoulartCouto/radar-obrigacoes-contratuais](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais).
+- Branch de trabalho observada: `feat/entrada-documental`, acompanhando `origin/feat/entrada-documental`.
+- Última versão funcional verificada: `593c5ee6ce185c5daf6aa4c3148e376199988ad1`. Atualizações posteriores deste checkpoint podem mudar o HEAD sem alterar a aplicação.
+- A `main` ainda contém a documentação anterior à implementação. Abrir um clone na `main` não equivale a abrir a versão funcional mais recente.
+- Nesta conferência, não havia mudanças locais pendentes antes de acrescentar a documentação de continuidade. Consultar `git status` para o estado atual.
+
+## Estado e evidências
+
+| Entrega | Situação observada | Referência |
+|---|---|---|
+| Fundação local | Implementada; PR aberto para revisão de Lucas | [PR #1](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/1), base `main` |
+| Decisão do fluxo e casos sintéticos | ADR-002 aceito; oito casos de desenvolvimento; PR aberto | [PR #2](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/2), base `feat/fundacao-local` |
+| Entrada documental | Implementada; PR aberto; nenhum PR integrado pelo agente | [PR #3](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/3), base `feat/regras-e-casos-sinteticos` |
+| Verificação da versão funcional | 81 testes locais aprovados e CI aprovada em Windows/Linux | [Validação documental](validacao-entrada-documental.md) e [execução 41313181652](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41313181652) |
+
+Os PRs são encadeados. Depois de integrar um anterior, conferir a base e o diff do seguinte antes de integrá-lo. Check automático aprovado não representa revisão humana concluída. Não fazer merge por inferência de uma instrução genérica para continuar o desenvolvimento.
+
+Não há extrator, execução de análise, candidatos persistidos, conferência humana, confirmação ou agenda. O próximo trabalho funcional é registrar candidatos com evidências e construir a conferência ligada à revisão atual; essa etapa ainda não começou.
+
+## Decisões que devem orientar a próxima etapa
+
+Consultar os documentos de origem, sem tratar este resumo como nova autorização:
+
+- [AGENTS.md](../AGENTS.md): instruções de execução, limites e comandos.
+- [PRD](PRD.md) e [SPEC](specs/001-primeiro-fluxo.md): requisitos, estados e cenários; distinguir detalhe proposto de decisão aceita.
+- [ADR-002](adrs/002-proposta-limites-extracao-e-confirmacao.md): extração sugere com evidências, código calcula e pessoa confirma; ambiguidade, conflito ou aditivo bloqueiam confirmação.
+- [ADR-006](adrs/006-entrada-e-revisoes-documentais.md): identidade do conjunto, preservação dos bytes e revisões, limites e aditivo conhecido.
+- [Plano de entrega](plano-de-entrega.md): dependências e marcos seguintes.
+
+Somente dados sintéticos. Publicação no repositório e PRs estão autorizados; isso não autoriza mensagens a fornecedores, posts, despesas de API ou hospedagem. Fornecedor e orçamento de IA continuam em aberto. A proposta de evolução para escala fica depois de validar o fluxo local.
+
+## Como retomar depois de interrupção
+
+1. Confirmar a pasta e ler `AGENTS.md` e este arquivo. Um chat novo pode não ter o histórico da conversa anterior.
+2. Ler `git status --short --branch`, `git log -5 --oneline` e o diff relevante. Preservar mudanças não concluídas; não trocar de branch, restaurar ou descartar arquivos para obter um estado aparentemente limpo.
+3. Conferir o estado remoto dos PRs e da branch antes de publicar. Se uma operação foi interrompida, verificar seu efeito antes de repeti-la: branch, commit ou PR podem já existir mesmo sem uma resposta visível.
+4. Identificar a última ação comprovada, a ação pendente e a verificação necessária. Se faltar confirmação do resultado, registrar **não verificado** e investigar; não presumir sucesso ou falha.
+5. Executar apenas o trabalho seguinte do escopo vigente. Repetir testes quando houver mudança de código, falha ou dúvida concreta; mudanças somente documentais exigem links e diff, sem alegar nova execução dos testes da aplicação.
+6. Atualizar este checkpoint após um bloco coerente e antes/depois de ações externas relevantes. Registrar brevemente ação, estado, próximo passo e referência da evidência. Não deixar essa atualização apenas para o final de uma tarefa longa.
+
+O estado do checkpoint pode ficar uma ação atrás se a interrupção acontecer durante uma ferramenta. Por isso a retomada sempre reconcilia arquivo, Git e plataforma antes de repetir ações. Este procedimento reduz perda de contexto; não garante captura de cada instante.
+
+## O que não é persistência do projeto
+
+- O histórico e os resumos do chat ajudam, mas não são o único registro de trabalho.
+- Variáveis de ferramentas, identificadores de abas, sessões de terminal e conexões autenticadas podem desaparecer. Redescobri-los quando necessário; não reutilizar handles ou PIDs antigos sem conferir.
+- `.tools/` contém preparação de publicação, runtime e verificações locais. Pode ajudar no mesmo computador, mas está fora do Git e não é requisito para entender ou reconstruir o projeto.
+- `.venv/`, `.uv-cache/`, `dist/` e `var/` ficam fora do Git. O banco e seus backups precisam ser preservados separadamente se o computador mudar; clonar o repositório não os recupera.
+- Nunca registrar credenciais, tokens, cookies ou conteúdo sensível neste arquivo.
+
+## Registro compacto de continuidade
+
+**01/11/2026 — Entrada documental concluída.** A publicação foi interrompida por limite de uso durante a preparação da árvore remota. A retomada conferiu arquivos locais e estado remoto, concluiu o PR #3 e verificou sua CI; não havia PR #3 duplicado. Evidências na tabela acima. Não há bloqueio de publicação pendente dessa interrupção.
+
+**01/11/2026 — Continuidade entre sessões.** Acrescentados este checkpoint e o protocolo em `AGENTS.md`. As decisões permanecem nos ADRs; este arquivo reúne o estado e aponta para as fontes. A próxima etapa funcional não foi iniciada durante essa organização.
+
+## Mensagem curta para outra conversa
+
+“Continue o Radar no projeto `D:\Projetos\Git\desafio_jornadadados`. Leia `AGENTS.md` e `docs/RETOMADA.md`, confira Git e PRs e retome a próxima ação do escopo vigente. Preserve o trabalho pendente e não faça merge sem minha revisão.”
+
+Em outro computador, abrir o repositório e a branch funcional indicada acima antes de usar essa mensagem. Os arquivos precisam estar disponíveis na nova sessão.
