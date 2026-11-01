@@ -1,4 +1,4 @@
-﻿param([string]$Saida)
+﻿param([string]$Saida, [ValidateSet('linhas', 'v2')][string]$Metodo = 'linhas')
 $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot 'Usar-Uv.ps1')
 $uvExecutable = Get-RadarUv
@@ -16,17 +16,24 @@ try {
     New-Item -ItemType Directory -Path $outputDirectory -Force | Out-Null
     if (-not $Saida) {
         $stamp = [DateTime]::UtcNow.ToString('yyyyMMddTHHmmssfffZ')
-        $Saida = Join-Path $outputDirectory "development-$stamp.json"
+        $Saida = Join-Path $outputDirectory "development-$Metodo-$stamp.json"
     }
     $Saida = [System.IO.Path]::GetFullPath($Saida)
     if ((Test-Path -LiteralPath $Saida) -or
+        (Test-Path -LiteralPath ($Saida + '.partial.json')) -or
+        (Test-Path -LiteralPath ($Saida + '.partial.tmp')) -or
         -not (Test-Path -LiteralPath (Split-Path -Parent $Saida) -PathType Container)) {
         throw 'Escolha um arquivo novo em um diretório existente; nenhuma inferência foi iniciada.'
     }
     Write-Host "Destino desta rodada: $Saida"
+    $evaluationModule = if ($Metodo -eq 'linhas') {
+        'radar_contratos.infrastructure.experiments.line_local_ai'
+    } else {
+        'radar_contratos.infrastructure.experiments.local_ai'
+    }
     Invoke-RadarTool -Executable $uvExecutable -Arguments @(
         'run', '--locked', 'python', '-m',
-        'radar_contratos.infrastructure.experiments.local_ai',
+        $evaluationModule,
         '--model', $modelState.name, '--digest', $modelState.digest,
         '--output', $Saida
     )
