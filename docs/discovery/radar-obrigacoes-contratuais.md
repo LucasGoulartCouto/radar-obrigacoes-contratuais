@@ -133,9 +133,9 @@ Também registraremos resultados antes e depois da revisão humana. Acerto obtid
 1. Case e recorte já foram aceitos por Lucas; os detalhes do PRD/SPEC e o desenho da conferência serão revisados na próxima decisão de produto.
 2. O [plano de entrega](../plano-de-entrega.md) propõe a tarefa de demonstração, os marcos e as dependências.
 3. Lucas informou disponibilidade superior a 10 horas por semana. Orçamento e estimativa de esforço continuam em aberto.
-4. Aplicação local modular e ferramentas foram aceitas nos [ADR-003](../adrs/003-aplicacao-local-modular.md) e [ADR-004](../adrs/004-proposta-tecnologias-locais.md). Instalação e método de extração continuam em aberto. Lucas solicitou uma [proposta futura de evolução](../evolucao-arquitetural.md) para escala e desempenho.
+4. Aplicação local modular e ferramentas foram aceitas, e a [fundação foi verificada](../validacao-fundacao.md). Método de extração e revisão documental continuam pendentes. Lucas solicitou uma [proposta futura de evolução](../evolucao-arquitetural.md) para escala e desempenho.
 
-O domínio também permite exercitar Engenharia de Dados: transformar texto em informação estruturada, modelar contratos e versões, preservar origem e histórico, medir qualidade e recuperar falhas de processamento. As ferramentas aceitas ainda precisam de validação integrada no ambiente local.
+O domínio também permite exercitar Engenharia de Dados: transformar texto em informação estruturada, modelar contratos e versões, preservar origem e histórico, medir qualidade e recuperar falhas de processamento. A fundação inicial de cadastro foi verificada; essas funcionalidades documentais ainda serão construídas.
 
 ## 10. Fontes e limites da pesquisa
 

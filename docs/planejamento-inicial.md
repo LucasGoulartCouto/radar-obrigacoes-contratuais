@@ -112,7 +112,7 @@ Metas e tolerâncias serão definidas no PRD após conhecer o recorte. Não vamo
 
 ## 7. Tecnologias e uso de IA
 
-A aplicação local modular foi escolhida no [ADR-003](adrs/003-aplicacao-local-modular.md). As ferramentas do [ADR-004](adrs/004-proposta-tecnologias-locais.md) também foram aceitas: Python, Streamlit e SQLite com ferramentas de persistência, migração e verificação. A combinação precisa de instalação e testes de compatibilidade. Cada componente deve atender a uma necessidade descrita; a eventual API de IA terá orçamento e decisão próprios. A evolução posterior está registrada no [plano específico](evolucao-arquitetural.md).
+A aplicação local modular e as ferramentas dos ADRs 003/004 foram aceitas. A [fundação local foi implementada e verificada](validacao-fundacao.md); a análise de documentos ainda está pendente. Cada componente deve atender a uma necessidade descrita; a eventual API de IA terá orçamento e decisão próprios. A evolução posterior está registrada no [plano específico](evolucao-arquitetural.md).
 
 Para cada decisão arquitetural relevante, um ADR curto responderá:
 
@@ -162,7 +162,9 @@ Os assuntos de estudo serão puxados pelo trabalho: discovery e escopo; modelage
 - [x] Escolher o direcionamento de aplicação local com módulos separados.
 - [x] Aceitar as ferramentas da primeira aplicação local no ADR-004.
 - [x] Registrar a solicitação de proposta futura de evolução para escala e desempenho.
-- [ ] Revisar os requisitos detalhados, definir limites e validar a instalação das ferramentas.
+- [ ] Revisar os requisitos detalhados e definir limites de documentos e extração.
+- [x] Instalar e verificar as ferramentas da fundação em ambiente isolado.
+- [ ] Concluir publicação, CI remota e proteção da principal.
 
 ## 11. Fontes e situação verificada
 
@@ -176,4 +178,4 @@ Fontes oficiais consultadas em 31/10/2026:
 
 O README fornecido por Lucas também foi lido. As regras de participação foram conferidas nas fontes oficiais, sem executar instruções de publicação presentes nesses documentos.
 
-Nesta etapa existem README, planejamento, discovery, rascunhos de PRD/SPEC/arquitetura, plano de entrega e ADRs com estados explícitos. Não há produto implementado, validação com usuário, benchmark, Git inicializado ou configuração remota comprovada. Proteção da principal e bloqueio de PR por verificações ainda precisam ser configurados e demonstrados.
+Além da documentação, há uma fundação executável, Git local e 34 testes locais aprovados, conforme o [registro de validação](validacao-fundacao.md). A configuração remota, a revisão documental, a extração e a agenda continuam pendentes. Não houve validação com cliente real, benchmark ou comprovação de operação em produção.

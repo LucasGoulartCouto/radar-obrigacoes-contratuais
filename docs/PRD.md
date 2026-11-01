@@ -4,7 +4,7 @@ Versão 0.1 · 31/10/2026 · Rascunho de requisitos para revisão de produto.
 
 **Decisão aceita por Lucas:** construir o case fictício da Agência Prisma com foco em renovações e avisos prévios em contratos de serviços com fornecedores. Os requisitos detalhados, limites e metas deste documento são propostas para materializar essa decisão. Ainda não há implementação nem validação com usuários reais.
 
-**Arquitetura e ferramentas aceitas:** aplicação local com módulos separados, conforme [ADR-003](adrs/003-aplicacao-local-modular.md), e ferramentas do [ADR-004](adrs/004-proposta-tecnologias-locais.md), aceitas em 01/11/2026. Instalação, versões e teste integrado continuam pendentes. Lucas solicitou uma [proposta posterior de evolução](evolucao-arquitetural.md) para escala e desempenho; sua implementação não integra o escopo inicial.
+**Arquitetura e ferramentas aceitas:** aplicação local modular e ferramentas dos ADRs 003/004. A [fundação foi implementada e verificada](validacao-fundacao.md) em 01/11/2026: cadastro, edições, persistência, histórico, backup e regras aritméticas. Este PRD continua descrevendo o produto a construir; revisão documental e agenda ainda não foram implementadas. A [proposta posterior de evolução](evolucao-arquitetural.md) permanece planejada.
 
 ## 1. Problema e resultado pretendido
 
@@ -89,7 +89,7 @@ Disponibilidade informada por Lucas: **mais de 10 horas por semana**. Orçamento
 ## 8. Questões ainda abertas
 
 1. Qual será o orçamento para uma eventual API de IA? Hospedagem não é requisito da base local escolhida.
-2. A combinação escolhida no ADR-004 atende ao fluxo de revisão nos testes de instalação e integração?
+2. A interface escolhida atende ao futuro fluxo de revisão documental, além do cadastro já verificado?
 3. Uma extração com IA melhora o resultado ou o esforço de revisão em relação à alternativa simples?
 4. Quais limites de entrada e tempo de execução fazem sentido no ambiente escolhido?
 5. Quais metas de extração serão exigidas depois do experimento inicial?

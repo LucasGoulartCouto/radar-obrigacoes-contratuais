@@ -1,6 +1,6 @@
 # ADR-004 — Tecnologias da primeira aplicação local
 
-**Status: aceito por Lucas em 01/11/2026.** Após a apresentação da combinação Python, Streamlit, SQLite, SQLAlchemy, Alembic, uv, pytest e Ruff, Lucas respondeu “concordo” e pediu uma proposta posterior de evolução para escala e desempenho. A aplicação local modular já havia sido aceita no [ADR-003](003-aplicacao-local-modular.md). O aceite escolhe as ferramentas; instalação, versões e teste integrado ainda estão pendentes.
+**Status: aceito por Lucas em 01/11/2026; fundação implementada.** Após a apresentação da combinação Python, Streamlit, SQLite, SQLAlchemy, Alembic, uv, pytest e Ruff, Lucas respondeu “concordo” e pediu uma proposta posterior de evolução. O ambiente isolado foi preparado e verificado; versões e alcance estão no [registro de validação](../validacao-fundacao.md). O aceite não comprova as funcionalidades documentais ainda não implementadas.
 
 ## Contexto e critérios
 
@@ -43,9 +43,9 @@ Essa comparação é uma avaliação de engenharia para este projeto, não um be
 
 ## Evidência local disponível
 
-No interpretador acessível pelo comando `python`, foram verificados Python **3.14.3** e SQLite **3.50.4**; Git respondeu com **2.53.0.windows.2**. Streamlit, SQLAlchemy e Alembic não foram encontrados nesse interpretador. pytest foi encontrado, mas isso não substitui a preparação de um ambiente isolado do projeto. O executável uv não foi localizado no PATH consultado.
+No diagnóstico anterior à implementação, foram verificados Python **3.14.3**, SQLite **3.50.4** e Git **2.53.0.windows.2**. As ferramentas faltantes foram então instaladas em diretórios isolados do projeto: uv em `.tools/bootstrap` e dependências em `.venv`. As versões resolvidas constam em `uv.lock`.
 
-A documentação do Streamlit consultada lista suporte à série 3.14 de Python. Isso não prova que o conjunto inteiro foi instalado ou validado nesta máquina. Versões concretas e versão de correção do Python serão fixadas após o teste de compatibilidade; não vamos gerar um arquivo de dependências fictício.
+A documentação consultada lista suporte à série 3.14. Nesta etapa, a compatibilidade da fundação foi verificada também por execução local, 34 testes e uma segunda instalação usando o wheel gerado e o mesmo lock/cache. Isso não equivale a validação em Linux ou do produto completo.
 
 ## Como validar antes de iniciar o produto
 
@@ -56,7 +56,7 @@ A documentação do Streamlit consultada lista suporte à série 3.14 de Python.
 5. Testar uma migração com dados e um backup/restauração de referência.
 6. Registrar as versões que funcionaram e tornar a instalação reproduzível.
 
-Essas verificações serão feitas na fase de fundação, agora que a combinação foi aceita. Ainda não foram executadas. Se houver incompatibilidade, registraremos o resultado e a mudança de versão ou alternativa necessária, preservando o histórico da decisão.
+Essas verificações orientaram a fundação. Foram executadas para cadastro, edições, transações e pacote; o teste de migração cobre criação/reexecução do esquema inicial. Confirmação de obrigação/revisão documental e evolução para outro esquema ainda exigirão verificações próprias. Se houver incompatibilidade futura, registraremos o resultado e a alteração necessária.
 
 ## Limites e condição para rever
 
