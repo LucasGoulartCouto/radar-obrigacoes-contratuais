@@ -77,7 +77,7 @@ def test_agenda_shows_current_notice_evidence_and_all_pending_contracts(
     assert events["Situação"].tolist() == ["Próximos 30 dias"]
     assert events["Dias até a data"].tolist() == [30]
     assert len(table(app, "Próximo passo")) == 2
-    assert widget(app.metric, "Aguardando documentos").value == "1"
+    assert widget(app.metric, "Aguardando análise").value == "1"
     assert widget(app.metric, "Conferido com eventos").value == "1"
     assert any("carteira não está totalmente conferida" in item.value for item in app.warning)
     assert any("Aviso: 30 dias" in item.value for item in app.code)
@@ -116,7 +116,7 @@ def test_empty_filters_do_not_remove_coverage_or_hide_pending_warning(
     assert not any("Dias até a data" in item.value.columns for item in app.dataframe)
     assert len(table(app, "Próximo passo")) == 2
     assert any("Nenhum evento nos filtros" in item.value for item in app.info)
-    assert widget(app.metric, "Aguardando documentos").value == "1"
+    assert widget(app.metric, "Aguardando análise").value == "1"
 
 
 def test_missing_reference_keeps_portfolio_visible_without_inventing_a_date(

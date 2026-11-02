@@ -7,6 +7,7 @@ import streamlit as st
 from radar_contratos.bootstrap import (
     build_agenda_service,
     build_document_service,
+    build_extraction_service,
     build_review_service,
     build_service,
 )
@@ -14,6 +15,7 @@ from radar_contratos.config import Settings
 from radar_contratos.errors import RadarError
 from radar_contratos.ui.agenda import render_agenda
 from radar_contratos.ui.documents import render_documents
+from radar_contratos.ui.extractions import render_extractions
 from radar_contratos.ui.reviews import render_reviews
 
 
@@ -29,6 +31,7 @@ def render() -> None:
         documents = build_document_service(settings, engine)
         reviews = build_review_service(engine)
         agenda = build_agenda_service(engine)
+        extractions = build_extraction_service(settings, engine)
     except RadarError as exc:
         st.error(str(exc))
         st.stop()
@@ -96,10 +99,11 @@ def render() -> None:
                     st.session_state.pop(snapshot_key, None)
                     st.rerun()
             render_documents(documents, selected)
+            render_extractions(extractions, selected)
             render_reviews(reviews, documents, selected)
         st.caption(
-            "Levantamento manual, conferência e agenda disponíveis. "
-            "A extração automática ainda não foi implementada."
+            "Análise assistida local, levantamento manual, conferência e agenda. "
+            "Toda sugestão exige conferência explícita; nenhuma mensagem de negócio é enviada."
         )
     finally:
         engine.dispose()

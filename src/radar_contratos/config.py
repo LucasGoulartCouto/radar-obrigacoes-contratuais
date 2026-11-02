@@ -12,6 +12,7 @@ from radar_contratos.errors import ValidationError
 class Settings:
     data_dir: Path
     document_limits: DocumentLimits = DocumentLimits()
+    local_model_digest: str | None = None
 
     @classmethod
     def from_environment(cls) -> Settings:
@@ -23,7 +24,11 @@ class Settings:
             )
         except ValueError as exc:
             raise ValidationError("Os limites documentais devem ser inteiros positivos.") from exc
-        return cls(Path(os.environ.get("RADAR_DATA_DIR", "var")).expanduser().resolve(), limits)
+        return cls(
+            Path(os.environ.get("RADAR_DATA_DIR", "var")).expanduser().resolve(),
+            limits,
+            os.environ.get("RADAR_LOCAL_MODEL_DIGEST") or None,
+        )
 
     @property
     def database_path(self) -> Path:

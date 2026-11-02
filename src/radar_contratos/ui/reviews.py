@@ -11,6 +11,7 @@ from radar_contratos.domain.contracts import Contract
 from radar_contratos.domain.documents import PreparedDocument
 from radar_contratos.domain.reviews import AnalysisSnapshot, EvidenceInput, ManualDraft
 from radar_contratos.errors import RadarError
+from radar_contratos.ui.labels import BLOCKER_LABELS
 
 KINDS = {"termination": "Término do ciclo", "non_renewal_notice": "Aviso de não renovação"}
 MODES = {
@@ -66,11 +67,22 @@ def _evidence(
 def _show_analysis(analysis: AnalysisSnapshot) -> None:
     st.caption(
         f"Levantamento {analysis.analysis_version} · "
-        f"revisão documental {analysis.document_version} · método manual"
+        f"revisão documental {analysis.document_version} · "
+        + (
+            "método manual"
+            if analysis.payload["method_version"] == "MANUAL_V1"
+            else "análise assistida local"
+        )
     )
     st.text(f"Registrado por {analysis.actor}")
     if analysis.change_reason:
         st.text(f"Motivo da correção: {analysis.change_reason}")
+    context_review = analysis.payload.get("extraction", {}).get("context_review")
+    if context_review:
+        st.info("Correção de contexto registrada separadamente da confirmação dos eventos.")
+        st.text(f"Contexto revisado por {context_review['actor']}")
+        for decision in context_review["decisions"]:
+            st.text(f"Justificativa da revisão: {decision['reason']}")
     values = analysis.payload["input"]
     if values["end_date"]:
         st.write(f"Término informado: {values['end_date']}")
@@ -82,7 +94,7 @@ def _show_analysis(analysis: AnalysisSnapshot) -> None:
     if analysis.payload["blockers"]:
         st.warning("Este levantamento tem impedimentos; a confirmação fica bloqueada.")
         for reason in analysis.payload["blockers"]:
-            st.text(reason)
+            st.text(BLOCKER_LABELS.get(reason, reason))
     elif analysis.payload["candidate_events"]:
         st.dataframe(
             [
@@ -99,7 +111,11 @@ def _show_analysis(analysis: AnalysisSnapshot) -> None:
             else "Levantamento sem candidatos no recorte. Consulte sua situação de conferência."
         )
     for field, evidence in analysis.payload["evidence"].items():
-        label = {"end_date": "Término", "notice_rule": "Aviso", "blocker": "Impedimento"}[field]
+        label = {"end_date": "Término", "notice_rule": "Aviso", "blocker": "Impedimento"}.get(
+            field, "Outra origem"
+        )
+        if context_review and field == "blocker":
+            label = "Retenção original; consulte a revisão de contexto registrada"
         st.caption(
             f"{label} · documento {evidence['document_position'] + 1} · "
             f"linhas {evidence['start_line']}–{evidence['end_line']}"
@@ -163,7 +179,9 @@ def render_reviews(service: ReviewService, documents: DocumentService, contract:
     if analysis is not None:
         _show_analysis(analysis)
         if not analysis.is_current:
-            st.warning("A regra mudou. Registre outro levantamento antes de confirmar.")
+            st.warning(
+                "A base, o método ou os impedimentos mudaram. Refaça a análise antes de confirmar."
+            )
         elif analysis.review_id:
             st.success("Conferência registrada para esta base.")
             st.text(f"Conferido por {analysis.reviewer}")
@@ -217,7 +235,11 @@ def render_reviews(service: ReviewService, documents: DocumentService, contract:
         st.info("Nenhum evento confirmado válido para a base atual.")
 
     key = f"manual:{contract.id}:{st.session_state[generation_key]}:{contract.analysis_version}"
-    previous = analysis.payload["input"] if analysis and analysis.is_current else None
+    previous = (
+        analysis.payload["input"]
+        if analysis and analysis.is_current and analysis.payload["method_version"] == "MANUAL_V1"
+        else None
+    )
     with st.expander("Registrar ou corrigir levantamento manual", expanded=analysis is None):
         mode = st.radio(
             "Resultado do levantamento",

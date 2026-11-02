@@ -81,7 +81,7 @@ def confirm(case, *, request=None):
 
 
 def test_mixed_portfolio_counts_every_contract_once_and_only_emits_current_reviewed_events(
-    service, engine
+    service, engine, extractions, classifier
 ):
     service.register(title="Sem documentos", actor="Rafael", request_id=str(uuid4()))
     document_only = service.register(
@@ -95,6 +95,16 @@ def test_mixed_portfolio_counts_every_contract_once_and_only_emits_current_revie
         request_id=str(uuid4()),
         synthetic=True,
     )
+    classifier.failure = True
+    attempt = extractions.request(
+        contract_id=document_only.id,
+        expected_document_version=1,
+        expected_analysis_version=0,
+        actor="Rafael",
+        operation_id=str(uuid4()),
+        synthetic=True,
+    )
+    extractions.execute(document_only.id, attempt["run_id"])
     seed(service, engine, "Pendente")
     seed(service, engine, "Bloqueado", unit="undefined")
     reviewed = seed(service, engine, "Com eventos")

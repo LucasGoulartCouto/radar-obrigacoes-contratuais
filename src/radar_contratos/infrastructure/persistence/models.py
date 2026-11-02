@@ -29,6 +29,7 @@ class ContractRow(Base):
     record_version: Mapped[int]
     document_version: Mapped[int] = mapped_column(default=0, server_default="0")
     analysis_version: Mapped[int] = mapped_column(default=0, server_default="0")
+    known_textual_amendment: Mapped[bool] = mapped_column(default=False, server_default="0")
     created_at_utc: Mapped[str] = mapped_column(String(40))
     updated_at_utc: Mapped[str] = mapped_column(String(40))
 
@@ -111,11 +112,43 @@ class AnalysisRow(Base):
     fingerprint: Mapped[str] = mapped_column(String(64))
     payload: Mapped[dict] = mapped_column(JSON)
     rule_version: Mapped[str] = mapped_column(String(40))
+    method_version: Mapped[str] = mapped_column(
+        String(40), default="MANUAL_V1", server_default="MANUAL_V1"
+    )
     blocked: Mapped[bool]
     candidate_count: Mapped[int]
     change_reason: Mapped[str] = mapped_column(String(500))
     actor: Mapped[str] = mapped_column(String(80))
     created_at_utc: Mapped[str] = mapped_column(String(40))
+
+
+class ExtractionRunRow(Base):
+    __tablename__ = "extraction_runs"
+    __table_args__ = (
+        UniqueConstraint("contract_id", "number", name="uq_extraction_number"),
+        CheckConstraint("number >= 1 AND analysis_version >= 0", name="ck_extraction_versions"),
+        CheckConstraint(
+            "status IN ('pending','running','completed','failed','interrupted')",
+            name="ck_extraction_status",
+        ),
+    )
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    contract_id: Mapped[str] = mapped_column(ForeignKey("contracts.id"), index=True)
+    revision_id: Mapped[str] = mapped_column(ForeignKey("document_revisions.id"), index=True)
+    number: Mapped[int]
+    analysis_version: Mapped[int]
+    status: Mapped[str] = mapped_column(String(20))
+    input_sha256: Mapped[str] = mapped_column(String(64))
+    method: Mapped[dict] = mapped_column(JSON)
+    output: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    blocked: Mapped[bool] = mapped_column(default=False, server_default="0")
+    error_code: Mapped[str] = mapped_column(String(40))
+    actor: Mapped[str] = mapped_column(String(80))
+    created_at_utc: Mapped[str] = mapped_column(String(40))
+    started_at_utc: Mapped[str | None] = mapped_column(String(40))
+    finished_at_utc: Mapped[str | None] = mapped_column(String(40))
+    duration_ms: Mapped[float | None]
 
 
 class ReviewRow(Base):

@@ -12,8 +12,9 @@ EVENT_LABELS = {"non_renewal_notice": "Aviso de não renovação", "termination"
 
 
 class CoverageState(StrEnum):
-    WAITING_DOCUMENTS = "Aguardando documentos"
     WAITING_ANALYSIS = "Aguardando análise"
+    WAITING_DOCUMENTS = "Aguardando análise"  # subtipo de pendência, mesmo grupo da SPEC
+    FAILED = "Falha de análise"
     PENDING_REVIEW = "Revisão pendente"
     BLOCKED = "Bloqueado"
     WITH_EVENTS = "Conferido com eventos"
@@ -74,6 +75,8 @@ def coverage_for(
     reviewed: bool,
     candidate_count: int,
     event_count: int,
+    execution_status: str | None = None,
+    execution_blocked: bool = False,
 ) -> tuple[CoverageState, str]:
     if known_amendment:
         return CoverageState.BLOCKED, "Aditivo declarado no histórico; efeitos não consolidados."
@@ -82,6 +85,18 @@ def coverage_for(
     if not has_documents:
         return CoverageState.WAITING_DOCUMENTS, "Receba os documentos sintéticos do contrato."
     if not has_analysis:
+        if execution_blocked:
+            return CoverageState.BLOCKED, "A análise encontrou impedimentos; consulte a tentativa."
+        if execution_status in {"failed", "interrupted"}:
+            return (
+                CoverageState.FAILED,
+                "A tentativa não foi concluída; inicie nova tentativa explícita.",
+            )
+        if execution_status == "completed":
+            return (
+                CoverageState.PENDING_REVIEW,
+                "Selecione a análise concluída e confira o resultado.",
+            )
         return CoverageState.WAITING_ANALYSIS, "Registre um levantamento da revisão atual."
     if not current_rule:
         return CoverageState.PENDING_REVIEW, "A regra mudou; refaça o levantamento e a conferência."

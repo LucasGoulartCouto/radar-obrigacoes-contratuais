@@ -11,6 +11,12 @@ RULE_VERSION = "AVISO_CORRIDOS_V1"
 METHOD_VERSION = "MANUAL_V1"
 
 
+def current_method(version: str) -> bool:
+    from radar_contratos.domain.assisted import METHOD_VERSION as assisted_method
+
+    return version in {METHOD_VERSION, assisted_method}
+
+
 @dataclass(frozen=True, slots=True)
 class EvidenceInput:
     document_position: int
@@ -26,6 +32,7 @@ class ReferenceDocument:
     reference_text: str
     reference_sha256: str
     normalization_version: str
+    role: str = "base"
 
 
 @dataclass(frozen=True, slots=True)
