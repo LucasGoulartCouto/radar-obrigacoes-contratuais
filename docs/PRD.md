@@ -2,6 +2,8 @@
 
 Versão 0.5 · 01/11/2026 · Requisitos detalhados em revisão de produto.
 
+**Estado verificado em 02/11/2026:** a [integração assistida local](validacao-integracao-assistida.md) e a [reprodução em ambiente/banco novos](validacao-reproducao.md) foram exercitadas. As seções de progresso anteriores abaixo descrevem seus snapshots históricos; não são a pendência atual do extrator. Os requisitos propostos continuam separados dos aceites de Lucas e dos limites de validação independente.
+
 **Decisões aceitas por Lucas:** construir o case fictício da Agência Prisma com foco em renovações e avisos prévios em contratos de serviços com fornecedores; separar sugestão com evidências, cálculo por código e confirmação humana, com bloqueio por unidade ambígua, conflito ou aditivo, conforme ADR-002. Os demais detalhes, limites e metas deste documento são propostas. Ainda não houve validação com usuários reais.
 
 **Arquitetura e ferramentas aceitas:** aplicação local modular e ferramentas dos ADRs 003/004. A [fundação](validacao-fundacao.md), a [entrada documental](validacao-entrada-documental.md), o [fluxo manual de conferência](validacao-conferencia-manual.md) e a [agenda com cobertura](validacao-agenda.md) foram implementados. Este PRD continua descrevendo o produto completo: extração automática e estados de execução do extrator ainda não foram implementados. A [proposta posterior de evolução](evolucao-arquitetural.md) permanece planejada.
