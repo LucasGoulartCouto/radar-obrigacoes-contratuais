@@ -2,6 +2,8 @@
 
 Aplicação local para o Desafio Livre de novembro/dezembro de 2026 da Jornada de Dados.
 
+**Retomando em outra sessão?** Leia [AGENTS.md](AGENTS.md) e o [ponto de retomada](docs/RETOMADA.md), que identifica a branch funcional, PRs, evidências e próximo passo. Confira o estado atual no Git antes de continuar.
+
 **Situação em 01/11/2026:** fundação executável, com ambiente isolado, módulos separados, cadastro/edição de contratos fictícios, histórico e backup. **34 testes passaram localmente, e a CI também passou em Windows e Linux.** O [repositório é público](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais) e a `main` está protegida por PR e duas verificações obrigatórias.
 
 A implementação está no [PR #1](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/1), aberto para revisão de Lucas. A principal mantém a documentação anterior ao código enquanto o PR não for integrado. Uma falha temporária comprovou o bloqueio da integração; o arquivo da prova foi removido. Veja a [validação da publicação](docs/validacao-publicacao.md).
