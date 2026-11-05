@@ -6,7 +6,7 @@
 
 A agenda consulta somente confirmações válidas para a base atual e mostra a cobertura de todos os contratos, inclusive pendências e resultados vazios conferidos. Referência e filtros mudam a visualização sem escrever no banco. Decisão de implementação no [ADR-008](adrs/008-agenda-e-cobertura-da-carteira.md).
 
-**165 testes locais aprovados:** 123 anteriores e 42 novos, sendo 24 de domínio, 11 de integração e 7 de interface. O total inclui parametrizações; não é percentual de cobertura. A CI do commit publicado deve ser conferida no PR e vinculada ao seu HEAD antes de declarar aprovação remota.
+**165 testes locais aprovados:** 123 anteriores e 42 novos, sendo 24 de domínio, 11 de integração e 7 de interface. O total inclui parametrizações; não é percentual de cobertura. A [CI do commit funcional 8a8c8b9](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41330174954) também passou em Windows e Linux. A entrega está no [PR #5](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/5); atualizações posteriores exigem conferir a CI do novo HEAD.
 
 ## Matriz por funcionalidade criada ou alterada
 
