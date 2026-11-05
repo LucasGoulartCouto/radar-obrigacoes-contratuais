@@ -8,6 +8,8 @@ A implementação está no [PR #1](https://github.com/LucasGoulartCouto/radar-ob
 
 A primeira versão de produto acompanhará renovações e avisos prévios de contratos da Agência Prisma, um negócio fictício. A fundação atual permite cadastrar e editar nomes; extração, revisão documental e agenda ainda serão implementadas. Não há IA nem comunicação externa nesta entrega.
 
+**Regras e casos do primeiro fluxo:** [decisão de produto](docs/decisoes-primeiro-fluxo.md) e [oito casos sintéticos de desenvolvimento](tests/fixtures/contracts/README.md), com nove documentos e gabarito. Lucas aceitou o ADR-002; os limites operacionais continuam propostos. A suíte local passou com 43 testes: 34 da fundação e 9 de integridade do conjunto. Esses exemplos ainda não são uma avaliação de extração.
+
 ## Executar no Windows
 
 Pré-requisito: Python **3.14.3**, com `python` acessível no terminal. Abra PowerShell na pasta do projeto. Os scripts funcionam sem ativar manualmente um ambiente e sem alterar pacotes globais.
@@ -53,7 +55,9 @@ Cadastro fictício conferido no navegador e preservado após recarregar:
 | [Governança do repositório](docs/governanca-repositorio.md) | Histórico Git, CI executada e controles ativos na principal |
 | [Validação da publicação](docs/validacao-publicacao.md) | Repositório, PR, CI real e prova do bloqueio da principal |
 | [ADR-001 — recorte aceito](docs/adrs/001-recorte-do-produto.md) | Escolha de produto feita por Lucas, alternativas e consequências |
-| [ADR-002 — separação de responsabilidades](docs/adrs/002-proposta-limites-extracao-e-confirmacao.md) | Proposta de separar extração, cálculo e confirmação; ainda não aceita |
+| [ADR-002 — separação de responsabilidades](docs/adrs/002-proposta-limites-extracao-e-confirmacao.md) | Decisão aceita de separar extração, cálculo e confirmação; fluxo completo ainda a implementar |
+| [Decisões do primeiro fluxo](docs/decisoes-primeiro-fluxo.md) | Exemplos da regra aceita e limites operacionais ainda propostos |
+| [Casos sintéticos](tests/fixtures/contracts/README.md) | Oito casos de desenvolvimento com documentos e respostas esperadas |
 | [ADR-003 — aplicação local modular](docs/adrs/003-aplicacao-local-modular.md) | Direcionamento escolhido por Lucas, alternativas e limites |
 | [ADR-004 — tecnologias aceitas](docs/adrs/004-proposta-tecnologias-locais.md) | Ferramentas escolhidas, alternativas e verificações ainda necessárias |
 | [ADR-005 — persistência da fundação](docs/adrs/005-persistencia-da-fundacao.md) | Transação, reenvio, histórico e controle de edição implementados |
