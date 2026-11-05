@@ -28,6 +28,11 @@ from radar_contratos.errors import (
     StorageBusyError,
     ValidationError,
 )
+from radar_contratos.infrastructure.local_classifier import method_kernel
+from radar_contratos.infrastructure.persistence.analysis_method import (
+    method_is_current,
+    selected_execution_join,
+)
 from radar_contratos.infrastructure.persistence.models import (
     AnalysisRow,
     AuditRow,
@@ -35,6 +40,7 @@ from radar_contratos.infrastructure.persistence.models import (
     ContractRow,
     DocumentRevisionRow,
     DocumentUploadRow,
+    ExtractionRunRow,
     OperationRow,
     ReviewRow,
 )
@@ -352,10 +358,18 @@ class SqliteReviewStore:
     ) -> AnalysisSnapshot | None:
         with Session(self.engine) as session:
             query = (
-                select(AnalysisRow, DocumentRevisionRow, ContractRow, ReviewRow)
+                select(
+                    AnalysisRow,
+                    DocumentRevisionRow,
+                    ContractRow,
+                    ReviewRow,
+                    ExtractionRunRow.status,
+                    ExtractionRunRow.method,
+                )
                 .join(DocumentRevisionRow, DocumentRevisionRow.id == AnalysisRow.revision_id)
                 .join(ContractRow, ContractRow.id == AnalysisRow.contract_id)
                 .outerjoin(ReviewRow, ReviewRow.analysis_id == AnalysisRow.id)
+                .outerjoin(ExtractionRunRow, selected_execution_join())
                 .where(AnalysisRow.contract_id == contract_id)
             )
             if analysis_id is None:
@@ -368,7 +382,7 @@ class SqliteReviewStore:
             result = session.execute(query).first()
             if result is None:
                 return None
-            analysis, revision, contract, review = result
+            analysis, revision, contract, review, run_status, run_method = result
             return AnalysisSnapshot(
                 analysis.id,
                 contract.id,
@@ -381,7 +395,9 @@ class SqliteReviewStore:
                 analysis.number == contract.analysis_version
                 and revision.number == contract.document_version
                 and analysis.rule_version == rules.RULE_VERSION
-                and rules.current_method(analysis.method_version)
+                and method_is_current(
+                    analysis.method_version, run_status, run_method, kernel=method_kernel()
+                )
                 and (analysis.blocked or not _known_amendment(session, contract_id)),
                 review.id if review else None,
                 review.actor if review else None,
@@ -403,13 +419,17 @@ class SqliteReviewStore:
                     AnalysisRow.method_version,
                     AnalysisRow.blocked,
                     ReviewRow.id,
+                    ExtractionRunRow.status,
+                    ExtractionRunRow.method,
                 )
                 .join(DocumentRevisionRow, DocumentRevisionRow.id == AnalysisRow.revision_id)
                 .join(ContractRow, ContractRow.id == AnalysisRow.contract_id)
                 .outerjoin(ReviewRow, ReviewRow.analysis_id == AnalysisRow.id)
+                .outerjoin(ExtractionRunRow, selected_execution_join())
                 .where(AnalysisRow.contract_id == contract_id)
                 .order_by(AnalysisRow.number.desc())
             )
+            kernel = method_kernel()
             return [
                 AnalysisSummary(
                     identifier,
@@ -418,7 +438,7 @@ class SqliteReviewStore:
                     number == current_number
                     and doc_number == current_doc
                     and rule == rules.RULE_VERSION
-                    and rules.current_method(method)
+                    and method_is_current(method, run_status, run_method, kernel=kernel)
                     and (blocked or not known_amendment),
                     review is not None,
                 )
@@ -432,6 +452,8 @@ class SqliteReviewStore:
                     method,
                     blocked,
                     review,
+                    run_status,
+                    run_method,
                 ) in rows
             ]
 
@@ -445,6 +467,8 @@ class SqliteReviewStore:
                     AnalysisRow.rule_version,
                     AnalysisRow.method_version,
                     ReviewRow.id,
+                    ExtractionRunRow.status,
+                    ExtractionRunRow.method,
                 )
                 .join(
                     ContractRow,
@@ -457,13 +481,17 @@ class SqliteReviewStore:
                     & (DocumentRevisionRow.number == ContractRow.document_version),
                 )
                 .outerjoin(ReviewRow, ReviewRow.analysis_id == AnalysisRow.id)
+                .outerjoin(ExtractionRunRow, selected_execution_join())
             )
             states = {}
-            for contract_id, blocked, count, rule, method, review in rows:
+            kernel = method_kernel()
+            for contract_id, blocked, count, rule, method, review, run_status, run_method in rows:
                 if blocked:
                     states[contract_id] = "Bloqueado"
                 elif (
-                    review is None or rule != rules.RULE_VERSION or not rules.current_method(method)
+                    review is None
+                    or rule != rules.RULE_VERSION
+                    or not method_is_current(method, run_status, run_method, kernel=kernel)
                 ):
                     states[contract_id] = "Revisão pendente"
                 else:
@@ -490,8 +518,13 @@ class SqliteReviewStore:
         with Session(self.engine) as session:
             if _known_amendment(session, contract_id):
                 return []
-            rows = session.scalars(
-                select(ConfirmedEventRow)
+            rows = session.execute(
+                select(
+                    ConfirmedEventRow,
+                    AnalysisRow.method_version,
+                    ExtractionRunRow.status,
+                    ExtractionRunRow.method,
+                )
                 .join(ReviewRow, ReviewRow.id == ConfirmedEventRow.review_id)
                 .join(AnalysisRow, AnalysisRow.id == ReviewRow.analysis_id)
                 .join(
@@ -504,6 +537,7 @@ class SqliteReviewStore:
                     (DocumentRevisionRow.id == AnalysisRow.revision_id)
                     & (DocumentRevisionRow.number == ContractRow.document_version),
                 )
+                .outerjoin(ExtractionRunRow, selected_execution_join())
                 .where(
                     ContractRow.id == contract_id,
                     AnalysisRow.rule_version == rules.RULE_VERSION,
@@ -512,7 +546,9 @@ class SqliteReviewStore:
                 )
                 .order_by(ConfirmedEventRow.kind)
             )
+            kernel = method_kernel()
             return [
                 {"kind": row.kind, "date": row.event_date, "review_id": row.review_id}
-                for row in rows
+                for row, method, run_status, run_method in rows
+                if method_is_current(method, run_status, run_method, kernel=kernel)
             ]

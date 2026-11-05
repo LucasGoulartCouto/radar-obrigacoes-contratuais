@@ -4,8 +4,10 @@ from uuid import uuid4
 from streamlit.testing.v1 import AppTest
 
 from radar_contratos.application.documents import DocumentService
+from radar_contratos.application.extractions import ExtractionService
 from radar_contratos.bootstrap import build_review_service
 from radar_contratos.domain.documents import DocumentInput, DocumentRole
+from radar_contratos.infrastructure.local_classifier import method_kernel
 from radar_contratos.infrastructure.persistence.documents import SqliteDocumentStore
 
 APP = Path(__file__).parents[2] / "src/radar_contratos/ui/app.py"
@@ -65,6 +67,42 @@ def test_assisted_flow_requires_selection_and_confirmation_and_survives_reload(
     reloaded = AppTest.from_file(str(APP), default_timeout=30).run()
     assert not reloaded.exception and classifier.calls == 1
     assert widget(reloaded.metric, "Conferido com eventos").value == "1"
+
+
+def test_method_change_removes_current_events_and_requires_explicit_new_review(
+    service, engine, tmp_path, monkeypatch, extractions, classifier
+):
+    contract, app = prepare(service, engine, tmp_path, monkeypatch, extractions)
+    analyze(app)
+    widget(app.button, "Usar resultado para conferência (não confirma)").click().run()
+    widget(app.checkbox, "Conferi os campos, as evidências e a cobertura desta revisão.").check()
+    widget(app.button, "Confirmar conferência").click().run()
+    assert widget(app.metric, "Conferido com eventos").value == "1"
+    monkeypatch.setattr(
+        "radar_contratos.infrastructure.local_classifier.PROMPT_VERSION", "CHANGED_PROMPT"
+    )
+    app.run()
+    assert not app.exception and classifier.calls == 1
+    assert widget(app.metric, "Conferido com eventos").value == "0"
+    assert widget(app.metric, "Revisão pendente").value == "1"
+    assert any("Refaça a análise antes de confirmar" in item.value for item in app.warning)
+    assert all(item.label != "Confirmar conferência" for item in app.button)
+    monkeypatch.setattr(
+        "radar_contratos.bootstrap.build_extraction_service",
+        lambda *_: ExtractionService(extractions.store, classifier, method_kernel()),
+    )
+    analyze(app)
+    widget(app.text_input, "Motivo para substituir o levantamento atual").set_value(
+        "Reconferência simulada após mudança do método."
+    )
+    widget(app.button, "Usar resultado para conferência (não confirma)").click().run()
+    assert not app.exception and classifier.calls == 2
+    assert build_review_service(engine).current_events(contract.id) == []
+    widget(app.checkbox, "Conferi os campos, as evidências e a cobertura desta revisão.").check()
+    widget(app.button, "Confirmar conferência").click().run()
+    assert not app.exception
+    assert widget(app.metric, "Conferido com eventos").value == "1"
+    assert len(build_review_service(engine).list_history(contract.id)) == 2
 
 
 def test_failed_attempt_is_visible_and_explicit_new_attempt_recovers(

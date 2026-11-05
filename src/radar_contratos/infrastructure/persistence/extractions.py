@@ -19,6 +19,10 @@ from radar_contratos.domain.literal_extraction import AFFIRMATIVE_AMENDMENT
 from radar_contratos.domain.reviews import RULE_VERSION
 from radar_contratos.errors import RadarError, StaleRecordError, StorageBusyError, ValidationError
 from radar_contratos.infrastructure.local_classifier import method_kernel
+from radar_contratos.infrastructure.persistence.analysis_method import (
+    method_is_current,
+    selected_execution_join,
+)
 from radar_contratos.infrastructure.persistence.models import (
     AnalysisRow,
     ContractRow,
@@ -82,6 +86,8 @@ def _payload(session, run, revision, **context_review):
 
 
 def rebuild_assisted(session, analysis, revision):
+    if not analysis.execution_id or analysis.execution_id != analysis.payload.get("execution_id"):
+        raise StaleRecordError("A referência da execução mudou. Refaça a análise e a conferência.")
     run = _run(session, analysis.contract_id, analysis.payload["execution_id"])
     if (
         analysis.method_version != METHOD_VERSION
@@ -359,6 +365,16 @@ class SqliteExtractionStore(SqliteReviewStore):
                 )
             )
             changed = current is None or current.fingerprint != key
+            if not changed:
+                selected_run = session.scalar(
+                    select(ExtractionRunRow)
+                    .select_from(AnalysisRow)
+                    .join(ExtractionRunRow, selected_execution_join())
+                    .where(AnalysisRow.id == current.id)
+                )
+                changed = selected_run is None or not method_is_current(
+                    current.method_version, selected_run.status, selected_run.method, kernel=kernel
+                )
             if changed:
                 if run.analysis_version != expected_analysis_version and (
                     current is None or current.payload.get("execution_id") != run.id
@@ -378,6 +394,7 @@ class SqliteExtractionStore(SqliteReviewStore):
                     fingerprint=key,
                     payload=payload,
                     method_version=METHOD_VERSION,
+                    execution_id=run.id,
                     rule_version=RULE_VERSION,
                     blocked=bool(payload["blockers"]),
                     candidate_count=len(payload["candidate_events"]),

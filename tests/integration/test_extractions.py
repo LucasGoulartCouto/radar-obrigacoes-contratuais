@@ -3,9 +3,11 @@ from uuid import uuid4
 
 import pytest
 from sqlalchemy import event, func, select
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from radar_contratos.application.documents import DocumentService
+from radar_contratos.application.extractions import ExtractionService
 from radar_contratos.bootstrap import build_agenda_service, build_review_service
 from radar_contratos.domain.agenda import CoverageState
 from radar_contratos.domain.assisted import literal_lines
@@ -19,6 +21,7 @@ from radar_contratos.errors import (
     StorageBusyError,
     ValidationError,
 )
+from radar_contratos.infrastructure.local_classifier import method_kernel
 from radar_contratos.infrastructure.persistence.documents import SqliteDocumentStore
 from radar_contratos.infrastructure.persistence.models import (
     AnalysisRow,
@@ -283,6 +286,176 @@ def test_changed_method_prevents_selection_and_confirmation(case, monkeypatch):
         confirm(case, selected)
     with pytest.raises(StaleRecordError):
         select_result(case, run, analysis=1)
+
+
+@pytest.mark.parametrize("view", ["agenda", "detail", "history", "events", "states"])
+def test_changed_kernel_invalidates_confirmed_assisted_views(case, engine, monkeypatch, view):
+    selected = select_result(case, execute(case))
+    receipt = confirm(case, selected)
+    assert len(case[3].current_events(case[0].id)) == 2
+    monkeypatch.setattr(
+        "radar_contratos.infrastructure.local_classifier.PROMPT_VERSION", "CHANGED_PROMPT"
+    )
+    if view == "agenda":
+        portfolio = build_agenda_service(engine).read_portfolio()
+        assert portfolio.contracts[0].state == CoverageState.PENDING_REVIEW
+        assert portfolio.events == ()
+    elif view == "detail":
+        snapshot = case[3].get_analysis(case[0].id)
+        assert not snapshot.is_current
+        assert snapshot.review_id == receipt["review_id"]
+    elif view == "history":
+        summary = case[3].list_history(case[0].id)[0]
+        assert not summary.is_current and summary.is_reviewed
+    elif view == "events":
+        assert case[3].current_events(case[0].id) == []
+    else:
+        assert case[3].current_states()[case[0].id] == "Revisão pendente"
+
+
+def test_kernel_change_preserves_manual_review_and_its_events(case, engine, monkeypatch):
+    selected = case[3].register(
+        contract_id=case[0].id,
+        expected_document_version=1,
+        expected_analysis_version=0,
+        actor="Rafael",
+        request_id=str(uuid4()),
+        synthetic=True,
+        draft=ManualDraft(
+            end_date=date(2027, 6, 30),
+            end_evidence=EvidenceInput(0, 1, 1, SOURCE.split("\n")[0]),
+        ),
+    )
+    confirm(case, selected)
+    monkeypatch.setattr(
+        "radar_contratos.infrastructure.local_classifier.PROMPT_VERSION", "CHANGED_PROMPT"
+    )
+    assert state(case, engine) == CoverageState.WITH_EVENTS
+    assert len(case[3].current_events(case[0].id)) == 1
+    assert case[3].get_analysis(case[0].id).is_current
+    assert case[3].list_history(case[0].id)[0].is_current
+    assert case[3].current_states()[case[0].id] == "Conferido com eventos"
+
+
+def test_same_candidates_from_new_kernel_require_new_selection_and_review(
+    case, classifier, engine, monkeypatch
+):
+    original = select_result(case, execute(case))
+    original_receipt = confirm(case, original)
+    monkeypatch.setattr(
+        "radar_contratos.infrastructure.local_classifier.PROMPT_VERSION", "CHANGED_PROMPT"
+    )
+    # Simula reabrir a aplicação com o método atual, sem chamar o modelo real.
+    fresh_case = (
+        case[0],
+        case[1],
+        ExtractionService(case[2].store, classifier, method_kernel()),
+        case[3],
+    )
+    selected = select_result(
+        fresh_case,
+        execute(fresh_case, analysis=1),
+        analysis=1,
+        change_reason="Reconferência após atualização do método.",
+    )
+    assert selected["created"] and selected["analysis_version"] == 2
+    assert selected["analysis_id"] != original["analysis_id"]
+    assert case[3].get_analysis(case[0].id).review_id is None
+    assert case[3].current_events(case[0].id) == []
+    previous = case[3].get_analysis(case[0].id, original["analysis_id"])
+    assert previous.review_id == original_receipt["review_id"] and not previous.is_current
+    confirm(fresh_case, selected)
+    assert state(case, engine) == CoverageState.WITH_EVENTS
+    assert len(case[3].current_events(case[0].id)) == 2
+    with Session(engine) as session:
+        assert session.scalar(select(func.count()).select_from(ConfirmedEventRow)) == 4
+
+
+@pytest.mark.parametrize("change", ["missing_reference", "unfinished_execution"])
+def test_unavailable_selected_execution_never_remains_current(case, engine, change):
+    selected = select_result(case, execute(case))
+    confirm(case, selected)
+    with Session(engine) as session, session.begin():
+        analysis = session.get(AnalysisRow, selected["analysis_id"])
+        if change == "missing_reference":
+            analysis.execution_id = None
+        else:
+            session.get(ExtractionRunRow, analysis.execution_id).status = "running"
+    assert state(case, engine) == CoverageState.PENDING_REVIEW
+    assert not case[3].get_analysis(case[0].id).is_current
+    assert not case[3].list_history(case[0].id)[0].is_current
+    assert case[3].current_events(case[0].id) == []
+    assert case[3].current_states()[case[0].id] == "Revisão pendente"
+    with pytest.raises(StaleRecordError):
+        confirm(case, selected)
+
+
+def test_execution_metadata_migration_preserves_all_values_and_both_methods(case, engine):
+    from alembic import command
+
+    from radar_contratos.infrastructure.persistence.database import (
+        initialize_database,
+        migration_config,
+    )
+
+    manual = case[3].register(
+        contract_id=case[0].id,
+        expected_document_version=1,
+        expected_analysis_version=0,
+        actor="Rafael",
+        request_id=str(uuid4()),
+        synthetic=True,
+        draft=ManualDraft(
+            end_date=date(2027, 6, 30),
+            end_evidence=EvidenceInput(0, 1, 1, SOURCE.split("\n")[0]),
+        ),
+    )
+    confirm(case, manual)
+    run = execute(case, analysis=1)
+    selected = select_result(case, run, analysis=1, change_reason="Exercitar ambos os métodos.")
+    receipt = confirm(case, selected)
+    config = migration_config()
+    with engine.begin() as connection:
+        config.attributes["connection"] = connection
+        command.downgrade(config, "0004_extractions")
+    with engine.connect() as connection:
+        tables = (
+            connection.exec_driver_sql(
+                "SELECT name FROM sqlite_master WHERE type='table' AND name != 'alembic_version'"
+            )
+            .scalars()
+            .all()
+        )
+        columns = {
+            table: [row[1] for row in connection.exec_driver_sql(f'PRAGMA table_info("{table}")')]
+            for table in tables
+        }
+        before = {
+            table: connection.exec_driver_sql(f'SELECT * FROM "{table}" ORDER BY 1').all()
+            for table in tables
+        }
+    initialize_database(engine)
+    with engine.connect() as connection:
+        for table in tables:
+            names = ",".join(f'"{name}"' for name in columns[table])
+            assert (
+                connection.exec_driver_sql(f'SELECT {names} FROM "{table}" ORDER BY 1').all()
+                == before[table]
+            )
+        references = dict(
+            connection.exec_driver_sql("SELECT id, execution_id FROM manual_analyses").all()
+        )
+        assert references[manual["analysis_id"]] is None
+        assert references[selected["analysis_id"]] == run["run_id"]
+        assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
+    assert state(case, engine) == CoverageState.WITH_EVENTS
+    assert len(case[3].current_events(case[0].id)) == 2
+    assert case[3].get_analysis(case[0].id).review_id == receipt["review_id"]
+    with pytest.raises(IntegrityError, match="FOREIGN KEY"), engine.begin() as connection:
+        connection.exec_driver_sql(
+            "UPDATE manual_analyses SET execution_id = 'missing' WHERE id = ?",
+            (selected["analysis_id"],),
+        )
 
 
 def test_failure_of_unselected_new_attempt_keeps_valid_confirmation(case, classifier, engine):
