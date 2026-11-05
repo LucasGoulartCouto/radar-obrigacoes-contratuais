@@ -1,35 +1,11 @@
 """Validação das operações, sem importar a interface ou o mecanismo do banco."""
 
-import hashlib
-import json
-from uuid import UUID
-
+from radar_contratos.application.inputs import fingerprint as _fingerprint
+from radar_contratos.application.inputs import request_id as _request_id
+from radar_contratos.application.inputs import text as _text
 from radar_contratos.application.ports import ContractStore
 from radar_contratos.domain.contracts import Contract
 from radar_contratos.errors import ValidationError
-
-
-def _text(value: str, *, label: str, maximum: int) -> str:
-    if not isinstance(value, str):
-        raise ValidationError(f"{label}: informe um texto.")
-    value = value.strip()
-    if not value or len(value) > maximum or any(ord(char) < 32 for char in value):
-        raise ValidationError(
-            f"{label}: informe entre 1 e {maximum} caracteres, sem quebras de linha."
-        )
-    return value
-
-
-def _request_id(value: str) -> str:
-    try:
-        return str(UUID(value))
-    except (ValueError, AttributeError, TypeError) as exc:
-        raise ValidationError("A identificação da operação é inválida. Atualize a tela.") from exc
-
-
-def _fingerprint(payload: dict) -> str:
-    encoded = json.dumps(payload, sort_keys=True, ensure_ascii=False).encode("utf-8")
-    return hashlib.sha256(encoded).hexdigest()
 
 
 class ContractService:

@@ -1,10 +1,10 @@
 # PRD — Radar de Obrigações Contratuais
 
-Versão 0.2 · 01/11/2026 · Requisitos detalhados em revisão de produto.
+Versão 0.3 · 01/11/2026 · Requisitos detalhados em revisão de produto.
 
 **Decisões aceitas por Lucas:** construir o case fictício da Agência Prisma com foco em renovações e avisos prévios em contratos de serviços com fornecedores; separar sugestão com evidências, cálculo por código e confirmação humana, com bloqueio por unidade ambígua, conflito ou aditivo, conforme ADR-002. Os demais detalhes, limites e metas deste documento são propostas. Ainda não houve validação com usuários reais.
 
-**Arquitetura e ferramentas aceitas:** aplicação local modular e ferramentas dos ADRs 003/004. A [fundação foi implementada e verificada](validacao-fundacao.md) em 01/11/2026: cadastro, edições, persistência, histórico, backup e regras aritméticas. Este PRD continua descrevendo o produto a construir; revisão documental e agenda ainda não foram implementadas. A [proposta posterior de evolução](evolucao-arquitetural.md) permanece planejada.
+**Arquitetura e ferramentas aceitas:** aplicação local modular e ferramentas dos ADRs 003/004. A [fundação](validacao-fundacao.md) e a [entrada documental](validacao-entrada-documental.md) foram implementadas: cadastro, persistência, histórico, backup, aritmética, originais e revisões de documentos. Este PRD continua descrevendo o produto completo a construir; extração, conferência humana e agenda ainda não foram implementadas. A [proposta posterior de evolução](evolucao-arquitetural.md) permanece planejada.
 
 ## 1. Problema e resultado pretendido
 
@@ -82,7 +82,7 @@ Plano inicial de avaliação: 30 casos sintéticos, sendo 20 de desenvolvimento 
 - Manter credenciais fora do repositório; nenhum segredo pode integrar o contexto enviado a um extrator.
 - Registrar o usuário/revisor do cenário sem alegar autenticação ou auditoria inviolável que ainda não tenham sido implementadas.
 
-Os [limites operacionais iniciais](decisoes-primeiro-fluxo.md) propõem tetos de tamanho e quantidade, com rejeição explícita. Ainda precisam ser fechados e implementados antes da entrada documental. Prazo de processamento, política de tentativas e orçamento continuam em aberto para a integração do extrator.
+Os [limites operacionais da entrada](decisoes-primeiro-fluxo.md) foram implementados com rejeição explícita de tamanho e quantidade. O [registro documental](validacao-entrada-documental.md) distingue origem/versionamento das funcionalidades ainda futuras. Prazo de processamento, política de tentativas e orçamento continuam em aberto para a integração do extrator.
 
 ## 7. Prioridade e exclusões em caso de prazo apertado
 

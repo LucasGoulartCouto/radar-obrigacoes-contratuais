@@ -25,7 +25,14 @@ logger = logging.getLogger(__name__)
 
 
 def _contract(row: ContractRow) -> Contract:
-    return Contract(row.id, row.title, row.record_version, row.created_at_utc, row.updated_at_utc)
+    return Contract(
+        row.id,
+        row.title,
+        row.record_version,
+        row.created_at_utc,
+        row.updated_at_utc,
+        row.document_version,
+    )
 
 
 def _replay(operation: OperationRow | None, fingerprint: str) -> Contract | None:

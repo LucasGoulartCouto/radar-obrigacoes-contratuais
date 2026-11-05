@@ -1,6 +1,6 @@
 # Decisões para o primeiro fluxo
 
-01/11/2026 · **Decisão de produto aceita por Lucas nesta conversa.** Os limites operacionais abaixo continuam propostas técnicas; o fluxo documental ainda não foi implementado.
+01/11/2026 · **Decisão de produto aceita por Lucas nesta conversa.** Os limites de entrada abaixo foram adotados na implementação autorizada de recebimento e versionamento; análise, conferência e agenda continuam sem implementação.
 
 ## O que já está decidido
 
@@ -22,11 +22,11 @@ Lucas escolheu “Adotar essa regra” para a proposta: a extração sugere com 
 
 Essas regras são convenções da simulação. Não estabelecem interpretação jurídica para documentos reais. O bloqueio impede confirmação da base atual; uma futura revisão com suporte suficiente precisará passar por nova análise e conferência. A consolidação de aditivos permanece fora desta versão.
 
-## Limites operacionais iniciais propostos
+## Limites operacionais da entrada
 
-São tetos conservadores para limitar o trabalho do protótipo, **ainda não implementados nem medidos como capacidade**. Poderão ser ajustados antes da implementação, com justificativa registrada.
+São tetos conservadores implementados para limitar o trabalho do protótipo, **sem medição de capacidade sob carga**. Podem ser configurados por variáveis de ambiente; alterações devem preservar a validação e ser justificadas. Decisão técnica e consequências: [ADR-006](adrs/006-entrada-e-revisoes-documentais.md).
 
-| Entrada | Limite inicial proposto | Comportamento esperado |
+| Entrada | Configuração ou decisão | Comportamento esperado |
 |---|---|---|
 | Formato | Arquivos `.txt` UTF-8; aceitar BOM inicial | Rejeitar codificação inválida e formatos não suportados com mensagem útil |
 | Documento individual | 262.144 bytes, medidos antes de normalizar o texto | Rejeitar excesso antes de análise; sem truncamento |
@@ -35,7 +35,7 @@ São tetos conservadores para limitar o trabalho do protótipo, **ainda não imp
 | Agenda da simulação | Referência explícita e horizonte de 30 dias conforme SPEC | Separar ultrapassada, hoje, próximos 30 dias e depois do horizonte |
 | Processamento automático | Prazo, tentativas e orçamento definidos antes de integrar cada extrator | A primeira entrega de casos não faz chamada de IA nem assume custo de API |
 
-Extensão `.txt` não comprova conteúdo válido. A futura entrada deverá verificar os bytes e o texto. Texto vazio, só espaços ou conteúdo incompatível deve ser rejeitado; nenhum caso deste conjunto representa essas entradas como análise válida sem eventos.
+Extensão `.txt` não comprova conteúdo válido. A entrada verifica os bytes e o texto e rejeita conteúdo vazio, só espaços, UTF-8 inválido e controles incompatíveis. Esses casos não representam análise válida sem eventos.
 
 O prazo máximo de processamento e a política de recuperação ainda precisam de especificação antes da etapa de análise. Um timeout de teste da interface não representa esse limite operacional.
 
@@ -43,13 +43,13 @@ O prazo máximo de processamento e a política de recuperação ainda precisam d
 
 O [conjunto de desenvolvimento](../tests/fixtures/contracts/README.md) contém oito casos, nove documentos e respostas esperadas com citações literais. O [caso simples](../tests/fixtures/contracts/development/documents/DEV-001-base.txt) é o primeiro exemplo a revisar; o [caso ambíguo](../tests/fixtures/contracts/development/documents/DEV-002-base.txt) mostra o custo da escolha por bloquear.
 
-O gabarito foi escrito como referência de desenvolvimento. Ele não é resultado de extração nem avaliação reservada. Os testes verificam consistência dos dados, localização das evidências e aritmética existente. Não comprovam confirmação, agenda, gestão de revisões ou resistência a instruções indevidas, que ainda não foram implementadas.
+O gabarito foi escrito como referência de desenvolvimento. Ele não é resultado de extração nem avaliação reservada. Seus testes verificam consistência dos dados, localização das evidências e aritmética existente. A gestão de revisões agora tem [verificações próprias](validacao-entrada-documental.md); isso não comprova confirmação, agenda ou resistência de um extrator a instruções indevidas.
 
 ## Próxima implementação depois da decisão
 
-Receber e versionar os documentos sintéticos com limites explícitos, preservação da origem e reenvio sem duplicações. Depois, implementar conferência, confirmação atômica e invalidação de resultados desatualizados. Cada entrega deverá ligar o requisito da SPEC à sua verificação.
+O recebimento e versionamento foram implementados com limites explícitos, preservação da origem e reenvio sem duplicação de revisão. O próximo passo é registrar candidatos com evidências e implementar conferência, confirmação atômica e invalidação de resultados desatualizados. Cada entrega deverá ligar o requisito da SPEC à sua verificação.
 
-## Verificação desta entrega
+## Verificação da entrega de regras e casos
 
 Executada localmente no Windows em 01/11/2026: **43 testes passaram**, sendo os 34 da fundação e 9 de integridade do conjunto sintético. Ruff e formatação também passaram. A verificação de links foi ampliada para incluir a documentação dos exemplos.
 

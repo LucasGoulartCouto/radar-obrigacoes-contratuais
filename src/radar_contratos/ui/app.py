@@ -4,9 +4,10 @@ from uuid import uuid4
 
 import streamlit as st
 
-from radar_contratos.bootstrap import build_service
+from radar_contratos.bootstrap import build_document_service, build_service
 from radar_contratos.config import Settings
 from radar_contratos.errors import RadarError
+from radar_contratos.ui.documents import render_documents
 
 
 def render() -> None:
@@ -16,7 +17,9 @@ def render() -> None:
     st.write("Organize os contratos fictícios que serão acompanhados pelo Radar.")
 
     try:
-        service, engine = build_service(Settings.from_environment())
+        settings = Settings.from_environment()
+        service, engine = build_service(settings)
+        documents = build_document_service(settings, engine)
     except RadarError as exc:
         st.error(str(exc))
         st.stop()
@@ -44,18 +47,28 @@ def render() -> None:
                 else:
                     st.session_state["register_request_id"] = str(uuid4())
                     st.success(
-                        "Contrato cadastrado. A análise documental será uma próxima entrega."
+                        "Contrato cadastrado. Você já pode adicionar os documentos sintéticos."
                     )
 
         contracts = service.list_contracts()
+        states = documents.current_states()
         st.subheader("Contratos cadastrados")
-        st.metric("Aguardando documentos", len(contracts))
+        st.metric(
+            "Aguardando documentos",
+            sum(
+                states.get(contract.id, "Aguardando documentos") == "Aguardando documentos"
+                for contract in contracts
+            ),
+        )
         if not contracts:
             st.info("Cadastre o primeiro contrato fictício para começar.")
         else:
             st.dataframe(
                 [
-                    {"Contrato": contract.title, "Situação": "Aguardando documentos"}
+                    {
+                        "Contrato": contract.title,
+                        "Situação": states.get(contract.id, "Aguardando documentos"),
+                    }
                     for contract in contracts
                 ],
                 hide_index=True,
@@ -88,8 +101,10 @@ def render() -> None:
                 else:
                     st.session_state.pop(snapshot_key, None)
                     st.rerun()
+            render_documents(documents, selected)
         st.caption(
-            "Nesta entrega: cadastro e persistência. Extração, conferência e agenda virão depois."
+            "Cadastro e histórico documental disponíveis. "
+            "Extração, conferência e agenda virão depois."
         )
     finally:
         engine.dispose()
