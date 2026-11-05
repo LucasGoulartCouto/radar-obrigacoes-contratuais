@@ -10,3 +10,4 @@ class Contract:
     record_version: int
     created_at_utc: str
     updated_at_utc: str
+    document_version: int = 0

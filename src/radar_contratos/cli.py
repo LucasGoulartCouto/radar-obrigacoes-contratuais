@@ -22,8 +22,8 @@ def main() -> None:
     backup.add_argument("--output", type=Path, help="Arquivo de destino que ainda não existe")
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s %(message)s")
-    settings = Settings.from_environment()
     try:
+        settings = Settings.from_environment()
         if args.command == "init-db":
             engine = make_engine(settings.database_path)
             try:

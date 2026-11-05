@@ -15,6 +15,8 @@
 - ADR-002 aceito por Lucas em 01/11/2026: extração propõe com evidências, código calcula e pessoa confirma. Unidade ambígua, conflito ou aditivo bloqueiam a confirmação. Documentos são dados sem autoridade para mudar regras ou executar ações.
 - Não confundir versão de cadastro com revisão documental, nem cadastro persistido com obrigação analisada/confirmada.
 - Migrações preservam dados; nunca recriar o banco como correção rotineira.
+- Entrada documental implementada no ADR-006: preservar bytes e referência TEXT_REFERENCE_V1; comparar o conjunto atual por texto/papel, sem duplicar revisão por nome, ordem, BOM ou quebras de linha. Cada envio aceito conserva sua origem.
+- Aditivo já declarado no histórico continua sinalizado mesmo após retirada ou mudança de papel; não liberar silenciosamente. Limites padrão: 262.144 bytes por arquivo, 1.048.576 no conjunto e 5 documentos.
 - Sessões de banco têm duração limitada; estado de tela não é fonte de verdade. Submissões devem ser idempotentes e rejeitar edição desatualizada.
 - Segredos, bancos gerados e ferramentas locais ficam fora do Git. Não registrar texto de contratos, credenciais ou dados pessoais em logs técnicos.
 

@@ -6,9 +6,11 @@ Aplicação local para o Desafio Livre de novembro/dezembro de 2026 da Jornada d
 
 A implementação está no [PR #1](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/1), aberto para revisão de Lucas. A principal mantém a documentação anterior ao código enquanto o PR não for integrado. Uma falha temporária comprovou o bloqueio da integração; o arquivo da prova foi removido. Veja a [validação da publicação](docs/validacao-publicacao.md).
 
-A primeira versão de produto acompanhará renovações e avisos prévios de contratos da Agência Prisma, um negócio fictício. A fundação atual permite cadastrar e editar nomes; extração, revisão documental e agenda ainda serão implementadas. Não há IA nem comunicação externa nesta entrega.
+A primeira versão de produto acompanhará renovações e avisos prévios de contratos da Agência Prisma, um negócio fictício. A entrada documental permite receber textos sintéticos, preservar originais, consultar revisões e baixar cada envio. Extração, conferência e agenda ainda serão implementadas. Não há IA nem comunicação externa de negócio nesta entrega.
 
-**Regras e casos do primeiro fluxo:** [decisão de produto](docs/decisoes-primeiro-fluxo.md) e [oito casos sintéticos de desenvolvimento](tests/fixtures/contracts/README.md), com nove documentos e gabarito. Lucas aceitou o ADR-002; os limites operacionais continuam propostos. A suíte local passou com 43 testes: 34 da fundação e 9 de integridade do conjunto. Esses exemplos ainda não são uma avaliação de extração.
+**Regras e casos do primeiro fluxo:** [decisão de produto](docs/decisoes-primeiro-fluxo.md) e [oito casos sintéticos de desenvolvimento](tests/fixtures/contracts/README.md), com nove documentos e gabarito. Lucas aceitou o ADR-002; os limites de entrada foram implementados no ADR-006. Esses exemplos ainda não são uma avaliação de extração. As verificações da entrada estão no [registro documental](docs/validacao-entrada-documental.md).
+
+**Verificação local da versão com documentos:** 81 testes aprovados, incluindo migração com dados e os 38 testes novos da entrada. Upload, reenvio, alteração, rejeição por tamanho e download do original foram conferidos no navegador.
 
 ## Executar no Windows
 
@@ -21,7 +23,11 @@ Pré-requisito: Python **3.14.3**, com `python` acessível no terminal. Abra Pow
 
 O primeiro comando instala o uv **0.13.6** em `.tools/bootstrap`, sincroniza as dependências de `uv.lock` em `.venv` e aplica a migração. O segundo inicia a interface em [http://127.0.0.1:8501](http://127.0.0.1:8501). Encerre a execução iniciada no terminal com `Ctrl+C`.
 
-Cadastre apenas um contrato fictício, informe um nome de personagem como responsável e confirme o contexto de simulação. O registro aparece como **Aguardando documentos** e permanece após recarregar a página. É possível editar seu nome; uma edição desatualizada é rejeitada.
+Cadastre apenas um contrato fictício, informe um nome de personagem como responsável e confirme o contexto de simulação. O registro aparece como **Aguardando documentos** e permanece após recarregar. É possível editar seu nome; uma edição desatualizada é rejeitada.
+
+Em **Documentos do contrato**, selecione os documentos atuais que deseja manter, adicione arquivos `.txt` sintéticos e informe seus papéis. Salvar envia o conjunto completo; arquivos retirados continuam nas revisões anteriores. Os limites padrão são **262.144 bytes por arquivo, 1.048.576 bytes por conjunto e 5 documentos**. Não há truncamento. Os parâmetros opcionais estão em `.env.example` e devem ser definidos na sessão.
+
+O reenvio de mesmo texto e papel mantém a revisão, inclusive quando muda apenas o nome, BOM ou quebra de linha. Os bytes de cada envio aceito ficam disponíveis no histórico. Aditivo declarado mantém o bloqueio mesmo se for retirado do conjunto; o Radar não consolida seus efeitos. Veja o [registro de validação](docs/validacao-entrada-documental.md).
 
 O banco é criado em `var/radar.sqlite3`, fora do Git. Para escolher outro diretório local, defina `RADAR_DATA_DIR` na sessão antes de preparar/iniciar. Nenhuma chave de API é necessária. Os scripts não carregam `.env` automaticamente.
 
@@ -51,21 +57,23 @@ Cadastro fictício conferido no navegador e preservado após recarregar:
 | [SPEC do primeiro fluxo](docs/specs/001-primeiro-fluxo.md) | Regras de datas, evidências, revisão, versões, falhas e cenários verificáveis |
 | [Arquitetura](docs/arquitetura.md) | Aplicação local, módulos, dependências, dados e tratamento de reexecuções/falhas |
 | [Validação da fundação](docs/validacao-fundacao.md) | Ambiente, verificações executadas e limites do que está comprovado |
+| [Validação da entrada documental](docs/validacao-entrada-documental.md) | Migração com dados, revisões, reenvio e envio/download reais pela interface |
 | [Agent Harness](docs/agent-harness.md) | Uso do Codex, contexto, automações e direção humana |
 | [Governança do repositório](docs/governanca-repositorio.md) | Histórico Git, CI executada e controles ativos na principal |
 | [Validação da publicação](docs/validacao-publicacao.md) | Repositório, PR, CI real e prova do bloqueio da principal |
 | [ADR-001 — recorte aceito](docs/adrs/001-recorte-do-produto.md) | Escolha de produto feita por Lucas, alternativas e consequências |
 | [ADR-002 — separação de responsabilidades](docs/adrs/002-proposta-limites-extracao-e-confirmacao.md) | Decisão aceita de separar extração, cálculo e confirmação; fluxo completo ainda a implementar |
-| [Decisões do primeiro fluxo](docs/decisoes-primeiro-fluxo.md) | Exemplos da regra aceita e limites operacionais ainda propostos |
+| [Decisões do primeiro fluxo](docs/decisoes-primeiro-fluxo.md) | Regra aceita, limites de entrada aplicados e processamento futuro |
 | [Casos sintéticos](tests/fixtures/contracts/README.md) | Oito casos de desenvolvimento com documentos e respostas esperadas |
 | [ADR-003 — aplicação local modular](docs/adrs/003-aplicacao-local-modular.md) | Direcionamento escolhido por Lucas, alternativas e limites |
 | [ADR-004 — tecnologias aceitas](docs/adrs/004-proposta-tecnologias-locais.md) | Ferramentas escolhidas, alternativas e verificações ainda necessárias |
 | [ADR-005 — persistência da fundação](docs/adrs/005-persistencia-da-fundacao.md) | Transação, reenvio, histórico e controle de edição implementados |
+| [ADR-006 — entrada documental](docs/adrs/006-entrada-e-revisoes-documentais.md) | Identidade das revisões, originais, limites e consequências implementadas |
 | [Evolução da arquitetura](docs/evolucao-arquitetural.md) | Etapa futura solicitada: cenário de crescimento, medições e proposta de evolução |
 | [Plano de entrega](docs/plano-de-entrega.md) | Marcos, dependências, primeiras tarefas e roteiro de demonstração |
 | [Planejamento inicial](docs/planejamento-inicial.md) | Exigências oficiais, comparação de ideias e calendário provisório |
 
-O próximo marco funcional é receber documentos sintéticos com origem e versão, seguindo a SPEC. O [plano de entrega](docs/plano-de-entrega.md) mantém os passos de produto e a proposta futura de evolução para escala e desempenho. Desempenho sob carga e qualidade da extração ainda não foram avaliados.
+O próximo marco funcional é registrar candidatos com evidências e implementar a conferência vinculada à revisão atual. O [plano de entrega](docs/plano-de-entrega.md) mantém os passos de produto e a proposta futura de evolução para escala e desempenho. Desempenho sob carga e qualidade da extração ainda não foram avaliados.
 
 ## Referências oficiais
 

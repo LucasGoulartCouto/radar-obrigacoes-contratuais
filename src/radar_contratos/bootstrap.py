@@ -3,9 +3,11 @@
 from sqlalchemy import Engine
 
 from radar_contratos.application.contracts import ContractService
+from radar_contratos.application.documents import DocumentService
 from radar_contratos.config import Settings
 from radar_contratos.infrastructure.persistence.contracts import SqliteContractStore
 from radar_contratos.infrastructure.persistence.database import make_engine, require_current_schema
+from radar_contratos.infrastructure.persistence.documents import SqliteDocumentStore
 
 
 def build_service(settings: Settings) -> tuple[ContractService, Engine]:
@@ -16,3 +18,7 @@ def build_service(settings: Settings) -> tuple[ContractService, Engine]:
         engine.dispose()
         raise
     return ContractService(SqliteContractStore(engine)), engine
+
+
+def build_document_service(settings: Settings, engine: Engine) -> DocumentService:
+    return DocumentService(SqliteDocumentStore(engine), settings.document_limits)
