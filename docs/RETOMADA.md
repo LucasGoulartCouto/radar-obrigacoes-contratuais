@@ -1,6 +1,6 @@
 # Ponto de retomada do Radar
 
-Última conferência: **01/11/2026, 12:02, America/Sao_Paulo**. Este arquivo é um checkpoint do trabalho, não uma transcrição do chat. Revalidar os fatos que podem mudar antes de agir.
+Última conferência: **01/11/2026, America/Sao_Paulo**. Este arquivo é um checkpoint do trabalho, não uma transcrição do chat. Revalidar os fatos que podem mudar antes de agir.
 
 ## Onde continuar
 
@@ -23,9 +23,11 @@
 
 Os PRs são encadeados. Depois de integrar um anterior, conferir a base e o diff do seguinte antes de integrá-lo. Check automático aprovado não representa revisão humana concluída. Não fazer merge por inferência de uma instrução genérica para continuar o desenvolvimento.
 
-**Entrega funcional publicada:** candidatos e conferência concluídos no PR #4. O banco local foi migrado para 0003 após backup e comparação de todas as linhas anteriores; a demonstração no navegador criou candidatos, rejeitou confirmação sem declaração, registrou conferência simulada e preservou o resultado após recarregar. A CI do commit funcional passou nos dois sistemas. Esta atualização do checkpoint é somente documental; após publicá-la no mesmo PR, verificar também a CI do novo HEAD, sem criar outro PR nem repetir os testes locais sem motivo.
+**Entrega funcional publicada:** candidatos e conferência concluídos no PR #4. O banco local foi migrado para 0003 após backup e comparação de todas as linhas anteriores; a demonstração no navegador criou candidatos, rejeitou confirmação sem declaração, registrou conferência simulada e preservou o resultado após recarregar. A CI do commit funcional e a [CI da atualização documental 7cc725f](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41319321721) passaram nos dois sistemas.
 
-**Próximo bloco funcional:** agenda temporal sobre os eventos da base atual, conforme o plano de entrega. O extrator automático continua pendente de escolha de fornecedor e orçamento e deverá ser comparado aos casos anotados. Não tratar a entrada manual como extração automática. Os quatro PRs continuam abertos, sem merge e sem revisão humana de Lucas comprovada.
+**Prioridade de Lucas antes da próxima etapa:** cada PR deve ter evidências por funcionalidade criada ou alterada. A [matriz de rastreabilidade](evidencias-testes-por-pr.md) foi preparada após conferir testes nos commits dos quatro PRs e suas CIs; as descrições dos quatro PRs já receberam as respectivas matrizes. AGENTS, modelo de PR e governança registram o critério; a CI passa a listar nomes dos testes, sem novo teste de aplicação nem alegação de cobertura automática. Publicar esses arquivos no mesmo PR #4 e conferir a CI do novo HEAD antes de encerrar o bloco. A descrição do PR deve apontar para essa execução final, evitando atualização autorreferente deste checkpoint.
+
+**Próximo bloco funcional, após fechar essa conferência:** agenda temporal sobre os eventos da base atual, conforme o plano de entrega. O extrator automático continua pendente de escolha de fornecedor e orçamento e deverá ser comparado aos casos anotados. Não tratar a entrada manual como extração automática. Os quatro PRs continuam abertos, sem merge e sem revisão humana de Lucas comprovada.
 
 ## Decisões que devem orientar a próxima etapa
 
@@ -66,6 +68,8 @@ O estado do checkpoint pode ficar uma ação atrás se a interrupção acontecer
 **01/11/2026 — Continuidade entre sessões.** Acrescentados este checkpoint e o protocolo em `AGENTS.md`. As decisões permanecem nos ADRs; este arquivo reúne o estado e aponta para as fontes. A próxima etapa funcional não foi iniciada durante essa organização.
 
 **01/11/2026 — Candidatos e conferência publicados.** Lucas escolheu avançar para esta etapa. Publicados a branch e o PR #4; commit funcional e CI comprovados na tabela acima. Total de 123 testes locais, pacote instalado em segundo ambiente do projeto, migração preservando as linhas anteriores e demonstração de conferência simulada com evidências. A conferência é manual; não foi executada revisão humana real por Lucas. Antes de qualquer repetição da publicação deste checkpoint, comparar o HEAD remoto com o arquivo local.
+
+**01/11/2026 — Evidências antes de avançar.** Lucas exigiu rastreabilidade por funcionalidade em cada PR destinado à main. A auditoria encontrou evidências existentes com descrição agregada; a matriz liga 36 comportamentos/verificações aos testes ou registros manuais, sem tratar integridade de gabarito como extração. As CIs dos quatro snapshots foram conferidas em Windows e Linux. Não houve mudança de regra de produto nem início da agenda. Antes de repetir operações de publicação, conferir o commit remoto e os blocos de evidência já existentes nas descrições dos PRs.
 
 ## Mensagem curta para outra conversa
 

@@ -32,6 +32,16 @@ A revisão humana será feita por Lucas. Não declararemos aprovação independe
 
 A revisão de Lucas ainda está pendente; a integração do PR não foi realizada pelo agente. As [evidências remotas](validacao-publicacao.md) identificam as execuções observadas e distinguem essa revisão dos checks automáticos.
 
+## Evidências por funcionalidade
+
+Lucas definiu que cada PR destinado à main deve demonstrar o teste das funcionalidades criadas ou alteradas antes de avançarmos a etapa. A [matriz dos quatro PRs](evidencias-testes-por-pr.md) liga os comportamentos aos testes e registros de execução, com commits e CI identificados.
+
+O modelo de PR exige cenário, resultado esperado, teste/evidência e resultado vinculado ao commit. Evidências manuais complementam a suíte quando a operação requer navegador, instalação ou configuração. Mudanças apenas documentais passam por revisão e links; não criamos testes que apenas repitam a implementação.
+
+Essa rastreabilidade é conferida na revisão. Os checks obrigatórios executam a suíte, mas não provam automaticamente que cada funcionalidade recebeu um teste adequado. Quantidade de testes não é percentual de cobertura nem aprovação humana. Uma lacuna deve ser resolvida antes de declarar o PR pronto para integrar e antes de avançar o desenvolvimento funcional.
+
+Os PRs encadeados serão reconferidos ao apontar para a main, incluindo diff e CI da versão final. Nenhum merge foi autorizado por essa definição de evidências.
+
 ## Referências
 
 - [GitHub: branches protegidas](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches).
