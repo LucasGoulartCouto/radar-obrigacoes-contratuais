@@ -6,7 +6,7 @@
 
 - Projeto local: `D:\Projetos\Git\desafio_jornadadados`.
 - Repositório: [LucasGoulartCouto/radar-obrigacoes-contratuais](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais).
-- Branch de trabalho observada: `feat/entrada-documental`, acompanhando `origin/feat/entrada-documental`.
+- Branch de trabalho observada: `feat/candidatos-e-conferencia`, criada de `feat/entrada-documental` no commit `155d2aeeef3644767d2b8b7f0af6e4f2ca6e16f8`. A nova branch ainda não foi publicada.
 - Última versão funcional verificada: `593c5ee6ce185c5daf6aa4c3148e376199988ad1`. Atualizações posteriores deste checkpoint podem mudar o HEAD sem alterar a aplicação.
 - A `main` ainda contém a documentação anterior à implementação. Abrir um clone na `main` não equivale a abrir a versão funcional mais recente.
 - Nesta conferência, não havia mudanças locais pendentes antes de acrescentar a documentação de continuidade. Consultar `git status` para o estado atual.
@@ -22,7 +22,7 @@
 
 Os PRs são encadeados. Depois de integrar um anterior, conferir a base e o diff do seguinte antes de integrá-lo. Check automático aprovado não representa revisão humana concluída. Não fazer merge por inferência de uma instrução genérica para continuar o desenvolvimento.
 
-Não há extrator, execução de análise, candidatos persistidos, conferência humana, confirmação ou agenda. O próximo trabalho funcional é registrar candidatos com evidências e construir a conferência ligada à revisão atual; essa etapa ainda não começou.
+**Em andamento:** implementação de candidatos e conferência concluída localmente, com 123 testes aprovados. O banco local foi migrado para 0003 após backup e comparação de todas as linhas anteriores; a demonstração real criou candidatos, rejeitou confirmação sem declaração, registrou conferência simulada e preservou o resultado após recarregar. Evidência em [validação da conferência](validacao-conferencia-manual.md). Próximas ações: conferir pacote/links, publicar a branch e abrir o PR dependente do PR #3; conferir a CI antes de declarar esta entrega publicada. Não fazer merge. Extrator automático e agenda temporal completa permanecem fora desta entrega.
 
 ## Decisões que devem orientar a próxima etapa
 

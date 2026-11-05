@@ -17,6 +17,8 @@
 - Migrações preservam dados; nunca recriar o banco como correção rotineira.
 - Entrada documental implementada no ADR-006: preservar bytes e referência TEXT_REFERENCE_V1; comparar o conjunto atual por texto/papel, sem duplicar revisão por nome, ordem, BOM ou quebras de linha. Cada envio aceito conserva sua origem.
 - Aditivo já declarado no histórico continua sinalizado mesmo após retirada ou mudança de papel; não liberar silenciosamente. Limites padrão: 262.144 bytes por arquivo, 1.048.576 no conjunto e 5 documentos.
+- ADR-007: levantamento manual e conferência implementados. Preservar revisão/levantamento/regra na confirmação atômica; evento de base anterior fica somente no histórico. Correção na mesma base exige justificativa. Localização literal não comprova suporte semântico.
+- Ao mudar regra de cálculo/interpretação, alterar sua versão explícita e testar a reconferência; não editar a semântica de AVISO_CORRIDOS_V1 mantendo a identificação antiga.
 - Sessões de banco têm duração limitada; estado de tela não é fonte de verdade. Submissões devem ser idempotentes e rejeitar edição desatualizada.
 - Segredos, bancos gerados e ferramentas locais ficam fora do Git. Não registrar texto de contratos, credenciais ou dados pessoais em logs técnicos.
 

@@ -4,10 +4,11 @@ from uuid import uuid4
 
 import streamlit as st
 
-from radar_contratos.bootstrap import build_document_service, build_service
+from radar_contratos.bootstrap import build_document_service, build_review_service, build_service
 from radar_contratos.config import Settings
 from radar_contratos.errors import RadarError
 from radar_contratos.ui.documents import render_documents
+from radar_contratos.ui.reviews import render_reviews
 
 
 def render() -> None:
@@ -20,6 +21,7 @@ def render() -> None:
         settings = Settings.from_environment()
         service, engine = build_service(settings)
         documents = build_document_service(settings, engine)
+        reviews = build_review_service(engine)
     except RadarError as exc:
         st.error(str(exc))
         st.stop()
@@ -52,6 +54,7 @@ def render() -> None:
 
         contracts = service.list_contracts()
         states = documents.current_states()
+        states.update(reviews.current_states())
         st.subheader("Contratos cadastrados")
         st.metric(
             "Aguardando documentos",
@@ -102,9 +105,10 @@ def render() -> None:
                     st.session_state.pop(snapshot_key, None)
                     st.rerun()
             render_documents(documents, selected)
+            render_reviews(reviews, documents, selected)
         st.caption(
-            "Cadastro e histórico documental disponíveis. "
-            "Extração, conferência e agenda virão depois."
+            "Levantamento manual e conferência disponíveis. "
+            "Extração automática e agenda temporal completa virão depois."
         )
     finally:
         engine.dispose()
