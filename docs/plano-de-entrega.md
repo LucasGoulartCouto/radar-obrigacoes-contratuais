@@ -7,7 +7,7 @@
 | Marco | Trabalho | Evidência para concluir |
 |---|---|---|
 | M0 — Discovery e recorte | Case, tarefa principal, medos e exclusões | Recorte aceito no ADR-001; hipóteses e limites da simulação identificados |
-| M1 — Regras e decisão técnica | Revisar PRD/SPEC, definir limites e orçamento de eventual IA | Direcionamento local e ferramentas aceitos nos ADRs 003/004; limites e requisitos detalhados ainda a concluir |
+| M1 — Regras e decisão técnica | Revisar PRD/SPEC, definir limites e orçamento de eventual IA | Responsabilidades e bloqueios aceitos no ADR-002, ferramentas nos ADRs 003/004; limites e demais detalhes ainda a concluir |
 | M2 — Fundação do projeto | Inicializar Git, organizar branches/PR, configurar validações e contexto do agente | Proteção e bloqueio de integração efetivamente verificados; regras não apenas declaradas em arquivo |
 | M3 — Caminho determinístico | Registro, revisões, evidências, cadastro manual de candidatos e cálculo | Tarefa simples concluída sem extrator automático; cenários de datas e revisão verificados |
 | M4 — Extração avaliada | Construir alternativa simples e experimentar IA se fizer sentido | Comparação de omissões, falsos positivos, qualidade dos campos, esforço e custo no conjunto definido |
@@ -18,6 +18,8 @@
 M3 é um passo de engenharia para verificar regras e formar uma comparação; não representa desistir da extração automática. M4 decide como implementá-la com evidências. Publicações e comunicações externas não serão executadas sem instrução explícita de Lucas.
 
 **Atualização da fundação em 01/11/2026:** ambiente, cadastro, migração, backup e harness verificados. A publicação concluiu os controles de M2: PR aberto, CI aprovada em Windows/Linux e principal protegida, incluindo prova negativa de bloqueio. A revisão humana do PR continua pendente. Regras de datas e cadastro iniciam parte de M3; evidências documentais e conferência ainda não estão prontas. Veja os registros de [fundação](validacao-fundacao.md) e [publicação](validacao-publicacao.md).
+
+**Avanço de regras e casos em 01/11/2026:** Lucas aceitou o ADR-002. Foram preparados [oito casos de desenvolvimento](../tests/fixtures/contracts/README.md), nove documentos e gabarito com evidências. Os [limites operacionais](decisoes-primeiro-fluxo.md) continuam propostos; M1 ainda precisa concluir esses detalhes antes da entrada documental. Não há avaliação reservada nem extrator implementado.
 
 ## Primeiras unidades de trabalho depois de fechar a proposta técnica
 

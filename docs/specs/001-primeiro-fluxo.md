@@ -1,8 +1,8 @@
 # SPEC-001 — Do contrato sintético à agenda conferida
 
-Versão 0.1 · 31/10/2026 · Proposta de comportamento, anterior à implementação.
+Versão 0.2 · 01/11/2026 · Comportamento documental ainda não implementado.
 
-Referência: [PRD](../PRD.md). Esta SPEC define regras do case fictício, sem estabelecer interpretação jurídica para contratos reais. Limites, nomes de estados e detalhes técnicos ainda estão sujeitos à revisão de produto.
+Referência: [PRD](../PRD.md). Esta SPEC define regras do case fictício, sem estabelecer interpretação jurídica para contratos reais. A separação entre extração, cálculo e confirmação e o bloqueio por ambiguidade, conflito ou aditivo foram aceitos por Lucas no ADR-002. Limites, nomes de estados e outros detalhes técnicos continuam sujeitos à revisão.
 
 ## 1. Conceitos e unidade de processamento
 
@@ -140,3 +140,7 @@ As respostas abaixo foram definidas antes da implementação. Elas serão materi
 - Especificar o formato de intercâmbio do extrator após escolher a alternativa técnica.
 
 Metas de qualidade do extrator serão tratadas no PRD após o experimento inicial. Estas regras não dependem de uma marca de modelo ou framework.
+
+## 10. Exemplos iniciais disponíveis
+
+O [conjunto de desenvolvimento](../../tests/fixtures/contracts/README.md) contém oito casos com documentos e gabarito, ligados aos cenários C01, C02, C04, C05, C07, C10, C14 e C16. Eles concretizam entradas e respostas esperadas; não comprovam a implementação desses cenários. Mudanças de revisão, concorrência, repetição, falhas e limites ainda precisam de casos de fluxo próprios. Consulte também as [decisões e propostas operacionais](../decisoes-primeiro-fluxo.md).

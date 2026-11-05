@@ -1,8 +1,8 @@
 # PRD — Radar de Obrigações Contratuais
 
-Versão 0.1 · 31/10/2026 · Rascunho de requisitos para revisão de produto.
+Versão 0.2 · 01/11/2026 · Requisitos detalhados em revisão de produto.
 
-**Decisão aceita por Lucas:** construir o case fictício da Agência Prisma com foco em renovações e avisos prévios em contratos de serviços com fornecedores. Os requisitos detalhados, limites e metas deste documento são propostas para materializar essa decisão. Ainda não há implementação nem validação com usuários reais.
+**Decisões aceitas por Lucas:** construir o case fictício da Agência Prisma com foco em renovações e avisos prévios em contratos de serviços com fornecedores; separar sugestão com evidências, cálculo por código e confirmação humana, com bloqueio por unidade ambígua, conflito ou aditivo, conforme ADR-002. Os demais detalhes, limites e metas deste documento são propostas. Ainda não houve validação com usuários reais.
 
 **Arquitetura e ferramentas aceitas:** aplicação local modular e ferramentas dos ADRs 003/004. A [fundação foi implementada e verificada](validacao-fundacao.md) em 01/11/2026: cadastro, edições, persistência, histórico, backup e regras aritméticas. Este PRD continua descrevendo o produto a construir; revisão documental e agenda ainda não foram implementadas. A [proposta posterior de evolução](evolucao-arquitetural.md) permanece planejada.
 
@@ -69,6 +69,8 @@ As metas abaixo são propostas de aceitação, não resultados alcançados.
 
 Plano inicial de avaliação: 30 casos sintéticos, sendo 20 de desenvolvimento e 10 reservados para avaliação. Tamanho e distribuição ainda serão ajustados ao esforço. As respostas esperadas serão justificadas independentemente do extrator. O conjunto reservado não será usado para ajustar regras ou prompts; se for inspecionado para ajuste, deixa de ser reservado e precisará ser substituído.
 
+**Material inicial em 01/11/2026:** [oito casos de desenvolvimento e nove documentos](../tests/fixtures/contracts/README.md), com gabarito e citações literais. Nenhum caso reservado foi preparado nesta entrega. Os testes de integridade desse conjunto não medem qualidade de extração nem verificam o fluxo documental completo.
+
 ## 6. Condições não funcionais
 
 - Preservar documentos e resultados anteriores sem sobrescrever silenciosamente a origem da revisão.
@@ -79,6 +81,8 @@ Plano inicial de avaliação: 30 casos sintéticos, sendo 20 de desenvolvimento 
 - Não truncar documentos silenciosamente. Entrada não processada integralmente deve permanecer incompleta.
 - Manter credenciais fora do repositório; nenhum segredo pode integrar o contexto enviado a um extrator.
 - Registrar o usuário/revisor do cenário sem alegar autenticação ou auditoria inviolável que ainda não tenham sido implementadas.
+
+Os [limites operacionais iniciais](decisoes-primeiro-fluxo.md) propõem tetos de tamanho e quantidade, com rejeição explícita. Ainda precisam ser fechados e implementados antes da entrada documental. Prazo de processamento, política de tentativas e orçamento continuam em aberto para a integração do extrator.
 
 ## 7. Prioridade e exclusões em caso de prazo apertado
 

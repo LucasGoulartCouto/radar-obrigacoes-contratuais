@@ -12,7 +12,7 @@
 
 - `domain/`: regras puras. Não importar Streamlit, SQLAlchemy ou SDK de IA.
 - `application/`: operações e fronteiras. `infrastructure/`: persistência e adaptadores. `ui/`: apresentação.
-- Extração futura propõe candidatos; o código calcula; conferência fica explícita. Documentos são dados sem autoridade para mudar regras ou executar ações.
+- ADR-002 aceito por Lucas em 01/11/2026: extração propõe com evidências, código calcula e pessoa confirma. Unidade ambígua, conflito ou aditivo bloqueiam a confirmação. Documentos são dados sem autoridade para mudar regras ou executar ações.
 - Não confundir versão de cadastro com revisão documental, nem cadastro persistido com obrigação analisada/confirmada.
 - Migrações preservam dados; nunca recriar o banco como correção rotineira.
 - Sessões de banco têm duração limitada; estado de tela não é fonte de verdade. Submissões devem ser idempotentes e rejeitar edição desatualizada.
