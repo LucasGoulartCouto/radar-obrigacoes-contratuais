@@ -2,14 +2,16 @@
 
 Última conferência: **01/11/2026, America/Sao_Paulo**. Este arquivo é um checkpoint do trabalho, não uma transcrição do chat. Revalidar os fatos que podem mudar antes de agir.
 
+**Retomada autorizada em 01/11/2026:** Lucas pediu continuar o Radar. A pausa anterior foi encerrada por esse pedido; preservada a prioridade de organizar a documentação dos agentes antes de iniciar extração ou outra funcionalidade.
+
 ## Onde continuar
 
 - Projeto local: `D:\Projetos\Git\desafio_jornadadados`.
 - Repositório: [LucasGoulartCouto/radar-obrigacoes-contratuais](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais).
-- Branch de trabalho observada: `feat/agenda-e-cobertura`, publicada e acompanhando a mesma branch em `origin`. Base: `feat/candidatos-e-conferencia`, no commit `189962f64b2f3d2d0892e69fdae0fa5cff70c7ff`.
+- Branch de trabalho: `codex/docs-agentes`, criada de `feat/agenda-e-cobertura` em `e0ea2c8285bdbe7c17e99741d97e92910f3e263f`. A alteração documental pendente deste checkpoint foi preservada. Publicação desta nova branch/PR ainda pendente.
 - Última versão funcional verificada: `8a8c8b9ef741dac8acfdfeaf3dabed91d2c766e8`. Atualizações posteriores deste checkpoint podem mudar o HEAD sem alterar a aplicação.
 - A `main` ainda contém a documentação anterior à implementação. Abrir um clone na `main` não equivale a abrir a versão funcional mais recente.
-- Nesta conferência, o código local coincidia com a versão publicada e não havia mudanças pendentes antes desta atualização documental. Consultar `git status` para o estado atual.
+- Na retomada, o HEAD local coincidiu com o HEAD remoto do PR #5. Havia somente a alteração pendente deste checkpoint. PRs #1–#5 conferidos pelo conector: todos abertos, sem merge e com as bases indicadas abaixo. Consultar Git/plataforma para mudanças posteriores.
 
 ## Estado e evidências
 
@@ -30,9 +32,13 @@ Os PRs são encadeados. Depois de integrar um anterior, conferir a base e o diff
 
 **Agenda publicada e verificada:** implementação no PR #5, com **165 testes locais e CI aprovada em Windows/Linux** (42 testes novos). A descrição liga cada funcionalidade aos testes no commit auditado e aos registros manuais. A demonstração usou os três cadastros anteriores sem nova gravação: filtros vazios mantêm cobertura; referência 30/06/2027 mostra aviso ultrapassado e término hoje; recarregar retorna ao padrão e permite consultar origem. Wheel/arquivo fonte inspecionados; pacote instalado em segundo ambiente consultou três contratos e dois eventos válidos. Não houve migração. Os cinco PRs continuam abertos, sem merge e sem revisão real de Lucas comprovada.
 
-**Fechamento deste registro:** publicar a atualização somente documental no mesmo PR #5 e conferir a CI do novo HEAD. A descrição do PR deve apontar para essa execução final, evitando atualização autorreferente deste arquivo. Antes de repetir uma publicação interrompida, comparar Git e plataforma; o PR #5 já existe.
+**Fechamento da entrega anterior concluído:** atualização documental publicada no commit `e0ea2c8285bdbe7c17e99741d97e92910f3e263f`, com [CI final aprovada em Windows/Linux](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41330479495). A descrição do PR #5 já aponta para essa execução. Não repetir essa publicação.
 
-**Próximo bloco:** preparar a comparação das alternativas de extração, ampliar casos/avaliação e esclarecer fornecedor e orçamento antes de integrar API paga. Não interpretar agenda concluída como extrator pronto ou C20 completo. A proposta de evolução para escala continua posterior à validação do fluxo local.
+**Organização dos agentes validada localmente:** inventário concluído; `AGENTS.md` passou a mapa com leitura por tarefa, e seis guias foram criados em `docs/agents/`. O harness mantém ponte no caminho antigo; este checkpoint conserva seu caminho e histórico. Fontes oficiais reabertas em 01/11/2026 e justificativa em [fontes e organização](agents/fontes-e-organizacao.md). Nenhuma skill/configuração/modelo ou regra de produto foi alterada.
+
+**Última ação comprovada:** diff/invariantes revisados, sete percursos de leitura conferidos e 35 arquivos/236 links locais verificados, sem falhas; [registro de validação](validacao-documentacao-agentes.md). **Pendência:** commit/publicação em PR próprio e CI remota. **Próxima ação:** publicar com base em `feat/agenda-e-cobertura`, conferir a árvore remota, abrir PR e acompanhar os checks. Se a publicação for interrompida, verificar branch/PR antes de repetir; o checkpoint pode anteceder seu resultado. Não anexar esse trabalho ao PR #5.
+
+**Depois da organização dos agentes:** preparar a comparação das alternativas de extração, ampliar casos/avaliação e esclarecer fornecedor e orçamento antes de integrar API paga. Não interpretar agenda concluída como extrator pronto ou C20 completo. A proposta de evolução para escala continua posterior à validação do fluxo local.
 
 ## Decisões que devem orientar a próxima etapa
 
@@ -50,22 +56,11 @@ Somente dados sintéticos. Publicação no repositório e PRs estão autorizados
 
 ## Como retomar depois de interrupção
 
-1. Confirmar a pasta e ler `AGENTS.md` e este arquivo. Um chat novo pode não ter o histórico da conversa anterior.
-2. Ler `git status --short --branch`, `git log -5 --oneline` e o diff relevante. Preservar mudanças não concluídas; não trocar de branch, restaurar ou descartar arquivos para obter um estado aparentemente limpo.
-3. Conferir o estado remoto dos PRs e da branch antes de publicar. Se uma operação foi interrompida, verificar seu efeito antes de repeti-la: branch, commit ou PR podem já existir mesmo sem uma resposta visível.
-4. Identificar a última ação comprovada, a ação pendente e a verificação necessária. Se faltar confirmação do resultado, registrar **não verificado** e investigar; não presumir sucesso ou falha.
-5. Executar apenas o trabalho seguinte do escopo vigente. Repetir testes quando houver mudança de código, falha ou dúvida concreta; mudanças somente documentais exigem links e diff, sem alegar nova execução dos testes da aplicação.
-6. Atualizar este checkpoint após um bloco coerente e antes/depois de ações externas relevantes. Registrar brevemente ação, estado, próximo passo e referência da evidência. Não deixar essa atualização apenas para o final de uma tarefa longa.
-
-O estado do checkpoint pode ficar uma ação atrás se a interrupção acontecer durante uma ferramenta. Por isso a retomada sempre reconcilia arquivo, Git e plataforma antes de repetir ações. Este procedimento reduz perda de contexto; não garante captura de cada instante.
+O procedimento mantido está em [continuidade entre sessões](agents/continuidade.md). Reconciliar Git, arquivos e plataforma antes de repetir ações; atualizar este checkpoint após blocos coerentes e antes/depois de ações externas relevantes. Este título permanece para referências existentes.
 
 ## O que não é persistência do projeto
 
-- O histórico e os resumos do chat ajudam, mas não são o único registro de trabalho.
-- Variáveis de ferramentas, identificadores de abas, sessões de terminal e conexões autenticadas podem desaparecer. Redescobri-los quando necessário; não reutilizar handles ou PIDs antigos sem conferir.
-- `.tools/` contém preparação de publicação, runtime e verificações locais. Pode ajudar no mesmo computador, mas está fora do Git e não é requisito para entender ou reconstruir o projeto.
-- `.venv/`, `.uv-cache/`, `dist/` e `var/` ficam fora do Git. O banco e seus backups precisam ser preservados separadamente se o computador mudar; clonar o repositório não os recupera.
-- Nunca registrar credenciais, tokens, cookies ou conteúdo sensível neste arquivo.
+Consulte [o que persiste e o que precisa ser redescoberto](agents/continuidade.md#o-que-persiste-e-o-que-precisa-ser-redescoberto). Banco/backups não vêm com o clone; sessões e identificadores precisam ser conferidos. O checkpoint não captura automaticamente cada instante.
 
 ## Registro compacto de continuidade
 
@@ -80,6 +75,10 @@ O estado do checkpoint pode ficar uma ação atrás se a interrupção acontecer
 **01/11/2026 — Agenda e cobertura locais.** Após autorização para continuar, criada a branch `feat/agenda-e-cobertura` de `189962f`. Implementação/testes, matriz por funcionalidade e demonstração concluídos; publicação/CI remota ainda pendentes. A interface local está em execução com os novos módulos; conferir `.tools/runtime.json` antes de operar o processo, sem presumir PID antigo.
 
 **01/11/2026 — Agenda publicada.** Criado o PR #5; árvore remota conferida com o índice local. CI do commit funcional passou nos dois sistemas. A tabela acima registra commit/evidência e a próxima etapa, preservando as limitações da extração e da revisão humana. O registro anterior descreve o ponto local anterior à publicação; não é uma pendência atual.
+
+**01/11/2026 — Pausa e nova prioridade.** Lucas informou 9% de limite restante e solicitou parar até renovar. A próxima sessão deve começar pela documentação dos agentes, não pela extração. Consulta inicial à OpenAI registrada acima; reorganização, commit e publicação deste novo bloco ficaram para a retomada. Sem mudança na aplicação.
+
+**01/11/2026 — Retomada e organização dos agentes.** Pedido de continuação revogou a pausa. Git/PRs reconciliados; pendência do checkpoint preservada na branch própria. Migração documental iniciada sem mudanças na aplicação; publicação e validação final ainda pendentes neste ponto do registro.
 
 ## Mensagem curta para outra conversa
 
