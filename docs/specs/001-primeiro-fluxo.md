@@ -1,6 +1,6 @@
 # SPEC-001 — Do contrato sintético à agenda conferida
 
-Versão 0.4 · 01/11/2026 · Entrada, levantamento manual e conferência implementados; extrator e agenda temporal completa futuros.
+Versão 0.5 · 01/11/2026 · Entrada, levantamento manual, conferência e agenda implementados; extrator e seus estados de execução futuros.
 
 Referência: [PRD](../PRD.md). Esta SPEC define regras do case fictício, sem estabelecer interpretação jurídica para contratos reais. A separação entre extração, cálculo e confirmação e o bloqueio por ambiguidade, conflito ou aditivo foram aceitos por Lucas no ADR-002. Limites, nomes de estados e outros detalhes técnicos continuam sujeitos à revisão.
 
@@ -150,3 +150,9 @@ O [conjunto de desenvolvimento](../../tests/fixtures/contracts/README.md) conté
 ## 11. Verificação do caminho manual
 
 O [registro da conferência](../validacao-conferencia-manual.md) identifica os testes de candidatos/evidências, confirmação separada, correção justificada, resultado vazio e invalidação por revisão/regra. O levantamento é manual: conflitos e conteúdo não suportado ainda precisam ser identificados pelo operador. Localização de evidência não comprova suporte semântico. Esses resultados não representam uma avaliação de extração automática nem a conclusão de toda a SPEC.
+
+## 12. Agenda e cobertura do caminho atual
+
+O [ADR-008](../adrs/008-agenda-e-cobertura-da-carteira.md) implementa a agenda com referência inicial 01/05/2027, horizonte fixo de 30 dias e filtros de situação/tipo. A [matriz de validação](../validacao-agenda.md) registra C19 no fluxo confirmado e a parte alcançável de C20. A cobertura atual inclui aguardando documentos, aguardando análise, revisão pendente, bloqueado, conferido com eventos e conferido sem eventos no recorte; não existe ainda falha de execução de extrator persistida. A precedência da seção 5 continua descrevendo o fluxo futuro com extrator; não apresentar C20 completo como aprovado.
+
+Filtros vazios ou referência apagada mantêm a carteira visível. Falha de consulta não é convertida em cobertura zero. Documento, levantamento ou regra desatualizados retiram eventos da agenda sem apagar o contrato e o histórico. Consultar origem revalida a base se ela mudou depois da projeção. A consulta não grava referência, não altera confirmações e não registra ação externa.

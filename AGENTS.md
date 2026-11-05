@@ -18,6 +18,7 @@
 - Entrada documental implementada no ADR-006: preservar bytes e referência TEXT_REFERENCE_V1; comparar o conjunto atual por texto/papel, sem duplicar revisão por nome, ordem, BOM ou quebras de linha. Cada envio aceito conserva sua origem.
 - Aditivo já declarado no histórico continua sinalizado mesmo após retirada ou mudança de papel; não liberar silenciosamente. Limites padrão: 262.144 bytes por arquivo, 1.048.576 no conjunto e 5 documentos.
 - ADR-007: levantamento manual e conferência implementados. Preservar revisão/levantamento/regra na confirmação atômica; evento de base anterior fica somente no histórico. Correção na mesma base exige justificativa. Localização literal não comprova suporte semântico.
+- ADR-008: agenda lê carteira/eventos em uma consulta de metadados. Cobertura é independente dos filtros, inclui contratos pendentes e não vira zero após erro de leitura. Referência de simulação e horizonte fixo de 30 dias não alteram confirmações; origem do evento revalida a base. Não alegar estado de falha de extrator ainda inexistente nem C20 completo.
 - Ao mudar regra de cálculo/interpretação, alterar sua versão explícita e testar a reconferência; não editar a semântica de AVISO_CORRIDOS_V1 mantendo a identificação antiga.
 - Sessões de banco têm duração limitada; estado de tela não é fonte de verdade. Submissões devem ser idempotentes e rejeitar edição desatualizada.
 - Segredos, bancos gerados e ferramentas locais ficam fora do Git. Não registrar texto de contratos, credenciais ou dados pessoais em logs técnicos.

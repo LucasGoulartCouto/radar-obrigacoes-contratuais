@@ -2,6 +2,7 @@
 
 from typing import Protocol
 
+from radar_contratos.domain.agenda import PortfolioSnapshot
 from radar_contratos.domain.contracts import Contract
 from radar_contratos.domain.documents import DocumentRevision, PreparedDocument, SubmissionReceipt
 from radar_contratos.domain.reviews import AnalysisSnapshot, AnalysisSummary, ManualDraft
@@ -24,6 +25,10 @@ class ContractStore(Protocol):
         request_id: str,
         fingerprint: str,
     ) -> Contract: ...
+
+
+class AgendaStore(Protocol):
+    def read_portfolio(self) -> PortfolioSnapshot: ...
 
 
 class DocumentStore(Protocol):
