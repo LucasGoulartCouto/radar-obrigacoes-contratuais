@@ -2,6 +2,8 @@
 
 02/11/2026. Este quadro organiza a revisão; não declara conclusão do desafio, avaliação independente ou aprovação de produção.
 
+**Conferência em 04/11/2026:** Git limpo no HEAD `0ecf882` do PR #12 e PRs #1–#12 abertos/sem merge, todos com CI bem-sucedida nos HEADs consultados. [Registro remoto](../evidencias/retomada-2026-11-04.json) e [roteiro de revisão](revisao.md). A SPEC foi atualizada para retirar descrições antigas de execução/cobertura; nenhuma regra foi alterada. O roteiro prepara a revisão de Lucas e não a substitui. A CI de eventuais atualizações posteriores deve ser conferida na descrição do PR #12.
+
 | Item | Evidência disponível | Situação |
 |---|---|---|
 | Case e discovery | [Case Prisma](../discovery/radar-obrigacoes-contratuais.md), personagens e conversa fictícia explícitos | Decisão aceita; demanda real não validada |
