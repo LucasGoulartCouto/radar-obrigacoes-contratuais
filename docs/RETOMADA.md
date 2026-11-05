@@ -8,7 +8,7 @@
 
 - Projeto local: `D:\Projetos\Git\desafio_jornadadados`.
 - Repositório: [LucasGoulartCouto/radar-obrigacoes-contratuais](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais).
-- Branch de trabalho: `codex/docs-agentes`, criada de `feat/agenda-e-cobertura` em `e0ea2c8285bdbe7c17e99741d97e92910f3e263f`. A alteração documental pendente deste checkpoint foi preservada. Publicação desta nova branch/PR ainda pendente.
+- Branch de trabalho: `codex/docs-agentes`, criada de `feat/agenda-e-cobertura` em `e0ea2c8285bdbe7c17e99741d97e92910f3e263f`. A alteração documental pendente deste checkpoint foi preservada. Branch publicada no commit `795747301b8f6b7fb9534dab5ecbdca7378bc458` e acompanhando `origin`; [PR #6](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/6) aberto com base em `feat/agenda-e-cobertura`, sem merge.
 - Última versão funcional verificada: `8a8c8b9ef741dac8acfdfeaf3dabed91d2c766e8`. Atualizações posteriores deste checkpoint podem mudar o HEAD sem alterar a aplicação.
 - A `main` ainda contém a documentação anterior à implementação. Abrir um clone na `main` não equivale a abrir a versão funcional mais recente.
 - Na retomada, o HEAD local coincidiu com o HEAD remoto do PR #5. Havia somente a alteração pendente deste checkpoint. PRs #1–#5 conferidos pelo conector: todos abertos, sem merge e com as bases indicadas abaixo. Consultar Git/plataforma para mudanças posteriores.
@@ -22,6 +22,7 @@
 | Entrada documental | Implementada; PR aberto; nenhum PR integrado pelo agente | [PR #3](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/3), base `feat/regras-e-casos-sinteticos` |
 | Candidatos e conferência | Levantamento manual com evidências, cálculo, confirmação separada e histórico; PR aberto para revisão de Lucas | [PR #4](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/4), base `feat/entrada-documental` |
 | Agenda e cobertura | Referência explícita, filtros, origem e todos os contratos visíveis; PR aberto para revisão de Lucas | [PR #5](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/5), base `feat/candidatos-e-conferencia` |
+| Documentação dos agentes | Mapa, seis guias, pontes e retomada preservada; PR aberto para revisão de Lucas | [PR #6](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/6), base `feat/agenda-e-cobertura` |
 | Verificação da versão funcional | 165 testes locais aprovados e CI aprovada em Windows/Linux | [Validação da agenda](validacao-agenda.md) e [execução 41330174954](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41330174954) |
 
 Os PRs são encadeados. Depois de integrar um anterior, conferir a base e o diff do seguinte antes de integrá-lo. Check automático aprovado não representa revisão humana concluída. Não fazer merge por inferência de uma instrução genérica para continuar o desenvolvimento.
@@ -34,9 +35,11 @@ Os PRs são encadeados. Depois de integrar um anterior, conferir a base e o diff
 
 **Fechamento da entrega anterior concluído:** atualização documental publicada no commit `e0ea2c8285bdbe7c17e99741d97e92910f3e263f`, com [CI final aprovada em Windows/Linux](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41330479495). A descrição do PR #5 já aponta para essa execução. Não repetir essa publicação.
 
-**Organização dos agentes validada localmente:** inventário concluído; `AGENTS.md` passou a mapa com leitura por tarefa, e seis guias foram criados em `docs/agents/`. O harness mantém ponte no caminho antigo; este checkpoint conserva seu caminho e histórico. Fontes oficiais reabertas em 01/11/2026 e justificativa em [fontes e organização](agents/fontes-e-organizacao.md). Nenhuma skill/configuração/modelo ou regra de produto foi alterada.
+**Organização dos agentes publicada e validada:** inventário concluído; `AGENTS.md` passou a mapa com leitura por tarefa, e seis guias foram criados em `docs/agents/`. O harness mantém ponte no caminho antigo; este checkpoint conserva seu caminho e histórico. Fontes oficiais reabertas em 01/11/2026 e justificativa em [fontes e organização](agents/fontes-e-organizacao.md). Nenhuma skill/configuração/modelo ou regra de produto foi alterada.
 
-**Última ação comprovada:** diff/invariantes revisados, sete percursos de leitura conferidos e 35 arquivos/236 links locais verificados, sem falhas; [registro de validação](validacao-documentacao-agentes.md). **Pendência:** commit/publicação em PR próprio e CI remota. **Próxima ação:** publicar com base em `feat/agenda-e-cobertura`, conferir a árvore remota, abrir PR e acompanhar os checks. Se a publicação for interrompida, verificar branch/PR antes de repetir; o checkpoint pode anteceder seu resultado. Não anexar esse trabalho ao PR #5.
+**Última ação comprovada:** commit `795747301b8f6b7fb9534dab5ecbdca7378bc458` e PR #6 publicados; árvore remota `9e2a19f38d2eaf160d9b0c43eff7a9428e111048` comparada ao índice local. Diff/invariantes, sete percursos de leitura e 35 arquivos/236 links locais conferidos; [validação](validacao-documentacao-agentes.md). A [CI desse commit](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41354304508) passou em Windows/Linux. Sem merge, revisão de Lucas ou alteração na aplicação.
+
+**Fechamento deste registro:** esta atualização somente documental registra o resultado da publicação e pode gerar outro HEAD. Conferir a CI e o SHA finais na descrição do [PR #6](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/6), mantida como referência do fechamento, antes de avançar. Se interrompido, conferir Git/plataforma antes de repetir; não publicar novamente o conteúdo já presente na branch nem anexá-lo ao PR #5.
 
 **Depois da organização dos agentes:** preparar a comparação das alternativas de extração, ampliar casos/avaliação e esclarecer fornecedor e orçamento antes de integrar API paga. Não interpretar agenda concluída como extrator pronto ou C20 completo. A proposta de evolução para escala continua posterior à validação do fluxo local.
 
@@ -78,7 +81,7 @@ Consulte [o que persiste e o que precisa ser redescoberto](agents/continuidade.m
 
 **01/11/2026 — Pausa e nova prioridade.** Lucas informou 9% de limite restante e solicitou parar até renovar. A próxima sessão deve começar pela documentação dos agentes, não pela extração. Consulta inicial à OpenAI registrada acima; reorganização, commit e publicação deste novo bloco ficaram para a retomada. Sem mudança na aplicação.
 
-**01/11/2026 — Retomada e organização dos agentes.** Pedido de continuação revogou a pausa. Git/PRs reconciliados; pendência do checkpoint preservada na branch própria. Migração documental iniciada sem mudanças na aplicação; publicação e validação final ainda pendentes neste ponto do registro.
+**01/11/2026 — Retomada e organização dos agentes concluída.** Pedido de continuação revogou a pausa. Git/PRs reconciliados; pendência do checkpoint preservada na branch própria. Publicados mapa e seis guias no PR #6; evidências documentais e CI inicial aprovadas. Este fechamento mantém a referência do HEAD/CI finais na descrição do PR, evitando atualização autorreferente. Descoberta automática em nova sessão e ganho de custo/qualidade não foram medidos; extração não iniciada.
 
 ## Mensagem curta para outra conversa
 

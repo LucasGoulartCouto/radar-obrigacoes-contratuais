@@ -39,6 +39,6 @@ Todos os percursos encontraram as regras indicadas. Os destinos dos ADRs foram l
 - `git diff --check`: sem erros de whitespace no diff revisado.
 - Revisão dos links com fragmento novos/alterados: títulos de continuidade e pontes conferidos. O script não valida âncoras.
 - Diff restrito a Markdown; sem alteração em código, testes, dependências, configuração, migrations ou banco. `uv.lock` preservado.
-- A suíte da aplicação não foi reexecutada localmente por esta alteração documental. A CI automática, quando concluída, deve ser relatada separadamente e vinculada ao HEAD.
+- A suíte da aplicação não foi reexecutada localmente por esta alteração documental. A [CI do commit 7957473](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41354304508) passou em Windows/Linux, incluindo os checks de código, testes, links e dependências. Este fechamento documental altera o HEAD; a execução final e seu SHA ficam na descrição do [PR #6](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/6).
 
 Não foi validada a descoberta automática em um novo processo do Codex, nem medido ganho de tempo, custo ou qualidade. A documentação oficial descreve o mecanismo; esta conferência verifica o mapa e o conteúdo no repositório. Não houve revisão independente nem revisão humana real de Lucas nesta sessão. Extração automática e C20 completo continuam pendentes.
