@@ -6,6 +6,14 @@ Usamos Codex nesta colaboração para transformar as decisões de Lucas em docum
 
 O contexto persistente fica em [AGENTS.md](../AGENTS.md), com limites do produto, módulos, comandos e critérios de conclusão. A documentação oficial do Codex descreve o uso desse arquivo para instruções do projeto.
 
+## Continuidade entre sessões
+
+O [ponto de retomada](RETOMADA.md) reúne branch, versão funcional verificada, PRs, evidências, pendências e próxima etapa. O `AGENTS.md` orienta sua leitura no início e sua atualização durante blocos de trabalho e ações externas relevantes. PRD/SPEC e ADRs continuam responsáveis pelas regras e decisões; o checkpoint aponta para eles sem substituir seu conteúdo.
+
+Arquivos e Git preservam o trabalho entre sessões; uma nova conversa precisa abrir o projeto e a branch corretos para lê-los. Não há garantia de que ela receba todo o histórico do chat. Também não existe captura automática de cada ação: uma interrupção durante uma ferramenta pode ocorrer antes de atualizar o checkpoint. A retomada verifica o efeito local e remoto antes de repetir a ação.
+
+O registro é mantido pelo agente como parte do trabalho. Não foi instalado serviço de monitoramento nem automação para gravar quando o modelo estiver interrompido. Dados em `var/`, backups, sessões autenticadas e arquivos em `.tools/` não são recuperados por um clone do repositório.
+
 ## O que está automatizado
 
 - Preparação isolada com o gerenciador de dependências fixado.

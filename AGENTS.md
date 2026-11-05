@@ -30,6 +30,8 @@
 
 ## Trabalho e revisão
 
+- Ao iniciar ou retomar uma sessão, leia [docs/RETOMADA.md](docs/RETOMADA.md) e reconcilie o checkpoint com Git, arquivos e PRs. Não dependa do histórico do chat; não repita uma ação externa interrompida antes de conferir se ela ocorreu.
+- Atualize o checkpoint após blocos coerentes e antes/depois de ações externas relevantes: última ação comprovada, pendência, próxima ação e evidência. Preserve incertezas e trabalho não concluído. Não copie conversas, logs extensos, segredos ou fatos já mantidos nos ADRs.
 - Faça mudanças pequenas em branch e registre escolhas relevantes nos ADRs. Não afirme revisão independente, CI remota, proteção de branch ou operação de produto sem evidência.
 - Lucas decide mudanças relevantes de produto e risco. Não solicite novamente autorização já dada para tarefas rotineiras do escopo.
 - Ao concluir, explique o que mudou, como verificou e o que continua sem comprovação.
