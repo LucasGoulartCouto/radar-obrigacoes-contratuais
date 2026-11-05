@@ -1,15 +1,15 @@
 # Ponto de retomada do Radar
 
-Última conferência: **01/11/2026, 11:02, America/Sao_Paulo**. Este arquivo é um checkpoint do trabalho, não uma transcrição do chat. Revalidar os fatos que podem mudar antes de agir.
+Última conferência: **01/11/2026, 12:02, America/Sao_Paulo**. Este arquivo é um checkpoint do trabalho, não uma transcrição do chat. Revalidar os fatos que podem mudar antes de agir.
 
 ## Onde continuar
 
 - Projeto local: `D:\Projetos\Git\desafio_jornadadados`.
 - Repositório: [LucasGoulartCouto/radar-obrigacoes-contratuais](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais).
-- Branch de trabalho observada: `feat/candidatos-e-conferencia`, criada de `feat/entrada-documental` no commit `155d2aeeef3644767d2b8b7f0af6e4f2ca6e16f8`. A nova branch ainda não foi publicada.
-- Última versão funcional verificada: `593c5ee6ce185c5daf6aa4c3148e376199988ad1`. Atualizações posteriores deste checkpoint podem mudar o HEAD sem alterar a aplicação.
+- Branch de trabalho observada: `feat/candidatos-e-conferencia`, publicada e acompanhando a mesma branch em `origin`. Base: `feat/entrada-documental`, no commit `155d2aeeef3644767d2b8b7f0af6e4f2ca6e16f8`.
+- Última versão funcional verificada: `3d470fbdc986854583905544c61ec2800b80fc2b`. Atualizações posteriores deste checkpoint podem mudar o HEAD sem alterar a aplicação.
 - A `main` ainda contém a documentação anterior à implementação. Abrir um clone na `main` não equivale a abrir a versão funcional mais recente.
-- Nesta conferência, não havia mudanças locais pendentes antes de acrescentar a documentação de continuidade. Consultar `git status` para o estado atual.
+- Nesta conferência, o código local coincidia com a versão publicada e não havia mudanças pendentes antes desta atualização documental. Consultar `git status` para o estado atual.
 
 ## Estado e evidências
 
@@ -18,11 +18,14 @@
 | Fundação local | Implementada; PR aberto para revisão de Lucas | [PR #1](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/1), base `main` |
 | Decisão do fluxo e casos sintéticos | ADR-002 aceito; oito casos de desenvolvimento; PR aberto | [PR #2](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/2), base `feat/fundacao-local` |
 | Entrada documental | Implementada; PR aberto; nenhum PR integrado pelo agente | [PR #3](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/3), base `feat/regras-e-casos-sinteticos` |
-| Verificação da versão funcional | 81 testes locais aprovados e CI aprovada em Windows/Linux | [Validação documental](validacao-entrada-documental.md) e [execução 41313181652](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41313181652) |
+| Candidatos e conferência | Levantamento manual com evidências, cálculo, confirmação separada e histórico; PR aberto para revisão de Lucas | [PR #4](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/4), base `feat/entrada-documental` |
+| Verificação da versão funcional | 123 testes locais aprovados e CI aprovada em Windows/Linux | [Validação da conferência](validacao-conferencia-manual.md) e [execução 41318794275](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41318794275) |
 
 Os PRs são encadeados. Depois de integrar um anterior, conferir a base e o diff do seguinte antes de integrá-lo. Check automático aprovado não representa revisão humana concluída. Não fazer merge por inferência de uma instrução genérica para continuar o desenvolvimento.
 
-**Em andamento:** implementação de candidatos e conferência concluída localmente, com 123 testes aprovados. O banco local foi migrado para 0003 após backup e comparação de todas as linhas anteriores; a demonstração real criou candidatos, rejeitou confirmação sem declaração, registrou conferência simulada e preservou o resultado após recarregar. Evidência em [validação da conferência](validacao-conferencia-manual.md). Próximas ações: conferir pacote/links, publicar a branch e abrir o PR dependente do PR #3; conferir a CI antes de declarar esta entrega publicada. Não fazer merge. Extrator automático e agenda temporal completa permanecem fora desta entrega.
+**Entrega funcional publicada:** candidatos e conferência concluídos no PR #4. O banco local foi migrado para 0003 após backup e comparação de todas as linhas anteriores; a demonstração no navegador criou candidatos, rejeitou confirmação sem declaração, registrou conferência simulada e preservou o resultado após recarregar. A CI do commit funcional passou nos dois sistemas. Esta atualização do checkpoint é somente documental; após publicá-la no mesmo PR, verificar também a CI do novo HEAD, sem criar outro PR nem repetir os testes locais sem motivo.
+
+**Próximo bloco funcional:** agenda temporal sobre os eventos da base atual, conforme o plano de entrega. O extrator automático continua pendente de escolha de fornecedor e orçamento e deverá ser comparado aos casos anotados. Não tratar a entrada manual como extração automática. Os quatro PRs continuam abertos, sem merge e sem revisão humana de Lucas comprovada.
 
 ## Decisões que devem orientar a próxima etapa
 
@@ -32,6 +35,7 @@ Consultar os documentos de origem, sem tratar este resumo como nova autorizaçã
 - [PRD](PRD.md) e [SPEC](specs/001-primeiro-fluxo.md): requisitos, estados e cenários; distinguir detalhe proposto de decisão aceita.
 - [ADR-002](adrs/002-proposta-limites-extracao-e-confirmacao.md): extração sugere com evidências, código calcula e pessoa confirma; ambiguidade, conflito ou aditivo bloqueiam confirmação.
 - [ADR-006](adrs/006-entrada-e-revisoes-documentais.md): identidade do conjunto, preservação dos bytes e revisões, limites e aditivo conhecido.
+- [ADR-007](adrs/007-levantamento-manual-e-conferencia.md): evidências literais, levantamento manual, correções e confirmação vinculada à revisão e à regra; localização literal não comprova significado.
 - [Plano de entrega](plano-de-entrega.md): dependências e marcos seguintes.
 
 Somente dados sintéticos. Publicação no repositório e PRs estão autorizados; isso não autoriza mensagens a fornecedores, posts, despesas de API ou hospedagem. Fornecedor e orçamento de IA continuam em aberto. A proposta de evolução para escala fica depois de validar o fluxo local.
@@ -60,6 +64,8 @@ O estado do checkpoint pode ficar uma ação atrás se a interrupção acontecer
 **01/11/2026 — Entrada documental concluída.** A publicação foi interrompida por limite de uso durante a preparação da árvore remota. A retomada conferiu arquivos locais e estado remoto, concluiu o PR #3 e verificou sua CI; não havia PR #3 duplicado. Evidências na tabela acima. Não há bloqueio de publicação pendente dessa interrupção.
 
 **01/11/2026 — Continuidade entre sessões.** Acrescentados este checkpoint e o protocolo em `AGENTS.md`. As decisões permanecem nos ADRs; este arquivo reúne o estado e aponta para as fontes. A próxima etapa funcional não foi iniciada durante essa organização.
+
+**01/11/2026 — Candidatos e conferência publicados.** Lucas escolheu avançar para esta etapa. Publicados a branch e o PR #4; commit funcional e CI comprovados na tabela acima. Total de 123 testes locais, pacote instalado em segundo ambiente do projeto, migração preservando as linhas anteriores e demonstração de conferência simulada com evidências. A conferência é manual; não foi executada revisão humana real por Lucas. Antes de qualquer repetição da publicação deste checkpoint, comparar o HEAD remoto com o arquivo local.
 
 ## Mensagem curta para outra conversa
 

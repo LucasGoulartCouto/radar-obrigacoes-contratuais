@@ -4,7 +4,7 @@
 
 ## Resultado local
 
-**123 testes passaram localmente:** 81 anteriores e 42 novos, sendo 24 de domínio, 15 de persistência/migração e 3 de interface. Ruff passou. A CI da publicação deve ser conferida no PR desta entrega; este registro local não presume seu resultado remoto.
+**123 testes passaram localmente:** 81 anteriores e 42 novos, sendo 24 de domínio, 15 de persistência/migração e 3 de interface. Ruff passou. A [CI do commit funcional 3d470fb](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41318794275) também passou em Windows e Linux, incluindo testes, Ruff, lock, dependências e links locais. A entrega está no [PR #4](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/4); atualizações documentais posteriores exigem conferir a CI do novo HEAD.
 
 As verificações novas incluem:
 
