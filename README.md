@@ -4,17 +4,19 @@ Aplicação local para o Desafio Livre de novembro/dezembro de 2026 da Jornada d
 
 **Retomando em outra sessão?** Leia [AGENTS.md](AGENTS.md) e o [ponto de retomada](docs/RETOMADA.md), que identifica a branch funcional, PRs, evidências e próximo passo. Confira o estado atual no Git antes de continuar.
 
-**Situação em 01/11/2026:** fundação executável, com ambiente isolado, módulos separados, cadastro/edição de contratos fictícios, histórico e backup. **34 testes passaram localmente, e a CI também passou em Windows e Linux.** O [repositório é público](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais) e a `main` está protegida por PR e duas verificações obrigatórias.
+**Situação em 01/11/2026:** aplicação local com cadastro, documentos versionados, candidatos manuais, conferência, agenda temporal e cobertura. **165 testes passaram localmente.** A versão mais recente está na branch `feat/agenda-e-cobertura`; a CI dessa entrega deve ser conferida no respectivo PR. O [repositório é público](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais), e a `main` mantém a documentação anterior ao código enquanto os PRs encadeados aguardam revisão e integração.
 
 A implementação está no [PR #1](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/1), aberto para revisão de Lucas. A principal mantém a documentação anterior ao código enquanto o PR não for integrado. Uma falha temporária comprovou o bloqueio da integração; o arquivo da prova foi removido. Veja a [validação da publicação](docs/validacao-publicacao.md).
 
-A primeira versão de produto acompanha renovações e avisos prévios do case fictício da Agência Prisma. É possível receber textos sintéticos, preservar originais, registrar candidatos manualmente com trechos de origem, calcular aviso e realizar uma conferência separada. Eventos de bases antigas ficam no histórico. Extração automática e agenda temporal completa ainda serão implementadas. Não há IA nem comunicação externa de negócio nesta entrega.
+A primeira versão de produto acompanha renovações e avisos prévios do case fictício da Agência Prisma. É possível receber textos sintéticos, preservar originais, registrar candidatos manualmente com trechos de origem, calcular aviso e realizar uma conferência separada. Eventos da base atual alimentam a agenda; eventos de bases antigas ficam no histórico. A extração automática continua pendente. Não há IA nem comunicação externa de negócio nesta entrega.
 
 **Regras e casos do primeiro fluxo:** [decisão de produto](docs/decisoes-primeiro-fluxo.md) e [oito casos sintéticos de desenvolvimento](tests/fixtures/contracts/README.md), com nove documentos e gabarito. Lucas aceitou o ADR-002; os limites de entrada foram implementados no ADR-006. Esses exemplos ainda não são uma avaliação de extração. As verificações da entrada estão no [registro documental](docs/validacao-entrada-documental.md).
 
 **Verificação local da versão com documentos:** 81 testes aprovados, incluindo migração com dados e os 38 testes novos da entrada. Upload, reenvio, alteração, rejeição por tamanho e download do original foram conferidos no navegador.
 
 **Verificação local da versão com conferência:** 123 testes aprovados. O [registro da conferência](docs/validacao-conferencia-manual.md) distingue testes, migração e demonstração simulada no navegador de uma revisão humana real.
+
+**Verificação local da agenda:** 165 testes aprovados, incluindo 42 novos. O [registro da agenda](docs/validacao-agenda.md) relaciona cada funcionalidade aos testes e à demonstração no navegador. A [matriz dos PRs anteriores](docs/evidencias-testes-por-pr.md) preserva a rastreabilidade das entregas encadeadas.
 
 ## Executar no Windows
 
@@ -35,6 +37,8 @@ O reenvio de mesmo texto e papel mantém a revisão, inclusive quando muda apena
 
 Em **Candidatos e conferência**, registre manualmente o resultado, selecione as linhas de evidência e salve o levantamento. A data do aviso é calculada pelo código. Os candidatos permanecem pendentes até a ação separada **Confirmar conferência**, após verificar campos, significado dos trechos e cobertura do texto. Ausência de eventos exige declaração específica. Corrigir um levantamento exige motivo e nova conferência; alterações documentais invalidam os eventos da visão atual sem apagar o histórico. Os responsáveis informados são personagens da simulação.
 
+Em **Agenda e cobertura**, escolha a data de referência da simulação: o padrão é **01/05/2027**, com horizonte fixo de **30 dias**. Filtre situações de prazo e tipo de evento; “Depois do horizonte” permite consultar datas mais distantes. Limpar os filtros deixa a lista vazia e mantém a cobertura de todos os contratos. Apagar a referência pede uma data, sem inventá-la. Use **Origem de um evento exibido** para conferir trechos, cálculo e base; **Atualizar agenda** refaz a leitura de mudanças externas. Uma nova sessão volta à referência padrão. Consultar não altera confirmações.
+
 O banco é criado em `var/radar.sqlite3`, fora do Git. Para escolher outro diretório local, defina `RADAR_DATA_DIR` na sessão antes de preparar/iniciar. Nenhuma chave de API é necessária. Os scripts não carregam `.env` automaticamente.
 
 ## Verificar e fazer backup
@@ -50,9 +54,9 @@ Em um ambiente que restrinja conexões locais ou a pasta temporária, os testes 
 
 ## Evidência da interface
 
-Cadastro fictício conferido no navegador e preservado após recarregar:
+Agenda com um aviso confirmado, referência explícita e contratos pendentes:
 
-![Fundação do Radar com um contrato fictício cadastrado](docs/evidencias/fundacao-cadastro.png)
+![Agenda e cobertura do Radar](docs/evidencias/agenda-cobertura.png)
 
 ## Comece aqui
 
@@ -65,6 +69,8 @@ Cadastro fictício conferido no navegador e preservado após recarregar:
 | [Validação da fundação](docs/validacao-fundacao.md) | Ambiente, verificações executadas e limites do que está comprovado |
 | [Validação da entrada documental](docs/validacao-entrada-documental.md) | Migração com dados, revisões, reenvio e envio/download reais pela interface |
 | [Validação da conferência](docs/validacao-conferencia-manual.md) | Candidatos, evidências, confirmação separada e preservação do histórico |
+| [Validação da agenda](docs/validacao-agenda.md) | Prazos, filtros, cobertura, origem e matriz de testes da entrega |
+| [Evidências dos PRs anteriores](docs/evidencias-testes-por-pr.md) | Testes e registros de execução ligados às funcionalidades de cada PR |
 | [Agent Harness](docs/agent-harness.md) | Uso do Codex, contexto, automações e direção humana |
 | [Governança do repositório](docs/governanca-repositorio.md) | Histórico Git, CI executada e controles ativos na principal |
 | [Validação da publicação](docs/validacao-publicacao.md) | Repositório, PR, CI real e prova do bloqueio da principal |
@@ -77,11 +83,12 @@ Cadastro fictício conferido no navegador e preservado após recarregar:
 | [ADR-005 — persistência da fundação](docs/adrs/005-persistencia-da-fundacao.md) | Transação, reenvio, histórico e controle de edição implementados |
 | [ADR-006 — entrada documental](docs/adrs/006-entrada-e-revisoes-documentais.md) | Identidade das revisões, originais, limites e consequências implementadas |
 | [ADR-007 — levantamento e conferência](docs/adrs/007-levantamento-manual-e-conferencia.md) | Baseline manual, confirmação atômica, correções e invalidação da base antiga |
+| [ADR-008 — agenda e cobertura](docs/adrs/008-agenda-e-cobertura-da-carteira.md) | Leitura consistente, horizonte de 30 dias, filtros e cobertura independente |
 | [Evolução da arquitetura](docs/evolucao-arquitetural.md) | Etapa futura solicitada: cenário de crescimento, medições e proposta de evolução |
 | [Plano de entrega](docs/plano-de-entrega.md) | Marcos, dependências, primeiras tarefas e roteiro de demonstração |
 | [Planejamento inicial](docs/planejamento-inicial.md) | Exigências oficiais, comparação de ideias e calendário provisório |
 
-O próximo marco funcional é ampliar a visão dos eventos conferidos para a agenda temporal e preparar a comparação de extração. O [plano de entrega](docs/plano-de-entrega.md) mantém os passos de produto e a proposta futura de evolução para escala e desempenho. Os PRs continuam separados para revisão de Lucas; desempenho sob carga e qualidade da extração ainda não foram avaliados.
+O próximo marco é preparar a comparação de alternativas de extração contra os casos anotados, antes de escolher fornecedor ou assumir despesas. O [plano de entrega](docs/plano-de-entrega.md) mantém os passos de produto e a proposta futura de evolução para escala e desempenho. Os PRs continuam separados para revisão de Lucas; desempenho sob carga e qualidade da extração ainda não foram avaliados.
 
 ## Referências oficiais
 

@@ -39,7 +39,7 @@ src/radar_contratos/
     application/      casos de uso e contratos de acesso a dados/extracao
     infrastructure/
         persistence/  banco, transacoes, backup e migracoes empacotadas
-    ui/               cadastro e edicao de nome, nesta entrega
+    ui/               agenda, cobertura, cadastro, documentos e conferencia
     bootstrap.py      configuracao e ligacao dos componentes
 tests/
     unit/             regras do dominio
@@ -102,6 +102,8 @@ A aplicação local modular e as ferramentas do ADR-004 estão aceitas; a funda�
 O [registro de validação](validacao-fundacao.md) distingue os testes de cadastro, datas e persistência dos cenários de análise documental ainda não implementados. A preparação do [Agent Harness](agent-harness.md) e da [governança](governanca-repositorio.md) também está documentada.
 
 O [ADR-007](adrs/007-levantamento-manual-e-conferencia.md) implementa o baseline manual: levantamentos imutáveis, evidências vinculadas à revisão, contador de seleção e confirmação atômica. A consulta de eventos atuais compara levantamento, documento e regra; registros antigos permanecem no histórico. A [validação da conferência](validacao-conferencia-manual.md) distingue esse resultado da futura extração automática e da revisão humana real do projeto.
+
+O [ADR-008](adrs/008-agenda-e-cobertura-da-carteira.md) acrescenta a projeção de leitura da agenda e da cobertura. Uma única consulta de metadados preserva o mesmo instante de leitura para contratos, seleção e eventos, sem carregar os textos/bytes da carteira. Filtros e referência ficam na interface, sem escrita; a origem carrega o levantamento escolhido e revalida sua base. A cobertura continua visível mesmo com filtros vazios, e erro de consulta não é tratado como carteira vazia. A [validação da agenda](validacao-agenda.md) explicita o alcance dos testes e a ausência de avaliação de desempenho sob carga.
 
 ## 8. Fontes e limites de validação
 

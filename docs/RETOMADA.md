@@ -6,7 +6,7 @@
 
 - Projeto local: `D:\Projetos\Git\desafio_jornadadados`.
 - Repositório: [LucasGoulartCouto/radar-obrigacoes-contratuais](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais).
-- Branch de trabalho observada: `feat/candidatos-e-conferencia`, publicada e acompanhando a mesma branch em `origin`. Base: `feat/entrada-documental`, no commit `155d2aeeef3644767d2b8b7f0af6e4f2ca6e16f8`.
+- Branch de trabalho observada: `feat/agenda-e-cobertura`, criada de `feat/candidatos-e-conferencia`, no commit `189962f64b2f3d2d0892e69fdae0fa5cff70c7ff`. A nova branch ainda não foi publicada.
 - Última versão funcional verificada: `3d470fbdc986854583905544c61ec2800b80fc2b`. Atualizações posteriores deste checkpoint podem mudar o HEAD sem alterar a aplicação.
 - A `main` ainda contém a documentação anterior à implementação. Abrir um clone na `main` não equivale a abrir a versão funcional mais recente.
 - Nesta conferência, o código local coincidia com a versão publicada e não havia mudanças pendentes antes desta atualização documental. Consultar `git status` para o estado atual.
@@ -25,9 +25,9 @@ Os PRs são encadeados. Depois de integrar um anterior, conferir a base e o diff
 
 **Entrega funcional publicada:** candidatos e conferência concluídos no PR #4. O banco local foi migrado para 0003 após backup e comparação de todas as linhas anteriores; a demonstração no navegador criou candidatos, rejeitou confirmação sem declaração, registrou conferência simulada e preservou o resultado após recarregar. A CI do commit funcional e a [CI da atualização documental 7cc725f](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41319321721) passaram nos dois sistemas.
 
-**Prioridade de Lucas antes da próxima etapa:** cada PR deve ter evidências por funcionalidade criada ou alterada. A [matriz de rastreabilidade](evidencias-testes-por-pr.md) foi preparada após conferir testes nos commits dos quatro PRs e suas CIs; as descrições dos quatro PRs já receberam as respectivas matrizes. AGENTS, modelo de PR e governança registram o critério; a CI passa a listar nomes dos testes, sem novo teste de aplicação nem alegação de cobertura automática. Publicar esses arquivos no mesmo PR #4 e conferir a CI do novo HEAD antes de encerrar o bloco. A descrição do PR deve apontar para essa execução final, evitando atualização autorreferente deste checkpoint.
+**Critério de evidências concluído:** cada PR tem matriz por funcionalidade criada/alterada. AGENTS, modelo de PR e governança registram o critério; a [CI final do PR #4](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41320755320) passou nos dois sistemas, com 123 nomes de testes aprovados em cada log. As descrições dos quatro PRs foram conferidas. Não repetir essa publicação.
 
-**Próximo bloco funcional, após fechar essa conferência:** agenda temporal sobre os eventos da base atual, conforme o plano de entrega. O extrator automático continua pendente de escolha de fornecedor e orçamento e deverá ser comparado aos casos anotados. Não tratar a entrada manual como extração automática. Os quatro PRs continuam abertos, sem merge e sem revisão humana de Lucas comprovada.
+**Em andamento, autorizado por Lucas:** agenda temporal e cobertura implementadas localmente. **165 testes locais passaram** (42 novos), incluindo leitura única de metadados, quatro grupos, filtros, referência vazia, invalidação/histórico, erro de consulta e origem desatualizada. A demonstração no navegador usou os três cadastros anteriores sem nova gravação: filtros vazios mantêm cobertura; referência 30/06/2027 mostra aviso ultrapassado e término hoje; recarregar retorna ao padrão e permite consultar origem. Evidência na [validação da agenda](validacao-agenda.md), com matriz por funcionalidade. Wheel/arquivo fonte inspecionados; pacote instalado em segundo ambiente consultou três contratos e dois eventos válidos. Não houve migração. Próxima ação: conferir links/diff, publicar esta branch e abrir PR dependente do #4, verificar CI e atualizar este registro com a referência publicada. Não fazer merge. O extrator automático continua pendente de avaliação, fornecedor e orçamento.
 
 ## Decisões que devem orientar a próxima etapa
 
@@ -38,6 +38,7 @@ Consultar os documentos de origem, sem tratar este resumo como nova autorizaçã
 - [ADR-002](adrs/002-proposta-limites-extracao-e-confirmacao.md): extração sugere com evidências, código calcula e pessoa confirma; ambiguidade, conflito ou aditivo bloqueiam confirmação.
 - [ADR-006](adrs/006-entrada-e-revisoes-documentais.md): identidade do conjunto, preservação dos bytes e revisões, limites e aditivo conhecido.
 - [ADR-007](adrs/007-levantamento-manual-e-conferencia.md): evidências literais, levantamento manual, correções e confirmação vinculada à revisão e à regra; localização literal não comprova significado.
+- [ADR-008](adrs/008-agenda-e-cobertura-da-carteira.md): agenda de consulta, horizonte de 30 dias, filtros e cobertura independente; limitações do caminho manual.
 - [Plano de entrega](plano-de-entrega.md): dependências e marcos seguintes.
 
 Somente dados sintéticos. Publicação no repositório e PRs estão autorizados; isso não autoriza mensagens a fornecedores, posts, despesas de API ou hospedagem. Fornecedor e orçamento de IA continuam em aberto. A proposta de evolução para escala fica depois de validar o fluxo local.
@@ -70,6 +71,8 @@ O estado do checkpoint pode ficar uma ação atrás se a interrupção acontecer
 **01/11/2026 — Candidatos e conferência publicados.** Lucas escolheu avançar para esta etapa. Publicados a branch e o PR #4; commit funcional e CI comprovados na tabela acima. Total de 123 testes locais, pacote instalado em segundo ambiente do projeto, migração preservando as linhas anteriores e demonstração de conferência simulada com evidências. A conferência é manual; não foi executada revisão humana real por Lucas. Antes de qualquer repetição da publicação deste checkpoint, comparar o HEAD remoto com o arquivo local.
 
 **01/11/2026 — Evidências antes de avançar.** Lucas exigiu rastreabilidade por funcionalidade em cada PR destinado à main. A auditoria encontrou evidências existentes com descrição agregada; a matriz liga 36 comportamentos/verificações aos testes ou registros manuais, sem tratar integridade de gabarito como extração. As CIs dos quatro snapshots foram conferidas em Windows e Linux. Não houve mudança de regra de produto nem início da agenda. Antes de repetir operações de publicação, conferir o commit remoto e os blocos de evidência já existentes nas descrições dos PRs.
+
+**01/11/2026 — Agenda e cobertura locais.** Após autorização para continuar, criada a branch `feat/agenda-e-cobertura` de `189962f`. Implementação/testes, matriz por funcionalidade e demonstração concluídos; publicação/CI remota ainda pendentes. A interface local está em execução com os novos módulos; conferir `.tools/runtime.json` antes de operar o processo, sem presumir PID antigo.
 
 ## Mensagem curta para outra conversa
 
