@@ -101,6 +101,8 @@ A aplicação local modular e as ferramentas do ADR-004 estão aceitas; a funda�
 
 O [registro de validação](validacao-fundacao.md) distingue os testes de cadastro, datas e persistência dos cenários de análise documental ainda não implementados. A preparação do [Agent Harness](agent-harness.md) e da [governança](governanca-repositorio.md) também está documentada.
 
+O [ADR-007](adrs/007-levantamento-manual-e-conferencia.md) implementa o baseline manual: levantamentos imutáveis, evidências vinculadas à revisão, contador de seleção e confirmação atômica. A consulta de eventos atuais compara levantamento, documento e regra; registros antigos permanecem no histórico. A [validação da conferência](validacao-conferencia-manual.md) distingue esse resultado da futura extração automática e da revisão humana real do projeto.
+
 ## 8. Fontes e limites de validação
 
 - [OWASP: Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/): entradas externas podem influenciar modelos; restringir autoridade e testar fronteiras reduz o impacto.

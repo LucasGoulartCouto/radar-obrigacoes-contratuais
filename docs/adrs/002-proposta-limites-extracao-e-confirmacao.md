@@ -2,7 +2,7 @@
 
 Data: 31/10/2026.
 
-**Status: aceito por Lucas em 01/11/2026.** Aritmética, entrada e revisões documentais estão implementadas; extração, conferência humana, confirmação e agenda ainda não foram implementadas.
+**Status: aceito por Lucas em 01/11/2026.** Aritmética, entrada, revisões documentais, levantamento manual e fluxo de conferência estão implementados. Extração automática e agenda temporal completa ainda são futuras. A demonstração de conferência é simulada; não representa revisão humana real de Lucas.
 
 ## Contexto
 

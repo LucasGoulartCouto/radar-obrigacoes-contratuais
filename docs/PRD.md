@@ -1,10 +1,10 @@
 # PRD — Radar de Obrigações Contratuais
 
-Versão 0.3 · 01/11/2026 · Requisitos detalhados em revisão de produto.
+Versão 0.4 · 01/11/2026 · Requisitos detalhados em revisão de produto.
 
 **Decisões aceitas por Lucas:** construir o case fictício da Agência Prisma com foco em renovações e avisos prévios em contratos de serviços com fornecedores; separar sugestão com evidências, cálculo por código e confirmação humana, com bloqueio por unidade ambígua, conflito ou aditivo, conforme ADR-002. Os demais detalhes, limites e metas deste documento são propostas. Ainda não houve validação com usuários reais.
 
-**Arquitetura e ferramentas aceitas:** aplicação local modular e ferramentas dos ADRs 003/004. A [fundação](validacao-fundacao.md) e a [entrada documental](validacao-entrada-documental.md) foram implementadas: cadastro, persistência, histórico, backup, aritmética, originais e revisões de documentos. Este PRD continua descrevendo o produto completo a construir; extração, conferência humana e agenda ainda não foram implementadas. A [proposta posterior de evolução](evolucao-arquitetural.md) permanece planejada.
+**Arquitetura e ferramentas aceitas:** aplicação local modular e ferramentas dos ADRs 003/004. A [fundação](validacao-fundacao.md), a [entrada documental](validacao-entrada-documental.md) e o [fluxo manual de conferência](validacao-conferencia-manual.md) foram implementados. Este PRD continua descrevendo o produto completo: extração automática, estados de execução do extrator e agenda temporal completa ainda não foram implementados. A [proposta posterior de evolução](evolucao-arquitetural.md) permanece planejada.
 
 ## 1. Problema e resultado pretendido
 
