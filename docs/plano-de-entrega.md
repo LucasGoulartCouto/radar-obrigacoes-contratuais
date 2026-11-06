@@ -31,6 +31,8 @@ M3 é um passo de engenharia para verificar regras e formar uma comparação; n�
 
 **Decisão e operação de IA local em 01/11/2026:** [ADR-010](adrs/010-ia-local-no-desenvolvimento.md) aceita IA local para desenvolvimento e adia produção/seleção definitiva até a aplicação concluída. Runtime/modelo provisório preparados, 20 casos executados e falhas preservadas na [validação](validacao-ia-local.md). O candidato ainda não está apto a alimentar a aplicação; revisar schema/prompt e bloqueios antes da integração.
 
+**Revisão do protocolo local em 01/11/2026:** classificação completa de linhas e interpretação literal separadas conforme [ADR-011](adrs/011-classificacao-de-linhas-e-interpretacao-literal.md). Referência ativa: 18/20 casos integrais, sem candidatos indevidos ou impedimentos perdidos, mas duas retenções extras. Prompt alternativo regrediu e foi preservado/rejeitado. [Validação e limites](validacao-extracao-por-linhas.md). Integração e tratamento das retenções continuam pendentes; avaliação não é independente.
+
 ## Primeiras unidades de trabalho depois de fechar a proposta técnica
 
 Antes das funcionalidades, a fundação deverá validar a combinação de ferramentas aceita no [ADR-004](adrs/004-proposta-tecnologias-locais.md): instalação isolada, formulário local, migração, transação interrompida, submissão repetida e backup/restauração. Essa verificação não é uma demonstração de extração de contratos.
