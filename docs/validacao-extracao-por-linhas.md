@@ -1,6 +1,6 @@
 # Validação da extração por linhas
 
-01/11/2026. Base: `2ecc473b9b40aaa3c06982788989f8e90413c820`; decisão no [ADR-011](adrs/011-classificacao-de-linhas-e-interpretacao-literal.md). Commit e CI finais serão vinculados no PR. Mesmo Ollama 0.40.13, Qwen3 4B Instruct Q4 e digest da rodada V2; nenhuma escolha de produção.
+01/11/2026. Base: `2ecc473b9b40aaa3c06982788989f8e90413c820`; decisão no [ADR-011](adrs/011-classificacao-de-linhas-e-interpretacao-literal.md). Snapshot da restauração: `67921308345841b100e583db2cd4e21f5a6d33d2`; SHA/CI finais e matriz por comportamento ficam na descrição do [PR #9](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/9), em rascunho. Não inferir qualidade do modelo a partir da CI. Mesmo Ollama 0.40.13, Qwen3 4B Instruct Q4 e digest da rodada V2; nenhuma escolha de produção.
 
 ## O que mudou e como foi verificado
 
