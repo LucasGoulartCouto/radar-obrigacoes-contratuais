@@ -1,4 +1,4 @@
-. (Join-Path $PSScriptRoot 'Usar-Uv.ps1')
+﻿. (Join-Path $PSScriptRoot 'Usar-Uv.ps1')
 $projectRoot = Split-Path -Parent $PSScriptRoot
 Push-Location -LiteralPath $projectRoot
 try {
@@ -13,6 +13,10 @@ try {
     }
     $env:UV_CACHE_DIR = Join-Path $projectRoot '.uv-cache'
     Invoke-RadarTool -Executable $localUv -Arguments @('sync', '--locked')
+    $dataRoot = if ($env:RADAR_DATA_DIR) { $env:RADAR_DATA_DIR } else { Join-Path $projectRoot 'var' }
+    if (Test-Path -LiteralPath (Join-Path $dataRoot 'radar.sqlite3')) {
+        Invoke-RadarTool -Executable $localUv -Arguments @('run', '--locked', 'radar', 'backup')
+    }
     Invoke-RadarTool -Executable $localUv -Arguments @('run', '--locked', 'radar', 'init-db')
     Write-Host 'Ambiente preparado. Inicie com scripts\Iniciar-Radar.ps1.'
 } finally {

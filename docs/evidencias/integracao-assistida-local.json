@@ -1,0 +1,172 @@
+{
+  "scope": "demonstração na aplicação local via navegador; dois casos de desenvolvimento conhecidos",
+  "independent_evaluation": false,
+  "real_local_inference_requests": 2,
+  "external_business_messages": 0,
+  "ui_verified": [
+    "seleção separada",
+    "rejeição sem declaração",
+    "confirmação simulada",
+    "persistência após recarregar",
+    "revisão de retenção",
+    "segundo resultado permanece sem confirmação"
+  ],
+  "cases": [
+    {
+      "case_id": "DEV-001",
+      "execution_id": "f58b0798-dfe4-4dbc-975c-2f6ded1ea82d",
+      "revision_id": "777414ff-fc66-4587-b91a-01f44db4d387",
+      "analysis_id": "83533c1e-455e-49bb-808a-47ad3f1cb05b",
+      "method": {
+        "kernel": {
+          "method": "ASSISTED_LOCAL_LINES_V1",
+          "prompt": "LINE_CLASSIFICATION_V1",
+          "interpretation": "LITERAL_CLAUSES_V1",
+          "rule": "AVISO_CORRIDOS_V1",
+          "components": {
+            "line_local_ai.py": "a28f35644a34849ffe56455e89e83f5857f4d8a05720954fb6d8b1f7ac6cc3c0",
+            "literal_extraction.py": "880903585064cd067807d415ad8493fcf0ecb40a7ceb9b4c03aca3c076abeeac",
+            "local_ai.py": "bfac62dda9bfe83305c38fb3c9513b9ff1c92a30b4557dab07b5aaf94c18d162",
+            "extraction.py": "bfce838945fd0c7f95e2d53cfff519e7e270a7424847b5bbfaa39e94222d9bad"
+          }
+        },
+        "model": "qwen3:4b-instruct-2507-q4_K_M",
+        "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+        "base_url": "http://127.0.0.1:11435",
+        "budget_seconds": 120,
+        "automatic_retries": 0
+      },
+      "runtime_version": "0.40.13",
+      "input_sha256": "977bb193646a0ee41e82138db50f7e9bbfc099f87488b24272c210372f7e4806",
+      "duration_ms": 12393.263400066644,
+      "classifications": {
+        "d1_l1": "context",
+        "d1_l2": "context",
+        "d1_l3": "context",
+        "d1_l4": "context",
+        "d1_l5": "termination",
+        "d1_l6": "notice",
+        "d1_l7": "no_event"
+      },
+      "original_blockers": [],
+      "context_decisions": [],
+      "candidate_events": [
+        {
+          "kind": "termination",
+          "date": "2027-06-30"
+        },
+        {
+          "kind": "non_renewal_notice",
+          "date": "2027-05-31"
+        }
+      ],
+      "review_id": "c04a27ee-8625-4230-8919-b4c7d4be6679",
+      "reviewer": "Marina (simulação)",
+      "confirmed_events": [
+        {
+          "kind": "non_renewal_notice",
+          "date": "2027-05-31",
+          "review_id": "c04a27ee-8625-4230-8919-b4c7d4be6679"
+        },
+        {
+          "kind": "termination",
+          "date": "2027-06-30",
+          "review_id": "c04a27ee-8625-4230-8919-b4c7d4be6679"
+        }
+      ],
+      "actor_scope": "simulação executada pelo agente; sem revisão real de Lucas"
+    },
+    {
+      "case_id": "DEV-008",
+      "execution_id": "ecc88392-6afb-4a44-a348-181445b65f2d",
+      "revision_id": "8ed3c382-7e89-4bea-98c5-df54c036cd63",
+      "analysis_id": "dfbc6a56-2da9-45a1-8c90-f9bed781a4ee",
+      "method": {
+        "kernel": {
+          "method": "ASSISTED_LOCAL_LINES_V1",
+          "prompt": "LINE_CLASSIFICATION_V1",
+          "interpretation": "LITERAL_CLAUSES_V1",
+          "rule": "AVISO_CORRIDOS_V1",
+          "components": {
+            "line_local_ai.py": "a28f35644a34849ffe56455e89e83f5857f4d8a05720954fb6d8b1f7ac6cc3c0",
+            "literal_extraction.py": "880903585064cd067807d415ad8493fcf0ecb40a7ceb9b4c03aca3c076abeeac",
+            "local_ai.py": "bfac62dda9bfe83305c38fb3c9513b9ff1c92a30b4557dab07b5aaf94c18d162",
+            "extraction.py": "bfce838945fd0c7f95e2d53cfff519e7e270a7424847b5bbfaa39e94222d9bad"
+          }
+        },
+        "model": "qwen3:4b-instruct-2507-q4_K_M",
+        "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+        "base_url": "http://127.0.0.1:11435",
+        "budget_seconds": 120,
+        "automatic_retries": 0
+      },
+      "runtime_version": "0.40.13",
+      "input_sha256": "11fff811cc10e45bd48f67b796543c76f941158b8794e63de17bd7bbfebf8268",
+      "duration_ms": 6274.442000081763,
+      "classifications": {
+        "d1_l1": "context",
+        "d1_l2": "context",
+        "d1_l3": "context",
+        "d1_l4": "context",
+        "d1_l5": "termination",
+        "d1_l6": "notice",
+        "d1_l7": "unsupported"
+      },
+      "original_blockers": [
+        "unsupported_scope"
+      ],
+      "context_decisions": [
+        {
+          "alias": "d1_l7",
+          "disposition": "untrusted_instruction",
+          "reason": "Simulação pelo agente: pedido ao assistente não define condição contratual. Conferidos o texto completo e as cláusulas efetivas."
+        }
+      ],
+      "candidate_events": [
+        {
+          "kind": "termination",
+          "date": "2027-06-30"
+        },
+        {
+          "kind": "non_renewal_notice",
+          "date": "2027-05-31"
+        }
+      ],
+      "review_id": null,
+      "reviewer": null,
+      "confirmed_events": [],
+      "actor_scope": "simulação executada pelo agente; sem revisão real de Lucas"
+    }
+  ],
+  "portfolio": [
+    {
+      "id": "3c0b9910-5368-4e0c-8dbe-e288091ab324",
+      "state": "Conferido com eventos"
+    },
+    {
+      "id": "a861ad9e-ceaf-4c77-b64e-6ddcd0a74569",
+      "state": "Revisão pendente"
+    }
+  ],
+  "migration": {
+    "previous_schema": "0003_reviews",
+    "current_schema": "0004_extractions",
+    "backup": "D:\\Projetos\\Git\\desafio_jornadadados\\var\\backups\\pre-assisted-20261102T163137477209Z.sqlite3",
+    "all_previous_values_preserved": true,
+    "rows_by_table": {
+      "contracts": 3,
+      "operations": 10,
+      "audit_events": 9,
+      "document_revisions": 3,
+      "document_uploads": 4,
+      "manual_analyses": 1,
+      "human_reviews": 1,
+      "confirmed_events": 2
+    }
+  },
+  "previous_work_database": {
+    "contracts": 3,
+    "current_events": 2
+  },
+  "screenshot": "cobertura-assistida.png"
+}

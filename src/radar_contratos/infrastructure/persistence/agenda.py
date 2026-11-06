@@ -24,6 +24,7 @@ from radar_contratos.infrastructure.persistence.models import (
     ContractRow,
     DocumentRevisionRow,
     DocumentUploadRow,
+    ExtractionRunRow,
     ReviewRow,
 )
 
@@ -37,7 +38,7 @@ class SqliteAgendaStore:
     def read_portfolio(self) -> PortfolioSnapshot:
         started = perf_counter()
         historical_revision = aliased(DocumentRevisionRow)
-        amendment = (
+        amendment = ContractRow.known_textual_amendment | (
             select(DocumentUploadRow.id)
             .join(historical_revision, historical_revision.id == DocumentUploadRow.revision_id)
             .where(
@@ -46,6 +47,18 @@ class SqliteAgendaStore:
             )
             .correlate(ContractRow)
             .exists()
+        )
+        latest_run = (
+            select(ExtractionRunRow.id)
+            .join(historical_revision, historical_revision.id == ExtractionRunRow.revision_id)
+            .where(
+                ExtractionRunRow.contract_id == ContractRow.id,
+                historical_revision.number == ContractRow.document_version,
+            )
+            .order_by(ExtractionRunRow.number.desc())
+            .limit(1)
+            .correlate(ContractRow)
+            .scalar_subquery()
         )
         query = (
             select(
@@ -56,6 +69,7 @@ class SqliteAgendaStore:
                 DocumentRevisionRow.document_count,
                 AnalysisRow.id.label("analysis_id"),
                 AnalysisRow.rule_version,
+                AnalysisRow.method_version,
                 AnalysisRow.blocked,
                 AnalysisRow.candidate_count,
                 ReviewRow.id.label("review_id"),
@@ -65,6 +79,8 @@ class SqliteAgendaStore:
                 ConfirmedEventRow.kind,
                 ConfirmedEventRow.event_date,
                 amendment.label("known_amendment"),
+                ExtractionRunRow.status.label("execution_status"),
+                ExtractionRunRow.blocked.label("execution_blocked"),
             )
             .select_from(ContractRow)
             .outerjoin(
@@ -79,6 +95,7 @@ class SqliteAgendaStore:
                 & (AnalysisRow.revision_id == DocumentRevisionRow.id),
             )
             .outerjoin(ReviewRow, ReviewRow.analysis_id == AnalysisRow.id)
+            .outerjoin(ExtractionRunRow, ExtractionRunRow.id == latest_run)
             .outerjoin(ConfirmedEventRow, ConfirmedEventRow.review_id == ReviewRow.id)
             .order_by(ContractRow.id, ConfirmedEventRow.kind)
         )
@@ -108,10 +125,13 @@ class SqliteAgendaStore:
                 has_documents=bool(row["document_count"]),
                 has_analysis=row["analysis_id"] is not None,
                 blocked=bool(row["blocked"]),
-                current_rule=row["rule_version"] == rules.RULE_VERSION,
+                current_rule=row["rule_version"] == rules.RULE_VERSION
+                and rules.current_method(row["method_version"]),
                 reviewed=row["review_id"] is not None,
                 candidate_count=row["candidate_count"] or 0,
                 event_count=len(event_rows),
+                execution_status=row["execution_status"],
+                execution_blocked=bool(row["execution_blocked"]),
             )
             contracts.append(PortfolioContract(contract_id, row["title"], state, detail))
             if state != CoverageState.WITH_EVENTS:

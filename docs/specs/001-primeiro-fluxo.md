@@ -1,6 +1,6 @@
 # SPEC-001 — Do contrato sintético à agenda conferida
 
-Versão 0.5 · 01/11/2026 · Entrada, levantamento manual, conferência e agenda implementados; extrator e seus estados de execução futuros.
+Versão 0.6 · 02/11/2026 · Entrada, levantamento manual, análise assistida local, conferência, agenda e tentativas/recuperação implementados no desenvolvimento; [validação](../validacao-integracao-assistida.md) identifica evidências e limites.
 
 Referência: [PRD](../PRD.md). Esta SPEC define regras do case fictício, sem estabelecer interpretação jurídica para contratos reais. A separação entre extração, cálculo e confirmação e o bloqueio por ambiguidade, conflito ou aditivo foram aceitos por Lucas no ADR-002. Limites, nomes de estados e outros detalhes técnicos continuam sujeitos à revisão.
 
@@ -26,9 +26,9 @@ Uma evidência identifica documento/revisão, intervalo inclusivo de linhas e tr
 
 Reenvio com o mesmo texto de referência, mesmo papel e conjunto documental inalterado no mesmo contrato não cria nova revisão nem evento. Diferenças relevantes no conteúdo, no conjunto documental ou no papel declarado criam outra revisão. O mesmo arquivo associado a outro contrato não pode provocar fusão automática dos cadastros.
 
-Limites de entrada implementados: 262.144 bytes por arquivo, 1.048.576 bytes por conjunto e até 5 documentos, configuráveis conforme ADR-006. Duração de processamento ainda será definida antes do extrator. Excesso produz rejeição explícita; o texto não pode ser truncado e apresentado como análise completa.
+Limites de entrada implementados: 262.144 bytes por arquivo, 1.048.576 bytes por conjunto e até 5 documentos, configuráveis conforme ADR-006. No desenvolvimento local, o adaptador compartilha orçamento de 120 s entre requisições, sem retry automático; encerramento de registro não cancela cálculo no runtime. O contexto completo é conferido antes de reservar/enviar, com rejeição explícita de excesso, conforme ADR-013. Excesso produz rejeição explícita; o texto não pode ser truncado e apresentado como análise completa.
 
-Retirada explícita do último documento cria revisão vazia e mantém o histórico. Ela significa “Aguardando documentos”, nunca análise concluída sem eventos. Aditivo já declarado no histórico mantém a sinalização de bloqueio mesmo após retirada ou mudança de papel; ignorar o arquivo não resolve o impedimento.
+Retirada explícita do último documento cria revisão vazia e mantém o histórico. Ela significa falta de documentos (detalhe de “Aguardando análise” na cobertura), nunca análise concluída sem eventos. Aditivo já declarado no histórico mantém a sinalização de bloqueio mesmo após retirada ou mudança de papel; ignorar o arquivo não resolve o impedimento.
 
 ## 3. Campos necessários
 
@@ -136,7 +136,7 @@ As respostas abaixo foram definidas antes da implementação. Elas serão materi
 
 ## 9. Pendências para implementação
 
-- Definir limites de processamento e política de recuperação do extrator, mantendo os comportamentos acima. Os limites da entrada documental já estão implementados.
+- Limites e recuperação local implementados conforme [ADR-013](../adrs/013-execucao-e-conferencia-assistidas.md); verificar instalação limpa e manter as limitações de cancelamento, revisão simulada e avaliação independente explícitas.
 - Transformar cenários em dados sintéticos e respostas esperadas, com conjuntos de desenvolvimento e avaliação separados.
 - Definir o mecanismo de identificação do revisor no protótipo e declarar seus limites.
 - Especificar o formato de intercâmbio do extrator após escolher a alternativa técnica.

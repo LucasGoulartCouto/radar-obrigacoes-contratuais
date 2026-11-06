@@ -35,6 +35,8 @@ M3 é um passo de engenharia para verificar regras e formar uma comparação; n�
 
 ## Primeiras unidades de trabalho depois de fechar a proposta técnica
 
+**Integração local em 02/11/2026:** [ADR-013](adrs/013-execucao-e-conferencia-assistidas.md) implementa tentativa persistida, inferência fora da escrita, seleção/revisão/confirmacão separadas, recuperação explícita e cobertura nos seis grupos da SPEC. [Validação](validacao-integracao-assistida.md) identifica 371 testes, migração com preservação de valores e duas inferências reais na aplicação com revisão simulada. O próximo bloco é M6: reprodução em ambiente isolado/instalação limpa, roteiro e materiais de entrega. Avaliação reservada, revisão humana real e produção continuam sem comprovação; não declarar conclusão global por estes exemplos.
+
 **Revisão de retenções em 02/11/2026:** [ADR-012](adrs/012-revisao-restrita-de-retencoes.md) mantém a extração V1 intacta e introduz revisão offline explícita para os dois contextos retidos. [Validação/recibos e desenho da integração](validacao-revisao-retencoes.md) separam correção simulada de acerto automático. Execução persistida, tela de revisão assistida e recuperação continuam como próximo bloco de M5; a referência automática permanece 18/20.
 
 Antes das funcionalidades, a fundação deverá validar a combinação de ferramentas aceita no [ADR-004](adrs/004-proposta-tecnologias-locais.md): instalação isolada, formulário local, migração, transação interrompida, submissão repetida e backup/restauração. Essa verificação não é uma demonstração de extração de contratos.
