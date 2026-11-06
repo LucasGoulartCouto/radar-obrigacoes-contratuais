@@ -4,6 +4,7 @@
 
 | Material | Uso e situação |
 |---|---|
+| [Roteiro para revisar a entrega](revisao.md) | Critérios C01–C22, evidências por alcance e decisões pendentes; preparado em 04/11/2026 |
 | [Reproduzir a instalação](reproducao.md) | Comandos e limites da validação em cópia/ambiente/banco novos |
 | [Roteiro de demonstração](roteiro-demonstracao.md) | Sequência sugerida, resultados esperados e como explicar as falhas; vídeo não gravado |
 | [Cartão da galeria](galeria/lucasgoulartcouto/README.md) | Pasta portátil com imagem; links dos posts ainda vazios, portanto não pronta para submissão |
