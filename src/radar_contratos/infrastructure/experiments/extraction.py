@@ -310,14 +310,19 @@ def evaluate(
     return {
         "schema_version": 1,
         "method_version": method_version,
-        "method_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        "method_sha256": (
+            hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+            if extractor is extract_rules
+            else None
+        ),
+        "evaluator_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "catalog_sha256": hashlib.sha256(raw).hexdigest(),
         "document_sha256": input_hashes,
         "split": catalog["split"],
         "independent_evaluation": False,
         "integrated_with_application": False,
-        "api_calls": 0,
-        "api_cost": 0,
+        "api_calls": 0 if extractor is extract_rules else None,
+        "api_cost": 0 if extractor is extract_rules else None,
         "totals": totals,
         "timing_ms": {
             "scope": "extração + pontuação; sem leitura de arquivos, confirmação ou esforço humano",
