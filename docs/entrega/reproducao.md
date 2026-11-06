@@ -7,13 +7,13 @@ Use somente documentos sintéticos. O caminho principal é Windows com Python 3.
 Em uma pasta nova:
 
 ```powershell
-git clone --branch codex/reproducao-e-entrega https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais.git radar-repro
+git clone --branch main https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais.git radar-repro
 cd radar-repro
 python --version
 powershell -NoProfile -File scripts/Preparar-Ambiente.ps1
 ```
 
-Essa branch reúne o código e os materiais sob revisão. Não usar a `main` para representar a versão funcional antes do merge dos PRs. O snapshot funcional reproduzido foi `39befe7e8c3d52fb10a251f93d4515ca27a9ac8e`; o PR desta entrega informa seu HEAD final.
+A `main` é o destino da consolidação autorizada por Lucas em 05/11/2026. Confirme a integração do [PR #13](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/13) antes de representar o clone como versão consolidada; a descrição informa o resultado e a CI finais. O snapshot efetivamente reproduzido em 02/11 foi `39befe7e8c3d52fb10a251f93d4515ca27a9ac8e`; não confundir esse registro histórico com nova reprodução completa de cada atualização.
 
 O preparo cria `.tools/bootstrap`, instala uv 0.13.6, cria `.venv`, sincroniza `uv.lock` e migra o banco em `var/`. Não copia dados do computador do autor. Em primeira execução, a carteira começa vazia. Se já houver banco, o preparo cria backup antes de conferir/aplicar as migrações. Não apague o banco para corrigir erro de instalação.
 

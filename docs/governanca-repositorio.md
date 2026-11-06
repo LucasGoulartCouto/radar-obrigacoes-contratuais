@@ -1,6 +1,8 @@
 # Governança do repositório
 
-## Situação da fundação
+**Atualização em 05/11/2026:** Lucas informou validação funcional, revisão dos PRs #1–#13 e autorização de integração. [Registro e alcance](entrega/aceite-funcional.md). O resultado/HEAD/CI finais ficam na descrição do PR #13; conferir a plataforma antes de repetir integrações. O histórico original está preservado em `codex/arquivo-pre-integracao-20261105`. A consulta da `main` nesta retomada confirmou proteção habilitada e os dois checks obrigatórios; isso não reaudita todos os controles administrativos descritos no histórico abaixo.
+
+## Histórico da fundação
 
 O Git foi inicializado localmente com `main`. A documentação existente foi registrada no commit inicial antes da implementação, e a fundação foi desenvolvida na branch `feat/fundacao-local`. Esse primeiro commit é o bootstrap do repositório, não uma mudança que entrou por PR remoto.
 
@@ -28,9 +30,9 @@ A publicação foi feita pelo conector GitHub. Isso gerou identificadores de com
 4. As regras também se aplicam ao administrador. A API da branch confirmou checks com nível de aplicação `everyone`.
 5. A prova negativa falhou intencionalmente nos dois ambientes. O GitHub informou `mergeable_state: blocked`, com o botão de integração desabilitado. O arquivo da prova foi removido e não alterou a `main`.
 
-A revisão humana será feita por Lucas. Não declararemos aprovação independente sem outro revisor real. A política inicial para um projeto individual não deve exigir um aprovador fictício nem produzir um bloqueio impossível de atender.
+A revisão humana cabe a Lucas, que declarou a revisão dos PRs #1–#13 em 05/11/2026. Não declararemos aprovação independente sem outro revisor real. A política inicial para um projeto individual não deve exigir um aprovador fictício nem produzir um bloqueio impossível de atender.
 
-A revisão de Lucas ainda está pendente; a integração do PR não foi realizada pelo agente. As [evidências remotas](validacao-publicacao.md) identificam as execuções observadas e distinguem essa revisão dos checks automáticos.
+Na fundação, a revisão de Lucas e a integração permaneciam pendentes. A autorização posterior está registrada na abertura deste documento. As [evidências remotas da fundação](validacao-publicacao.md) identificam as execuções observadas naquele momento e distinguem revisão humana dos checks automáticos.
 
 ## Evidências por funcionalidade
 

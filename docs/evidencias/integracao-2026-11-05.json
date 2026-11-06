@@ -1,0 +1,174 @@
+{
+  "date": "2026-11-05",
+  "repository": "LucasGoulartCouto/radar-obrigacoes-contratuais",
+  "authorization": "Lucas: Revisei também os PRs e autorizo a integração (PRs #1–#13).",
+  "functional_acceptance": "Lucas informou validação dos três fluxos propostos e revisão dos PRs 1-13.",
+  "archive": {
+    "branch": "codex/arquivo-pre-integracao-20261105",
+    "head": "18c561256d72c255693e31aa28b6e8a4985693fe"
+  },
+  "main_before": "d389ec2987df20d547096e56a03d7f44c6ea357b",
+  "main_before_final_step": "874a5cc4114f4fc2e441970b51ec20e26db0925f",
+  "completed_before_final_step": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "final_result_source": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/13",
+  "note": "Snapshot preparado antes da etapa final. O resultado/HEAD/CI de cada integração é registrado na descrição do respectivo PR; não interpretar este arquivo como alegação antecipada de merge do PR 13.",
+  "local_full_suite": {
+    "passed": 383,
+    "seconds": 39.6,
+    "real_inferences": 0
+  },
+  "race_correction": {
+    "failed_run": 42135787736,
+    "failed_job": 127623435467,
+    "regression": "test_finish_reserves_writer_before_reading_receipt",
+    "local_full_tests": 383,
+    "allowed_paths": [
+      "src/radar_contratos/infrastructure/persistence/reviews.py",
+      "tests/integration/test_extractions.py",
+      "docs/validacao-concorrencia-gravacao.md"
+    ]
+  },
+  "prs": [
+    {
+      "number": 1,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/1",
+      "reviewed_original_head": "91c96da14f12655079c968657d4dc43741d0ed2a",
+      "reviewed_original_tree": "b7c970b47420ccb8c53511ca379cce20c1f1fdc7",
+      "integrated_tree": "b7c970b47420ccb8c53511ca379cce20c1f1fdc7",
+      "integrated_main": "44118d99573408aac058e4b0f37e713cd421056f",
+      "ci_before_integration": 41307938776,
+      "result_source": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/1"
+    },
+    {
+      "number": 2,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/2",
+      "reviewed_original_head": "413154480237852cd9fae3105b73383e0c195fe7",
+      "reviewed_original_tree": "6764e45745da5a6d84bac7058cbabb9866d91fbe",
+      "integrated_tree": "6764e45745da5a6d84bac7058cbabb9866d91fbe",
+      "integrated_main": "990bfba75b7f938086a3cc26e1dc182537710d3e",
+      "ci_before_integration": 42132058876,
+      "result_source": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/2"
+    },
+    {
+      "number": 3,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/3",
+      "reviewed_original_head": "155d2aeeef3644767d2b8b7f0af6e4f2ca6e16f8",
+      "reviewed_original_tree": "71d812b46abefafbe5a4450dea27a90ca43ff4b2",
+      "integrated_tree": "71d812b46abefafbe5a4450dea27a90ca43ff4b2",
+      "integrated_main": "852a445bb3e334b2f52a35228b2d8214bc920f63",
+      "ci_before_integration": 42132431058,
+      "result_source": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/3"
+    },
+    {
+      "number": 4,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/4",
+      "reviewed_original_head": "189962f64b2f3d2d0892e69fdae0fa5cff70c7ff",
+      "reviewed_original_tree": "f1fc86e7c54d8c027308e76390a460dbf79a0efd",
+      "integrated_tree": "f1fc86e7c54d8c027308e76390a460dbf79a0efd",
+      "integrated_main": "2a64e4688b4bb2e533038025e7185e9c0d2d86c4",
+      "ci_before_integration": 42132817394,
+      "result_source": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/4"
+    },
+    {
+      "number": 5,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/5",
+      "reviewed_original_head": "e0ea2c8285bdbe7c17e99741d97e92910f3e263f",
+      "reviewed_original_tree": "5f3d26973fa2f84f8aa6b0cc7d8a72aa16514ef3",
+      "integrated_tree": "5f3d26973fa2f84f8aa6b0cc7d8a72aa16514ef3",
+      "integrated_main": "2f0612ecba9b5de96fdd540d18ab34fbc9aba179",
+      "ci_before_integration": 42133155639,
+      "result_source": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/5"
+    },
+    {
+      "number": 6,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/6",
+      "reviewed_original_head": "0ac98d72bb3dd17c2625fc15dbb55a6f75fe82bd",
+      "reviewed_original_tree": "877146cbdcb9664ecdf7cbd282de90413d6c313b",
+      "integrated_tree": "877146cbdcb9664ecdf7cbd282de90413d6c313b",
+      "integrated_main": "d638e10c725d70bd0216ffeb806744e9211af307",
+      "ci_before_integration": 42133487026,
+      "result_source": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/6"
+    },
+    {
+      "number": 7,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/7",
+      "reviewed_original_head": "40a69cde2351b435dcbb37b3a61fdf741d8c7473",
+      "reviewed_original_tree": "5a5614e35af4195932e35a3446985d61fd472f43",
+      "integrated_tree": "5a5614e35af4195932e35a3446985d61fd472f43",
+      "integrated_main": "19f1929299fb47e80e2ca84010d1133d6a69d2b4",
+      "ci_before_integration": 42133861257,
+      "result_source": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/7"
+    },
+    {
+      "number": 8,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/8",
+      "reviewed_original_head": "2ecc473b9b40aaa3c06982788989f8e90413c820",
+      "reviewed_original_tree": "28e05862ba10a56138868671b3a7285ae1f08477",
+      "integrated_tree": "28e05862ba10a56138868671b3a7285ae1f08477",
+      "integrated_main": "b6f932562e8e05cc064f496dae523487d265c6a8",
+      "ci_before_integration": 42134266569,
+      "result_source": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/8"
+    },
+    {
+      "number": 9,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/9",
+      "reviewed_original_head": "a01b7b594c4bfefe1b47c67e2c2fb30b03c4ab25",
+      "reviewed_original_tree": "2f9418190fc9795d040881b9a41f85f021588c2e",
+      "integrated_tree": "2f9418190fc9795d040881b9a41f85f021588c2e",
+      "integrated_main": "346d3f9a30d39c20c0a116a8bdf092bd5f44f09e",
+      "ci_before_integration": 42134666948,
+      "result_source": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/9"
+    },
+    {
+      "number": 10,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/10",
+      "reviewed_original_head": "5db8bf849c4799b3f1b0854d9781480475f447f4",
+      "reviewed_original_tree": "b682d0eec2bf026759f92433e06eb614487e9bc9",
+      "integrated_tree": "b682d0eec2bf026759f92433e06eb614487e9bc9",
+      "integrated_main": "0d4f8d3b42d1b12d8689f4bf4975a2a1b3039d59",
+      "ci_before_integration": 42135005141,
+      "result_source": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/10"
+    },
+    {
+      "number": 11,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/11",
+      "reviewed_original_head": "39befe7e8c3d52fb10a251f93d4515ca27a9ac8e",
+      "reviewed_original_tree": "a5666385cd785358e4a8660b261d3076232c50df",
+      "integrated_tree": "a5666385cd785358e4a8660b261d3076232c50df",
+      "integrated_main": "2051f6e854e90b6a2a5091f583d1b6a8a3dbfeaf",
+      "ci_before_integration": 42135388552,
+      "result_source": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/11"
+    },
+    {
+      "number": 12,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/12",
+      "reviewed_original_head": "040fb72a4ab8bddec21dd63ca9abc5028783cd99",
+      "reviewed_original_tree": "1b3ecaae3b959034e69ba44e00eb293e35366a37",
+      "integrated_tree": "3649240520484af08f76848e858d6eea95f4e358",
+      "integrated_main": "874a5cc4114f4fc2e441970b51ec20e26db0925f",
+      "ci_before_integration": 42137082029,
+      "result_source": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/12"
+    },
+    {
+      "number": 13,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/13",
+      "reviewed_original_head": "18c561256d72c255693e31aa28b6e8a4985693fe",
+      "reviewed_original_tree": "75a6ff3f27a408a39869946ac671c6ca8729befd",
+      "ci_before_integration": 41947116387,
+      "result_source": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/13"
+    }
+  ]
+}
