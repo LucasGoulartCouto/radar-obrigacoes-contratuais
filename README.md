@@ -68,6 +68,8 @@ Agenda com um aviso confirmado, referência explícita e contratos pendentes:
 
 ## Comece aqui
 
+**M7 — evolução para escala:** [proposta e diagrama](docs/m7-proposta.md), [baseline sintético local](docs/validacao-m7.md) e [custos](docs/m7-custos.md). Estudo para revisão; não houve implantação remota, contratação ou escolha definitiva de modelo.
+
 | Documento | O que você encontra |
 |---|---|
 | [Discovery](docs/discovery/radar-obrigacoes-contratuais.md) | Case fictício, dor, entrevista simulada, riscos e hipóteses |

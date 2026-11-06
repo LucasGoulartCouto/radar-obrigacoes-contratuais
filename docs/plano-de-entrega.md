@@ -13,7 +13,7 @@
 | M4 — Extração avaliada | Construir alternativa simples e experimentar IA se fizer sentido | Comparação de omissões, falsos positivos, qualidade dos campos, esforço e custo no conjunto definido |
 | M5 — Fluxo completo | Integrar extração escolhida, conferência, agenda e cobertura | Cenários críticos e mudança de revisão funcionam sem esconder pendências |
 | M6 — Entrega reproduzível | Instalação limpa, README, demonstração, limitações e materiais públicos | Outra execução reproduzida; cartão e rascunhos de publicação preparados para revisão |
-| M7 — Proposta futura de evolução | Definir cenário de crescimento, medir a base local e comparar alternativas | Proposta de arquitetura, custos, migração e verificação conforme o plano de evolução; implementação não assumida no prazo inicial |
+| M7 — Proposta de evolução | Cenários hipotéticos escolhidos por Lucas, baseline local e alternativas | [Estudo preparado para revisão](m7-proposta.md), [medição](validacao-m7.md), custos, migração e gates; implantação não executada |
 
 M3 é um passo de engenharia para verificar regras e formar uma comparação; não representa desistir da extração automática. M4 decide como implementá-la com evidências. Publicações e comunicações externas não serão executadas sem instrução explícita de Lucas.
 
