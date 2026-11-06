@@ -1,5 +1,7 @@
 # Arquitetura — aplicação local modular
 
+**M7 em 05/11/2026:** a [proposta de evolução](m7-proposta.md) e o [baseline local](validacao-m7.md) estão preparados para revisão. O [ADR-014](adrs/014-evolucao-condicional-para-uso-compartilhado.md) permanece proposto; PostgreSQL, worker e controles remotos não foram implementados. As seções históricas abaixo descrevem a evolução da aplicação local.
+
 **Atualização de 02/11/2026:** a integração de desenvolvimento acrescenta [casos de uso de extração](../src/radar_contratos/application/extractions.py), [regras assistidas puras](../src/radar_contratos/domain/assisted.py), [adaptador local](../src/radar_contratos/infrastructure/local_classifier.py), tentativas persistidas e tela. [ADR-013](adrs/013-execucao-e-conferencia-assistidas.md) define seleção/recuperação e a [validação](validacao-integracao-assistida.md) distingue inferência real de simulação. As seções históricas da fundação abaixo não são a lista atual de pendências.
 
 Aplicação local com módulos separados aceita por Lucas no [ADR-003](adrs/003-aplicacao-local-modular.md). As ferramentas do [ADR-004](adrs/004-proposta-tecnologias-locais.md) foram instaladas e verificadas na fundação em 01/11/2026; consulte as [evidências e limitações](validacao-fundacao.md). Fornecedor de IA continua em aberto. A proposta posterior de evolução para escala e desempenho está registrada no [plano de evolução](evolucao-arquitetural.md).

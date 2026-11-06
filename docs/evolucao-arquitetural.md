@@ -2,7 +2,11 @@
 
 Registro de intenção em 01/11/2026.
 
-**Status: etapa futura planejada.** Lucas aceitou as ferramentas da primeira aplicação local e solicitou: “depois vamos propor uma evolução desta arquitetura para que seja escalável e performática”. Este documento registra a entrega futura e seus critérios; não apresenta uma arquitetura de destino escolhida nem desempenho comprovado.
+**Atualização de 05/11/2026: M7 preparada para revisão.** Lucas solicitou executar a etapa e escolheu cenários hipotéticos com premissas explícitas. A [proposta M7](m7-proposta.md), o [baseline medido](validacao-m7.md), os [custos](m7-custos.md) e o [ADR-014 proposto](adrs/014-evolucao-condicional-para-uso-compartilhado.md) atendem ao plano abaixo. Não há implantação, orçamento aprovado ou escolha definitiva de IA.
+
+## Plano original de 01/11/2026
+
+As seções seguintes preservam os critérios de entrada e entrega originais. A ausência de cenário/metas descrita ali é histórica: o estudo atual usa hipóteses expressamente escolhidas por Lucas, sem convertê-las em demanda real.
 
 ## 1. Objetivo da etapa
 

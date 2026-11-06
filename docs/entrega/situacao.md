@@ -18,7 +18,7 @@ Atualizado em 05/11/2026. Este quadro organiza a entrega; não declara submissã
 | Cartão | [Pasta portátil](galeria/lucasgoulartcouto/README.md), metadados e imagem | Rascunho com links de posts vazios; não pronto para submeter |
 | Visibilidade | [Textos para os dois canais](publicacoes.md) | Não enviados; dependem de instrução de Lucas |
 | Galeria | Destino oficial conferido em `desafio-livre/projetos/lucasgoulartcouto/` | Nenhum fork, PR ou submissão executados |
-| Operação e escala | [Proposta de evolução](../evolucao-arquitetural.md), limites locais e lacunas documentados | Não implantado em produção nem medido sob carga |
+| Operação e escala | [M7](../m7-proposta.md), [baseline sintético](../validacao-m7.md), custos e ADR proposto | Estudo para revisão; medição local curta, sem carga remota/IA ou implantação |
 
 ## Sequência para finalizar a participação
 

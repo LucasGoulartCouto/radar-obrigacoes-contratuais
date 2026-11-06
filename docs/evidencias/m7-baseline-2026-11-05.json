@@ -1,0 +1,1860 @@
+{
+  "started_utc": "2026-11-06T01:01:30.093530+00:00",
+  "git_head": "979bf37d92e975406ca818db9cad76e331dc85f2",
+  "source_sha256": "984de18e0973a9d56936b2bf76f7f0c1cf74dbfb056425a73e506e284f1b1163",
+  "harness_sha256": "2d9a5618a998c5943826886d03231cdabd6b950d506e84cc2b78e798698fdc14",
+  "python": "3.14.3",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+  "logical_cpus": 16,
+  "sqlite": "3.50.4",
+  "packages": {
+    "sqlalchemy": "2.1.6",
+    "alembic": "1.20.1",
+    "streamlit": "1.66.1"
+  },
+  "parameters": {
+    "sizes": [
+      100,
+      1000,
+      3000
+    ],
+    "samples": 40,
+    "rounds": 3,
+    "workers": [
+      1,
+      4,
+      8
+    ]
+  },
+  "document_bytes": 8192,
+  "synthetic_source_sha256": "fd20066470d60413221b9eee4ab8fa32c63055f0d4c06ea36850378417d4f062",
+  "cache": "first read after seed, then warm; OS cache not flushed",
+  "scope": "services only; no UI/network/IA; closed-loop threads; no retries",
+  "runs": [
+    {
+      "contracts": 100,
+      "seed_seconds": 2.374,
+      "seed_cpu_seconds": 1.422,
+      "seed_stages": {
+        "register": {
+          "n": 100,
+          "p50_ms": 6.758,
+          "p95_ms": 8.483,
+          "max_ms": 13.184
+        },
+        "document": {
+          "n": 75,
+          "p50_ms": 9.166,
+          "p95_ms": 12.02,
+          "max_ms": 13.751
+        },
+        "manual_analysis": {
+          "n": 75,
+          "p50_ms": 9.25,
+          "p95_ms": 12.828,
+          "max_ms": 13.856
+        },
+        "confirm": {
+          "n": 25,
+          "p50_ms": 9.074,
+          "p95_ms": 13.398,
+          "max_ms": 14.598
+        }
+      },
+      "first_read_ms": 8.718,
+      "reads": [
+        {
+          "workers": 1,
+          "batches": [
+            {
+              "wall_seconds": 0.193,
+              "cpu_seconds": 0.188
+            },
+            {
+              "wall_seconds": 0.204,
+              "cpu_seconds": 0.203
+            },
+            {
+              "wall_seconds": 0.217,
+              "cpu_seconds": 0.219
+            }
+          ],
+          "latency": {
+            "n": 120,
+            "p50_ms": 4.646,
+            "p95_ms": 5.747,
+            "max_ms": 27.952
+          },
+          "busy": 0
+        },
+        {
+          "workers": 4,
+          "batches": [
+            {
+              "wall_seconds": 0.221,
+              "cpu_seconds": 0.266
+            },
+            {
+              "wall_seconds": 0.198,
+              "cpu_seconds": 0.359
+            },
+            {
+              "wall_seconds": 0.201,
+              "cpu_seconds": 0.25
+            }
+          ],
+          "latency": {
+            "n": 120,
+            "p50_ms": 19.723,
+            "p95_ms": 27.828,
+            "max_ms": 36.686
+          },
+          "busy": 0
+        },
+        {
+          "workers": 8,
+          "batches": [
+            {
+              "wall_seconds": 0.292,
+              "cpu_seconds": 0.891
+            },
+            {
+              "wall_seconds": 0.251,
+              "cpu_seconds": 0.812
+            },
+            {
+              "wall_seconds": 0.24,
+              "cpu_seconds": 0.844
+            }
+          ],
+          "latency": {
+            "n": 120,
+            "p50_ms": 44.8,
+            "p95_ms": 112.114,
+            "max_ms": 119.649
+          },
+          "busy": 0
+        }
+      ],
+      "mixed": {
+        "workers": 8,
+        "wall_seconds": 0.652,
+        "cpu_seconds": 0.719,
+        "operations": [
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 61.398599995300174
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 41.05850006453693
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 104.30989996530116
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 38.95379998721182
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 393.0885000154376
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 38.10830018483102
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 588.6431999970227
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 35.509500186890364
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 257.32779991813004
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 26.75019996240735
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 110.91899988241494
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 24.447300005704165
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 17.249099910259247
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 31.478999881073833
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 184.74329984746873
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 5.211599869653583
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 8.928299881517887
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 5.346700083464384
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 93.38369988836348
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 24.83729994855821
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 10.144599946215749
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 4.810400074347854
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 9.263599989935756
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 11.869400041177869
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 443.21889989078045
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 5.706500029191375
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 40.86620011366904
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 5.3362001199275255
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 8.739399956539273
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 9.903099853545427
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 40.436199866235256
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 4.9211999867111444
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 444.0010997932404
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 4.932000068947673
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 9.827099973335862
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 5.7743999641388655
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 21.554900100454688
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 8.625700138509274
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 58.337500086054206
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 4.617700120434165
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 8.84509994648397
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 5.06239989772439
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 0.8453000336885452
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 4.078299971297383
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 91.77029994316399
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 4.746900172904134
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 8.938999846577644
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 5.304299993440509
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 313.89230000786483
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 5.549399880692363
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 21.452599903568625
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 9.211899945512414
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 32.13150007650256
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 4.75750002078712
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 9.046300081536174
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 5.654399981722236
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 31.266999896615744
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 6.307600066065788
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 14.60730005055666
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 9.361699922010303
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 293.05350012145936
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 4.757300019264221
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 102.54650004208088
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 4.551500082015991
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 9.806200163438916
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 4.9766001757234335
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 0.853799981996417
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 7.311899913474917
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 46.60389991477132
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 4.965699976310134
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 8.862800197675824
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 5.764700006693602
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 9.505100082606077
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 5.697699962183833
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 55.09679997339845
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 5.7796998880803585
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 9.130300022661686
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 9.656300069764256
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 126.68300000950694
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 4.75020008161664
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 8.77860002219677
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 5.067100049927831
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 36.79170017130673
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 5.672000115737319
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 9.03489999473095
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 5.921500036492944
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 38.611700059846044
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 6.4743999391794205
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 9.532500058412552
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 6.080499850213528
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 63.856199849396944
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 5.296600051224232
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 8.888399926945567
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 5.753000034019351
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 20.13299986720085
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 6.2865999061614275
+          }
+        ]
+      },
+      "integrity_check": "ok",
+      "journal_mode": "delete",
+      "synchronous": 2,
+      "schema": "0005_analysis_execution",
+      "invariants": {
+        "coverage_complete": true,
+        "atomic_no_duplicate_events": true,
+        "stale_rejected": true,
+        "blocked_rejected": true,
+        "history_preserved": true,
+        "foreign_keys": true
+      },
+      "successful_unique_confirmations": 24,
+      "database_bytes": 1978368,
+      "process_peak_memory_bytes": 109445120
+    },
+    {
+      "contracts": 1000,
+      "seed_seconds": 23.248,
+      "seed_cpu_seconds": 14.766,
+      "seed_stages": {
+        "register": {
+          "n": 1000,
+          "p50_ms": 6.667,
+          "p95_ms": 7.478,
+          "max_ms": 14.491
+        },
+        "document": {
+          "n": 750,
+          "p50_ms": 9.269,
+          "p95_ms": 10.358,
+          "max_ms": 14.748
+        },
+        "manual_analysis": {
+          "n": 750,
+          "p50_ms": 9.464,
+          "p95_ms": 10.512,
+          "max_ms": 17.415
+        },
+        "confirm": {
+          "n": 250,
+          "p50_ms": 9.429,
+          "p95_ms": 10.476,
+          "max_ms": 13.253
+        }
+      },
+      "first_read_ms": 21.341,
+      "reads": [
+        {
+          "workers": 1,
+          "batches": [
+            {
+              "wall_seconds": 0.88,
+              "cpu_seconds": 0.891
+            },
+            {
+              "wall_seconds": 0.92,
+              "cpu_seconds": 0.906
+            },
+            {
+              "wall_seconds": 0.84,
+              "cpu_seconds": 0.828
+            }
+          ],
+          "latency": {
+            "n": 120,
+            "p50_ms": 21.072,
+            "p95_ms": 27.177,
+            "max_ms": 44.621
+          },
+          "busy": 0
+        },
+        {
+          "workers": 4,
+          "batches": [
+            {
+              "wall_seconds": 0.874,
+              "cpu_seconds": 1.891
+            },
+            {
+              "wall_seconds": 0.858,
+              "cpu_seconds": 1.703
+            },
+            {
+              "wall_seconds": 0.882,
+              "cpu_seconds": 1.906
+            }
+          ],
+          "latency": {
+            "n": 120,
+            "p50_ms": 84.467,
+            "p95_ms": 102.77,
+            "max_ms": 115.486
+          },
+          "busy": 0
+        },
+        {
+          "workers": 8,
+          "batches": [
+            {
+              "wall_seconds": 1.114,
+              "cpu_seconds": 4.422
+            },
+            {
+              "wall_seconds": 1.181,
+              "cpu_seconds": 4.594
+            },
+            {
+              "wall_seconds": 1.17,
+              "cpu_seconds": 4.594
+            }
+          ],
+          "latency": {
+            "n": 120,
+            "p50_ms": 225.792,
+            "p95_ms": 254.099,
+            "max_ms": 280.741
+          },
+          "busy": 0
+        }
+      ],
+      "mixed": {
+        "workers": 8,
+        "wall_seconds": 1.464,
+        "cpu_seconds": 1.531,
+        "operations": [
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 114.3032000400126
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 71.5222000144422
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 1458.3203999791294
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 54.56159985624254
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 408.4709999151528
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 95.4050999134779
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 355.67609989084303
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 84.96949984692037
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 198.81369988434017
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 77.81329983845353
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 115.23260013200343
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 55.49250007607043
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 48.342399997636676
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 58.28370014205575
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 230.54819996468723
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 31.350099947303534
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 295.9277001209557
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 31.12079994753003
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 29.009300051257014
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 27.20410004258156
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 831.2748000025749
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 33.00620010122657
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 29.52570002526045
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 65.75980014167726
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 9.876800002530217
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 58.5105000063777
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 1004.0127001702785
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 23.542500101029873
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 221.66500007733703
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 22.285799961537123
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 273.73540005646646
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 29.97589996084571
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 28.195399791002274
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 46.42849997617304
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 1.2175000738352537
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 22.162700071930885
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 869.0859999042004
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 25.191099848598242
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 24.931700201705098
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 26.188600109890103
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 26.1654001660645
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 23.029299918562174
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 22.99319999292493
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 24.77249992080033
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 234.5863999798894
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 25.506600039079785
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 25.121300015598536
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 28.354000067338347
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 28.280100086703897
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 22.187599912285805
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 360.0723999552429
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 25.828099809587002
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 26.232199976220727
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 22.09659991785884
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 27.2324001416564
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 33.78550009801984
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 36.447100108489394
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 51.1570000089705
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 1.4159998390823603
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 27.805199846625328
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 46.60819983109832
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 30.212200013920665
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 86.83120016939938
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 28.98610010743141
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 26.703699957579374
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 23.992800153791904
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 26.795900193974376
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 57.89230018854141
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 55.72950001806021
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 29.5095001347363
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 195.59909985400736
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 55.827099829912186
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 9.715799940750003
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 31.911199912428856
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 113.73459990136325
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 77.85460003651679
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 11.035900097340345
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 43.27579983510077
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 84.59220011718571
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 21.719800075516105
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 233.23310003615916
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 27.470899978652596
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 148.9808999467641
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 28.661400079727173
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 229.98619987629354
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 25.59729991480708
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 25.464799953624606
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 28.677199967205524
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 30.82039998844266
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 47.84130002371967
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 1.0800000745803118
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 28.81889999844134
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 91.65279986336827
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 26.08029986731708
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 29.54920008778572
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 39.28339993581176
+          }
+        ]
+      },
+      "integrity_check": "ok",
+      "journal_mode": "delete",
+      "synchronous": 2,
+      "schema": "0005_analysis_execution",
+      "invariants": {
+        "coverage_complete": true,
+        "atomic_no_duplicate_events": true,
+        "stale_rejected": true,
+        "blocked_rejected": true,
+        "history_preserved": true,
+        "foreign_keys": true
+      },
+      "successful_unique_confirmations": 24,
+      "database_bytes": 17870848,
+      "process_peak_memory_bytes": 121532416
+    },
+    {
+      "contracts": 3000,
+      "seed_seconds": 73.097,
+      "seed_cpu_seconds": 45.047,
+      "seed_stages": {
+        "register": {
+          "n": 3000,
+          "p50_ms": 6.839,
+          "p95_ms": 8.897,
+          "max_ms": 36.197
+        },
+        "document": {
+          "n": 2250,
+          "p50_ms": 9.517,
+          "p95_ms": 11.784,
+          "max_ms": 32.217
+        },
+        "manual_analysis": {
+          "n": 2250,
+          "p50_ms": 9.7,
+          "p95_ms": 11.939,
+          "max_ms": 24.676
+        },
+        "confirm": {
+          "n": 750,
+          "p50_ms": 9.758,
+          "p95_ms": 11.878,
+          "max_ms": 23.872
+        }
+      },
+      "first_read_ms": 82.384,
+      "reads": [
+        {
+          "workers": 1,
+          "batches": [
+            {
+              "wall_seconds": 3.004,
+              "cpu_seconds": 3.0
+            },
+            {
+              "wall_seconds": 2.982,
+              "cpu_seconds": 2.969
+            },
+            {
+              "wall_seconds": 2.964,
+              "cpu_seconds": 2.969
+            }
+          ],
+          "latency": {
+            "n": 120,
+            "p50_ms": 72.267,
+            "p95_ms": 87.164,
+            "max_ms": 98.494
+          },
+          "busy": 0
+        },
+        {
+          "workers": 4,
+          "batches": [
+            {
+              "wall_seconds": 2.738,
+              "cpu_seconds": 6.219
+            },
+            {
+              "wall_seconds": 2.843,
+              "cpu_seconds": 6.406
+            },
+            {
+              "wall_seconds": 2.756,
+              "cpu_seconds": 6.609
+            }
+          ],
+          "latency": {
+            "n": 120,
+            "p50_ms": 273.962,
+            "p95_ms": 314.722,
+            "max_ms": 337.232
+          },
+          "busy": 0
+        },
+        {
+          "workers": 8,
+          "batches": [
+            {
+              "wall_seconds": 3.274,
+              "cpu_seconds": 13.922
+            },
+            {
+              "wall_seconds": 3.301,
+              "cpu_seconds": 13.625
+            },
+            {
+              "wall_seconds": 3.303,
+              "cpu_seconds": 13.562
+            }
+          ],
+          "latency": {
+            "n": 120,
+            "p50_ms": 647.811,
+            "p95_ms": 702.57,
+            "max_ms": 756.963
+          },
+          "busy": 0
+        }
+      ],
+      "mixed": {
+        "workers": 8,
+        "wall_seconds": 4.281,
+        "cpu_seconds": 4.812,
+        "operations": [
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 349.1885999683291
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 265.42140007950366
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 1631.1551998369396
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 294.7068999055773
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 4170.821100007743
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 235.4877998586744
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 591.8362999800593
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 224.0120000205934
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 3059.9578998517245
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 358.73250011354685
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 811.2835998181254
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 262.8297000192106
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 10.945300105959177
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 221.2856998667121
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 301.38089996762574
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 189.8683998733759
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 170.89099995791912
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 146.71160001307726
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 624.4027998764068
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 89.16560001671314
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 211.75690018571913
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 123.0052001774311
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 1752.7014999650419
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 87.42769993841648
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 1057.0722999982536
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 93.95680017769337
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 94.13270000368357
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 103.47760003060102
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 99.37090007588267
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 104.10130000673234
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 195.9335000719875
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 101.10029997304082
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 197.01170013286173
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 102.92860004119575
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 249.25470002926886
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 82.92190008796751
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 965.7873001415282
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 86.02749998681247
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 317.98959989100695
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 86.49839996360242
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 86.44960005767643
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 77.55750021897256
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 78.01169995218515
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 83.22099992074072
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 2351.99260013178
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 73.27180006541312
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 237.2881001792848
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 83.31910008564591
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 83.82140006870031
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 81.06460003182292
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 170.10129988193512
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 89.32209992781281
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 1693.1666999589652
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 80.96980000846088
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 80.73029993101954
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 86.59990015439689
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 87.1250000782311
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 72.52190005965531
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 1163.3121999911964
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 78.17069999873638
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 161.58899990841746
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 84.0419998858124
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 163.17170020192862
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 79.19019996188581
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 251.07700005173683
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 88.30210007727146
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 88.9608000870794
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 84.10269999876618
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 352.4803000036627
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 99.73239991813898
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 108.57719997875392
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 96.45489999093115
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 88.13020004890859
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 72.98319996334612
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 1132.3152999393642
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 76.92699995823205
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 248.11049993149936
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 87.68889983184636
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 87.7117000054568
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 82.28329988196492
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 167.20740008167922
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 84.91580002009869
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 686.4551000762731
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 76.02829998359084
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 426.2081999331713
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 87.0998001191765
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 86.84760006144643
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 102.2910000756383
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 102.29820013046265
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 83.55089998804033
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 345.63200012780726
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 77.04390003345907
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 249.9083001166582
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 75.37320000119507
+          },
+          {
+            "kind": "confirm",
+            "status": "ok",
+            "ms": 77.52100005745888
+          },
+          {
+            "kind": "read",
+            "status": "ok",
+            "ms": 99.58999999798834
+          }
+        ]
+      },
+      "integrity_check": "ok",
+      "journal_mode": "delete",
+      "synchronous": 2,
+      "schema": "0005_analysis_execution",
+      "invariants": {
+        "coverage_complete": true,
+        "atomic_no_duplicate_events": true,
+        "stale_rejected": true,
+        "blocked_rejected": true,
+        "history_preserved": true,
+        "foreign_keys": true
+      },
+      "successful_unique_confirmations": 24,
+      "database_bytes": 53067776,
+      "process_peak_memory_bytes": 132501504
+    }
+  ]
+}
