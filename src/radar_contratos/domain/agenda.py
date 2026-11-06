@@ -99,7 +99,10 @@ def coverage_for(
             )
         return CoverageState.WAITING_ANALYSIS, "Registre um levantamento da revisão atual."
     if not current_rule:
-        return CoverageState.PENDING_REVIEW, "A regra mudou; refaça o levantamento e a conferência."
+        return (
+            CoverageState.PENDING_REVIEW,
+            "O método ou a regra mudou; refaça o levantamento e a conferência.",
+        )
     if not reviewed:
         return CoverageState.PENDING_REVIEW, "Confira os campos e as evidências da base atual."
     if candidate_count != event_count:

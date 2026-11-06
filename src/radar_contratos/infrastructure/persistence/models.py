@@ -115,6 +115,7 @@ class AnalysisRow(Base):
     method_version: Mapped[str] = mapped_column(
         String(40), default="MANUAL_V1", server_default="MANUAL_V1"
     )
+    execution_id: Mapped[str | None] = mapped_column(ForeignKey("extraction_runs.id"))
     blocked: Mapped[bool]
     candidate_count: Mapped[int]
     change_reason: Mapped[str] = mapped_column(String(500))
