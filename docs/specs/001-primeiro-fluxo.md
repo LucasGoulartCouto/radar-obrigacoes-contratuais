@@ -1,6 +1,6 @@
 # SPEC-001 — Do contrato sintético à agenda conferida
 
-Versão 0.6 · 02/11/2026 · Entrada, levantamento manual, análise assistida local, conferência, agenda e tentativas/recuperação implementados no desenvolvimento; [validação](../validacao-integracao-assistida.md) identifica evidências e limites.
+Versão 0.7 · 04/11/2026 · Entrada, levantamento manual, análise assistida local, conferência, agenda e tentativas/recuperação implementados no desenvolvimento; [validação](../validacao-integracao-assistida.md) identifica evidências e limites. Atualização documental de situação, sem mudança das regras ou dos resultados esperados. O [roteiro de revisão](../entrega/revisao.md) relaciona C01–C22 às evidências e lacunas.
 
 Referência: [PRD](../PRD.md). Esta SPEC define regras do case fictício, sem estabelecer interpretação jurídica para contratos reais. A separação entre extração, cálculo e confirmação e o bloqueio por ambiguidade, conflito ou aditivo foram aceitos por Lucas no ADR-002. Limites, nomes de estados e outros detalhes técnicos continuam sujeitos à revisão.
 
@@ -105,9 +105,9 @@ Na conferência, exibir texto de origem e contexto junto aos campos propostos, d
 
 O extrator propõe campos e evidências. Ele não confirma eventos, não decide qual documento está vigente, não executa código vindo de documentos e não recebe ferramentas de envio ou alteração de contratos. A aplicação valida a estrutura e as referências antes de permitir a conferência. Texto retornado deve ser renderizado como dado, sem executar HTML, comandos ou links incorporados como ações.
 
-## 8. Cenários obrigatórios para futura verificação
+## 8. Cenários obrigatórios para verificação
 
-As respostas abaixo foram definidas antes da implementação. Elas serão material para testes e demonstração, não são resultados já obtidos.
+As respostas abaixo foram definidas antes da implementação e continuam sendo os resultados esperados. Sua presença nesta tabela não declara aprovação: o [roteiro de revisão](../entrega/revisao.md) identifica o alcance das verificações existentes.
 
 | ID | Entrada/ação | Resultado esperado |
 |---|---|---|
@@ -134,18 +134,18 @@ As respostas abaixo foram definidas antes da implementação. Elas serão materi
 | C21 | Nova execução da mesma base com resultado diferente | Preservar resultados e exigir nova conferência antes de atualizar a agenda |
 | C22 | Número negativo/fracionário ou divergente do valor por extenso | Bloqueio do cálculo, com motivo identificado |
 
-## 9. Pendências para implementação
+## 9. Situação da implementação e pendências
 
-- Limites e recuperação local implementados conforme [ADR-013](../adrs/013-execucao-e-conferencia-assistidas.md); verificar instalação limpa e manter as limitações de cancelamento, revisão simulada e avaliação independente explícitas.
-- Transformar cenários em dados sintéticos e respostas esperadas, com conjuntos de desenvolvimento e avaliação separados.
-- Definir o mecanismo de identificação do revisor no protótipo e declarar seus limites.
-- Especificar o formato de intercâmbio do extrator após escolher a alternativa técnica.
+- Limites e recuperação local implementados conforme [ADR-013](../adrs/013-execucao-e-conferencia-assistidas.md). A [reprodução](../validacao-reproducao.md) exercitou preparo, validação e início numa cópia/ambiente/banco novos nesta máquina; Python e runtime de IA já existentes. Outra máquina/sistema limpo e cancelamento do cálculo no runtime continuam sem comprovação.
+- Há 20 casos/21 documentos de desenvolvimento, com respostas anotadas e testes próprios de fluxo. O conjunto reservado continua pendente; os exemplos usados para ajustar o método não constituem avaliação independente.
+- O revisor é um nome informado na simulação, preservado com a conferência conforme ADR-007/013. Não há autenticação, assinatura ou comprovação de identidade; revisão real de Lucas dos PRs e materiais permanece separada.
+- O formato local está identificado em `LINE_CLASSIFICATION_V1` e `LITERAL_CLAUSES_V1`, conforme [ADR-011](../adrs/011-classificacao-de-linhas-e-interpretacao-literal.md), e integrado como `ASSISTED_LOCAL_LINES_V1` no ADR-013. Formato estruturado não garante suporte semântico. Produção/seleção definitiva da IA permanecem adiadas.
 
 Metas de qualidade do extrator serão tratadas no PRD após o experimento inicial. Estas regras não dependem de uma marca de modelo ou framework.
 
-## 10. Exemplos iniciais disponíveis
+## 10. Casos de desenvolvimento disponíveis
 
-O [conjunto de desenvolvimento](../../tests/fixtures/contracts/README.md) contém oito casos com documentos e gabarito, ligados aos cenários C01, C02, C04, C05, C07, C10, C14 e C16. Eles concretizam entradas e respostas esperadas; não comprovam a implementação desses cenários. Mudanças de revisão, concorrência, repetição, falhas e limites ainda precisam de casos de fluxo próprios. Consulte também as [decisões e propostas operacionais](../decisoes-primeiro-fluxo.md).
+O [conjunto de desenvolvimento](../../tests/fixtures/contracts/README.md) contém 20 casos e 21 documentos, preservando os oito iniciais e seus gabaritos. Eles concretizam entradas e respostas esperadas; não comprovam por si só a implementação dos cenários. Mudanças de revisão, concorrência, repetição, falhas e limites têm testes de fluxo próprios, relacionados no [roteiro de revisão](../entrega/revisao.md). A execução real conhecida do método mantém a referência de 18/20 antes de correções; não houve avaliação reservada. Consulte também as [decisões e propostas operacionais](../decisoes-primeiro-fluxo.md).
 
 ## 11. Verificação do caminho manual
 
@@ -153,6 +153,8 @@ O [registro da conferência](../validacao-conferencia-manual.md) identifica os t
 
 ## 12. Agenda e cobertura do caminho atual
 
-O [ADR-008](../adrs/008-agenda-e-cobertura-da-carteira.md) implementa a agenda com referência inicial 01/05/2027, horizonte fixo de 30 dias e filtros de situação/tipo. A [matriz de validação](../validacao-agenda.md) registra C19 no fluxo confirmado e a parte alcançável de C20. A cobertura atual inclui aguardando documentos, aguardando análise, revisão pendente, bloqueado, conferido com eventos e conferido sem eventos no recorte; não existe ainda falha de execução de extrator persistida. A precedência da seção 5 continua descrevendo o fluxo futuro com extrator; não apresentar C20 completo como aprovado.
+O [ADR-008](../adrs/008-agenda-e-cobertura-da-carteira.md) introduziu a agenda com referência inicial 01/05/2027, horizonte fixo de 30 dias e filtros de situação/tipo. A [matriz histórica da agenda](../validacao-agenda.md) registra C19 e a parte então alcançável de C20. O [ADR-013](../adrs/013-execucao-e-conferencia-assistidas.md) acrescentou tentativas persistidas e alinhou a cobertura aos seis grupos atuais da seção 5, incluindo **Falha de análise**; falta de documentos é detalhe de **Aguardando análise**.
+
+O teste `test_mixed_portfolio_counts_every_contract_once_and_only_emits_current_reviewed_events`, em [test_agenda.py](../../tests/integration/test_agenda.py), verifica uma carteira mista com um contrato em cada grupo, falha de inferência simulada e levantamentos manuais. A [validação assistida](../validacao-integracao-assistida.md) separa esse teste da demonstração com modelo real, que mostrou duas situações. Essa evidência não declara C20 completo por demonstração real, avaliação independente ou revisão humana de Lucas.
 
 Filtros vazios ou referência apagada mantêm a carteira visível. Falha de consulta não é convertida em cobertura zero. Documento, levantamento ou regra desatualizados retiram eventos da agenda sem apagar o contrato e o histórico. Consultar origem revalida a base se ela mudou depois da projeção. A consulta não grava referência, não altera confirmações e não registra ação externa.

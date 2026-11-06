@@ -1,0 +1,267 @@
+{
+  "checked_date": "2026-11-04",
+  "timezone": "America/Sao_Paulo",
+  "scope": "Reconciliation before the documentation changes in this continuation; not a human review or a new model evaluation",
+  "repository": "LucasGoulartCouto/radar-obrigacoes-contratuais",
+  "local_before_work": {
+    "branch": "codex/reproducao-e-entrega",
+    "head": "0ecf88246e0ac64f2c70fee885ea34e4f1831666",
+    "working_tree_clean": true,
+    "matched_pr_head": 12
+  },
+  "pull_requests": [
+    {
+      "number": 1,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/1",
+      "state": "open",
+      "merged": false,
+      "draft": false,
+      "base": "main",
+      "base_sha": "d389ec2987df20d547096e56a03d7f44c6ea357b",
+      "head": "feat/fundacao-local",
+      "head_sha": "91c96da14f12655079c968657d4dc43741d0ed2a",
+      "workflows": [
+        {
+          "id": 41307938776,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41307938776"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/2",
+      "state": "open",
+      "merged": false,
+      "draft": false,
+      "base": "feat/fundacao-local",
+      "base_sha": "91c96da14f12655079c968657d4dc43741d0ed2a",
+      "head": "feat/regras-e-casos-sinteticos",
+      "head_sha": "413154480237852cd9fae3105b73383e0c195fe7",
+      "workflows": [
+        {
+          "id": 41309384821,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41309384821"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/3",
+      "state": "open",
+      "merged": false,
+      "draft": false,
+      "base": "feat/regras-e-casos-sinteticos",
+      "base_sha": "413154480237852cd9fae3105b73383e0c195fe7",
+      "head": "feat/entrada-documental",
+      "head_sha": "155d2aeeef3644767d2b8b7f0af6e4f2ca6e16f8",
+      "workflows": [
+        {
+          "id": 41314435653,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41314435653"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/4",
+      "state": "open",
+      "merged": false,
+      "draft": false,
+      "base": "feat/entrada-documental",
+      "base_sha": "155d2aeeef3644767d2b8b7f0af6e4f2ca6e16f8",
+      "head": "feat/candidatos-e-conferencia",
+      "head_sha": "189962f64b2f3d2d0892e69fdae0fa5cff70c7ff",
+      "workflows": [
+        {
+          "id": 41320755320,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41320755320"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/5",
+      "state": "open",
+      "merged": false,
+      "draft": false,
+      "base": "feat/candidatos-e-conferencia",
+      "base_sha": "189962f64b2f3d2d0892e69fdae0fa5cff70c7ff",
+      "head": "feat/agenda-e-cobertura",
+      "head_sha": "e0ea2c8285bdbe7c17e99741d97e92910f3e263f",
+      "workflows": [
+        {
+          "id": 41330479495,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41330479495"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/6",
+      "state": "open",
+      "merged": false,
+      "draft": false,
+      "base": "feat/agenda-e-cobertura",
+      "base_sha": "e0ea2c8285bdbe7c17e99741d97e92910f3e263f",
+      "head": "codex/docs-agentes",
+      "head_sha": "0ac98d72bb3dd17c2625fc15dbb55a6f75fe82bd",
+      "workflows": [
+        {
+          "id": 41354571169,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41354571169"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/7",
+      "state": "open",
+      "merged": false,
+      "draft": false,
+      "base": "codex/docs-agentes",
+      "base_sha": "0ac98d72bb3dd17c2625fc15dbb55a6f75fe82bd",
+      "head": "codex/avaliacao-extracao",
+      "head_sha": "40a69cde2351b435dcbb37b3a61fdf741d8c7473",
+      "workflows": [
+        {
+          "id": 41356071350,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41356071350"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/8",
+      "state": "open",
+      "merged": false,
+      "draft": true,
+      "base": "codex/avaliacao-extracao",
+      "base_sha": "40a69cde2351b435dcbb37b3a61fdf741d8c7473",
+      "head": "codex/ia-local",
+      "head_sha": "2ecc473b9b40aaa3c06982788989f8e90413c820",
+      "workflows": [
+        {
+          "id": 41358441452,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41358441452"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/9",
+      "state": "open",
+      "merged": false,
+      "draft": true,
+      "base": "codex/ia-local",
+      "base_sha": "2ecc473b9b40aaa3c06982788989f8e90413c820",
+      "head": "codex/ia-local-estruturada",
+      "head_sha": "a01b7b594c4bfefe1b47c67e2c2fb30b03c4ab25",
+      "workflows": [
+        {
+          "id": 41361921221,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41361921221"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/10",
+      "state": "open",
+      "merged": false,
+      "draft": true,
+      "base": "codex/ia-local-estruturada",
+      "base_sha": "a01b7b594c4bfefe1b47c67e2c2fb30b03c4ab25",
+      "head": "codex/revisao-retencoes",
+      "head_sha": "5db8bf849c4799b3f1b0854d9781480475f447f4",
+      "workflows": [
+        {
+          "id": 41475706918,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41475706918"
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/11",
+      "state": "open",
+      "merged": false,
+      "draft": true,
+      "base": "codex/revisao-retencoes",
+      "base_sha": "5db8bf849c4799b3f1b0854d9781480475f447f4",
+      "head": "codex/extracao-assistida",
+      "head_sha": "39befe7e8c3d52fb10a251f93d4515ca27a9ac8e",
+      "workflows": [
+        {
+          "id": 41486872678,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41486872678"
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/12",
+      "state": "open",
+      "merged": false,
+      "draft": true,
+      "base": "codex/extracao-assistida",
+      "base_sha": "39befe7e8c3d52fb10a251f93d4515ca27a9ac8e",
+      "head": "codex/reproducao-e-entrega",
+      "head_sha": "0ecf88246e0ac64f2c70fee885ea34e4f1831666",
+      "workflows": [
+        {
+          "id": 41491746959,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41491746959"
+        }
+      ]
+    }
+  ],
+  "review_records_checked": {
+    "pr": 12,
+    "review_submissions": 0,
+    "review_threads": 0,
+    "does_not_establish_unrecorded_human_review": true
+  },
+  "not_audited": [
+    "General issue comments on the 12 pull requests",
+    "Current main branch protection",
+    "External gallery or social publication status"
+  ],
+  "new_local_suite_or_model_execution": false,
+  "merge_performed": false
+}
