@@ -1,6 +1,8 @@
 # Ponto de retomada do Radar
 
-Última conferência: **01/11/2026, America/Sao_Paulo**. Este arquivo é um checkpoint do trabalho, não uma transcrição do chat. Revalidar os fatos que podem mudar antes de agir.
+Última conferência: **02/11/2026, America/Sao_Paulo**. Este arquivo é um checkpoint do trabalho, não uma transcrição do chat. Revalidar os fatos que podem mudar antes de agir.
+
+**Retomada em 02/11/2026:** Git limpo em `a01b7b5`, idêntico ao PR #9; nove PRs abertos/sem merge e CI final #9 aprovada conferidos pelo conector. Nova branch `codex/revisao-retencoes`, base `codex/ia-local-estruturada`. Revisão offline explícita das duas retenções concluída localmente, mantendo fonte/prompt/interpretador V1 intactos e preparando os requisitos da integração assistida. Preparação de publicação deste bloco, sem PR novo ainda. Execução persistida/UI/recuperação continuam pendentes.
 
 **Retomada autorizada em 01/11/2026:** Lucas pediu continuar o Radar. A pausa anterior foi encerrada por esse pedido; preservada a prioridade de organizar a documentação dos agentes antes de iniciar extração ou outra funcionalidade.
 
@@ -8,7 +10,7 @@
 
 - Projeto local: `D:\Projetos\Git\desafio_jornadadados`.
 - Repositório: [LucasGoulartCouto/radar-obrigacoes-contratuais](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais).
-- Branch de trabalho: `codex/ia-local-estruturada`, base `codex/ia-local` em `2ecc473b9b40aaa3c06982788989f8e90413c820`. Snapshots V1/V2 e restauração publicados; [PR #9](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/9) aberto em rascunho com base no PR #8. Commit da restauração: `67921308345841b100e583db2cd4e21f5a6d33d2`; nenhum merge.
+- Branch de trabalho: `codex/revisao-retencoes`, base `codex/ia-local-estruturada` em `a01b7b594c4bfefe1b47c67e2c2fb30b03c4ab25`. Bloco de revisão offline em validação local; publicação pendente. Snapshots V1/V2/restauração preservados no [PR #9](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/9), em rascunho; nenhum merge.
 - Última versão funcional verificada: `8a8c8b9ef741dac8acfdfeaf3dabed91d2c766e8`. Atualizações posteriores deste checkpoint podem mudar o HEAD sem alterar a aplicação.
 - A `main` ainda contém a documentação anterior à implementação. Abrir um clone na `main` não equivale a abrir a versão funcional mais recente.
 - Na retomada, o HEAD local coincidiu com o HEAD remoto do PR #5. Havia somente a alteração pendente deste checkpoint. PRs #1–#5 conferidos pelo conector: todos abertos, sem merge e com as bases indicadas abaixo. Consultar Git/plataforma para mudanças posteriores.
@@ -51,6 +53,8 @@ Os PRs são encadeados. Depois de integrar um anterior, conferir a base e o diff
 **Publicação de restauração comprovada:** commit `67921308345841b100e583db2cd4e21f5a6d33d2`, árvore `631d198cc253abc23968c8b251ad8f45c970382c` comparada ao índice local; Git sincronizado antes deste registro. **PR #9 publicado em rascunho:** código/rodadas/matriz ligados ao commit. Este fechamento documental pode gerar outro HEAD; conferir SHA/CI finais na descrição do PR antes de retomar. Não repetir publicação sem comparar Git/plataforma. Fonte ativa conferida contra todos os componentes da rodada V1; 273 testes completos, Ruff/formatação, lock/dependências e 43 arquivos/280 links locais aprovados. Não repetir as rodadas nem a publicação dos snapshots anteriores. **Próximo passo funcional:** tratar as duas retenções conservadoras (instrução ao assistente e condição ilustrativa) e preparar integração assistida com revisão/execução/recuperação, preservando bloqueios, histórico e rejeição de base desatualizada. Não declarar generalização, integração pronta, C20 completo ou seleção de produção. Revisão de Lucas continua separada dos checks.
 
 ## Decisões que devem orientar a próxima etapa
+
+**Bloco local de 02/11/2026:** revisão restrita de contexto implementada conforme [ADR-012](adrs/012-revisao-restrita-de-retencoes.md). CLI executada sobre DEV-008/020, sem inferência nova: dois recibos preservam antes/depois e recuperam três candidatos por decisões simuladas do agente; zero confirmação/gravação na aplicação. 46 testes focados e 319 completos aprovados; Ruff/formatação, lock/dependências e 45 arquivos/295 links aprovados. Diagnóstico/execução da suíte documentados na [validação](validacao-revisao-retencoes.md). A referência automática continua 18/20. Próxima ação externa: publicar PR encadeado em rascunho e conferir CI; depois implementar execução/revisão/recuperação na aplicação local. Não confundir recibo offline com execução persistida/C20.
 
 Consultar os documentos de origem, sem tratar este resumo como nova autorização:
 
