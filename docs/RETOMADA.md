@@ -8,7 +8,7 @@
 
 - Projeto local: `D:\Projetos\Git\desafio_jornadadados`.
 - Repositório: [LucasGoulartCouto/radar-obrigacoes-contratuais](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais).
-- Branch de trabalho: `codex/ia-local-estruturada`, criada de `codex/ia-local` no commit `2ecc473b9b40aaa3c06982788989f8e90413c820`, com Git limpo. PR #8 reconferido aberto/em rascunho, CI final aprovada; nenhuma publicação repetida. Snapshot V1 publicado em `fd37c91ca662e397b9d783cdeccc970be1b4aee8`, branch acompanhando origin, sem PR próprio ainda.
+- Branch de trabalho: `codex/ia-local-estruturada`, base `codex/ia-local` em `2ecc473b9b40aaa3c06982788989f8e90413c820`. Snapshots V1/V2 e restauração publicados; [PR #9](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/9) aberto em rascunho com base no PR #8. Commit da restauração: `67921308345841b100e583db2cd4e21f5a6d33d2`; nenhum merge.
 - Última versão funcional verificada: `8a8c8b9ef741dac8acfdfeaf3dabed91d2c766e8`. Atualizações posteriores deste checkpoint podem mudar o HEAD sem alterar a aplicação.
 - A `main` ainda contém a documentação anterior à implementação. Abrir um clone na `main` não equivale a abrir a versão funcional mais recente.
 - Na retomada, o HEAD local coincidiu com o HEAD remoto do PR #5. Havia somente a alteração pendente deste checkpoint. PRs #1–#5 conferidos pelo conector: todos abertos, sem merge e com as bases indicadas abaixo. Consultar Git/plataforma para mudanças posteriores.
@@ -25,6 +25,7 @@
 | Documentação dos agentes | Mapa, seis guias, pontes e retomada preservada; PR aberto para revisão de Lucas | [PR #6](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/6), base `feat/agenda-e-cobertura` |
 | Comparação de extração | Experimento offline, 20 casos/21 documentos, falhas medidas; sem integração do baseline | [PR #7](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/7), base `codex/docs-agentes` |
 | IA local de desenvolvimento | Runtime/modelo provisório operaram; candidato com falhas, sem integração; PR em rascunho | [PR #8](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/8), base `codex/avaliacao-extracao` |
+| Protocolo por linhas | 18/20 casos integrais, zero candidatos indevidos/impedimentos perdidos; duas retenções e integração pendentes | [PR #9](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/9), base `codex/ia-local`, em rascunho |
 | Verificação da versão funcional | 165 testes locais aprovados e CI aprovada em Windows/Linux | [Validação da agenda](validacao-agenda.md) e [execução 41330174954](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41330174954) |
 
 Os PRs são encadeados. Depois de integrar um anterior, conferir a base e o diff do seguinte antes de integrá-lo. Check automático aprovado não representa revisão humana concluída. Não fazer merge por inferência de uma instrução genérica para continuar o desenvolvimento.
@@ -47,7 +48,7 @@ Os PRs são encadeados. Depois de integrar um anterior, conferir a base e o diff
 
 **Snapshots preservados:** V1 `fd37c91ca662e397b9d783cdeccc970be1b4aee8`; tentativa V2 `004e902ba3fd9e4deddb651dc976a15f896dc157`. V2 regrediu para 16/20 e foi rejeitada. Prompt V1 restaurado com hash exato da referência; modelo, interpretação/guardas e conjunto não foram trocados. Nenhuma mudança na UI/banco.
 
-**Pendências deste bloco:** publicar restauração/documentação em PR próprio e conferir CI. Fonte ativa conferida contra todos os componentes da rodada V1; 273 testes completos, Ruff/formatação, lock/dependências e 43 arquivos/280 links locais aprovados. Não repetir as rodadas nem a publicação dos snapshots anteriores. **Próximo passo funcional:** tratar as duas retenções conservadoras (instrução ao assistente e condição ilustrativa) e preparar integração assistida com revisão/execução/recuperação, preservando bloqueios, histórico e rejeição de base desatualizada. Não declarar generalização, integração pronta, C20 completo ou seleção de produção. Revisão de Lucas continua separada dos checks.
+**Publicação de restauração comprovada:** commit `67921308345841b100e583db2cd4e21f5a6d33d2`, árvore `631d198cc253abc23968c8b251ad8f45c970382c` comparada ao índice local; Git sincronizado antes deste registro. **PR #9 publicado em rascunho:** código/rodadas/matriz ligados ao commit. Este fechamento documental pode gerar outro HEAD; conferir SHA/CI finais na descrição do PR antes de retomar. Não repetir publicação sem comparar Git/plataforma. Fonte ativa conferida contra todos os componentes da rodada V1; 273 testes completos, Ruff/formatação, lock/dependências e 43 arquivos/280 links locais aprovados. Não repetir as rodadas nem a publicação dos snapshots anteriores. **Próximo passo funcional:** tratar as duas retenções conservadoras (instrução ao assistente e condição ilustrativa) e preparar integração assistida com revisão/execução/recuperação, preservando bloqueios, histórico e rejeição de base desatualizada. Não declarar generalização, integração pronta, C20 completo ou seleção de produção. Revisão de Lucas continua separada dos checks.
 
 ## Decisões que devem orientar a próxima etapa
 
@@ -92,6 +93,8 @@ Consulte [o que persiste e o que precisa ser redescoberto](agents/continuidade.m
 **01/11/2026 — Experimento de extração publicado.** PR #7 com baseline offline e avaliador, 20 casos de desenvolvimento e gabaritos anteriores preservados. 208 testes locais e execução do método comprovados; matrizes e resultados finais de CI na descrição do PR. A precisão de candidatos foi 11/18 e cinco impedimentos passaram sem reconhecimento. Não houve IA, despesa, migração ou integração à agenda. Próxima rodada depende de ambiente/fornecedor, orçamento, critérios e avaliação reservada, sem tratar exemplos visíveis como independentes.
 
 **01/11/2026 — IA local preparada e avaliada.** Lucas escolheu execução local e adiou planejamento/seleção de produção até a aplicação concluída. Runtime e candidato provisório operaram no computador; 242 testes passaram. A rodada V2 teve 19 candidatos indevidos e 3 respostas rejeitadas, preservadas no PR #8 em rascunho. Próximo bloco: revisar schema/prompt e bloqueios, sem integrar essa versão nem iniciar seleção de produção.
+
+**01/11/2026 — Protocolo por linhas publicado.** PR #9 preserva referência V1 (18/20, sem candidatos indevidos ou impedimentos perdidos), tentativa V2 rejeitada por regressão e restauração da fonte exata de V1. 273 testes locais passaram; resultado final de CI vinculado no PR. A IA classifica linhas, o código interpreta literais/monta evidências; métricas são da combinação. Duas retenções extras permanecem em desenvolvimento conhecido, sem integração ou avaliação independente. Produção/seleção definitiva de modelo continuam depois da aplicação concluída.
 
 ## Mensagem curta para outra conversa
 
