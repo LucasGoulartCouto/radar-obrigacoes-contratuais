@@ -1,0 +1,456 @@
+{
+  "schema_version": 1,
+  "method_version": "REGEX_EXPERIMENT_V1",
+  "method_sha256": "20549c746fe41cfeb86f09602a41241df6623eceb2f270a458eaa738b0acbb20",
+  "catalog_sha256": "70c82d2815e41bf5c6bb140caa03cca525e98341ff9edd64f512e4ec1ed31e4c",
+  "document_sha256": {
+    "documents/DEV-001-base.txt": "cbfdbaee00d6954b4e70d054360bcfda1f642d88b55853c62ffe973eafbf52a6",
+    "documents/DEV-002-base.txt": "858de9ea2c46ef4456f4401a57c57395372de1a457b2889ed4265d155a791b01",
+    "documents/DEV-003-base.txt": "19e8b8c2a130a077859d5d91878ca16a4bc2aa6c62b8c55f957132c932449ef9",
+    "documents/DEV-004-base.txt": "530e34e9de65b3a50a83f905e9d012cb86c120111db4b0f32ccea2cd0ef9c714",
+    "documents/DEV-004-aditivo.txt": "894c59b211366b02911c64d2c98419e7e9b8cf3d9a9e4c52f1f4feee737f501c",
+    "documents/DEV-005-base.txt": "e42c1eb74ebbf802d0a3cc070b087044a7bf93f07f7e0195e150c560fc229ff9",
+    "documents/DEV-006-base.txt": "73db456cac43471e1cd7c612b3676d823e359afa680ae2f1591e5a546f2a11a7",
+    "documents/DEV-007-base.txt": "adc1131876930c2bc8dfd7c80ed6a549de449efa19b0017e38e679177bd781e1",
+    "documents/DEV-008-base.txt": "4d9b0804841815ed21621eb5f576d3eeb0dcfbc5d2a4a54a3fdab47043d427ad",
+    "documents/DEV-009-base.txt": "06b5ea401d6665eacb7a79020bf2a23134e2e9cf022fc535d972074bf96da389",
+    "documents/DEV-010-base.txt": "819d5123ddfd0017a45c9d50016ad1519ae882252369d9837345cfc923980f66",
+    "documents/DEV-011-base.txt": "1d1cf62f5416ef1e381b2a2ce6ce5dc7a4bf1dd50a073f6537ec6453c7aa9888",
+    "documents/DEV-012-base.txt": "ed3dd3533e34bb71586b00a51e8dd2df0bd1de6afe72ff22e535d73c7196bb3f",
+    "documents/DEV-013-base.txt": "687aef8d66d7a2dfe92e28f581a5ba0dfe1fe815c9c2a4751efbacce72600b6a",
+    "documents/DEV-014-base.txt": "726407cb699d95b2c5bf85f3b12403d15c7ea19cf359fb987042997e42946439",
+    "documents/DEV-015-base.txt": "999f3a842cc90630a9bcb86ca05d12c184d142f473c08148b54cd69cd89404f4",
+    "documents/DEV-016-base.txt": "297e2b265f1e5eb1223be58f9a8bed5438eaf92f67347bc20d8efef3997f83fd",
+    "documents/DEV-017-base.txt": "4a14a46b54fbaa3d5008dde448c5eeddab0a11b23231d2426a885c49a2692578",
+    "documents/DEV-018-base.txt": "925b6539e357c3a61164c94804eeb454df5dafe6c370f965994605361c7a53b1",
+    "documents/DEV-019-base.txt": "aaba6e6dc409201c01667839388d69acd3dac0e6d63067c646a21f3eb44efe47",
+    "documents/DEV-020-base.txt": "b156b596b85aa475c5cc7e4063701375dfdd6df1e098b133f2519309259c27a2"
+  },
+  "split": "development",
+  "independent_evaluation": false,
+  "integrated_with_application": false,
+  "api_calls": 0,
+  "api_cost": 0,
+  "totals": {
+    "cases": 20,
+    "failed_cases": 0,
+    "abstained_cases": 2,
+    "exact_cases": 11,
+    "cases_missing_blockers": 5,
+    "expected_blocked_cases": 11,
+    "failed_blocked_cases": 0,
+    "cases_extra_blockers": 0,
+    "invalid_evidence": 0,
+    "facts": {
+      "tp": 26,
+      "fp": 1,
+      "fn": 3,
+      "precision": 0.9629629629629629,
+      "recall": 0.896551724137931
+    },
+    "events": {
+      "tp": 11,
+      "fp": 7,
+      "fn": 2,
+      "precision": 0.6111111111111112,
+      "recall": 0.8461538461538461
+    }
+  },
+  "timing_ms": {
+    "scope": "extração + pontuação; sem leitura de arquivos, confirmação ou esforço humano",
+    "median": 0.0984,
+    "max": 4.6356
+  },
+  "cases": [
+    {
+      "id": "DEV-001",
+      "abstained": false,
+      "facts": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": true,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-002",
+      "abstained": false,
+      "facts": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": true,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-003",
+      "abstained": false,
+      "facts": {
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": true,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-004",
+      "abstained": false,
+      "facts": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 1
+      },
+      "events": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": false,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-005",
+      "abstained": true,
+      "facts": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": false,
+      "expected_empty": true
+    },
+    {
+      "id": "DEV-006",
+      "abstained": false,
+      "facts": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": true,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-007",
+      "abstained": false,
+      "facts": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": true,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-008",
+      "abstained": false,
+      "facts": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": true,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-009",
+      "abstained": false,
+      "facts": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": true,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-010",
+      "abstained": false,
+      "facts": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": true,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-011",
+      "abstained": false,
+      "facts": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": true,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-012",
+      "abstained": false,
+      "facts": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 0
+      },
+      "blockers_missing": [
+        "unsupported_anchor"
+      ],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": false,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-013",
+      "abstained": false,
+      "facts": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 0
+      },
+      "blockers_missing": [
+        "unsupported_day_unit"
+      ],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": false,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-014",
+      "abstained": false,
+      "facts": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 0
+      },
+      "blockers_missing": [
+        "unsupported_day_unit"
+      ],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": false,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-015",
+      "abstained": false,
+      "facts": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": true,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-016",
+      "abstained": false,
+      "facts": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": true,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-017",
+      "abstained": false,
+      "facts": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 0
+      },
+      "blockers_missing": [
+        "conflicting_notice_days"
+      ],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": false,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-018",
+      "abstained": false,
+      "facts": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "events": {
+        "tp": 0,
+        "fp": 2,
+        "fn": 0
+      },
+      "blockers_missing": [
+        "amendment_not_supported"
+      ],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": false,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-019",
+      "abstained": true,
+      "facts": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1
+      },
+      "events": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": false,
+      "expected_empty": false
+    },
+    {
+      "id": "DEV-020",
+      "abstained": false,
+      "facts": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 1
+      },
+      "events": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 1
+      },
+      "blockers_missing": [],
+      "blockers_extra": [],
+      "invalid_evidence": 0,
+      "exact_case": false,
+      "expected_empty": false
+    }
+  ]
+}

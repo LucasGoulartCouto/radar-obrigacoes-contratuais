@@ -17,7 +17,7 @@ Todos os personagens, fornecedores e documentos deste conjunto são fictícios. 
 | DEV-007 | Antecedência expressa de zero | Aviso e término em 01/05/2027; dois tipos de evento, ambos “Hoje” |
 | DEV-008 | Instrução indevida dentro do texto | Preservar as regras de conferência e ausência de ações externas |
 
-Os nove arquivos de origem estão em [development/documents](development/documents/DEV-001-base.txt). O [gabarito JSON](development/cases.json) contém a data de referência fixa **01/05/2027**, valores anotados, evidências e resultados esperados.
+Os nove arquivos de origem da entrega inicial estão em [development/documents](development/documents/DEV-001-base.txt). O [gabarito JSON](development/cases.json) contém a data de referência fixa **01/05/2027**, valores anotados, evidências e resultados esperados.
 
 ## Como interpretar o gabarito
 
@@ -37,11 +37,32 @@ Uma evidência usa `document_id`, `start_line`, `end_line` e `quote`. As linhas 
 
 As respostas foram anotadas a partir dos exemplos e da SPEC, sem executar extrator. Os testes comparam as evidências com os arquivos e a aritmética já existente com as datas anotadas. A adequação semântica das anotações continua exigindo revisão humana.
 
+## Ampliação para o experimento offline
+
+O conjunto atual contém **20 casos e 21 documentos**, todos de desenvolvimento. Os oito casos acima e suas anotações foram preservados. Novos casos:
+
+| Caso | Variação |
+|---|---|
+| DEV-009 | Fevereiro em ano não bissexto |
+| DEV-010 | Término explícito sem regra de aviso |
+| DEV-011 | Data impossível |
+| DEV-012 | Aviso ancorado em entrega sem data |
+| DEV-013 | Dias úteis |
+| DEV-014 | Meses sem conversão para dias |
+| DEV-015 | Antecedência negativa |
+| DEV-016 | Antecedência fracionária |
+| DEV-017 | Número diverge do texto por extenso |
+| DEV-018 | Aditivo informado somente no conteúdo |
+| DEV-019 | Data de pagamento e término em outra formulação |
+| DEV-020 | Formato reconhecido dentro de exemplo sem autoridade sobre a vigência |
+
+A [comparação inicial](../../../docs/comparacao-extracao.md) e a [validação](../../../docs/validacao-experimento-extracao.md) distinguem anotações, execução real por regras e limites semânticos. Esta entrega mede o baseline offline; não integra extração à aplicação nem substitui a conferência humana.
+
 ## Separação da avaliação
 
-Esta entrega contém **oito casos de desenvolvimento e nenhum caso reservado**. O plano de 20 casos de desenvolvimento e 10 de avaliação continua uma proposta de tamanho; este pacote é inicial.
+Esta entrega contém **20 casos de desenvolvimento e nenhum caso reservado**. O plano de 10 casos reservados continua proposto; nenhum exemplo visível foi reclassificado como independente.
 
-Antes da avaliação de um extrator, precisamos ampliar a diversidade, definir critérios de adoção e preparar um conjunto reservado separado. Exemplos já usados para ajustar código ou prompts não podem ser reapresentados como avaliação independente. Não há taxa de acerto medida nesta entrega.
+Antes da avaliação de um extrator, precisamos ampliar a diversidade, definir critérios de adoção e preparar um conjunto reservado separado. Exemplos já usados para ajustar código ou prompts não podem ser reapresentados como avaliação independente. A taxa do método por regras foi medida somente neste desenvolvimento e está no relatório; não é avaliação independente.
 
 ## Verificação executável
 

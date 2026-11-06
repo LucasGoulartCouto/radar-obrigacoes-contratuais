@@ -272,6 +272,553 @@
         "coverage_after_review": "Conferido com eventos"
       },
       "rationale": "A linha 7 é dado sem autoridade: não confirma eventos nem aciona comunicação. Os fatos das cláusulas continuam sujeitos à validação e à conferência. Este gabarito não comprova resistência de um extrator que ainda não foi implementado."
+    },
+    {
+      "id": "DEV-009",
+      "title": "Fevereiro não bissexto",
+      "spec_scenarios": [
+        "C03"
+      ],
+      "documents": [
+        {
+          "id": "base",
+          "role": "base",
+          "path": "documents/DEV-009-base.txt"
+        }
+      ],
+      "facts": [
+        {
+          "field": "end_date",
+          "value": "2027-03-01",
+          "evidence": {
+            "document_id": "base",
+            "start_line": 5,
+            "end_line": 5,
+            "quote": "Término do ciclo informado: 01/03/2027."
+          }
+        },
+        {
+          "field": "notice_rule",
+          "value": {
+            "days": 1,
+            "unit": "calendar_days",
+            "anchor": "end_date"
+          },
+          "evidence": {
+            "document_id": "base",
+            "start_line": 6,
+            "end_line": 6,
+            "quote": "Para não renovar, a contratante deverá comunicar sua decisão com 1 dias corridos de antecedência em relação à data de término."
+          }
+        }
+      ],
+      "blockers": [],
+      "expected": {
+        "coverage_before_review": "Revisão pendente",
+        "candidate_events": [
+          {
+            "kind": "termination",
+            "date": "2027-03-01",
+            "temporal_status": "Data ultrapassada"
+          },
+          {
+            "kind": "non_renewal_notice",
+            "date": "2027-02-28",
+            "temporal_status": "Data ultrapassada"
+          }
+        ],
+        "agenda_before_review": [],
+        "confirmation_allowed": true,
+        "coverage_after_review": "Conferido com eventos"
+      },
+      "rationale": "Fevereiro não bissexto. Anotação de desenvolvimento; formato literal não substitui significado. Sem confirmação ou ação externa."
+    },
+    {
+      "id": "DEV-010",
+      "title": "Somente término, sem regra de aviso",
+      "spec_scenarios": [
+        "C01"
+      ],
+      "documents": [
+        {
+          "id": "base",
+          "role": "base",
+          "path": "documents/DEV-010-base.txt"
+        }
+      ],
+      "facts": [
+        {
+          "field": "end_date",
+          "value": "2027-09-30",
+          "evidence": {
+            "document_id": "base",
+            "start_line": 5,
+            "end_line": 5,
+            "quote": "Término do ciclo informado: 30/09/2027."
+          }
+        }
+      ],
+      "blockers": [],
+      "expected": {
+        "coverage_before_review": "Revisão pendente",
+        "candidate_events": [
+          {
+            "kind": "termination",
+            "date": "2027-09-30",
+            "temporal_status": "Depois do horizonte"
+          }
+        ],
+        "agenda_before_review": [],
+        "confirmation_allowed": true,
+        "coverage_after_review": "Conferido com eventos"
+      },
+      "rationale": "Somente término, sem regra de aviso. Anotação de desenvolvimento; formato literal não substitui significado. Sem confirmação ou ação externa."
+    },
+    {
+      "id": "DEV-011",
+      "title": "Data impossível",
+      "spec_scenarios": [
+        "C07"
+      ],
+      "documents": [
+        {
+          "id": "base",
+          "role": "base",
+          "path": "documents/DEV-011-base.txt"
+        }
+      ],
+      "facts": [],
+      "blockers": [
+        {
+          "code": "invalid_end_date",
+          "evidence": {
+            "document_id": "base",
+            "start_line": 5,
+            "end_line": 5,
+            "quote": "Término do ciclo informado: 31/02/2027."
+          }
+        }
+      ],
+      "expected": {
+        "coverage_before_review": "Bloqueado",
+        "candidate_events": [],
+        "agenda_before_review": [],
+        "confirmation_allowed": false,
+        "coverage_after_review": null
+      },
+      "rationale": "Data impossível. Anotação de desenvolvimento; formato literal não substitui significado. Sem confirmação ou ação externa."
+    },
+    {
+      "id": "DEV-012",
+      "title": "Aviso ancorado na entrega, sem data",
+      "spec_scenarios": [
+        "C06"
+      ],
+      "documents": [
+        {
+          "id": "base",
+          "role": "base",
+          "path": "documents/DEV-012-base.txt"
+        }
+      ],
+      "facts": [
+        {
+          "field": "end_date",
+          "value": "2027-06-30",
+          "evidence": {
+            "document_id": "base",
+            "start_line": 5,
+            "end_line": 5,
+            "quote": "Término do ciclo informado: 30/06/2027."
+          }
+        }
+      ],
+      "blockers": [
+        {
+          "code": "unsupported_anchor",
+          "evidence": {
+            "document_id": "base",
+            "start_line": 6,
+            "end_line": 6,
+            "quote": "Para não renovar, comunicar com 30 dias corridos após a entrega, cuja data não foi informada."
+          }
+        }
+      ],
+      "expected": {
+        "coverage_before_review": "Bloqueado",
+        "candidate_events": [],
+        "agenda_before_review": [],
+        "confirmation_allowed": false,
+        "coverage_after_review": null
+      },
+      "rationale": "Aviso ancorado na entrega, sem data. Anotação de desenvolvimento; formato literal não substitui significado. Sem confirmação ou ação externa."
+    },
+    {
+      "id": "DEV-013",
+      "title": "Dias úteis não são dias corridos",
+      "spec_scenarios": [
+        "C05"
+      ],
+      "documents": [
+        {
+          "id": "base",
+          "role": "base",
+          "path": "documents/DEV-013-base.txt"
+        }
+      ],
+      "facts": [
+        {
+          "field": "end_date",
+          "value": "2027-06-30",
+          "evidence": {
+            "document_id": "base",
+            "start_line": 5,
+            "end_line": 5,
+            "quote": "Término do ciclo informado: 30/06/2027."
+          }
+        }
+      ],
+      "blockers": [
+        {
+          "code": "unsupported_day_unit",
+          "evidence": {
+            "document_id": "base",
+            "start_line": 6,
+            "end_line": 6,
+            "quote": "Para não renovar, comunicar com 10 dias úteis de antecedência em relação à data de término."
+          }
+        }
+      ],
+      "expected": {
+        "coverage_before_review": "Bloqueado",
+        "candidate_events": [],
+        "agenda_before_review": [],
+        "confirmation_allowed": false,
+        "coverage_after_review": null
+      },
+      "rationale": "Dias úteis não são dias corridos. Anotação de desenvolvimento; formato literal não substitui significado. Sem confirmação ou ação externa."
+    },
+    {
+      "id": "DEV-014",
+      "title": "Meses não são convertidos em dias",
+      "spec_scenarios": [
+        "C05"
+      ],
+      "documents": [
+        {
+          "id": "base",
+          "role": "base",
+          "path": "documents/DEV-014-base.txt"
+        }
+      ],
+      "facts": [
+        {
+          "field": "end_date",
+          "value": "2027-06-30",
+          "evidence": {
+            "document_id": "base",
+            "start_line": 5,
+            "end_line": 5,
+            "quote": "Término do ciclo informado: 30/06/2027."
+          }
+        }
+      ],
+      "blockers": [
+        {
+          "code": "unsupported_day_unit",
+          "evidence": {
+            "document_id": "base",
+            "start_line": 6,
+            "end_line": 6,
+            "quote": "Para não renovar, comunicar com 2 meses de antecedência em relação à data de término."
+          }
+        }
+      ],
+      "expected": {
+        "coverage_before_review": "Bloqueado",
+        "candidate_events": [],
+        "agenda_before_review": [],
+        "confirmation_allowed": false,
+        "coverage_after_review": null
+      },
+      "rationale": "Meses não são convertidos em dias. Anotação de desenvolvimento; formato literal não substitui significado. Sem confirmação ou ação externa."
+    },
+    {
+      "id": "DEV-015",
+      "title": "Antecedência negativa",
+      "spec_scenarios": [
+        "C22"
+      ],
+      "documents": [
+        {
+          "id": "base",
+          "role": "base",
+          "path": "documents/DEV-015-base.txt"
+        }
+      ],
+      "facts": [
+        {
+          "field": "end_date",
+          "value": "2027-06-30",
+          "evidence": {
+            "document_id": "base",
+            "start_line": 5,
+            "end_line": 5,
+            "quote": "Término do ciclo informado: 30/06/2027."
+          }
+        }
+      ],
+      "blockers": [
+        {
+          "code": "invalid_notice_days",
+          "evidence": {
+            "document_id": "base",
+            "start_line": 6,
+            "end_line": 6,
+            "quote": "Para não renovar, a contratante deverá comunicar sua decisão com -3 dias corridos de antecedência em relação à data de término."
+          }
+        }
+      ],
+      "expected": {
+        "coverage_before_review": "Bloqueado",
+        "candidate_events": [],
+        "agenda_before_review": [],
+        "confirmation_allowed": false,
+        "coverage_after_review": null
+      },
+      "rationale": "Antecedência negativa. Anotação de desenvolvimento; formato literal não substitui significado. Sem confirmação ou ação externa."
+    },
+    {
+      "id": "DEV-016",
+      "title": "Antecedência fracionária",
+      "spec_scenarios": [
+        "C22"
+      ],
+      "documents": [
+        {
+          "id": "base",
+          "role": "base",
+          "path": "documents/DEV-016-base.txt"
+        }
+      ],
+      "facts": [
+        {
+          "field": "end_date",
+          "value": "2027-06-30",
+          "evidence": {
+            "document_id": "base",
+            "start_line": 5,
+            "end_line": 5,
+            "quote": "Término do ciclo informado: 30/06/2027."
+          }
+        }
+      ],
+      "blockers": [
+        {
+          "code": "invalid_notice_days",
+          "evidence": {
+            "document_id": "base",
+            "start_line": 6,
+            "end_line": 6,
+            "quote": "Para não renovar, a contratante deverá comunicar sua decisão com 1,5 dias corridos de antecedência em relação à data de término."
+          }
+        }
+      ],
+      "expected": {
+        "coverage_before_review": "Bloqueado",
+        "candidate_events": [],
+        "agenda_before_review": [],
+        "confirmation_allowed": false,
+        "coverage_after_review": null
+      },
+      "rationale": "Antecedência fracionária. Anotação de desenvolvimento; formato literal não substitui significado. Sem confirmação ou ação externa."
+    },
+    {
+      "id": "DEV-017",
+      "title": "Algarismos divergem do texto por extenso",
+      "spec_scenarios": [
+        "C22"
+      ],
+      "documents": [
+        {
+          "id": "base",
+          "role": "base",
+          "path": "documents/DEV-017-base.txt"
+        }
+      ],
+      "facts": [
+        {
+          "field": "end_date",
+          "value": "2027-06-30",
+          "evidence": {
+            "document_id": "base",
+            "start_line": 5,
+            "end_line": 5,
+            "quote": "Término do ciclo informado: 30/06/2027."
+          }
+        }
+      ],
+      "blockers": [
+        {
+          "code": "conflicting_notice_days",
+          "evidence": {
+            "document_id": "base",
+            "start_line": 6,
+            "end_line": 6,
+            "quote": "Para não renovar, comunicar com 30 (sessenta) dias corridos de antecedência em relação à data de término."
+          }
+        }
+      ],
+      "expected": {
+        "coverage_before_review": "Bloqueado",
+        "candidate_events": [],
+        "agenda_before_review": [],
+        "confirmation_allowed": false,
+        "coverage_after_review": null
+      },
+      "rationale": "Algarismos divergem do texto por extenso. Anotação de desenvolvimento; formato literal não substitui significado. Sem confirmação ou ação externa."
+    },
+    {
+      "id": "DEV-018",
+      "title": "Aditivo indicado apenas no conteúdo",
+      "spec_scenarios": [
+        "C10"
+      ],
+      "documents": [
+        {
+          "id": "base",
+          "role": "base",
+          "path": "documents/DEV-018-base.txt"
+        }
+      ],
+      "facts": [
+        {
+          "field": "end_date",
+          "value": "2027-06-30",
+          "evidence": {
+            "document_id": "base",
+            "start_line": 5,
+            "end_line": 5,
+            "quote": "Término do ciclo informado: 30/06/2027."
+          }
+        },
+        {
+          "field": "notice_rule",
+          "value": {
+            "days": 30,
+            "unit": "calendar_days",
+            "anchor": "end_date"
+          },
+          "evidence": {
+            "document_id": "base",
+            "start_line": 6,
+            "end_line": 6,
+            "quote": "Para não renovar, a contratante deverá comunicar sua decisão com 30 dias corridos de antecedência em relação à data de término."
+          }
+        }
+      ],
+      "blockers": [
+        {
+          "code": "amendment_not_supported",
+          "evidence": {
+            "document_id": "base",
+            "start_line": 7,
+            "end_line": 7,
+            "quote": "Este instrumento é aditivo ao contrato base e prorroga a vigência; a consolidação depende de análise fora do recorte."
+          }
+        }
+      ],
+      "expected": {
+        "coverage_before_review": "Bloqueado",
+        "candidate_events": [],
+        "agenda_before_review": [],
+        "confirmation_allowed": false,
+        "coverage_after_review": null
+      },
+      "rationale": "Aditivo indicado apenas no conteúdo. Anotação de desenvolvimento; formato literal não substitui significado. Sem confirmação ou ação externa."
+    },
+    {
+      "id": "DEV-019",
+      "title": "Data de pagamento não é término",
+      "spec_scenarios": [
+        "C15"
+      ],
+      "documents": [
+        {
+          "id": "base",
+          "role": "base",
+          "path": "documents/DEV-019-base.txt"
+        }
+      ],
+      "facts": [
+        {
+          "field": "end_date",
+          "value": "2027-08-31",
+          "evidence": {
+            "document_id": "base",
+            "start_line": 6,
+            "end_line": 6,
+            "quote": "A vigência efetiva encerra-se em 31/08/2027."
+          }
+        }
+      ],
+      "blockers": [],
+      "expected": {
+        "coverage_before_review": "Revisão pendente",
+        "candidate_events": [
+          {
+            "kind": "termination",
+            "date": "2027-08-31",
+            "temporal_status": "Depois do horizonte"
+          }
+        ],
+        "agenda_before_review": [],
+        "confirmation_allowed": true,
+        "coverage_after_review": "Conferido com eventos"
+      },
+      "rationale": "Data de pagamento não é término. Anotação de desenvolvimento; formato literal não substitui significado. Sem confirmação ou ação externa."
+    },
+    {
+      "id": "DEV-020",
+      "title": "Cláusula com formato reconhecido dentro de exemplo",
+      "spec_scenarios": [
+        "C15",
+        "C16"
+      ],
+      "documents": [
+        {
+          "id": "base",
+          "role": "base",
+          "path": "documents/DEV-020-base.txt"
+        }
+      ],
+      "facts": [
+        {
+          "field": "end_date",
+          "value": "2027-08-31",
+          "evidence": {
+            "document_id": "base",
+            "start_line": 7,
+            "end_line": 7,
+            "quote": "A vigência efetiva encerra-se em 31/08/2027."
+          }
+        }
+      ],
+      "blockers": [],
+      "expected": {
+        "coverage_before_review": "Revisão pendente",
+        "candidate_events": [
+          {
+            "kind": "termination",
+            "date": "2027-08-31",
+            "temporal_status": "Depois do horizonte"
+          }
+        ],
+        "agenda_before_review": [],
+        "confirmation_allowed": true,
+        "coverage_after_review": "Conferido com eventos"
+      },
+      "rationale": "Cláusula com formato reconhecido dentro de exemplo. Anotação de desenvolvimento; formato literal não substitui significado. Sem confirmação ou ação externa."
     }
   ]
 }

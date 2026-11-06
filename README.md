@@ -10,7 +10,7 @@ A implementação está no [PR #1](https://github.com/LucasGoulartCouto/radar-ob
 
 A primeira versão de produto acompanha renovações e avisos prévios do case fictício da Agência Prisma. É possível receber textos sintéticos, preservar originais, registrar candidatos manualmente com trechos de origem, calcular aviso e realizar uma conferência separada. Eventos da base atual alimentam a agenda; eventos de bases antigas ficam no histórico. A extração automática continua pendente. Não há IA nem comunicação externa de negócio nesta entrega.
 
-**Regras e casos do primeiro fluxo:** [decisão de produto](docs/decisoes-primeiro-fluxo.md) e [oito casos sintéticos de desenvolvimento](tests/fixtures/contracts/README.md), com nove documentos e gabarito. Lucas aceitou o ADR-002; os limites de entrada foram implementados no ADR-006. Esses exemplos ainda não são uma avaliação de extração. As verificações da entrada estão no [registro documental](docs/validacao-entrada-documental.md).
+**Regras e casos do primeiro fluxo:** [decisão de produto](docs/decisoes-primeiro-fluxo.md) e [20 casos sintéticos de desenvolvimento](tests/fixtures/contracts/README.md), com 21 documentos e gabarito. Os oito iniciais foram preservados na ampliação do experimento offline. Lucas aceitou o ADR-002; os limites de entrada foram implementados no ADR-006. Esses exemplos ainda não são uma avaliação de extração. As verificações da entrada estão no [registro documental](docs/validacao-entrada-documental.md).
 
 **Verificação local da versão com documentos:** 81 testes aprovados, incluindo migração com dados e os 38 testes novos da entrada. Upload, reenvio, alteração, rejeição por tamanho e download do original foram conferidos no navegador.
 
@@ -86,10 +86,12 @@ Agenda com um aviso confirmado, referência explícita e contratos pendentes:
 | [ADR-007 — levantamento e conferência](docs/adrs/007-levantamento-manual-e-conferencia.md) | Baseline manual, confirmação atômica, correções e invalidação da base antiga |
 | [ADR-008 — agenda e cobertura](docs/adrs/008-agenda-e-cobertura-da-carteira.md) | Leitura consistente, horizonte de 30 dias, filtros e cobertura independente |
 | [Evolução da arquitetura](docs/evolucao-arquitetural.md) | Etapa futura solicitada: cenário de crescimento, medições e proposta de evolução |
+| [Comparação de extração](docs/comparacao-extracao.md) | Experimento offline por regras, falhas mensuradas e protocolo para avaliar IA |
+| [Validação do experimento](docs/validacao-experimento-extracao.md) | Evidências por comportamento, testes e limites do benchmark |
 | [Plano de entrega](docs/plano-de-entrega.md) | Marcos, dependências, primeiras tarefas e roteiro de demonstração |
 | [Planejamento inicial](docs/planejamento-inicial.md) | Exigências oficiais, comparação de ideias e calendário provisório |
 
-A prioridade desta retomada é organizar a [documentação dos agentes](docs/agents/fontes-e-organizacao.md), com [validação registrada](docs/validacao-documentacao-agentes.md). O próximo marco de produto é preparar a comparação de alternativas de extração contra os casos anotados, antes de escolher fornecedor ou assumir despesas. O [plano de entrega](docs/plano-de-entrega.md) mantém os passos de produto e a proposta futura de evolução para escala e desempenho. Os PRs continuam separados para revisão de Lucas; desempenho sob carga e qualidade da extração ainda não foram avaliados.
+A documentação dos agentes foi organizada e a [comparação inicial de extração](docs/comparacao-extracao.md) executou um baseline offline em 20 casos de desenvolvimento. As falhas encontradas impedem recomendar sua integração; a aplicação continua usando levantamento manual. O próximo passo de avaliação exige definir ambiente/fornecedor, orçamento e critérios antes de executar IA ou abrir conjunto reservado. O [plano de entrega](docs/plano-de-entrega.md) mantém os passos de produto e a proposta futura de evolução para escala e desempenho. Os PRs continuam separados para revisão de Lucas; desempenho sob carga e qualidade da extração ainda não foram avaliados.
 
 ## Referências oficiais
 
