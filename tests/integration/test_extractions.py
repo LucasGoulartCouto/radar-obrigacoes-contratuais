@@ -473,3 +473,41 @@ def test_confirm_failure_rolls_back_review_and_all_events(case, engine):
     with Session(engine) as session:
         assert session.scalar(select(func.count()).select_from(ReviewRow)) == 0
         assert session.scalar(select(func.count()).select_from(ConfirmedEventRow)) == 0
+
+
+def test_finish_reserves_writer_before_reading_receipt(case, classifier, engine):
+    import sqlite3
+
+    run = request(case)
+    assert case[2].store.claim(case[0].id, run["run_id"])
+    output = classifier.classify(case[2].context(case[0].id, run["run_id"])["documents"])
+    contender = sqlite3.connect(engine.url.database, autocommit=False, timeout=0)
+    observed = []
+
+    def contend(_conn, _cursor, statement, _params, _context, _many):
+        if observed or "FROM OPERATIONS" not in statement.upper():
+            return
+        try:
+            contender.execute(
+                "UPDATE contracts SET analysis_version = analysis_version WHERE id = ?",
+                (case[0].id,),
+            )
+        except sqlite3.OperationalError as error:
+            assert error.sqlite_errorcode & 0xFF == sqlite3.SQLITE_BUSY
+            observed.append("writer_already_reserved")
+            contender.rollback()
+        else:
+            observed.append("competing_writer_acquired")
+
+    event.listen(engine, "after_cursor_execute", contend)
+    try:
+        result = case[2].store.finish(
+            case[0].id, run["run_id"], status="completed", output=output, duration_ms=0
+        )
+    finally:
+        event.remove(engine, "after_cursor_execute", contend)
+        contender.rollback()
+        contender.close()
+    assert observed == ["writer_already_reserved"]
+    assert result["status"] == "completed"
+    assert classifier.calls == 1

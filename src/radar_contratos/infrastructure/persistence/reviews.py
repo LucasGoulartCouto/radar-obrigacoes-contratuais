@@ -131,6 +131,13 @@ class SqliteReviewStore:
         started, outcome = perf_counter(), "failed"
         try:
             with Session(self.engine) as session, session.begin():
+                # Reserve a escrita antes de abrir um snapshot de leitura (SQLite DEFERRED).
+                session.execute(
+                    update(ContractRow)
+                    .where(ContractRow.id == contract_id)
+                    .values(analysis_version=ContractRow.analysis_version)
+                    .execution_options(synchronize_session=False)
+                )
                 previous = _replay(session.get(OperationRow, request_id), fingerprint)
                 if previous is not None:
                     outcome = "replayed"
