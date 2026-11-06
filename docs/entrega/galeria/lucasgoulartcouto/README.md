@@ -57,6 +57,6 @@ A referência automática teve 18/20 casos integrais no desenvolvimento conhecid
 
 Somente texto UTF-8 sintético e o recorte de término/aviso de não renovação. Sem OCR, consolidação de aditivos, autenticação, assinatura, cancelamento de inferência, envio de negócio ou operação de produção. Não foram medidos ganho de tempo ou desempenho sob carga.
 
-O [repositório do projeto](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais) contém discovery, PRD, SPEC, ADRs, arquitetura, código e evidências. Enquanto os PRs aguardam revisão, use a branch `codex/reproducao-e-entrega`; a `main` ainda não representa a aplicação funcional. Os comandos principais são `powershell -File scripts/Preparar-Ambiente.ps1`, `powershell -File scripts/Iniciar-Radar.ps1` e `powershell -File scripts/Validar-Projeto.ps1`.
+O [repositório do projeto](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais) contém discovery, PRD, SPEC, ADRs, arquitetura, código e evidências. Use a `main` após conferir a conclusão do [PR #13](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/13), que fecha a integração autorizada por Lucas. Os comandos principais são `powershell -File scripts/Preparar-Ambiente.ps1`, `powershell -File scripts/Iniciar-Radar.ps1` e `powershell -File scripts/Validar-Projeto.ps1`.
 
-Os PRs estão abertos para revisão, sem merge pelo agente. A escolha definitiva de IA e o planejamento de produção ficam para depois da aplicação e das decisões de Lucas.
+Em 05/11/2026, Lucas informou validação funcional, revisão dos PRs #1–#13 e autorização para integrá-los. A escolha definitiva de IA e o planejamento de produção continuam sujeitos às suas decisões. Este cartão permanece rascunho, com os dois links de posts ainda vazios.

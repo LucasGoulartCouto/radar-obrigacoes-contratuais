@@ -1,6 +1,6 @@
 # Rascunhos de divulgação — não enviados
 
-02/11/2026. Textos preparados para Lucas revisar e adaptar. Nenhum post foi publicado. Só adicionar os links ao cartão depois de existirem publicações reais. Confirmar autor, estado dos PRs e números antes de usar em outra data.
+Atualizado em 05/11/2026. Rascunhos para Lucas adaptar. O agente não publicou posts; URLs reais de divulgação ainda não foram fornecidas. Só adicionar os links ao cartão depois de existirem publicações reais. Confirmar autor, estado final do PR #13 e números antes de usar em outra data.
 
 ## LinkedIn
 
@@ -10,7 +10,7 @@ O case é fictício: na Agência Prisma, a equipe precisa conferir términos de 
 
 A decisão central foi separar responsabilidades: a IA local classifica linhas, o código valida literais/evidências e calcula datas, e a conferência registra a decisão sobre a base atual. Um documento não pode mandar o sistema confirmar eventos ou enviar mensagens.
 
-O projeto usa Python, Streamlit, SQLite, SQLAlchemy, Alembic e uv. O desenvolvimento com Codex segue contexto, ADRs, testes e PRs para revisão. Nenhum merge foi feito pelo agente.
+O projeto usa Python, Streamlit, SQLite, SQLAlchemy, Alembic e uv. O desenvolvimento com Codex segue contexto, ADRs, testes e PRs. Validei o fluxo local, revisei os PRs e autorizei sua integração; o histórico registra os resultados e as limitações.
 
 Em 02/11/2026, os 371 testes passaram também em uma cópia com ambiente e banco novos. A referência automática continua em 18/20 casos de desenvolvimento conhecidos; correções de contexto e conferências simuladas são registradas separadamente. Não houve avaliação reservada nem uso de contratos reais.
 
@@ -18,7 +18,7 @@ O aprendizado mais útil até aqui foi preservar uma regressão de prompt em vez
 
 Código, decisões e limites: https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais
 
-Os PRs e os materiais estão sob revisão. Produção e escolha definitiva do modelo continuam como etapa posterior.
+A consolidação na `main` segue a integração autorizada dos PRs #1–#13. Produção e escolha definitiva do modelo continuam como etapa posterior. Os testes locais da linha mais recente chegaram a 383, incluindo uma disputa de gravação reproduzida e corrigida durante a integração.
 
 ## Comunidade da Jornada
 
@@ -34,4 +34,4 @@ Em 02/11/2026, reproduzi o preparo, a validação e o início em uma cópia nova
 
 Repositório: https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais
 
-A branch com os materiais é `codex/reproducao-e-entrega`. Os PRs aguardam revisão; ainda faltam avaliação independente e decisões de produção. Os documentos explicam o que foi medido, simulado e deixado para depois.
+A versão consolidada fica na `main` após a conclusão do PR #13, com validação funcional e integração autorizadas. Ainda faltam avaliação independente e decisões de produção. Os documentos explicam o que foi medido, simulado e deixado para depois.

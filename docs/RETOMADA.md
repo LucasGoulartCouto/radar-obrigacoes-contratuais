@@ -1,6 +1,16 @@
 # Ponto de retomada do Radar
 
-Última conferência: **04/11/2026, America/Sao_Paulo**. Este arquivo é um checkpoint do trabalho, não uma transcrição do chat. Revalidar os fatos que podem mudar antes de agir.
+Última conferência: **05/11/2026, America/Sao_Paulo**. Este arquivo é um checkpoint do trabalho, não uma transcrição do chat. Revalidar os fatos que podem mudar antes de agir.
+
+**Aceite e integração autorizados:** Lucas informou validação funcional e confirmou que revisou os PRs #1–#13, autorizando sua integração. [Registro do aceite](entrega/aceite-funcional.md). Essa decisão substitui as pendências de revisão desses PRs presentes nos registros históricos abaixo. Não pedir novamente essa autorização. Posts, galeria, despesas, implantação e seleção definitiva de modelo não estão incluídos.
+
+**Consolidação de 05/11:** os PRs #1–#12 foram incorporados na ordem, com base/árvore/CI conferidas. Último commit observado antes da etapa final: `874a5cc4114f4fc2e441970b51ec20e26db0925f`. O [PR #13](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/13) é a etapa final; sua descrição é a fonte do resultado, HEAD integrado e CI finais deste fechamento. Conferir `merged` e a `main` antes de repetir qualquer ação ou considerar a consolidação encerrada. [Procedimento e evidências](entrega/integracao.md), [snapshot anterior à etapa final](evidencias/integracao-2026-11-05.json). Histórico original preservado em `codex/arquivo-pre-integracao-20261105`; plano/recibos locais em `.tools/integracao-20261105/`.
+
+**Falha encontrada e corrigida:** a CI do PR #12 falhou no Windows ao promover leitura para escrita no SQLite. A regressão foi reproduzida de forma determinística e corrigida com reserva de escritor antes da leitura de recibos; não se removeu teste nem se repetiu a execução para obter verde. [Validação](validacao-concorrencia-gravacao.md): 383 testes completos locais aprovados. O PR #12 passou na nova CI Windows/Linux antes de integrar; o #13 carrega a correção e exige sua própria CI. A integração não executou inferência real, migração ou gravação no banco de trabalho; testes usam bancos temporários.
+
+**Próxima ação na retomada:** conferir o resultado final do PR #13 e a CI da `main`. Se a integração não terminou, concluir a etapa já autorizada a partir dos recibos, sem repeti-la às cegas. Se terminou, preparar M7 conforme [evolução arquitetural](evolucao-arquitetural.md), definindo com Lucas cenário, metas e orçamento antes de escolhas ou gastos. Não declarar produção pronta ou qualidade geral do modelo com base no aceite e nos testes.
+
+## Registros históricos até 04/11/2026
 
 **Correção de validade publicada em 04/11/2026:** [PR #13](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/13) em rascunho, branch `codex/validade-do-metodo`, base `codex/reproducao-e-entrega` em `040fb72a4ab8bddec21dd63ca9abc5028783cd99` (PR #12). Retomada com Git limpo, PRs #1–#12 abertos/sem merge e CI final do #12 aprovada. Revisão técnica reproduziu cinco leituras de conferência antiga como vigente após mudança do método e reaproveitamento indevido de candidatos iguais por método novo. Corrigidos com referência de execução em metadados e reconferência; 382 testes completos aprovados (11 novos), sem alterar cálculo/prompt/interpretador/modelo. [Validação e limites](validacao-validade-do-metodo.md). Não é auditoria completa ou revisão independente/humana de Lucas.
 
@@ -22,12 +32,14 @@
 
 - Projeto local: `D:\Projetos\Git\desafio_jornadadados`.
 - Repositório: [LucasGoulartCouto/radar-obrigacoes-contratuais](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais).
-- Branch de trabalho: `codex/validade-do-metodo`, base `codex/reproducao-e-entrega` em `040fb72a4ab8bddec21dd63ca9abc5028783cd99` (PR #12). [PR #13](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/13) em rascunho; conferir HEAD/CI finais na descrição antes de retomar. PRs anteriores preservados, sem merge.
-- Última versão funcional verificada: correção da validade do método assistido com 382 testes, tela simulada e migração 0005 com preservação de dados. A reprodução de 02/11 pertence ao snapshot anterior, com 371 testes; não foi repetida neste bloco. [Próximos passos e lacunas](entrega/situacao.md) e roteiro continuam sujeitos à revisão de Lucas; não presumir aceite de produção ou merge.
-- A `main` ainda contém a documentação anterior à implementação. Abrir um clone na `main` não equivale a abrir a versão funcional mais recente.
+- Fonte do código consolidado: `main`, depois de confirmar a incorporação do PR #13. A branch `codex/validade-do-metodo` é a origem da etapa final. HEAD/CI de integração ficam na descrição do PR; não repetir publicação sem comparar Git/plataforma.
+- Última linha funcional verificada localmente: validade do método e correção de concorrência, com 383 testes; banco 0005 preservado. O aceite funcional de Lucas é posterior às simulações. A reprodução completa de 02/11 é histórica do snapshot com 371 testes, não foi repetida neste bloco. [Próximos passos e lacunas](entrega/situacao.md) distinguem integração, divulgação e produção.
+- A documentação anterior à implementação na `main` é um estado histórico; após incorporar o PR #13, a fonte da aplicação completa é a própria `main`.
 - Na retomada histórica da agenda, o HEAD local coincidiu com o HEAD remoto do PR #5. Havia somente a alteração pendente deste checkpoint. PRs #1–#5 foram conferidos naquele momento: todos abertos, sem merge e com as bases indicadas abaixo. A reconciliação atual está na abertura deste arquivo.
 
-## Estado e evidências
+## Histórico de entregas e evidências
+
+Estados de PR aberto/rascunho ou revisão pendente na tabela e relatos abaixo descrevem snapshots anteriores ao aceite de 05/11. Para o resultado atual da integração, conferir as descrições dos PRs e a abertura deste checkpoint.
 
 | Entrega | Situação observada | Referência |
 |---|---|---|

@@ -1,5 +1,7 @@
 # Roteiro de revisão da entrega
 
+**Decisão posterior em 05/11/2026:** Lucas informou a validação funcional e confirmou a revisão dos PRs #1–#13, autorizando sua integração. [Registro e alcance](aceite-funcional.md). A tabela abaixo conserva a inspeção de 04/11; a [correção de concorrência](../validacao-concorrencia-gravacao.md) encontrada durante a integração tem regressão e nova CI próprias. A revisão declarada pelo usuário não é avaliação independente do modelo.
+
 04/11/2026. Preparado pelo agente para Lucas revisar o escopo atual de desenvolvimento. Referência inspecionada: `0ecf88246e0ac64f2c70fee885ea34e4f1831666`, PR #12; aplicação herdada do PR #11. Não registra aprovação humana, avaliação independente ou conclusão global da SPEC. Nenhuma inferência, instalação ou execução local da suíte foi repetida para produzir este documento.
 
 **Revisão técnica posterior no mesmo dia:** encontrada e corrigida inconsistência entre confirmação e leituras quando o método assistido muda, incluindo recuperação com candidatos iguais. [Validação da correção](../validacao-validade-do-metodo.md): 382 testes completos e migração 0005 com preservação dos valores anteriores. A tabela abaixo mantém a referência inspecionada anteriormente; consultar também essas regressões antes de revisar a versão atual. Não representa revisão de Lucas.
@@ -56,14 +58,14 @@ Depois de cada integração que Lucas autorizar, reconferir base, diff e CI do p
 
 ## Registrar a decisão de Lucas
 
-Os itens permanecem abertos; o agente não os marcou como aprovados:
+Situação após a decisão de 05/11; publicações e evolução continuam separadas:
 
-- [ ] Revisar os limites, as evidências e os PRs e indicar eventuais correções.
+- [x] Lucas informou validação funcional, revisão dos PRs #1–#13 e autorização para integrá-los.
 - [ ] Conferir autoria e afirmações do cartão/textos.
 - [ ] Escolher se alguma lacuna exige outro bloco de desenvolvimento ou demonstração.
 - [ ] Se desejar publicar, indicar os canais e autorizar o envio; só depois registrar URLs reais e preparar a submissão autorizada.
 
-Este roteiro não solicita autorização genérica para merge, posts ou produção. A próxima ação depende das decisões de Lucas acima; tarefas rotineiras de verificação/correção no escopo atual continuam autorizadas.
+A autorização de integração dos PRs #1–#13 foi dada e não deve ser solicitada novamente. Posts, galeria, despesas e implantação não estão incluídos. Depois de conferir a conclusão do PR #13, a etapa futura de arquitetura continua dependente de cenário, metas e orçamento definidos com Lucas.
 
 ## Conferência deste bloco documental
 
