@@ -306,6 +306,9 @@ class LocalExtractor:
         }
         return payload
 
+    def _parse_content(self, content: str, documents: tuple[ExperimentDocument, ...]) -> Proposal:
+        return parse_proposal(content, documents)
+
     def __call__(self, documents: tuple[ExperimentDocument, ...]) -> Proposal:
         start = perf_counter()
         observation = {"ok": False}
@@ -335,7 +338,7 @@ class LocalExtractor:
                 or prompt_count + output_count >= CONTEXT_TOKENS
             ):
                 raise LocalInferenceError("LOCAL_CONTEXT_NOT_VERIFIED")
-            proposal = parse_proposal(message.get("content"), documents)
+            proposal = self._parse_content(message.get("content"), documents)
             observation.update(
                 {
                     "ok": True,
