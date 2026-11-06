@@ -2,6 +2,8 @@
 
 Aplicação local para o Desafio Livre de novembro/dezembro de 2026 da Jornada de Dados.
 
+**Reprodução e entrega:** [guia para instalar em uma cópia nova](docs/entrega/reproducao.md), [registro da reprodução executada](docs/validacao-reproducao.md) e [materiais para revisão](docs/entrega/README.md). Os comandos documentados foram exercitados em ambiente/banco novos nesta máquina, com 371 testes aprovados e runtime de IA já existente. Cartão e textos de divulgação são rascunhos; não foram enviados à galeria ou a redes sociais. A branch com estes materiais é `codex/reproducao-e-entrega`.
+
 **Retomando em outra sessão?** Leia [AGENTS.md](AGENTS.md) e o [ponto de retomada](docs/RETOMADA.md), que identifica a branch funcional, PRs, evidências e próximo passo. Confira o estado atual no Git antes de continuar.
 
 **Situação em 02/11/2026:** integração assistida local de desenvolvimento na branch `codex/extracao-assistida`, com tentativas persistidas, revisão na tela, recuperação explícita e confirmação separada. **371 testes locais aprovados**. A [validação](docs/validacao-integracao-assistida.md) distingue testes, duas inferências reais e revisão simulada. [PR #11 em rascunho](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/11); sua descrição identifica HEAD/CI finais. A `main` mantém a documentação anterior ao código enquanto os PRs encadeados aguardam revisão de Lucas e integração.
