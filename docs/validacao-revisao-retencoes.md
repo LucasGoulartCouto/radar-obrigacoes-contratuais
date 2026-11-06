@@ -1,6 +1,6 @@
 # Validação da revisão de retenções e preparação da integração
 
-02/11/2026. Base `a01b7b594c4bfefe1b47c67e2c2fb30b03c4ab25`, branch `codex/revisao-retencoes`. [ADR-012](adrs/012-revisao-restrita-de-retencoes.md). SHA/CI finais serão vinculados no PR deste bloco; não presumir publicação ou CI antes da conferência remota.
+02/11/2026. Base `a01b7b594c4bfefe1b47c67e2c2fb30b03c4ab25`, branch `codex/revisao-retencoes`. Snapshot funcional `7fd880a4b267cac6e40a3d82deb10a904b9b1246`, árvore `46d167ef64bc93e899479f37c066714c3ce04787` conferida contra o índice local. [PR #10](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/10) publicado em rascunho, base no PR #9; nenhum merge. [ADR-012](adrs/012-revisao-restrita-de-retencoes.md). SHA/CI finais ficam vinculados na descrição do PR; fechamento posterior apenas documental.
 
 ## Resultado executado
 
