@@ -1,0 +1,143 @@
+{
+  "checked_date": "2026-11-04",
+  "schema_before": "0004_extractions",
+  "schema_after": "0005_analysis_execution",
+  "all_existing_values_preserved": true,
+  "backup_matches_original": true,
+  "backup": "D:\\Projetos\\Git\\desafio_jornadadados\\var\\backups\\radar-20261105T010738207756Z.sqlite3",
+  "tables": {
+    "audit_events": {
+      "columns": [
+        "id",
+        "request_id",
+        "contract_id",
+        "action",
+        "actor",
+        "at_utc",
+        "details"
+      ],
+      "rows": 9,
+      "sha256": "206dc3c5231ae7a70fa4322cfb0215b7ecf3bdedecfe131019bb277e18dc1441"
+    },
+    "confirmed_events": {
+      "columns": [
+        "id",
+        "review_id",
+        "kind",
+        "event_date"
+      ],
+      "rows": 2,
+      "sha256": "00e41b5f90c9b3e6a0b989f115030812f381f596b5e25713519121d68c6da686"
+    },
+    "contracts": {
+      "columns": [
+        "id",
+        "title",
+        "record_version",
+        "created_at_utc",
+        "updated_at_utc",
+        "document_version",
+        "analysis_version",
+        "known_textual_amendment"
+      ],
+      "rows": 3,
+      "sha256": "b449bad6c5e1a13a06528402f13a0b142a50dc619f50104c5b3582d1251cd2e8"
+    },
+    "document_revisions": {
+      "columns": [
+        "id",
+        "contract_id",
+        "number",
+        "fingerprint",
+        "source_request_id",
+        "document_count",
+        "total_bytes",
+        "actor",
+        "created_at_utc"
+      ],
+      "rows": 3,
+      "sha256": "aba03b0659d2641ecfeb11ecbacd03687be184b8a755978484039328883086f5"
+    },
+    "document_uploads": {
+      "columns": [
+        "id",
+        "revision_id",
+        "request_id",
+        "position",
+        "filename",
+        "role",
+        "original_bytes",
+        "raw_sha256",
+        "reference_text",
+        "reference_sha256",
+        "normalization_version"
+      ],
+      "rows": 4,
+      "sha256": "6db8067881277ba8ebbcb9da6991d5f1c54e5f4e68c68aa079639ee55c641122"
+    },
+    "extraction_runs": {
+      "columns": [
+        "id",
+        "contract_id",
+        "revision_id",
+        "number",
+        "analysis_version",
+        "status",
+        "input_sha256",
+        "method",
+        "output",
+        "blocked",
+        "error_code",
+        "actor",
+        "created_at_utc",
+        "started_at_utc",
+        "finished_at_utc",
+        "duration_ms"
+      ],
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "human_reviews": {
+      "columns": [
+        "id",
+        "analysis_id",
+        "actor",
+        "reviewed_at_utc"
+      ],
+      "rows": 1,
+      "sha256": "84de1c84710314da175829e7ec6336371f2969d935a7a76e5962677e414a5cae"
+    },
+    "manual_analyses": {
+      "columns": [
+        "id",
+        "contract_id",
+        "revision_id",
+        "number",
+        "fingerprint",
+        "payload",
+        "rule_version",
+        "blocked",
+        "candidate_count",
+        "change_reason",
+        "actor",
+        "created_at_utc",
+        "method_version"
+      ],
+      "rows": 1,
+      "sha256": "4fcec83152036fb33d2486020f46b4dbf6351ee3b804c4df0aa96b9c45eecb74"
+    },
+    "operations": {
+      "columns": [
+        "request_id",
+        "fingerprint",
+        "contract_id",
+        "response"
+      ],
+      "rows": 10,
+      "sha256": "4d1e08eede415e45ba2c44d026d1a7e6ce071da298e72359815a44e293877d82"
+    }
+  },
+  "portfolio_contracts": 3,
+  "current_events": 2,
+  "new_real_inferences": 0
+}

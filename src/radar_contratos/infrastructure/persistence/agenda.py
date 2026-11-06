@@ -18,6 +18,11 @@ from radar_contratos.domain.agenda import (
     coverage_for,
 )
 from radar_contratos.errors import RadarError, StorageBusyError
+from radar_contratos.infrastructure.local_classifier import method_kernel
+from radar_contratos.infrastructure.persistence.analysis_method import (
+    method_is_current,
+    selected_execution_join,
+)
 from radar_contratos.infrastructure.persistence.models import (
     AnalysisRow,
     ConfirmedEventRow,
@@ -38,6 +43,7 @@ class SqliteAgendaStore:
     def read_portfolio(self) -> PortfolioSnapshot:
         started = perf_counter()
         historical_revision = aliased(DocumentRevisionRow)
+        selected_run = aliased(ExtractionRunRow)
         amendment = ContractRow.known_textual_amendment | (
             select(DocumentUploadRow.id)
             .join(historical_revision, historical_revision.id == DocumentUploadRow.revision_id)
@@ -81,6 +87,8 @@ class SqliteAgendaStore:
                 amendment.label("known_amendment"),
                 ExtractionRunRow.status.label("execution_status"),
                 ExtractionRunRow.blocked.label("execution_blocked"),
+                selected_run.status.label("analysis_execution_status"),
+                selected_run.method.label("analysis_execution_method"),
             )
             .select_from(ContractRow)
             .outerjoin(
@@ -96,6 +104,7 @@ class SqliteAgendaStore:
             )
             .outerjoin(ReviewRow, ReviewRow.analysis_id == AnalysisRow.id)
             .outerjoin(ExtractionRunRow, ExtractionRunRow.id == latest_run)
+            .outerjoin(selected_run, selected_execution_join(selected_run))
             .outerjoin(ConfirmedEventRow, ConfirmedEventRow.review_id == ReviewRow.id)
             .order_by(ContractRow.id, ConfirmedEventRow.kind)
         )
@@ -117,6 +126,7 @@ class SqliteAgendaStore:
         for row in rows:
             grouped.setdefault(row["contract_id"], []).append(row)
         contracts, events = [], []
+        kernel = method_kernel()
         for contract_id, group in grouped.items():
             row = group[0]
             event_rows = [item for item in group if item["event_id"] is not None]
@@ -126,7 +136,12 @@ class SqliteAgendaStore:
                 has_analysis=row["analysis_id"] is not None,
                 blocked=bool(row["blocked"]),
                 current_rule=row["rule_version"] == rules.RULE_VERSION
-                and rules.current_method(row["method_version"]),
+                and method_is_current(
+                    row["method_version"],
+                    row["analysis_execution_status"],
+                    row["analysis_execution_method"],
+                    kernel=kernel,
+                ),
                 reviewed=row["review_id"] is not None,
                 candidate_count=row["candidate_count"] or 0,
                 event_count=len(event_rows),

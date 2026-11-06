@@ -2,6 +2,8 @@
 
 04/11/2026. Preparado pelo agente para Lucas revisar o escopo atual de desenvolvimento. Referência inspecionada: `0ecf88246e0ac64f2c70fee885ea34e4f1831666`, PR #12; aplicação herdada do PR #11. Não registra aprovação humana, avaliação independente ou conclusão global da SPEC. Nenhuma inferência, instalação ou execução local da suíte foi repetida para produzir este documento.
 
+**Revisão técnica posterior no mesmo dia:** encontrada e corrigida inconsistência entre confirmação e leituras quando o método assistido muda, incluindo recuperação com candidatos iguais. [Validação da correção](../validacao-validade-do-metodo.md): 382 testes completos e migração 0005 com preservação dos valores anteriores. A tabela abaixo mantém a referência inspecionada anteriormente; consultar também essas regressões antes de revisar a versão atual. Não representa revisão de Lucas.
+
 ## O que conferir primeiro
 
 1. Abrir o [cartão](galeria/lucasgoulartcouto/README.md) e os [textos](publicacoes.md): conferir autoria e se as afirmações representam o projeto que Lucas quer apresentar. Os dois links de posts estão vazios; os materiais continuam rascunhos.
