@@ -2,7 +2,7 @@
 
 Aplicação local para o Desafio Livre de novembro/dezembro de 2026 da Jornada de Dados.
 
-**Reprodução e entrega:** [guia para instalar em uma cópia nova](docs/entrega/reproducao.md), [registro da reprodução executada](docs/validacao-reproducao.md) e [materiais para revisão](docs/entrega/README.md). Os comandos documentados foram exercitados em ambiente/banco novos nesta máquina, com 371 testes aprovados e runtime de IA já existente. Cartão e textos de divulgação são rascunhos; não foram enviados à galeria ou a redes sociais. A branch com estes materiais é `codex/reproducao-e-entrega`.
+**Reprodução e entrega:** [guia para instalar em uma cópia nova](docs/entrega/reproducao.md), [registro da reprodução executada](docs/validacao-reproducao.md) e [materiais para revisão](docs/entrega/README.md). Os comandos documentados foram exercitados em ambiente/banco novos nesta máquina, com 371 testes aprovados e runtime de IA já existente. Cartão e textos de divulgação são rascunhos; não foram enviados à galeria ou a redes sociais. A branch com estes materiais é `codex/reproducao-e-entrega`, no [PR #12 em rascunho](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/12); HEAD/CI finais na descrição do PR.
 
 **Retomando em outra sessão?** Leia [AGENTS.md](AGENTS.md) e o [ponto de retomada](docs/RETOMADA.md), que identifica a branch funcional, PRs, evidências e próximo passo. Confira o estado atual no Git antes de continuar.
 
