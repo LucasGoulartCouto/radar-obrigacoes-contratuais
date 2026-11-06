@@ -2,7 +2,7 @@
 
 Última conferência: **02/11/2026, America/Sao_Paulo**. Este arquivo é um checkpoint do trabalho, não uma transcrição do chat. Revalidar os fatos que podem mudar antes de agir.
 
-**Retomada em 02/11/2026:** Git limpo em `a01b7b5`, idêntico ao PR #9; nove PRs abertos/sem merge e CI final #9 aprovada conferidos pelo conector. Nova branch `codex/revisao-retencoes`, base `codex/ia-local-estruturada`. Revisão offline explícita das duas retenções concluída localmente, mantendo fonte/prompt/interpretador V1 intactos e preparando os requisitos da integração assistida. Preparação de publicação deste bloco, sem PR novo ainda. Execução persistida/UI/recuperação continuam pendentes.
+**Retomada em 02/11/2026:** Git limpo em `a01b7b5`, idêntico ao PR #9; nove PRs abertos/sem merge e CI final #9 aprovada conferidos pelo conector. Nova branch `codex/revisao-retencoes`, base `codex/ia-local-estruturada`. Revisão offline explícita das duas retenções publicada no PR #10 em rascunho, mantendo fonte/prompt/interpretador V1 intactos e preparando os requisitos da integração assistida. Execução persistida/UI/recuperação continuam pendentes.
 
 **Retomada autorizada em 01/11/2026:** Lucas pediu continuar o Radar. A pausa anterior foi encerrada por esse pedido; preservada a prioridade de organizar a documentação dos agentes antes de iniciar extração ou outra funcionalidade.
 
@@ -10,7 +10,7 @@
 
 - Projeto local: `D:\Projetos\Git\desafio_jornadadados`.
 - Repositório: [LucasGoulartCouto/radar-obrigacoes-contratuais](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais).
-- Branch de trabalho: `codex/revisao-retencoes`, base `codex/ia-local-estruturada` em `a01b7b594c4bfefe1b47c67e2c2fb30b03c4ab25`. Bloco de revisão offline em validação local; publicação pendente. Snapshots V1/V2/restauração preservados no [PR #9](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/9), em rascunho; nenhum merge.
+- Branch de trabalho: `codex/revisao-retencoes`, base `codex/ia-local-estruturada` em `a01b7b594c4bfefe1b47c67e2c2fb30b03c4ab25`. [PR #10](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/10) publicado em rascunho, snapshot funcional `7fd880a4b267cac6e40a3d82deb10a904b9b1246`; descrição mantém HEAD/CI finais após este fechamento documental. Snapshots V1/V2/restauração preservados no [PR #9](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/9), em rascunho; nenhum merge.
 - Última versão funcional verificada: `8a8c8b9ef741dac8acfdfeaf3dabed91d2c766e8`. Atualizações posteriores deste checkpoint podem mudar o HEAD sem alterar a aplicação.
 - A `main` ainda contém a documentação anterior à implementação. Abrir um clone na `main` não equivale a abrir a versão funcional mais recente.
 - Na retomada, o HEAD local coincidiu com o HEAD remoto do PR #5. Havia somente a alteração pendente deste checkpoint. PRs #1–#5 conferidos pelo conector: todos abertos, sem merge e com as bases indicadas abaixo. Consultar Git/plataforma para mudanças posteriores.
@@ -28,6 +28,7 @@
 | Comparação de extração | Experimento offline, 20 casos/21 documentos, falhas medidas; sem integração do baseline | [PR #7](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/7), base `codex/docs-agentes` |
 | IA local de desenvolvimento | Runtime/modelo provisório operaram; candidato com falhas, sem integração; PR em rascunho | [PR #8](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/8), base `codex/avaliacao-extracao` |
 | Protocolo por linhas | 18/20 casos integrais, zero candidatos indevidos/impedimentos perdidos; duas retenções e integração pendentes | [PR #9](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/9), base `codex/ia-local`, em rascunho |
+| Revisão de retenções | Duas retenções tratadas por decisões simuladas; três candidatos recuperados manualmente; extração automática permanece 18/20; 319 testes locais aprovados | [PR #10](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/10), base `codex/ia-local-estruturada`, em rascunho; CI final na descrição |
 | Verificação da versão funcional | 165 testes locais aprovados e CI aprovada em Windows/Linux | [Validação da agenda](validacao-agenda.md) e [execução 41330174954](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41330174954) |
 
 Os PRs são encadeados. Depois de integrar um anterior, conferir a base e o diff do seguinte antes de integrá-lo. Check automático aprovado não representa revisão humana concluída. Não fazer merge por inferência de uma instrução genérica para continuar o desenvolvimento.
@@ -54,7 +55,7 @@ Os PRs são encadeados. Depois de integrar um anterior, conferir a base e o diff
 
 ## Decisões que devem orientar a próxima etapa
 
-**Bloco local de 02/11/2026:** revisão restrita de contexto implementada conforme [ADR-012](adrs/012-revisao-restrita-de-retencoes.md). CLI executada sobre DEV-008/020, sem inferência nova: dois recibos preservam antes/depois e recuperam três candidatos por decisões simuladas do agente; zero confirmação/gravação na aplicação. 46 testes focados e 319 completos aprovados; Ruff/formatação, lock/dependências e 45 arquivos/295 links aprovados. Diagnóstico/execução da suíte documentados na [validação](validacao-revisao-retencoes.md). A referência automática continua 18/20. Próxima ação externa: publicar PR encadeado em rascunho e conferir CI; depois implementar execução/revisão/recuperação na aplicação local. Não confundir recibo offline com execução persistida/C20.
+**Última entrega em 02/11/2026:** revisão restrita de contexto implementada conforme [ADR-012](adrs/012-revisao-restrita-de-retencoes.md). CLI executada sobre DEV-008/020, sem inferência nova: dois recibos preservam antes/depois e recuperam três candidatos por decisões simuladas do agente; zero confirmação/gravação na aplicação. 46 testes focados e 319 completos aprovados; Ruff/formatação, lock/dependências e links aprovados. Diagnóstico/execução da suíte documentados na [validação](validacao-revisao-retencoes.md). A referência automática continua 18/20. PR #10 publicado em rascunho no snapshot `7fd880a`, árvore remota idêntica ao índice local; Git sincronizado antes deste fechamento. Não repetir publicação sem comparar plataforma/Git. Conferir CI final na descrição do PR antes de retomar. **Próximo bloco funcional:** implementar execução persistida, revisão assistida na tela e recuperação explícita na aplicação local, seguindo o desenho da validação e preservando aditivo histórico, seleção, concorrência e confirmação separada. Não confundir recibo offline com execução persistida/C20; não atribuir a revisão simulada ao Lucas.
 
 Consultar os documentos de origem, sem tratar este resumo como nova autorização:
 
