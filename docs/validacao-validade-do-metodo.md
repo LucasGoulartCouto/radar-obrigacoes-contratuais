@@ -1,6 +1,6 @@
 # Validação da validade do método assistido
 
-04/11/2026. Branch `codex/validade-do-metodo`, base `040fb72a4ab8bddec21dd63ca9abc5028783cd99` do PR #12. Correção encontrada na revisão técnica do fluxo existente; não representa revisão independente ou aprovação de Lucas. A descrição do PR deste bloco identifica o snapshot e a CI finais.
+04/11/2026. Branch `codex/validade-do-metodo`, base `040fb72a4ab8bddec21dd63ca9abc5028783cd99` do PR #12. [PR #13 em rascunho](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/13), snapshot funcional `76b649eca97075246bb6d0b4c0d1d271a135a996`, árvore remota `17eb564137273446bfbb5149f6106d6f7efd6c7e` comparada ao índice local. Correção encontrada na revisão técnica do fluxo existente; não representa revisão independente ou aprovação de Lucas. Este fechamento altera somente README/checkpoint/validação; a descrição do PR identifica HEAD/CI finais.
 
 ## Falha reproduzida e resultado esperado
 
@@ -42,6 +42,6 @@ Comparados todos os valores das colunas anteriores após migrar e no backup: nen
 
 As evidências de reprodução de 02/11 permanecem históricas do snapshot 0004; não alegar que a instalação completa de então foi repetida neste bloco. A revisão de Lucas e qualquer merge continuam separados dos testes e desta atualização local.
 
-Wheel e distribuição de fonte construídos offline e inspecionados: ambos contêm a migração 0005 e o helper de validade; excluem ferramentas/cache/banco. A primeira construção tentou usar cache global sem acesso; a repetição com o cache local documentado concluiu, sem mudar dependências. Links locais e diff foram conferidos novamente após escrever este registro.
+Wheel e distribuição de fonte construídos offline e inspecionados: ambos contêm a migração 0005 e o helper de validade; excluem ferramentas/cache/banco. A primeira construção tentou usar cache global sem acesso; a repetição com o cache local documentado concluiu, sem mudar dependências. Verificação documental final: 56 arquivos/430 referências locais e `git diff --check` aprovados.
 
 Fontes primárias consultadas em 04/11/2026: [SQLite — ADD COLUMN e referências nullable](https://www.sqlite.org/lang_altertable.html#alter_table_add_column), [SQLAlchemy — JSON](https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.JSON) e [dialeto SQLite](https://docs.sqlalchemy.org/en/20/dialects/sqlite.html#sqlalchemy.dialects.sqlite.JSON). O comportamento usado pela migração foi testado no SQLite local, incluindo upgrade/downgrade com dados; a documentação não substitui esses resultados.
