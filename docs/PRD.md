@@ -71,6 +71,8 @@ Plano inicial de avaliação: 30 casos sintéticos, sendo 20 de desenvolvimento 
 
 **Material inicial em 01/11/2026:** [oito casos de desenvolvimento e nove documentos](../tests/fixtures/contracts/README.md), com gabarito e citações literais. Nenhum caso reservado foi preparado nesta entrega. Os testes de integridade desse conjunto não medem qualidade de extração nem verificam o fluxo documental completo.
 
+**Experimento inicial em 01/11/2026:** desenvolvimento ampliado para 20 casos/21 documentos; [baseline offline medido](comparacao-extracao.md), com falhas explícitas e sem recomendação de integração. Nenhum caso reservado ou execução de IA nesta etapa. Limiar de adoção, fornecedor e orçamento continuam sujeitos à decisão de Lucas.
+
 ## 6. Condições não funcionais
 
 - Preservar documentos e resultados anteriores sem sobrescrever silenciosamente a origem da revisão.

@@ -100,17 +100,22 @@ def test_development_oracle_matches_sources_and_existing_date_rules(case):
         assert case["facts"] == []
         return
 
-    assert len(facts["end_date"]) == len(facts["notice_rule"]) == 1
+    assert len(facts["end_date"]) == 1
     end_date = date.fromisoformat(facts["end_date"][0])
-    notice_rule = facts["notice_rule"][0]
-    assert notice_rule["unit"] == "calendar_days"
     by_kind = {event["kind"]: event for event in events}
-    assert len(by_kind) == len(events) == 2
-    assert set(by_kind) == {"termination", "non_renewal_notice"}
+    assert len(by_kind) == len(events)
+    assert "termination" in by_kind
     assert date.fromisoformat(by_kind["termination"]["date"]) == end_date
-    assert date.fromisoformat(by_kind["non_renewal_notice"]["date"]) == calculate_notice_date(
-        end_date, notice_rule["days"]
-    )
+    if "notice_rule" in facts:
+        assert len(facts["notice_rule"]) == 1
+        notice_rule = facts["notice_rule"][0]
+        assert notice_rule["unit"] == "calendar_days"
+        assert set(by_kind) == {"termination", "non_renewal_notice"}
+        assert date.fromisoformat(by_kind["non_renewal_notice"]["date"]) == calculate_notice_date(
+            end_date, notice_rule["days"]
+        )
+    else:
+        assert set(by_kind) == {"termination"}
     reference = date.fromisoformat(CATALOG["reference_date"])
     for event in events:
         actual_status = classify_date(date.fromisoformat(event["date"]), reference)

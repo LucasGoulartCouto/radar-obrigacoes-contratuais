@@ -1,0 +1,7 @@
+DOCUMENTO SINTÉTICO — SEM VALIDADE — CASE PRISMA
+Serviço fictício: laboratório de cláusulas.
+Contratante fictícia: Agência Prisma.
+Fornecedor fictício: Laboratório Buriti.
+O exemplo a seguir não define a vigência deste contrato:
+Término do ciclo informado: 30/06/2027.
+A vigência efetiva encerra-se em 31/08/2027.
