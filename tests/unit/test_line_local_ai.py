@@ -179,3 +179,18 @@ def test_interrupted_round_is_preserved_and_cannot_be_silently_repeated(tmp_path
     assert not output.exists()
     with pytest.raises(ValueError):
         run_evaluation(catalog, output, client)
+
+
+def test_changed_source_invalidates_round_without_hiding_its_observations(tmp_path, monkeypatch):
+    from radar_contratos.infrastructure.experiments import line_local_ai
+
+    hashes = line_local_ai.component_hashes()
+    changed = {**hashes, "literal_extraction.py": "f" * 64}
+    monkeypatch.setattr(line_local_ai, "component_hashes", Mock(side_effect=[hashes, changed]))
+    client = LineExtractor(DIGEST, transport=transport_for({"d1_l1": "termination"}))
+    output = tmp_path / "changed.json"
+    report = run_evaluation(mini_catalog(tmp_path), output, client)
+    assert report["source_changed_during_run"] is True
+    assert report["observations"][0]["proposal"]["facts"]
+    state = json.loads(Path(str(output) + ".partial.json").read_text(encoding="utf-8"))
+    assert state["status"] == "invalidated_source_changed"
