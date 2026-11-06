@@ -1,6 +1,6 @@
 # Validação da integração assistida local
 
-02/11/2026. Branch `codex/extracao-assistida`, base `5db8bf849c4799b3f1b0854d9781480475f447f4` (PR #10). [ADR-013](adrs/013-execucao-e-conferencia-assistidas.md). Publicação/CI serão identificadas no PR após conferência. Testes, execução do modelo e revisão real de Lucas são evidências distintas.
+02/11/2026. Branch `codex/extracao-assistida`, base `5db8bf849c4799b3f1b0854d9781480475f447f4` (PR #10). [PR #11](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/11) publicado em rascunho, snapshot funcional `efc3033f01ec26b50bb4cdf93a40849c1d068787`; árvore `8183c226bbea286345c9c8c6bb59a54c452c23b0` comparada ao índice local. [ADR-013](adrs/013-execucao-e-conferencia-assistidas.md). Descrição do PR mantém HEAD/CI finais após este fechamento documental. Testes, execução do modelo e revisão real de Lucas são evidências distintas. Nenhum merge.
 
 ## Resultado implementado
 
