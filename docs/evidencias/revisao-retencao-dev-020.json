@@ -1,0 +1,156 @@
+{
+  "source_sha256": "618b5c594eb35c877ebc977a1e7b9a37f37685288e1aafed5791a3290edfb224",
+  "source": {
+    "lines": [
+      {
+        "alias": "d1_l1",
+        "document_id": "base",
+        "number": 1,
+        "text": "DOCUMENTO SINTÉTICO — SEM VALIDADE — CASE PRISMA",
+        "role": "base"
+      },
+      {
+        "alias": "d1_l2",
+        "document_id": "base",
+        "number": 2,
+        "text": "Serviço fictício: laboratório de cláusulas.",
+        "role": "base"
+      },
+      {
+        "alias": "d1_l3",
+        "document_id": "base",
+        "number": 3,
+        "text": "Contratante fictícia: Agência Prisma.",
+        "role": "base"
+      },
+      {
+        "alias": "d1_l4",
+        "document_id": "base",
+        "number": 4,
+        "text": "Fornecedor fictício: Laboratório Buriti.",
+        "role": "base"
+      },
+      {
+        "alias": "d1_l5",
+        "document_id": "base",
+        "number": 5,
+        "text": "O exemplo a seguir não define a vigência deste contrato:",
+        "role": "base"
+      },
+      {
+        "alias": "d1_l6",
+        "document_id": "base",
+        "number": 6,
+        "text": "Término do ciclo informado: 30/06/2027.",
+        "role": "base"
+      },
+      {
+        "alias": "d1_l7",
+        "document_id": "base",
+        "number": 7,
+        "text": "A vigência efetiva encerra-se em 31/08/2027.",
+        "role": "base"
+      },
+      {
+        "alias": "d1_l8",
+        "document_id": "base",
+        "number": 8,
+        "text": "",
+        "role": "base"
+      }
+    ],
+    "classifications": {
+      "d1_l1": "context",
+      "d1_l2": "context",
+      "d1_l3": "context",
+      "d1_l4": "context",
+      "d1_l5": "illustrative",
+      "d1_l6": "termination",
+      "d1_l7": "termination"
+    },
+    "model_abstained": false,
+    "known_amendment": false,
+    "interpretation_version": "LITERAL_CLAUSES_V1",
+    "review_version": "RETAINED_CONTEXT_REVIEW_V1",
+    "rule_version": "AVISO_CORRIDOS_V1"
+  },
+  "actor": "Marina - simulação executada pelo agente",
+  "acknowledged": true,
+  "original": {
+    "facts": [
+      {
+        "field": "end_date",
+        "value": "2027-08-31",
+        "evidence": {
+          "document_id": "base",
+          "start_line": 7,
+          "end_line": 7,
+          "quote": "A vigência efetiva encerra-se em 31/08/2027."
+        }
+      }
+    ],
+    "blockers": [
+      {
+        "code": "unsupported_scope",
+        "evidence": {
+          "document_id": "base",
+          "start_line": 6,
+          "end_line": 6,
+          "quote": "Término do ciclo informado: 30/06/2027."
+        }
+      }
+    ],
+    "abstained": false,
+    "findings": [
+      {
+        "code": "unsupported_scope",
+        "line": "d1_l6",
+        "reason": "clause_inside_illustration"
+      }
+    ]
+  },
+  "decisions": [
+    {
+      "alias": "d1_l6",
+      "original_label": "termination",
+      "disposition": "illustrative",
+      "reason": "Simulação pelo agente: o marcador anterior declara exemplo sem vigência; a linha 7 informa a vigência efetiva. Mantido somente o fato real já extraído.",
+      "evidence": {
+        "document_id": "base",
+        "start_line": 6,
+        "end_line": 6,
+        "quote": "Término do ciclo informado: 30/06/2027."
+      }
+    }
+  ],
+  "reviewed": {
+    "facts": [
+      {
+        "field": "end_date",
+        "value": "2027-08-31",
+        "evidence": {
+          "document_id": "base",
+          "start_line": 7,
+          "end_line": 7,
+          "quote": "A vigência efetiva encerra-se em 31/08/2027."
+        }
+      }
+    ],
+    "blockers": [],
+    "abstained": false
+  },
+  "confirmed": false,
+  "review_scope": "simulação de revisão de contexto; não é aprovação de Lucas",
+  "case_id": "DEV-020",
+  "report_sha256": "3f711a16d4556b358ab71210c99124f54ec9ccf2a6c272c6c367e77cc51cbf87",
+  "created_at_utc": "2026-11-02T15:44:21.722450+00:00",
+  "original_candidates": [],
+  "reviewed_candidates": [
+    {
+      "kind": "termination",
+      "date": "2027-08-31"
+    }
+  ],
+  "integrated_with_application": false,
+  "new_inference_requests": 0
+}

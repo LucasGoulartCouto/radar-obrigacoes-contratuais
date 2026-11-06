@@ -35,6 +35,8 @@ M3 é um passo de engenharia para verificar regras e formar uma comparação; n�
 
 ## Primeiras unidades de trabalho depois de fechar a proposta técnica
 
+**Revisão de retenções em 02/11/2026:** [ADR-012](adrs/012-revisao-restrita-de-retencoes.md) mantém a extração V1 intacta e introduz revisão offline explícita para os dois contextos retidos. [Validação/recibos e desenho da integração](validacao-revisao-retencoes.md) separam correção simulada de acerto automático. Execução persistida, tela de revisão assistida e recuperação continuam como próximo bloco de M5; a referência automática permanece 18/20.
+
 Antes das funcionalidades, a fundação deverá validar a combinação de ferramentas aceita no [ADR-004](adrs/004-proposta-tecnologias-locais.md): instalação isolada, formulário local, migração, transação interrompida, submissão repetida e backup/restauração. Essa verificação não é uma demonstração de extração de contratos.
 
 1. Definir o formato dos casos sintéticos e respostas esperadas com referências ao texto.
