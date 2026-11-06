@@ -1,0 +1,45 @@
+{
+  "checked_date": "2026-11-02",
+  "timezone": "America/Sao_Paulo",
+  "sources": [
+    {
+      "title": "Enunciado do Desafio Livre",
+      "url": "https://github.com/suajornadadedados/desafio-jornada/blob/main/desafio-livre/README.md",
+      "blob_sha": "22cec94c09d5f79b24ebd329a07934a4e738c53f",
+      "retrieved_with": "GitHub connector",
+      "confirmed": ["case com identidade própria", "somente dados sintéticos", "sem efeitos reais de negócio", "discovery, PRD, SPEC, ADR, harness e arquitetura explicados", "projetos em diferentes estágios aceitos"],
+      "exact_closing_day_confirmed": false
+    },
+    {
+      "title": "Como submeter",
+      "url": "https://github.com/suajornadadedados/desafio-jornada/blob/main/COMO-SUBMETER.md",
+      "blob_sha": "6efb34656b8507e73931c82fe65de523a33f50e4",
+      "retrieved_with": "GitHub connector; web page also consulted",
+      "required_fields": ["projeto", "autor", "usuario", "dominio", "repositorio", "linkedin", "plataforma"],
+      "real_publication_links_required": true,
+      "video_optional": true
+    },
+    {
+      "title": "Diretório oficial do desafio",
+      "url": "https://github.com/suajornadadedados/desafio-jornada/tree/main/desafio-livre/projetos",
+      "tree_sha": "d26ba7b2cc9b49fa55af4098e19ba64e6f224812",
+      "retrieved_with": "GitHub contents API through connector",
+      "proposed_card_path": "desafio-livre/projetos/lucasgoulartcouto/README.md",
+      "remote_user_folder_created": false
+    },
+    {
+      "title": "uv — locking and syncing",
+      "url": "https://docs.astral.sh/uv/concepts/projects/sync/",
+      "use": "mechanism of locked synchronization, separate from observed installation outcome"
+    },
+    {
+      "title": "Streamlit — configuration options",
+      "url": "https://docs.streamlit.io/develop/concepts/configuration/options",
+      "use": "session environment port override used to avoid other running demonstrations"
+    }
+  ],
+  "materials_status": "drafts prepared for Lucas review; publication links intentionally empty",
+  "external_posts_sent": false,
+  "gallery_fork_created": false,
+  "gallery_pull_request_created": false
+}
