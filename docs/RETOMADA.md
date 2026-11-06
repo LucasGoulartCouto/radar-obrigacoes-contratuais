@@ -8,7 +8,7 @@
 
 - Projeto local: `D:\Projetos\Git\desafio_jornadadados`.
 - Repositório: [LucasGoulartCouto/radar-obrigacoes-contratuais](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais).
-- Branch de trabalho: `codex/avaliacao-extracao`, criada de `codex/docs-agentes` no commit `0ac98d72bb3dd17c2625fc15dbb55a6f75fe82bd`, com Git limpo. Publicação desta etapa ainda pendente; PR próprio terá base em `codex/docs-agentes`.
+- Branch de trabalho: `codex/avaliacao-extracao`, criada de `codex/docs-agentes` no commit `0ac98d72bb3dd17c2625fc15dbb55a6f75fe82bd`, com Git limpo. Branch publicada no commit `b48a82f31c1bd73419f84f2f241cde25ea441b94`, com árvore remota idêntica ao índice local. [PR #7](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/7) aberto com base em `codex/docs-agentes`, sem merge.
 - Última versão funcional verificada: `8a8c8b9ef741dac8acfdfeaf3dabed91d2c766e8`. Atualizações posteriores deste checkpoint podem mudar o HEAD sem alterar a aplicação.
 - A `main` ainda contém a documentação anterior à implementação. Abrir um clone na `main` não equivale a abrir a versão funcional mais recente.
 - Na retomada, o HEAD local coincidiu com o HEAD remoto do PR #5. Havia somente a alteração pendente deste checkpoint. PRs #1–#5 conferidos pelo conector: todos abertos, sem merge e com as bases indicadas abaixo. Consultar Git/plataforma para mudanças posteriores.
@@ -23,6 +23,7 @@
 | Candidatos e conferência | Levantamento manual com evidências, cálculo, confirmação separada e histórico; PR aberto para revisão de Lucas | [PR #4](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/4), base `feat/entrada-documental` |
 | Agenda e cobertura | Referência explícita, filtros, origem e todos os contratos visíveis; PR aberto para revisão de Lucas | [PR #5](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/5), base `feat/candidatos-e-conferencia` |
 | Documentação dos agentes | Mapa, seis guias, pontes e retomada preservada; PR aberto para revisão de Lucas | [PR #6](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/6), base `feat/agenda-e-cobertura` |
+| Comparação de extração | Experimento offline, 20 casos/21 documentos, falhas medidas; sem integração do baseline | [PR #7](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/7), base `codex/docs-agentes` |
 | Verificação da versão funcional | 165 testes locais aprovados e CI aprovada em Windows/Linux | [Validação da agenda](validacao-agenda.md) e [execução 41330174954](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41330174954) |
 
 Os PRs são encadeados. Depois de integrar um anterior, conferir a base e o diff do seguinte antes de integrá-lo. Check automático aprovado não representa revisão humana concluída. Não fazer merge por inferência de uma instrução genérica para continuar o desenvolvimento.
@@ -39,9 +40,11 @@ Os PRs são encadeados. Depois de integrar um anterior, conferir a base e o diff
 
 **Fechamento anterior conferido:** PR #6 aberto no HEAD `0ac98d72bb3dd17c2625fc15dbb55a6f75fe82bd`, com [CI final aprovada](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/41354571169). Git local limpo antes de criar a nova branch. Não repetir a publicação da organização dos agentes.
 
-**Etapa atual autorizada:** preparar a comparação de extração. Implementar experimento offline por regras sem integrar interface/banco, ampliar desenvolvimento de 8 para 20 casos e avaliar campos, evidências, bloqueios, candidatos, abstenções e tempo. Comparar limites documentados de regras, IA local e API hospedada, sem escolher fornecedor nem assumir despesas. Documentos/gabaritos visíveis não são avaliação reservada.
+**Comparação inicial concluída e publicada:** experimento offline por regras e avaliador isolados de interface/banco; desenvolvimento ampliado de 8 para 20 casos/21 documentos. [Comparação](comparacao-extracao.md) distingue resultados medidos dos mecanismos documentados de IA local/API. Nenhum fornecedor escolhido ou gasto assumido. Documentos/gabaritos visíveis não são avaliação reservada.
 
-**Última ação comprovada:** experimento offline e avaliador implementados; conjunto ampliado para 20 casos/21 documentos com os oito gabaritos anteriores preservados. 40 testes focados aprovados e execução real registrada em [JSON](evidencias/extracao-regras-v1.json): 11 casos integrais, 2 abstenções, 5 bloqueios perdidos e 7 candidatos indevidos. **Pendência:** publicar PR próprio e conferir CI remota. **Próxima ação:** publicar o diff validado (208 testes locais, Ruff, formatação, 38 arquivos/252 links e dependências aprovados), ligar cada comportamento à [evidência](validacao-experimento-extracao.md) no commit e acompanhar os checks. Não integrar o baseline à aplicação; falhas mensuradas não foram corrigidas para forçar acerto no desenvolvimento.
+**Última ação comprovada:** commit experimental `b48a82f31c1bd73419f84f2f241cde25ea441b94` e PR #7 publicados, árvore `59074e0a44a7bb16ec571680657772ac14d1c93a` idêntica ao índice local. Oito gabaritos anteriores preservados. 208 testes locais aprovados, além de Ruff, formatação, 38 arquivos/253 links, lock e dependências. [JSON da execução](evidencias/extracao-regras-v1.json): 11/20 casos integrais, 2 abstenções, 5/11 casos com impedimento perdido e 7 candidatos indevidos. **Não integrar esse baseline ao produto**; a aplicação continua manual. [Validação e regressões](validacao-experimento-extracao.md).
+
+**Fechamento de publicação:** esta atualização documental registra branch/PR e pode gerar outro HEAD. CI remota, commit e matriz finais ficam na descrição do [PR #7](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/7); conferir esse fechamento antes de nova etapa. Se interrompido, comparar Git/plataforma antes de repetir. Nenhum PR integrado e nenhuma revisão humana de Lucas comprovada. Os erros do método são resultados mensurados, sem serem ocultados por testes verdes.
 
 **Depois deste experimento:** definir com Lucas fornecedor/ambiente e orçamento antes de qualquer API paga; congelar método, limiares e conjunto reservado antes da avaliação final. Integração produtiva exige política de execução/recuperação e evidências de revisão/concorrência. Não alegar extrator integrado ou C20 completo; evolução para escala continua posterior.
 
@@ -84,6 +87,8 @@ Consulte [o que persiste e o que precisa ser redescoberto](agents/continuidade.m
 **01/11/2026 — Pausa e nova prioridade.** Lucas informou 9% de limite restante e solicitou parar até renovar. A próxima sessão deve começar pela documentação dos agentes, não pela extração. Consulta inicial à OpenAI registrada acima; reorganização, commit e publicação deste novo bloco ficaram para a retomada. Sem mudança na aplicação.
 
 **01/11/2026 — Retomada e organização dos agentes concluída.** Pedido de continuação revogou a pausa. Git/PRs reconciliados; pendência do checkpoint preservada na branch própria. Publicados mapa e seis guias no PR #6; evidências documentais e CI inicial aprovadas. Este fechamento mantém a referência do HEAD/CI finais na descrição do PR, evitando atualização autorreferente. Descoberta automática em nova sessão e ganho de custo/qualidade não foram medidos; extração não iniciada.
+
+**01/11/2026 — Experimento de extração publicado.** PR #7 com baseline offline e avaliador, 20 casos de desenvolvimento e gabaritos anteriores preservados. 208 testes locais e execução do método comprovados; matrizes e resultados finais de CI na descrição do PR. A precisão de candidatos foi 11/18 e cinco impedimentos passaram sem reconhecimento. Não houve IA, despesa, migração ou integração à agenda. Próxima rodada depende de ambiente/fornecedor, orçamento, critérios e avaliação reservada, sem tratar exemplos visíveis como independentes.
 
 ## Mensagem curta para outra conversa
 
