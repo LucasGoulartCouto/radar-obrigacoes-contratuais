@@ -86,12 +86,13 @@ Agenda com um aviso confirmado, referência explícita e contratos pendentes:
 | [ADR-007 — levantamento e conferência](docs/adrs/007-levantamento-manual-e-conferencia.md) | Baseline manual, confirmação atômica, correções e invalidação da base antiga |
 | [ADR-008 — agenda e cobertura](docs/adrs/008-agenda-e-cobertura-da-carteira.md) | Leitura consistente, horizonte de 30 dias, filtros e cobertura independente |
 | [Evolução da arquitetura](docs/evolucao-arquitetural.md) | Etapa futura solicitada: cenário de crescimento, medições e proposta de evolução |
+| [IA local](docs/ia-local.md) | Preparo do runtime, modelo provisório, rodada real e limitações |
 | [Comparação de extração](docs/comparacao-extracao.md) | Experimento offline por regras, falhas mensuradas e protocolo para avaliar IA |
 | [Validação do experimento](docs/validacao-experimento-extracao.md) | Evidências por comportamento, testes e limites do benchmark |
 | [Plano de entrega](docs/plano-de-entrega.md) | Marcos, dependências, primeiras tarefas e roteiro de demonstração |
 | [Planejamento inicial](docs/planejamento-inicial.md) | Exigências oficiais, comparação de ideias e calendário provisório |
 
-A documentação dos agentes foi organizada e a [comparação inicial de extração](docs/comparacao-extracao.md) executou um baseline offline em 20 casos de desenvolvimento. As falhas encontradas impedem recomendar sua integração; a aplicação continua usando levantamento manual. O próximo passo de avaliação exige definir ambiente/fornecedor, orçamento e critérios antes de executar IA ou abrir conjunto reservado. O [plano de entrega](docs/plano-de-entrega.md) mantém os passos de produto e a proposta futura de evolução para escala e desempenho. Os PRs continuam separados para revisão de Lucas; desempenho sob carga e qualidade da extração ainda não foram avaliados.
+A documentação dos agentes foi organizada e a [comparação inicial de extração](docs/comparacao-extracao.md) executou um baseline offline em 20 casos de desenvolvimento. As falhas encontradas impedem recomendar sua integração; a aplicação continua usando levantamento manual. Lucas escolheu [IA local durante o desenvolvimento](docs/ia-local.md); a primeira rodada real revelou erros e permanece fora da aplicação. O próximo passo é revisar a fronteira de extração local. Planejamento de produção e escolha do melhor modelo ficam para depois da aplicação concluída. O [plano de entrega](docs/plano-de-entrega.md) mantém os passos de produto e a proposta futura de evolução para escala e desempenho. Os PRs continuam separados para revisão de Lucas; desempenho sob carga e qualidade da extração ainda não foram avaliados.
 
 ## Referências oficiais
 
