@@ -12,6 +12,7 @@ from sqlalchemy.exc import IntegrityError, OperationalError
 from sqlalchemy.orm import Session
 
 from radar_contratos.application.inputs import fingerprint as content_fingerprint
+from radar_contratos.domain import assisted
 from radar_contratos.domain import reviews as rules
 from radar_contratos.domain.reviews import (
     AnalysisSnapshot,
@@ -50,6 +51,10 @@ def _replay(row: OperationRow | None, fingerprint: str) -> dict | None:
 
 
 def _known_amendment(session: Session, contract_id: str) -> bool:
+    if session.scalar(
+        select(ContractRow.known_textual_amendment).where(ContractRow.id == contract_id)
+    ):
+        return True
     return (
         session.scalar(
             select(DocumentUploadRow.id)
@@ -71,6 +76,7 @@ def _references(session: Session, revision: DocumentRevisionRow) -> tuple[Refere
             DocumentUploadRow.reference_text,
             DocumentUploadRow.reference_sha256,
             DocumentUploadRow.normalization_version,
+            DocumentUploadRow.role,
         )
         .where(
             DocumentUploadRow.request_id == revision.source_request_id,
@@ -150,7 +156,9 @@ class SqliteReviewStore:
                             actor=actor,
                             at_utc=at_utc,
                             details={
-                                key: response[key] for key in ("analysis_id", "analysis_version")
+                                key: response[key]
+                                for key in ("analysis_id", "analysis_version", "run_id", "status")
+                                if key in response
                             },
                         )
                     )
@@ -226,6 +234,7 @@ class SqliteReviewStore:
                     fingerprint=content_key,
                     payload=payload,
                     rule_version=rules.RULE_VERSION,
+                    method_version=rules.METHOD_VERSION,
                     blocked=bool(payload["blockers"]),
                     candidate_count=len(payload["candidate_events"]),
                     change_reason=change_reason,
@@ -282,12 +291,23 @@ class SqliteReviewStore:
                 or expected_rule_version != rules.RULE_VERSION
             ):
                 raise StaleRecordError("O levantamento exibido não corresponde à base atual.")
-            payload = prepare_manual_analysis(
-                _restore_draft(analysis.payload),
-                _references(session, revision),
-                known_amendment=_known_amendment(session, contract_id),
-            )
-            if payload != analysis.payload or content_fingerprint(payload) != analysis.fingerprint:
+            if analysis.method_version == rules.METHOD_VERSION:
+                payload = prepare_manual_analysis(
+                    _restore_draft(analysis.payload),
+                    _references(session, revision),
+                    known_amendment=_known_amendment(session, contract_id),
+                )
+            else:
+                from radar_contratos.infrastructure.persistence.extractions import rebuild_assisted
+
+                payload = rebuild_assisted(session, analysis, revision)
+            if analysis.method_version == rules.METHOD_VERSION:
+                checked_key = content_fingerprint(payload)
+            else:
+                from radar_contratos.infrastructure.persistence.extractions import analysis_key
+
+                checked_key = analysis_key(payload)
+            if payload != analysis.payload or checked_key != analysis.fingerprint:
                 raise StaleRecordError("A evidência ou regra mudou. Refaça o levantamento.")
             if payload["blockers"]:
                 raise ValidationError("O contrato tem impedimento. Não é possível confirmar.")
@@ -360,7 +380,9 @@ class SqliteReviewStore:
                 analysis.payload,
                 analysis.number == contract.analysis_version
                 and revision.number == contract.document_version
-                and analysis.rule_version == rules.RULE_VERSION,
+                and analysis.rule_version == rules.RULE_VERSION
+                and rules.current_method(analysis.method_version)
+                and (analysis.blocked or not _known_amendment(session, contract_id)),
                 review.id if review else None,
                 review.actor if review else None,
                 review.reviewed_at_utc if review else None,
@@ -369,6 +391,7 @@ class SqliteReviewStore:
 
     def list_history(self, contract_id: str) -> list[AnalysisSummary]:
         with Session(self.engine) as session:
+            known_amendment = _known_amendment(session, contract_id)
             rows = session.execute(
                 select(
                     AnalysisRow.id,
@@ -377,6 +400,8 @@ class SqliteReviewStore:
                     ContractRow.document_version,
                     ContractRow.analysis_version,
                     AnalysisRow.rule_version,
+                    AnalysisRow.method_version,
+                    AnalysisRow.blocked,
                     ReviewRow.id,
                 )
                 .join(DocumentRevisionRow, DocumentRevisionRow.id == AnalysisRow.revision_id)
@@ -392,7 +417,9 @@ class SqliteReviewStore:
                     doc_number,
                     number == current_number
                     and doc_number == current_doc
-                    and rule == rules.RULE_VERSION,
+                    and rule == rules.RULE_VERSION
+                    and rules.current_method(method)
+                    and (blocked or not known_amendment),
                     review is not None,
                 )
                 for (
@@ -402,6 +429,8 @@ class SqliteReviewStore:
                     current_doc,
                     current_number,
                     rule,
+                    method,
+                    blocked,
                     review,
                 ) in rows
             ]
@@ -414,6 +443,7 @@ class SqliteReviewStore:
                     AnalysisRow.blocked,
                     AnalysisRow.candidate_count,
                     AnalysisRow.rule_version,
+                    AnalysisRow.method_version,
                     ReviewRow.id,
                 )
                 .join(
@@ -429,10 +459,12 @@ class SqliteReviewStore:
                 .outerjoin(ReviewRow, ReviewRow.analysis_id == AnalysisRow.id)
             )
             states = {}
-            for contract_id, blocked, count, rule, review in rows:
+            for contract_id, blocked, count, rule, method, review in rows:
                 if blocked:
                     states[contract_id] = "Bloqueado"
-                elif review is None or rule != rules.RULE_VERSION:
+                elif (
+                    review is None or rule != rules.RULE_VERSION or not rules.current_method(method)
+                ):
                     states[contract_id] = "Revisão pendente"
                 else:
                     states[contract_id] = (
@@ -446,6 +478,12 @@ class SqliteReviewStore:
             )
             for contract_id in amendments:
                 states[contract_id] = "Bloqueado: aditivo declarado"
+            for contract_id in session.scalars(
+                select(ContractRow.id).where(
+                    ContractRow.known_textual_amendment.is_(True),
+                )
+            ):
+                states[contract_id] = "Bloqueado: aditivo identificado"
             return states
 
     def current_events(self, contract_id: str) -> list[dict]:
@@ -469,6 +507,7 @@ class SqliteReviewStore:
                 .where(
                     ContractRow.id == contract_id,
                     AnalysisRow.rule_version == rules.RULE_VERSION,
+                    AnalysisRow.method_version.in_((rules.METHOD_VERSION, assisted.METHOD_VERSION)),
                     AnalysisRow.blocked.is_(False),
                 )
                 .order_by(ConfirmedEventRow.kind)
