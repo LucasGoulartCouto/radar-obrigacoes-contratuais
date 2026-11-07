@@ -61,7 +61,7 @@ O banco é criado em `var/radar.sqlite3`, fora do Git. Para escolher outro diret
 
 A verificação inclui código, formatação, testes, links locais e dependências. O backup cria um novo arquivo em `var/backups/`, sem sobrescrever um destino existente. O teste de restauração usa outro banco temporário e preserva o banco de execução.
 
-**Diagnóstico local em revisão:** `radar check-db` consulta o banco existente em somente leitura e apresenta esquema básico, quick_check, FKs e CHECKs do modelo separadamente. Retorna 0 para sucesso e 1 para pendência/falha; não cria, migra ou repara o banco. [Uso, testes e limites](docs/diagnostico-local.md). Esse resultado não substitui um teste de restauração ou validação de obrigações.
+**Diagnóstico local em revisão:** `radar check-db` consulta o banco existente em somente leitura e apresenta esquema básico, quick_check, FKs e CHECKs do modelo separadamente. Retorna 0 para sucesso e 1 para pendência/falha; não cria, migra ou repara o banco. [Uso, testes e limites](docs/diagnostico-local.md); HEAD/CI finais no [PR #17](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/17), dependente de #16. Esse resultado não substitui um teste de restauração ou validação de obrigações.
 
 Em um ambiente que restrinja conexões locais ou a pasta temporária, os testes de interface precisam da liberação dessas operações pelo ambiente. Não altere o código para esconder uma falha de infraestrutura; o [registro de validação](docs/validacao-fundacao.md) explica o que foi executado nesta máquina.
 
