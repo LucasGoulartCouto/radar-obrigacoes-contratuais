@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-07",
+  "timezone": "America/Sao_Paulo",
+  "base_commit": "cb4bd1f3e7d96e776c75153989513afcfa443ec7",
+  "scope": "startup/catalog errors; independent of PR15; synthetic temporary databases",
+  "python": "3.14.3",
+  "packages": {
+    "sqlalchemy": "2.1.6",
+    "alembic": "1.20.1",
+    "streamlit": "1.66.1",
+    "pytest": "9.2.0"
+  },
+  "source_sha256": {
+    "src/radar_contratos/bootstrap.py": "3b05ff9287d7abde378deb3f176200c70ab7c6af507e8d193dc56e091daa7126",
+    "src/radar_contratos/errors.py": "7cd24f13e674a6f756087a9b8bf642864498e68b033ab6593a65040d20a4e9cf",
+    "src/radar_contratos/infrastructure/persistence/database.py": "8dc37b3a5fe3a3a6413e39dfb92122220ce2f1eccf21cce922b9fa119ade81f6",
+    "src/radar_contratos/infrastructure/persistence/contracts.py": "e123c6780231bb2879f64243595744778674f36fb069955f1c7ddb630b5e3bfc",
+    "src/radar_contratos/infrastructure/persistence/read_errors.py": "01a72c4fde979d851b84649599d186620624a4e05c7d3fc08e2aac431edf31fa",
+    "src/radar_contratos/ui/app.py": "ab3acbd7b61f39f814617a669d0a470859eb9cedbefd5f36b7c4a4700db8b834",
+    "tests/integration/test_startup_failures.py": "45cad8c6f5d594150f969797b4f17b952eff900a50e73cf5e48e9a63e0387bb1",
+    "tests/scenarios/test_foundation_ui.py": "b133bea0840a86caf421a79e1d66b008a7c89e0eb952b3ecfc01b18d65967f41"
+  },
+  "pre_fix": {
+    "failed": 7,
+    "passed": 1,
+    "seconds": 0.44
+  },
+  "local_suite": {
+    "passed": 400,
+    "seconds": 33.1
+  },
+  "compatibility": {
+    "passed": 403,
+    "seconds": 33.12,
+    "composition": {
+      "base": "cb4bd1f3e7d96e776c75153989513afcfa443ec7",
+      "pr15_head": "4f11d48819e7dd53f43d0bbf7613bdcbcd295199",
+      "overlay_sha256": {
+        "src/radar_contratos/infrastructure/persistence/agenda.py": "04237aac9c8927a5667f3b36fc4d4d3cb8fda8df3964a8ddc64943cd294c4f03",
+        "src/radar_contratos/infrastructure/persistence/reviews.py": "a66867f7eceb546687d847d0628169aa472581a96e1f725b0e57715b54da35f3",
+        "tests/integration/test_reviews.py": "c55579e718475b604d03bf511a42b2360af09fdee7341afa15056f570420b8ce",
+        "tests/integration/test_extractions.py": "7d142d918fd12881ac6eb0a9a6977145ff367de16d383b864d127586cbd32ae5"
+      },
+      "mode": "temporary source composition; no git merge"
+    }
+  },
+  "packages_built": {
+    ".gitignore": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1",
+    "radar_obrigacoes_contratuais-0.1.0-py3-none-any.whl": "3950fa47e172bd880a773346bc17e86fac5986f19d7ea3a3c3bda25ae35469ff",
+    "radar_obrigacoes_contratuais-0.1.0.tar.gz": "22fb7645312efd3542504041553fdddb9a0a2dd6a1dcc4317b41c6c7096f18ab"
+  },
+  "work_database_sha256_before_after": "13e713408e528534fb63cb8cc0e780161dcd649c473061a2c136ea85f60f6d86",
+  "runtime_inference": false,
+  "work_database_migrated": false
+}

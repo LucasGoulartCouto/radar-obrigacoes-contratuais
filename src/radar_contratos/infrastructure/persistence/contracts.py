@@ -9,7 +9,7 @@ from time import perf_counter
 from uuid import uuid4
 
 from sqlalchemy import Engine, select, update
-from sqlalchemy.exc import IntegrityError, OperationalError
+from sqlalchemy.exc import DBAPIError, IntegrityError, OperationalError
 from sqlalchemy.orm import Session
 
 from radar_contratos.domain.contracts import Contract
@@ -20,6 +20,7 @@ from radar_contratos.errors import (
     ValidationError,
 )
 from radar_contratos.infrastructure.persistence.models import AuditRow, ContractRow, OperationRow
+from radar_contratos.infrastructure.persistence.read_errors import read_error
 
 logger = logging.getLogger(__name__)
 
@@ -49,9 +50,17 @@ class SqliteContractStore:
         self.engine = engine
 
     def list_contracts(self) -> list[Contract]:
-        with Session(self.engine) as session:
-            rows = session.scalars(select(ContractRow).order_by(ContractRow.created_at_utc))
-            return [_contract(row) for row in rows]
+        try:
+            with Session(self.engine) as session:
+                rows = session.scalars(select(ContractRow).order_by(ContractRow.created_at_utc))
+                return [_contract(row) for row in rows]
+        except DBAPIError as exc:
+            raise read_error(
+                exc,
+                operation="contract_list",
+                message="Não foi possível consultar os contratos. A lista não foi carregada. "
+                "Verifique o acesso ao banco e atualize para tentar novamente.",
+            ) from exc
 
     def _change(
         self,

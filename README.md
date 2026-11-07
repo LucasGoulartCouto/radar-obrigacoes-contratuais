@@ -49,6 +49,8 @@ Em **Agenda e cobertura**, escolha a data de referência da simulação: o padr�
 
 O banco é criado em `var/radar.sqlite3`, fora do Git. Para escolher outro diretório local, defina `RADAR_DATA_DIR` na sessão antes de preparar/iniciar. Nenhuma chave de API é necessária. Os scripts não carregam `.env` automaticamente.
 
+**Abertura e recuperação local em revisão:** a aplicação exige o banco já preparado, sem criar um arquivo vazio ao iniciar. Falhas de abertura ou da lista geram mensagem, preservam o arquivo e permitem nova tentativa por recarga; não são tratadas como lista vazia. [Validação e limites](docs/validacao-abertura-segura.md). A criação/atualização do esquema continua no comando de preparo.
+
 ## Verificar e fazer backup
 
 ```powershell

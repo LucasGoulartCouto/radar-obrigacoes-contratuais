@@ -66,7 +66,11 @@ def render() -> None:
             render_agenda(agenda, reviews)
         except RadarError as exc:
             st.error(str(exc))
-        contracts = service.list_contracts()
+        try:
+            contracts = service.list_contracts()
+        except RadarError as exc:
+            st.error(str(exc))
+            st.stop()
         st.subheader("Documentos e conferência por contrato")
         if not contracts:
             st.info("Cadastre o primeiro contrato fictício para começar.")

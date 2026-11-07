@@ -1,9 +1,11 @@
 from pathlib import Path
 from uuid import uuid4
 
+import pytest
 from streamlit.testing.v1 import AppTest
 
 from radar_contratos.application.contracts import ContractService
+from radar_contratos.errors import RadarError, StorageBusyError
 from radar_contratos.infrastructure.persistence.contracts import SqliteContractStore
 
 APP_PATH = Path(__file__).parents[2] / "src/radar_contratos/ui/app.py"
@@ -40,6 +42,44 @@ def test_uninitialized_database_is_presented_as_actionable_error(tmp_path, monke
     app = AppTest.from_file(str(APP_PATH), default_timeout=30).run()
     assert not app.exception
     assert app.error
+    assert not (tmp_path / "radar.sqlite3").exists()
+
+
+def test_invalid_database_is_presented_without_traceback_or_overwrite(tmp_path, monkeypatch):
+    monkeypatch.setenv("RADAR_DATA_DIR", str(tmp_path))
+    path = tmp_path / "radar.sqlite3"
+    original = b"Invalid synthetic database fixture. " * 20
+    path.write_bytes(original)
+    app = AppTest.from_file(str(APP_PATH), default_timeout=30).run()
+    assert not app.exception
+    assert app.error
+    assert not app.text_input
+    assert path.read_bytes() == original
+
+
+@pytest.mark.parametrize("busy", [False, True])
+def test_catalog_error_is_not_empty_portfolio_and_reload_recovers(
+    engine, tmp_path, monkeypatch, busy
+):
+    monkeypatch.setenv("RADAR_DATA_DIR", str(tmp_path))
+    service = ContractService(SqliteContractStore(engine))
+    contract = service.register(title="Serviço sintético", actor="Rafael", request_id=str(uuid4()))
+
+    def unavailable(_self):
+        error = StorageBusyError if busy else RadarError
+        raise error("Não foi possível consultar os contratos. Atualize para tentar novamente.")
+
+    with monkeypatch.context() as patch:
+        patch.setattr(SqliteContractStore, "list_contracts", unavailable)
+        app = AppTest.from_file(str(APP_PATH), default_timeout=30).run()
+        assert not app.exception
+        assert any("consultar os contratos" in error.value for error in app.error)
+        assert not any("Cadastre o primeiro" in info.value for info in app.info)
+        assert not any(box.label == "Contrato para editar o nome" for box in app.selectbox)
+    app.run()
+    assert not app.exception
+    assert any(box.label == "Contrato para editar o nome" for box in app.selectbox)
+    assert service.list_contracts() == [contract]
 
 
 def test_stale_form_cannot_overwrite_another_edit(engine, tmp_path, monkeypatch):
