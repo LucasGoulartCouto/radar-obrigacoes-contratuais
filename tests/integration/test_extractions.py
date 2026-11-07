@@ -495,9 +495,13 @@ def test_finish_reserves_writer_before_reading_receipt(case, classifier, engine)
     output = classifier.classify(case[2].context(case[0].id, run["run_id"])["documents"])
     contender = sqlite3.connect(engine.url.database, autocommit=False, timeout=0)
     observed = []
+    writing = False
 
     def contend(_conn, _cursor, statement, _params, _context, _many):
-        if observed or "FROM OPERATIONS" not in statement.upper():
+        nonlocal writing
+        if statement.upper().startswith("UPDATE CONTRACTS"):
+            writing = True
+        if not writing or observed or "FROM OPERATIONS" not in statement.upper():
             return
         try:
             contender.execute(

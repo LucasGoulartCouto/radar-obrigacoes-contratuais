@@ -1,6 +1,7 @@
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import replace
 from datetime import date
+from pathlib import Path
 from uuid import uuid4
 
 import pytest
@@ -17,6 +18,7 @@ from radar_contratos.errors import (
     StorageBusyError,
     ValidationError,
 )
+from radar_contratos.infrastructure.persistence.database import make_engine
 from radar_contratos.infrastructure.persistence.documents import SqliteDocumentStore
 from radar_contratos.infrastructure.persistence.models import (
     AnalysisRow,
@@ -123,6 +125,78 @@ def test_repeated_requests_and_equivalent_result_do_not_duplicate_or_invalidate(
     assert not equivalent["created"]
     assert equivalent["analysis_id"] == first["analysis_id"]
     assert len(reviews.current_events(contract.id)) == 2
+    assert counts(engine)[:3] == (1, 1, 2)
+
+
+@pytest.mark.parametrize("different_actor", [False, True])
+def test_persisted_receipt_replays_or_rejects_conflict_while_other_writer_is_reserved(
+    setup_case, engine, different_actor
+):
+    import sqlite3
+
+    analysis = register(setup_case)
+    request = str(uuid4())
+    original = confirm(setup_case, analysis, request_id=request)
+    before = counts(engine)
+    writes = []
+
+    def capture(_conn, _cursor, statement, _params, _context, _many):
+        if statement.split()[0].upper() in {"UPDATE", "INSERT", "DELETE"}:
+            writes.append(statement.split()[0].upper())
+
+    contender = sqlite3.connect(engine.url.database, autocommit=False, timeout=0)
+    contender.execute("UPDATE contracts SET analysis_version = analysis_version")
+    event.listen(engine, "before_cursor_execute", capture)
+    try:
+        if different_actor:
+            with pytest.raises(IdempotencyConflictError):
+                setup_case[2].confirm(
+                    contract_id=setup_case[0].id,
+                    analysis_id=analysis["analysis_id"],
+                    expected_document_version=1,
+                    expected_analysis_version=1,
+                    expected_rule_version="AVISO_CORRIDOS_V1",
+                    actor="Outro revisor",
+                    request_id=request,
+                    acknowledged=True,
+                )
+        else:
+            assert confirm(setup_case, analysis, request_id=request) == original
+    finally:
+        event.remove(engine, "before_cursor_execute", capture)
+        contender.rollback()
+        contender.close()
+    assert writes == []
+    assert counts(engine) == before
+
+
+def test_receipt_arriving_after_read_is_rechecked_and_reservation_is_rolled_back(
+    setup_case, engine
+):
+    contract, documents, _ = setup_case
+    analysis = register(setup_case)
+    request = str(uuid4())
+    other_engine = make_engine(Path(engine.url.database))
+    other_case = contract, documents, ReviewService(SqliteReviewStore(other_engine))
+    arrived, commits = [], []
+
+    def arrive(_conn, _cursor, statement, _params, _context, _many):
+        if not arrived and statement.upper().startswith("UPDATE CONTRACTS"):
+            arrived.append(confirm(other_case, analysis, request_id=request))
+
+    def committed(_conn):
+        commits.append(True)
+
+    event.listen(engine, "before_cursor_execute", arrive)
+    event.listen(engine, "commit", committed)
+    try:
+        response = confirm(setup_case, analysis, request_id=request)
+    finally:
+        event.remove(engine, "before_cursor_execute", arrive)
+        event.remove(engine, "commit", committed)
+        other_engine.dispose()
+    assert response == arrived[0]
+    assert commits == []
     assert counts(engine)[:3] == (1, 1, 2)
 
 
