@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-07",
+  "timezone": "America/Sao_Paulo",
+  "base_pr": 16,
+  "base_commit": "b16e12f8874b0b89221fcf61eb8de6983c555705",
+  "python": "3.14.3",
+  "packages": {
+    "sqlalchemy": "2.1.6",
+    "alembic": "1.20.1",
+    "streamlit": "1.66.1",
+    "pytest": "9.2.0"
+  },
+  "source_sha256": {
+    "src/radar_contratos/cli.py": "a595ee74de7635a894b9e959d0f56f55ec38865c2a0a42aa48d8ae077fd57bbc",
+    "src/radar_contratos/infrastructure/persistence/health.py": "86b22c2a1e1ce710cf7ef05f129c4a1f1d9cc3a3c8083474e9227998a01c406b",
+    "tests/integration/test_database_health.py": "65a91513d54dadf4eae29d9b417c2b629ad4f52a7a244af63156c2207a901166",
+    "tests/integration/test_database_health_cli.py": "de2b85955055c59fb65eacb302a783d23cd30b903e70c6fa6778e761152d8be8"
+  },
+  "targeted_tests": {
+    "passed": 21,
+    "seconds": 6.01
+  },
+  "full_suite": {
+    "passed": 421,
+    "seconds": 24.99
+  },
+  "wheel_smoke": {
+    "wheel_sha256": "1b11acaf57a317288c5cc78f29c92fe9bb5c08e673c14f14433c3e1bd5580a64",
+    "cases": [
+      {
+        "case": "healthy",
+        "exit_code": 0,
+        "stdout": "Esquema b\u00e1sico: OK\nIntegridade estrutural r\u00e1pida: OK\nChaves estrangeiras: OK\nRestri\u00e7\u00f5es CHECK do modelo: OK\nVerifica\u00e7\u00e3o conclu\u00edda em modo somente leitura.\n",
+        "stderr": "",
+        "database_hash_preserved": true
+      },
+      {
+        "case": "violated_check",
+        "exit_code": 1,
+        "stdout": "Esquema b\u00e1sico: OK\nIntegridade estrutural r\u00e1pida: OK\nChaves estrangeiras: OK\nRestri\u00e7\u00f5es CHECK do modelo: FALHA\n",
+        "stderr": "Verifica\u00e7\u00e3o encontrou pend\u00eancias. Nenhuma corre\u00e7\u00e3o foi executada.\n",
+        "database_hash_preserved": true
+      },
+      {
+        "case": "missing",
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "WARNING radar_contratos.infrastructure.persistence.read_errors operation=database_check outcome=failed sqlite_code=14\nN\u00e3o foi poss\u00edvel concluir: N\u00e3o foi poss\u00edvel verificar o banco local. Confira o acesso e preserve o arquivo e seus backups antes de tentar novamente.\n",
+        "database_hash_preserved": true
+      }
+    ]
+  },
+  "work_database_sha256_before_after": "13e713408e528534fb63cb8cc0e780161dcd649c473061a2c136ea85f60f6d86",
+  "work_database_checked_or_modified": false,
+  "runtime_inference": false
+}
