@@ -1,5 +1,7 @@
 # Governança do repositório
 
+**Atualização em 07/11/2026:** Lucas aprovou M7/PR #14 e escolheu continuidade local L. [Registro do aceite](entrega/aceite-m7.md). A integração de #14 está autorizada; conferir resultado/HEAD/CI na descrição do PR. O aceite ocorreu no chat, sem revisão independente ou review formal de outro usuário no GitHub. As autorizações de infraestrutura/despesas/divulgação permanecem separadas.
+
 **Atualização em 05/11/2026:** Lucas informou validação funcional, revisão dos PRs #1–#13 e autorização de integração. [Registro e alcance](entrega/aceite-funcional.md). O resultado/HEAD/CI finais ficam na descrição do PR #13; conferir a plataforma antes de repetir integrações. O histórico original está preservado em `codex/arquivo-pre-integracao-20261105`. A consulta da `main` nesta retomada confirmou proteção habilitada e os dois checks obrigatórios; isso não reaudita todos os controles administrativos descritos no histórico abaixo.
 
 ## Histórico da fundação

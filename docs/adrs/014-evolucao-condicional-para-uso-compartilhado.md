@@ -1,14 +1,14 @@
 # ADR-014 — evolução condicional para uso compartilhado
 
-05/11/2026 · **Status: proposto para revisão de Lucas.** Não substitui ADRs 003/004 aceitos, nem autoriza implantação, gasto ou modelo definitivo.
+Proposto em 05/11/2026; **aceito em 07/11/2026 para continuidade na versão local L**. [Decisão de Lucas](../entrega/aceite-m7.md). Preserva ADRs 003/004 aceitos. Alternativas de uso compartilhado continuam condicionais; sem implantação, gasto ou modelo definitivo autorizados.
 
 ## Contexto
 
 Fluxo local aceito e PRs #1–#13 integrados. Lucas solicitou M7 com cenários hipotéticos. O [estudo](../m7-proposta.md) e o [baseline](../validacao-m7.md) separam desempenho observado de requisitos novos de identidade, acesso remoto e continuidade. Não foi demonstrada necessidade de migrar uso individual por saturação do SQLite.
 
-## Decisão proposta
+## Decisão aceita e alternativas condicionais
 
-Manter aplicação modular local para L. Se Lucas escolher C, construir protótipo isolado PostgreSQL + identidade/autorização no servidor + worker com jobs transacionais. Reutilizar casos de uso/regras puras, preservar origem/versões e confirmação humana idempotente sobre base atual. IA não recebe autoridade de confirmar.
+Manter aplicação modular local para L, conforme a escolha explícita de Lucas. Se C for escolhido em outra decisão, construir protótipo isolado PostgreSQL + identidade/autorização no servidor + worker com jobs transacionais. Reutilizar casos de uso/regras puras, preservar origem/versões e confirmação humana idempotente sobre base atual. IA não recebe autoridade de confirmar.
 
 Objetos privados/versionados quando tamanho/retenção/recuperação justificarem; broker somente com necessidade comprovada, outbox e consumidor idempotente. Lease vencido requer recuperação explícita no primeiro piloto, sem retry automático de inferência.
 
@@ -28,4 +28,4 @@ Aceitar implementação após equivalência de dados/eventos/cobertura, conflito
 
 ## Evidência e pendências
 
-M7 entrega medidor reproduzível, baseline, alternativas, fluxo, custos, migração/reversão e gates. PostgreSQL, autenticação/autorização, worker distribuído, broker, objetos externos, restore remoto e avaliação reservada da IA não foram implementados. Lucas decide cenário/metas/teto, identidade, retenção e próximo protótipo. Status continua proposto até revisão.
+M7 entrega medidor reproduzível, baseline, alternativas, fluxo, custos, migração/reversão e gates. PostgreSQL, autenticação/autorização remotas, worker distribuído, broker, objetos externos, restore remoto e avaliação reservada da IA não foram implementados. Lucas aprovou o estudo e escolheu L; não foi autorizado protótipo C. Metas reais, orçamento e controles de um eventual uso compartilhado exigem nova decisão.

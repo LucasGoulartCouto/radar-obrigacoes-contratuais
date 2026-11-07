@@ -68,7 +68,7 @@ Agenda com um aviso confirmado, referência explícita e contratos pendentes:
 
 ## Comece aqui
 
-**M7 — evolução para escala:** [proposta e diagrama](docs/m7-proposta.md), [baseline sintético local](docs/validacao-m7.md) e [custos](docs/m7-custos.md). Estudo para revisão; não houve implantação remota, contratação ou escolha definitiva de modelo.
+**M7 aprovada em 07/11/2026 — continuidade local L:** [aceite de Lucas](docs/entrega/aceite-m7.md), [estudo e diagrama](docs/m7-proposta.md), [baseline sintético local](docs/validacao-m7.md) e [custos](docs/m7-custos.md). Protótipo compartilhado adiado; a aplicação mantém a arquitetura local. M7 acrescentou quatro testes do medidor, totalizando 387 na CI Windows/Linux do snapshot de estudo. Resultado da integração e CI finais na descrição do [PR #14](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/14).
 
 | Documento | O que você encontra |
 |---|---|
@@ -95,7 +95,7 @@ Agenda com um aviso confirmado, referência explícita e contratos pendentes:
 | [ADR-006 — entrada documental](docs/adrs/006-entrada-e-revisoes-documentais.md) | Identidade das revisões, originais, limites e consequências implementadas |
 | [ADR-007 — levantamento e conferência](docs/adrs/007-levantamento-manual-e-conferencia.md) | Baseline manual, confirmação atômica, correções e invalidação da base antiga |
 | [ADR-008 — agenda e cobertura](docs/adrs/008-agenda-e-cobertura-da-carteira.md) | Leitura consistente, horizonte de 30 dias, filtros e cobertura independente |
-| [Evolução da arquitetura](docs/evolucao-arquitetural.md) | Etapa futura solicitada: cenário de crescimento, medições e proposta de evolução |
+| [Evolução da arquitetura](docs/evolucao-arquitetural.md) | M7 aprovada: cenários, medição local e alternativas; continuidade em L |
 | [IA local](docs/ia-local.md) | Preparo do runtime, modelo provisório, rodada real e limitações |
 | [Comparação de extração](docs/comparacao-extracao.md) | Experimento offline por regras, falhas mensuradas e protocolo para avaliar IA |
 | [Validação do experimento](docs/validacao-experimento-extracao.md) | Evidências por comportamento, testes e limites do benchmark |
@@ -104,7 +104,7 @@ Agenda com um aviso confirmado, referência explícita e contratos pendentes:
 | [Plano de entrega](docs/plano-de-entrega.md) | Marcos, dependências, primeiras tarefas e roteiro de demonstração |
 | [Planejamento inicial](docs/planejamento-inicial.md) | Exigências oficiais, comparação de ideias e calendário provisório |
 
-O baseline offline, as rodadas locais e a regressão de prompt permanecem preservados. A referência automática continua em 18/20 casos integrais, sem avaliação reservada; correções simuladas de contexto são identificadas separadamente. A aplicação agora integra o protocolo por linhas para desenvolvimento, mantendo o modelo provisório e a confirmação humana. Planejamento de produção e escolha definitiva do modelo ficam para depois da aplicação concluída. O [plano de entrega](docs/plano-de-entrega.md) conserva a reprodução e os materiais finais como próximos passos. Os PRs continuam separados para revisão de Lucas, sem merge pelo agente.
+O baseline offline, as rodadas locais e a regressão de prompt permanecem preservados. A referência automática continua em 18/20 casos integrais, sem avaliação reservada; correções simuladas de contexto são identificadas separadamente. A aplicação integra o protocolo por linhas para desenvolvimento, mantendo o modelo provisório e a confirmação humana. PRs #1–#13 integrados após revisão de Lucas; M7 aprovada com continuidade local L, conforme o [aceite](docs/entrega/aceite-m7.md). Reprodução e materiais têm registros próprios no [plano de entrega](docs/plano-de-entrega.md); divulgação e galeria continuam pendentes de instrução específica. Produção e escolha definitiva do modelo continuam fora desta decisão.
 
 ## Referências oficiais
 

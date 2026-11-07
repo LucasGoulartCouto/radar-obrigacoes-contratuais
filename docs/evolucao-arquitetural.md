@@ -2,7 +2,7 @@
 
 Registro de intenção em 01/11/2026.
 
-**Atualização de 05/11/2026: M7 preparada para revisão.** Lucas solicitou executar a etapa e escolheu cenários hipotéticos com premissas explícitas. A [proposta M7](m7-proposta.md), o [baseline medido](validacao-m7.md), os [custos](m7-custos.md) e o [ADR-014 proposto](adrs/014-evolucao-condicional-para-uso-compartilhado.md) atendem ao plano abaixo. Não há implantação, orçamento aprovado ou escolha definitiva de IA.
+**Atualização de 07/11/2026: M7 aprovada, continuidade local L.** [Aceite de Lucas](entrega/aceite-m7.md). O [estudo M7](m7-proposta.md), o [baseline medido](validacao-m7.md), os [custos](m7-custos.md) e o [ADR-014 aceito para L](adrs/014-evolucao-condicional-para-uso-compartilhado.md) atendem ao plano abaixo. Protótipo C adiado; sem implantação, orçamento aprovado ou escolha definitiva de IA.
 
 ## Plano original de 01/11/2026
 

@@ -1,10 +1,10 @@
 # M7 — proposta de evolução da arquitetura
 
-05/11/2026 · **Proposta para revisão de Lucas.** Etapa solicitada após o aceite funcional e integração dos PRs #1–#13. Lucas escolheu cenários hipotéticos explícitos. O estudo não aprova metas de produção, orçamento, implantação ou modelo definitivo.
+Estudo de 05/11/2026, **aprovado por Lucas em 07/11/2026, com continuidade na versão local L**. [Registro do aceite](entrega/aceite-m7.md). Cenários continuam hipotéticos; sem metas reais de produção, orçamento, implantação ou modelo definitivo aprovados. Alternativas C/E abaixo ficam preservadas para decisões futuras.
 
 **Recomendação:** manter a aplicação modular local para uso individual. Para uso compartilhado, experimentar o mesmo domínio/casos de uso com PostgreSQL central, identidade/autorização e worker separado. Começar com jobs no próprio banco. Adicionar objetos externos e broker quando requisito ou medição justificar.
 
-Entrega: [baseline](validacao-m7.md), [custos](m7-custos.md), [ADR-014 proposto](adrs/014-evolucao-condicional-para-uso-compartilhado.md) e este plano. A [arquitetura atual](arquitetura.md) continua vigente; M7 não altera o código da aplicação nem migra seu banco.
+Entrega: [baseline](validacao-m7.md), [custos](m7-custos.md), [ADR-014 aceito para L](adrs/014-evolucao-condicional-para-uso-compartilhado.md) e este plano. A [arquitetura atual](arquitetura.md) continua vigente; M7 não altera o código da aplicação nem migra seu banco.
 
 ## 1. Cenários e metas de estudo
 
@@ -139,6 +139,6 @@ Gerador futuro agenda chegadas independentemente da conclusão. Threads em ciclo
 
 Dimensionamento da IA: utilização aproximada `λ × t / k`, com taxa de chegada `λ`, duração média `t` e slots `k`. Com 20 chamadas em rajada e `t = 15 s` hipotéticos, um slot levaria ~300 s para terminar todas; quatro slots ~75 s antes de overhead. Média não comprova p95; paralelismo pode degradar o modelo. Medir antes de escolher slots ou prometer prazo.
 
-## 8. Próxima decisão
+## 8. Continuidade decidida em 07/11/2026
 
-Lucas revisa a proposta e escolhe manter L ou autorizar protótipo isolado C. [ADR-014](adrs/014-evolucao-condicional-para-uso-compartilhado.md) permanece **proposto**. Se C for escolhido, próximo bloco recomendado é adaptar/verificar PostgreSQL, jobs e autorização em ambiente de teste antes de contratar hospedagem. Modelo, fornecedor, região, teto, retenção e operação continuam abertos. M7 entrega estudo; capacidade remota e controles operacionais continuam sem comprovação.
+Lucas aprovou o estudo e escolheu manter L, conforme o [aceite](entrega/aceite-m7.md). O [ADR-014](adrs/014-evolucao-condicional-para-uso-compartilhado.md) está aceito para esse direcionamento. Protótipo C fica adiado. Caso seja escolhido futuramente, adaptar/verificar PostgreSQL, jobs e autorização em teste antes de contratar hospedagem. Modelo, fornecedor, região, teto, retenção e operação remotos continuam abertos. M7 entrega estudo; capacidade remota e controles operacionais continuam sem comprovação.

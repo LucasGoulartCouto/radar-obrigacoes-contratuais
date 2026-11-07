@@ -1,6 +1,16 @@
 # Ponto de retomada do Radar
 
-Última conferência: **05/11/2026, America/Sao_Paulo**. Este arquivo é um checkpoint do trabalho, não uma transcrição do chat. Revalidar os fatos que podem mudar antes de agir.
+Última conferência: **07/11/2026, America/Sao_Paulo**. Este arquivo é um checkpoint do trabalho, não uma transcrição do chat. Revalidar os fatos que podem mudar antes de agir.
+
+**Decisão vigente em 07/11 — M7 aprovada, seguir com L:** Lucas respondeu “aprovado pode seguir” à entrega e escolheu explicitamente “Seguir com a versão local L”. [Aceite e alcance](entrega/aceite-m7.md), [ADR-014 aceito para L](adrs/014-evolucao-condicional-para-uso-compartilhado.md). Está autorizada a integração do PR #14; não pedir novamente essa autorização. Protótipo C adiado. Não há autorização de despesas, implantação, modelo definitivo, mensagens de negócio ou divulgação.
+
+**Reconciliação e fechamento:** retomada limpa na branch `codex/evolucao-arquitetural`, HEAD `71b70f0db7967abd22f53189e2e3bde8493cd651`, igual ao PR #14 aberto/em rascunho. `main` em `979bf37d92e975406ca818db9cad76e331dc85f2`; CI do HEAD de estudo [42142702896](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/actions/runs/42142702896) aprovada nos dois sistemas com 387 testes. Este fechamento altera somente documentos de aceite/estado, sem repetir benchmark, suíte local, inferência, migração ou escrita no banco. Conferir links/diff e a CI do novo HEAD antes do merge; resultado de integração, HEAD da `main` e CI finais serão mantidos na descrição do [PR #14](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/14). Consultá-la antes de repetir uma ação externa.
+
+**Próxima ação vigente:** se #14 ainda estiver aberto, concluir a integração já aprovada somente com CI do HEAD exato; se integrado, conferir `main`/CI e manter a versão local L. M7 encerra como estudo aprovado, sem implementar C ou alterar comportamento funcional. A confirmação concorrente de 2,352 s no ensaio de 3.000 contratos continua limitação conhecida; não declarar que foi corrigida. Blocos futuros podem perfilar a versão local antes de otimizar; não iniciar infraestrutura compartilhada por inferência.
+
+## Registros de 05/11 anteriores ao aceite da M7
+
+Estados de revisão/merge pendentes abaixo são históricos; a decisão de 07/11 acima prevalece.
 
 **M7 publicada para revisão, 05/11:** Lucas solicitou a etapa e escolheu cenários hipotéticos explícitos. [PR #14](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/14) confirmado aberto/em rascunho/sem merge, branch `codex/evolucao-arquitetural`, base `979bf37d92e975406ca818db9cad76e331dc85f2`. Publicação inicial `1c66d39dbeebdc11ac79e0dd69c2ecb8deb5e825`, árvore `9890694a39054a67c28516dd9fcad7f53c551cd8` idêntica ao índice local e Git sincronizado. Este fechamento atualiza somente documentação; conferir HEAD/CI finais na descrição do PR antes de retomar, sem repetir publicação. A autorização de integração anterior se limitava aos PRs #1–#13; #14 aguarda revisão, sem merge autorizado.
 
