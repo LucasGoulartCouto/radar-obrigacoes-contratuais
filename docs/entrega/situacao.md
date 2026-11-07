@@ -1,6 +1,8 @@
 # Situação da entrega para revisão de Lucas
 
-Atualizado em 05/11/2026. Este quadro organiza a entrega; não declara submissão ao desafio, avaliação independente ou aprovação de produção.
+Atualizado em 07/11/2026. Este quadro organiza a entrega; não declara submissão ao desafio, avaliação independente ou aprovação de produção.
+
+**M7 aprovada em 07/11:** Lucas aprovou a integração do PR #14 e escolheu continuar na versão local L. [Aceite](aceite-m7.md). O snapshot de estudo passou em 387 testes na CI Windows/Linux; a descrição do PR mantém o HEAD, integração e CI finais. Protótipo C adiado. Registros de 05/11 e anteriores abaixo preservam seus resultados históricos.
 
 **Aceite em 05/11/2026:** Lucas informou validação funcional e revisão dos PRs #1–#13, autorizando a integração. [Registro](aceite-funcional.md). A descrição do PR #13 identifica o resultado e a CI finais; confirmar sua incorporação antes de repetir integrações ou iniciar a etapa futura. A linha local mais recente passou em 383 testes, incluindo a [correção da disputa de gravação](../validacao-concorrencia-gravacao.md) encontrada no Windows durante a integração.
 
@@ -18,7 +20,7 @@ Atualizado em 05/11/2026. Este quadro organiza a entrega; não declara submissã
 | Cartão | [Pasta portátil](galeria/lucasgoulartcouto/README.md), metadados e imagem | Rascunho com links de posts vazios; não pronto para submeter |
 | Visibilidade | [Textos para os dois canais](publicacoes.md) | Não enviados; dependem de instrução de Lucas |
 | Galeria | Destino oficial conferido em `desafio-livre/projetos/lucasgoulartcouto/` | Nenhum fork, PR ou submissão executados |
-| Operação e escala | [M7](../m7-proposta.md), [baseline sintético](../validacao-m7.md), custos e ADR proposto | Estudo para revisão; medição local curta, sem carga remota/IA ou implantação |
+| Operação e escala | [M7](../m7-proposta.md), [baseline sintético](../validacao-m7.md), custos e ADR aceito para L | Estudo aprovado; continuidade local, protótipo C adiado; sem carga remota/IA ou implantação |
 
 ## Sequência para finalizar a participação
 
