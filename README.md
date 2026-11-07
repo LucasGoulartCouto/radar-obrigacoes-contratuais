@@ -68,6 +68,8 @@ Agenda com um aviso confirmado, referência explícita e contratos pendentes:
 
 ## Comece aqui
 
+**Melhoria local em revisão:** [recibos sem escrita e perfil de contenção](docs/validacao-desempenho-local.md). A comparação reduziu commits desnecessários, mas a meta hipotética de 1 s sob concorrência continua não atendida. A branch passou em 390 testes locais; o [PR #15](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/15) mantém HEAD/CI e revisão finais.
+
 **M7 aprovada em 07/11/2026 — continuidade local L:** [aceite de Lucas](docs/entrega/aceite-m7.md), [estudo e diagrama](docs/m7-proposta.md), [baseline sintético local](docs/validacao-m7.md) e [custos](docs/m7-custos.md). Protótipo compartilhado adiado; a aplicação mantém a arquitetura local. M7 acrescentou quatro testes do medidor, totalizando 387 na CI Windows/Linux do snapshot de estudo. Resultado da integração e CI finais na descrição do [PR #14](https://github.com/LucasGoulartCouto/radar-obrigacoes-contratuais/pull/14).
 
 | Documento | O que você encontra |

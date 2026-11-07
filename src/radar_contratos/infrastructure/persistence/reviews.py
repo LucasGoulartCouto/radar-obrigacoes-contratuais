@@ -136,6 +136,13 @@ class SqliteReviewStore:
     ) -> dict:
         started, outcome = perf_counter(), "failed"
         try:
+            # Recibos persistidos são imutáveis. Reenvio não precisa reservar escritor.
+            # Fechar esta leitura antes da escrita evita promover um snapshot DEFERRED.
+            with Session(self.engine) as session:
+                previous = _replay(session.get(OperationRow, request_id), fingerprint)
+            if previous is not None:
+                outcome = "replayed"
+                return previous
             with Session(self.engine) as session, session.begin():
                 # Reserve a escrita antes de abrir um snapshot de leitura (SQLite DEFERRED).
                 session.execute(
@@ -146,6 +153,9 @@ class SqliteReviewStore:
                 )
                 previous = _replay(session.get(OperationRow, request_id), fingerprint)
                 if previous is not None:
+                    # Outro executor pode ter concluído após a leitura inicial.
+                    # Desfazer a reserva neutra evita um commit de escrita sem efeito.
+                    session.rollback()
                     outcome = "replayed"
                     return previous
                 at_utc = datetime.now(UTC).isoformat()

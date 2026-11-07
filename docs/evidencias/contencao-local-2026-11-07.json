@@ -1,0 +1,1453 @@
+{
+  "started_utc": "2026-11-07T18:42:28.922520+00:00",
+  "baseline_commit": "cb4bd1f3e7d96e776c75153989513afcfa443ec7",
+  "harness_sha256": "efd605e405dee84a72249d8176a4810eea55dd8b983f1f855b11ec22e792db55",
+  "python": "3.14.3",
+  "sqlite": "3.50.4",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "packages": {
+    "sqlalchemy": "2.1.6",
+    "alembic": "1.20.1",
+    "streamlit": "1.66.1"
+  },
+  "source_sha256": "791644eac465abcdc590dcf357417f50fd2e7844cd19b697ad8356c4be66017d",
+  "baseline_files_sha256": {
+    "reviews": "55e9d40479371e933476465a91927934e62228cfe489c93573b2829d8655eac0",
+    "agenda": "f8b03548d50d15d1a006f2aa41e6bf4d75591de86055ab4d6e28aea895940bca"
+  },
+  "candidate_files_sha256": {
+    "reviews": "a66867f7eceb546687d847d0628169aa472581a96e1f725b0e57715b54da35f3",
+    "agenda": "04237aac9c8927a5667f3b36fc4d4d3cb8fda8df3964a8ddc64943cd294c4f03"
+  },
+  "parameters": {
+    "contracts": 3000,
+    "rounds": 3
+  },
+  "workers": 8,
+  "unique_confirmations": 24,
+  "scope": "services + invariant checks; no UI/network/IA; closed loop; no retry",
+  "runs": [
+    {
+      "round": 1,
+      "variant": "baseline",
+      "wall_seconds": 3.8275790999177843,
+      "operations": {
+        "confirm": {
+          "n": 48,
+          "p50_ms": 81.927,
+          "p95_ms": 3066.155,
+          "max_ms": 3575.249
+        },
+        "read": {
+          "n": 48,
+          "p50_ms": 76.872,
+          "p95_ms": 243.339,
+          "max_ms": 308.963
+        }
+      },
+      "sql": {
+        "commit": {
+          "n": 48,
+          "p50_ms": 67.53,
+          "p95_ms": 139.763,
+          "max_ms": 266.11,
+          "total_ms": 3266.9009987730533
+        },
+        "insert": {
+          "n": 96,
+          "p50_ms": 0.188,
+          "p95_ms": 1.184,
+          "max_ms": 6.215,
+          "total_ms": 45.038701267912984
+        },
+        "portfolio_execute": {
+          "n": 48,
+          "p50_ms": 0.793,
+          "p95_ms": 82.706,
+          "max_ms": 173.354,
+          "total_ms": 530.4537995252758
+        },
+        "reserve_writer": {
+          "n": 48,
+          "p50_ms": 2.391,
+          "p95_ms": 3064.67,
+          "max_ms": 3571.306,
+          "total_ms": 20073.09880061075
+        },
+        "select": {
+          "n": 192,
+          "p50_ms": 0.05,
+          "p95_ms": 0.263,
+          "max_ms": 1.24,
+          "total_ms": 17.77310064062476
+        },
+        "update": {
+          "n": 24,
+          "p50_ms": 0.023,
+          "p95_ms": 0.761,
+          "max_ms": 3.381,
+          "total_ms": 5.353099433705211
+        }
+      },
+      "query_plan": [
+        [
+          16,
+          0,
+          215,
+          "SCAN contracts USING INDEX sqlite_autoindex_contracts_1"
+        ],
+        [
+          19,
+          0,
+          46,
+          "SEARCH document_revisions USING INDEX sqlite_autoindex_document_revisions_2 (contract_id=? AND number=?) LEFT-JOIN"
+        ],
+        [
+          28,
+          0,
+          46,
+          "SEARCH manual_analyses USING INDEX sqlite_autoindex_manual_analyses_2 (contract_id=? AND number=?) LEFT-JOIN"
+        ],
+        [
+          40,
+          0,
+          46,
+          "SEARCH human_reviews USING INDEX sqlite_autoindex_human_reviews_2 (analysis_id=?) LEFT-JOIN"
+        ],
+        [
+          48,
+          0,
+          46,
+          "SEARCH extraction_runs USING INDEX sqlite_autoindex_extraction_runs_1 (id=?) LEFT-JOIN"
+        ],
+        [
+          51,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 2"
+        ],
+        [
+          66,
+          51,
+          61,
+          "SEARCH extraction_runs USING INDEX sqlite_autoindex_extraction_runs_2 (contract_id=?)"
+        ],
+        [
+          71,
+          51,
+          46,
+          "SEARCH document_revisions_1 USING INDEX sqlite_autoindex_document_revisions_1 (id=?)"
+        ],
+        [
+          89,
+          0,
+          46,
+          "SEARCH extraction_runs_1 USING INDEX sqlite_autoindex_extraction_runs_1 (id=?) LEFT-JOIN"
+        ],
+        [
+          103,
+          0,
+          62,
+          "SEARCH confirmed_events USING INDEX sqlite_autoindex_confirmed_events_2 (review_id=?) LEFT-JOIN"
+        ],
+        [
+          132,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 1"
+        ],
+        [
+          139,
+          132,
+          61,
+          "SEARCH document_revisions_1 USING INDEX ix_document_revisions_contract_id (contract_id=?)"
+        ],
+        [
+          144,
+          132,
+          61,
+          "SEARCH document_uploads USING INDEX ix_document_uploads_revision_id (revision_id=?)"
+        ]
+      ],
+      "read_profile_top": [
+        {
+          "file": "~",
+          "function": "<method 'fetchall' of 'sqlite3.Cursor' objects>",
+          "calls": 10,
+          "own_seconds": 0.4205671,
+          "cumulative_seconds": 0.4205671
+        },
+        {
+          "file": "loading.py",
+          "function": "chunks",
+          "calls": 20,
+          "own_seconds": 0.11581830000000001,
+          "cumulative_seconds": 0.5493553
+        },
+        {
+          "file": "agenda.py",
+          "function": "read_portfolio",
+          "calls": 10,
+          "own_seconds": 0.10986320000000001,
+          "cumulative_seconds": 0.8826306
+        },
+        {
+          "file": "row.py",
+          "function": "_mapping",
+          "calls": 37740,
+          "own_seconds": 0.0404495,
+          "cumulative_seconds": 0.040505700000000006
+        },
+        {
+          "file": "~",
+          "function": "<method 'sort' of 'list' objects>",
+          "calls": 20,
+          "own_seconds": 0.023567,
+          "cumulative_seconds": 0.0460389
+        },
+        {
+          "file": "result.py",
+          "function": "all",
+          "calls": 10,
+          "own_seconds": 0.0209429,
+          "cumulative_seconds": 0.6152730000000001
+        },
+        {
+          "file": "agenda.py",
+          "function": "build_agenda",
+          "calls": 10,
+          "own_seconds": 0.013123500000000001,
+          "cumulative_seconds": 0.0506057
+        },
+        {
+          "file": "agenda.py",
+          "function": "read",
+          "calls": 10,
+          "own_seconds": 0.011456500000000001,
+          "cumulative_seconds": 0.9447294
+        },
+        {
+          "file": "~",
+          "function": "<method 'append' of 'list' objects>",
+          "calls": 98890,
+          "own_seconds": 0.010810700000000001,
+          "cumulative_seconds": 0.010810700000000001
+        },
+        {
+          "file": "agenda.py",
+          "function": "<lambda>",
+          "calls": 30000,
+          "own_seconds": 0.0091423,
+          "cumulative_seconds": 0.014362100000000001
+        },
+        {
+          "file": "~",
+          "function": "<method 'casefold' of 'str' objects>",
+          "calls": 45480,
+          "own_seconds": 0.0077843,
+          "cumulative_seconds": 0.0077843
+        },
+        {
+          "file": "<string>",
+          "function": "__init__",
+          "calls": 15480,
+          "own_seconds": 0.007132100000000001,
+          "cumulative_seconds": 0.007132100000000001
+        }
+      ],
+      "journal_mode": "delete",
+      "synchronous": 2,
+      "invariants": {
+        "coverage": true,
+        "confirmed_once": true,
+        "foreign_keys": true,
+        "integrity": true
+      }
+    },
+    {
+      "round": 1,
+      "variant": "candidate",
+      "wall_seconds": 3.0858468001242727,
+      "operations": {
+        "confirm": {
+          "n": 48,
+          "p50_ms": 132.694,
+          "p95_ms": 1481.743,
+          "max_ms": 3014.416
+        },
+        "read": {
+          "n": 48,
+          "p50_ms": 138.659,
+          "p95_ms": 216.858,
+          "max_ms": 270.911
+        }
+      },
+      "sql": {
+        "commit": {
+          "n": 24,
+          "p50_ms": 110.463,
+          "p95_ms": 178.887,
+          "max_ms": 196.706,
+          "total_ms": 2503.497699741274
+        },
+        "insert": {
+          "n": 96,
+          "p50_ms": 0.247,
+          "p95_ms": 1.265,
+          "max_ms": 12.35,
+          "total_ms": 50.795600982382894
+        },
+        "portfolio_execute": {
+          "n": 48,
+          "p50_ms": 0.859,
+          "p95_ms": 53.452,
+          "max_ms": 91.282,
+          "total_ms": 639.0507002361119
+        },
+        "reserve_writer": {
+          "n": 36,
+          "p50_ms": 0.527,
+          "p95_ms": 2697.201,
+          "max_ms": 2988.46,
+          "total_ms": 13204.323299461976
+        },
+        "select": {
+          "n": 228,
+          "p50_ms": 0.086,
+          "p95_ms": 29.284,
+          "max_ms": 111.614,
+          "total_ms": 989.5355002954602
+        },
+        "update": {
+          "n": 24,
+          "p50_ms": 0.026,
+          "p95_ms": 1.374,
+          "max_ms": 1.548,
+          "total_ms": 7.100600283592939
+        }
+      },
+      "query_plan": [
+        [
+          16,
+          0,
+          215,
+          "SCAN contracts USING INDEX sqlite_autoindex_contracts_1"
+        ],
+        [
+          19,
+          0,
+          46,
+          "SEARCH document_revisions USING INDEX sqlite_autoindex_document_revisions_2 (contract_id=? AND number=?) LEFT-JOIN"
+        ],
+        [
+          28,
+          0,
+          46,
+          "SEARCH manual_analyses USING INDEX sqlite_autoindex_manual_analyses_2 (contract_id=? AND number=?) LEFT-JOIN"
+        ],
+        [
+          40,
+          0,
+          46,
+          "SEARCH human_reviews USING INDEX sqlite_autoindex_human_reviews_2 (analysis_id=?) LEFT-JOIN"
+        ],
+        [
+          48,
+          0,
+          46,
+          "SEARCH extraction_runs USING INDEX sqlite_autoindex_extraction_runs_1 (id=?) LEFT-JOIN"
+        ],
+        [
+          51,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 2"
+        ],
+        [
+          66,
+          51,
+          61,
+          "SEARCH extraction_runs USING INDEX sqlite_autoindex_extraction_runs_2 (contract_id=?)"
+        ],
+        [
+          71,
+          51,
+          46,
+          "SEARCH document_revisions_1 USING INDEX sqlite_autoindex_document_revisions_1 (id=?)"
+        ],
+        [
+          89,
+          0,
+          46,
+          "SEARCH extraction_runs_1 USING INDEX sqlite_autoindex_extraction_runs_1 (id=?) LEFT-JOIN"
+        ],
+        [
+          103,
+          0,
+          62,
+          "SEARCH confirmed_events USING INDEX sqlite_autoindex_confirmed_events_2 (review_id=?) LEFT-JOIN"
+        ],
+        [
+          132,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 1"
+        ],
+        [
+          139,
+          132,
+          61,
+          "SEARCH document_revisions_1 USING INDEX ix_document_revisions_contract_id (contract_id=?)"
+        ],
+        [
+          144,
+          132,
+          61,
+          "SEARCH document_uploads USING INDEX ix_document_uploads_revision_id (revision_id=?)"
+        ]
+      ],
+      "read_profile_top": [
+        {
+          "file": "~",
+          "function": "<method 'fetchall' of 'sqlite3.Cursor' objects>",
+          "calls": 10,
+          "own_seconds": 0.4002115,
+          "cumulative_seconds": 0.4002115
+        },
+        {
+          "file": "agenda.py",
+          "function": "read_portfolio",
+          "calls": 10,
+          "own_seconds": 0.10688120000000001,
+          "cumulative_seconds": 0.7559447
+        },
+        {
+          "file": "result.py",
+          "function": "all",
+          "calls": 10,
+          "own_seconds": 0.0551598,
+          "cumulative_seconds": 0.4956221
+        },
+        {
+          "file": "row.py",
+          "function": "_mapping",
+          "calls": 37740,
+          "own_seconds": 0.0295364,
+          "cumulative_seconds": 0.029600500000000002
+        },
+        {
+          "file": "~",
+          "function": "<method 'sort' of 'list' objects>",
+          "calls": 20,
+          "own_seconds": 0.0203641,
+          "cumulative_seconds": 0.0404279
+        },
+        {
+          "file": "agenda.py",
+          "function": "build_agenda",
+          "calls": 10,
+          "own_seconds": 0.0119894,
+          "cumulative_seconds": 0.0466675
+        },
+        {
+          "file": "~",
+          "function": "<method 'append' of 'list' objects>",
+          "calls": 98890,
+          "own_seconds": 0.0109954,
+          "cumulative_seconds": 0.0109954
+        },
+        {
+          "file": "agenda.py",
+          "function": "read",
+          "calls": 10,
+          "own_seconds": 0.0097056,
+          "cumulative_seconds": 0.8123178000000001
+        },
+        {
+          "file": "agenda.py",
+          "function": "<lambda>",
+          "calls": 30000,
+          "own_seconds": 0.0081662,
+          "cumulative_seconds": 0.013322700000000002
+        },
+        {
+          "file": "~",
+          "function": "<method 'casefold' of 'str' objects>",
+          "calls": 45480,
+          "own_seconds": 0.0070626000000000005,
+          "cumulative_seconds": 0.0070626000000000005
+        },
+        {
+          "file": "<string>",
+          "function": "__init__",
+          "calls": 15480,
+          "own_seconds": 0.0070566000000000005,
+          "cumulative_seconds": 0.0070566000000000005
+        },
+        {
+          "file": "base.py",
+          "function": "process",
+          "calls": 37740,
+          "own_seconds": 0.006442000000000001,
+          "cumulative_seconds": 0.0084969
+        }
+      ],
+      "journal_mode": "delete",
+      "synchronous": 2,
+      "invariants": {
+        "coverage": true,
+        "confirmed_once": true,
+        "foreign_keys": true,
+        "integrity": true
+      }
+    },
+    {
+      "round": 2,
+      "variant": "candidate",
+      "wall_seconds": 3.276384999975562,
+      "operations": {
+        "confirm": {
+          "n": 48,
+          "p50_ms": 141.044,
+          "p95_ms": 1924.31,
+          "max_ms": 3264.763
+        },
+        "read": {
+          "n": 48,
+          "p50_ms": 130.083,
+          "p95_ms": 223.753,
+          "max_ms": 307.785
+        }
+      },
+      "sql": {
+        "commit": {
+          "n": 24,
+          "p50_ms": 110.795,
+          "p95_ms": 193.139,
+          "max_ms": 198.306,
+          "total_ms": 2673.690099734813
+        },
+        "insert": {
+          "n": 96,
+          "p50_ms": 0.214,
+          "p95_ms": 1.266,
+          "max_ms": 3.04,
+          "total_ms": 41.165100410580635
+        },
+        "portfolio_execute": {
+          "n": 48,
+          "p50_ms": 1.102,
+          "p95_ms": 71.385,
+          "max_ms": 112.798,
+          "total_ms": 754.2738006450236
+        },
+        "reserve_writer": {
+          "n": 37,
+          "p50_ms": 0.806,
+          "p95_ms": 2934.648,
+          "max_ms": 3253.3,
+          "total_ms": 14205.8734993916
+        },
+        "select": {
+          "n": 229,
+          "p50_ms": 0.093,
+          "p95_ms": 25.385,
+          "max_ms": 120.997,
+          "total_ms": 740.2822982985526
+        },
+        "update": {
+          "n": 24,
+          "p50_ms": 0.041,
+          "p95_ms": 1.899,
+          "max_ms": 3.176,
+          "total_ms": 8.33089929074049
+        }
+      },
+      "query_plan": [
+        [
+          16,
+          0,
+          215,
+          "SCAN contracts USING INDEX sqlite_autoindex_contracts_1"
+        ],
+        [
+          19,
+          0,
+          46,
+          "SEARCH document_revisions USING INDEX sqlite_autoindex_document_revisions_2 (contract_id=? AND number=?) LEFT-JOIN"
+        ],
+        [
+          28,
+          0,
+          46,
+          "SEARCH manual_analyses USING INDEX sqlite_autoindex_manual_analyses_2 (contract_id=? AND number=?) LEFT-JOIN"
+        ],
+        [
+          40,
+          0,
+          46,
+          "SEARCH human_reviews USING INDEX sqlite_autoindex_human_reviews_2 (analysis_id=?) LEFT-JOIN"
+        ],
+        [
+          48,
+          0,
+          46,
+          "SEARCH extraction_runs USING INDEX sqlite_autoindex_extraction_runs_1 (id=?) LEFT-JOIN"
+        ],
+        [
+          51,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 2"
+        ],
+        [
+          66,
+          51,
+          61,
+          "SEARCH extraction_runs USING INDEX sqlite_autoindex_extraction_runs_2 (contract_id=?)"
+        ],
+        [
+          71,
+          51,
+          46,
+          "SEARCH document_revisions_1 USING INDEX sqlite_autoindex_document_revisions_1 (id=?)"
+        ],
+        [
+          89,
+          0,
+          46,
+          "SEARCH extraction_runs_1 USING INDEX sqlite_autoindex_extraction_runs_1 (id=?) LEFT-JOIN"
+        ],
+        [
+          103,
+          0,
+          62,
+          "SEARCH confirmed_events USING INDEX sqlite_autoindex_confirmed_events_2 (review_id=?) LEFT-JOIN"
+        ],
+        [
+          132,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 1"
+        ],
+        [
+          139,
+          132,
+          61,
+          "SEARCH document_revisions_1 USING INDEX ix_document_revisions_contract_id (contract_id=?)"
+        ],
+        [
+          144,
+          132,
+          61,
+          "SEARCH document_uploads USING INDEX ix_document_uploads_revision_id (revision_id=?)"
+        ]
+      ],
+      "read_profile_top": [
+        {
+          "file": "~",
+          "function": "<method 'fetchall' of 'sqlite3.Cursor' objects>",
+          "calls": 10,
+          "own_seconds": 0.4080338,
+          "cumulative_seconds": 0.4080338
+        },
+        {
+          "file": "agenda.py",
+          "function": "read_portfolio",
+          "calls": 10,
+          "own_seconds": 0.11876370000000001,
+          "cumulative_seconds": 0.7628103
+        },
+        {
+          "file": "result.py",
+          "function": "all",
+          "calls": 10,
+          "own_seconds": 0.042843900000000004,
+          "cumulative_seconds": 0.489584
+        },
+        {
+          "file": "row.py",
+          "function": "_mapping",
+          "calls": 37740,
+          "own_seconds": 0.0280374,
+          "cumulative_seconds": 0.0280374
+        },
+        {
+          "file": "~",
+          "function": "<method 'sort' of 'list' objects>",
+          "calls": 20,
+          "own_seconds": 0.0205945,
+          "cumulative_seconds": 0.041050800000000005
+        },
+        {
+          "file": "agenda.py",
+          "function": "build_agenda",
+          "calls": 10,
+          "own_seconds": 0.0119702,
+          "cumulative_seconds": 0.0472244
+        },
+        {
+          "file": "~",
+          "function": "<method 'append' of 'list' objects>",
+          "calls": 98890,
+          "own_seconds": 0.011373300000000001,
+          "cumulative_seconds": 0.011373300000000001
+        },
+        {
+          "file": "agenda.py",
+          "function": "read",
+          "calls": 10,
+          "own_seconds": 0.0094835,
+          "cumulative_seconds": 0.8195182000000001
+        },
+        {
+          "file": "agenda.py",
+          "function": "<lambda>",
+          "calls": 30000,
+          "own_seconds": 0.0083085,
+          "cumulative_seconds": 0.013488600000000002
+        },
+        {
+          "file": "~",
+          "function": "<method 'casefold' of 'str' objects>",
+          "calls": 45480,
+          "own_seconds": 0.007178800000000001,
+          "cumulative_seconds": 0.007178800000000001
+        },
+        {
+          "file": "<string>",
+          "function": "__init__",
+          "calls": 15480,
+          "own_seconds": 0.0070599,
+          "cumulative_seconds": 0.0070599
+        },
+        {
+          "file": "base.py",
+          "function": "process",
+          "calls": 37740,
+          "own_seconds": 0.0064754,
+          "cumulative_seconds": 0.0084653
+        }
+      ],
+      "journal_mode": "delete",
+      "synchronous": 2,
+      "invariants": {
+        "coverage": true,
+        "confirmed_once": true,
+        "foreign_keys": true,
+        "integrity": true
+      }
+    },
+    {
+      "round": 2,
+      "variant": "baseline",
+      "wall_seconds": 3.5437117000110447,
+      "operations": {
+        "confirm": {
+          "n": 48,
+          "p50_ms": 81.778,
+          "p95_ms": 1880.668,
+          "max_ms": 2803.537
+        },
+        "read": {
+          "n": 48,
+          "p50_ms": 80.677,
+          "p95_ms": 217.099,
+          "max_ms": 256.909
+        }
+      },
+      "sql": {
+        "commit": {
+          "n": 48,
+          "p50_ms": 66.132,
+          "p95_ms": 137.063,
+          "max_ms": 266.628,
+          "total_ms": 3080.296600004658
+        },
+        "insert": {
+          "n": 96,
+          "p50_ms": 0.224,
+          "p95_ms": 1.355,
+          "max_ms": 5.843,
+          "total_ms": 48.95380022935569
+        },
+        "portfolio_execute": {
+          "n": 48,
+          "p50_ms": 0.775,
+          "p95_ms": 58.411,
+          "max_ms": 130.024,
+          "total_ms": 406.32040007039905
+        },
+        "reserve_writer": {
+          "n": 48,
+          "p50_ms": 5.443,
+          "p95_ms": 1879.242,
+          "max_ms": 2801.949,
+          "total_ms": 19077.839800389484
+        },
+        "select": {
+          "n": 192,
+          "p50_ms": 0.059,
+          "p95_ms": 0.442,
+          "max_ms": 8.455,
+          "total_ms": 40.70270014926791
+        },
+        "update": {
+          "n": 24,
+          "p50_ms": 0.027,
+          "p95_ms": 0.318,
+          "max_ms": 2.59,
+          "total_ms": 4.137800540775061
+        }
+      },
+      "query_plan": [
+        [
+          16,
+          0,
+          215,
+          "SCAN contracts USING INDEX sqlite_autoindex_contracts_1"
+        ],
+        [
+          19,
+          0,
+          46,
+          "SEARCH document_revisions USING INDEX sqlite_autoindex_document_revisions_2 (contract_id=? AND number=?) LEFT-JOIN"
+        ],
+        [
+          28,
+          0,
+          46,
+          "SEARCH manual_analyses USING INDEX sqlite_autoindex_manual_analyses_2 (contract_id=? AND number=?) LEFT-JOIN"
+        ],
+        [
+          40,
+          0,
+          46,
+          "SEARCH human_reviews USING INDEX sqlite_autoindex_human_reviews_2 (analysis_id=?) LEFT-JOIN"
+        ],
+        [
+          48,
+          0,
+          46,
+          "SEARCH extraction_runs USING INDEX sqlite_autoindex_extraction_runs_1 (id=?) LEFT-JOIN"
+        ],
+        [
+          51,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 2"
+        ],
+        [
+          66,
+          51,
+          61,
+          "SEARCH extraction_runs USING INDEX sqlite_autoindex_extraction_runs_2 (contract_id=?)"
+        ],
+        [
+          71,
+          51,
+          46,
+          "SEARCH document_revisions_1 USING INDEX sqlite_autoindex_document_revisions_1 (id=?)"
+        ],
+        [
+          89,
+          0,
+          46,
+          "SEARCH extraction_runs_1 USING INDEX sqlite_autoindex_extraction_runs_1 (id=?) LEFT-JOIN"
+        ],
+        [
+          103,
+          0,
+          62,
+          "SEARCH confirmed_events USING INDEX sqlite_autoindex_confirmed_events_2 (review_id=?) LEFT-JOIN"
+        ],
+        [
+          132,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 1"
+        ],
+        [
+          139,
+          132,
+          61,
+          "SEARCH document_revisions_1 USING INDEX ix_document_revisions_contract_id (contract_id=?)"
+        ],
+        [
+          144,
+          132,
+          61,
+          "SEARCH document_uploads USING INDEX ix_document_uploads_revision_id (revision_id=?)"
+        ]
+      ],
+      "read_profile_top": [
+        {
+          "file": "~",
+          "function": "<method 'fetchall' of 'sqlite3.Cursor' objects>",
+          "calls": 10,
+          "own_seconds": 0.40473000000000003,
+          "cumulative_seconds": 0.40473000000000003
+        },
+        {
+          "file": "loading.py",
+          "function": "chunks",
+          "calls": 20,
+          "own_seconds": 0.1099117,
+          "cumulative_seconds": 0.5378596
+        },
+        {
+          "file": "agenda.py",
+          "function": "read_portfolio",
+          "calls": 10,
+          "own_seconds": 0.109463,
+          "cumulative_seconds": 0.8505442000000001
+        },
+        {
+          "file": "row.py",
+          "function": "_mapping",
+          "calls": 37740,
+          "own_seconds": 0.026750200000000002,
+          "cumulative_seconds": 0.026750200000000002
+        },
+        {
+          "file": "~",
+          "function": "<method 'sort' of 'list' objects>",
+          "calls": 20,
+          "own_seconds": 0.0205964,
+          "cumulative_seconds": 0.0410425
+        },
+        {
+          "file": "result.py",
+          "function": "all",
+          "calls": 10,
+          "own_seconds": 0.0185191,
+          "cumulative_seconds": 0.5861664000000001
+        },
+        {
+          "file": "cursor.py",
+          "function": "fetchall",
+          "calls": 10,
+          "own_seconds": 0.014623200000000001,
+          "cumulative_seconds": 0.4195013
+        },
+        {
+          "file": "agenda.py",
+          "function": "build_agenda",
+          "calls": 10,
+          "own_seconds": 0.0120172,
+          "cumulative_seconds": 0.047391
+        },
+        {
+          "file": "~",
+          "function": "<method 'append' of 'list' objects>",
+          "calls": 98890,
+          "own_seconds": 0.0111689,
+          "cumulative_seconds": 0.0111689
+        },
+        {
+          "file": "agenda.py",
+          "function": "read",
+          "calls": 10,
+          "own_seconds": 0.009316300000000001,
+          "cumulative_seconds": 0.9072835
+        },
+        {
+          "file": "agenda.py",
+          "function": "<lambda>",
+          "calls": 30000,
+          "own_seconds": 0.008213400000000001,
+          "cumulative_seconds": 0.0134421
+        },
+        {
+          "file": "~",
+          "function": "<method 'casefold' of 'str' objects>",
+          "calls": 45480,
+          "own_seconds": 0.0071811,
+          "cumulative_seconds": 0.0071811
+        }
+      ],
+      "journal_mode": "delete",
+      "synchronous": 2,
+      "invariants": {
+        "coverage": true,
+        "confirmed_once": true,
+        "foreign_keys": true,
+        "integrity": true
+      }
+    },
+    {
+      "round": 3,
+      "variant": "baseline",
+      "wall_seconds": 3.574620099971071,
+      "operations": {
+        "confirm": {
+          "n": 48,
+          "p50_ms": 170.28,
+          "p95_ms": 2363.726,
+          "max_ms": 3435.897
+        },
+        "read": {
+          "n": 48,
+          "p50_ms": 76.441,
+          "p95_ms": 182.075,
+          "max_ms": 243.192
+        }
+      },
+      "sql": {
+        "commit": {
+          "n": 48,
+          "p50_ms": 67.468,
+          "p95_ms": 120.078,
+          "max_ms": 215.991,
+          "total_ms": 3192.8616003133357
+        },
+        "insert": {
+          "n": 96,
+          "p50_ms": 0.218,
+          "p95_ms": 1.384,
+          "max_ms": 5.586,
+          "total_ms": 52.25769989192486
+        },
+        "portfolio_execute": {
+          "n": 48,
+          "p50_ms": 0.836,
+          "p95_ms": 22.26,
+          "max_ms": 59.514,
+          "total_ms": 190.830800216645
+        },
+        "reserve_writer": {
+          "n": 48,
+          "p50_ms": 77.307,
+          "p95_ms": 2274.12,
+          "max_ms": 3383.914,
+          "total_ms": 19773.653600132093
+        },
+        "select": {
+          "n": 192,
+          "p50_ms": 0.057,
+          "p95_ms": 0.379,
+          "max_ms": 1.176,
+          "total_ms": 20.472899079322815
+        },
+        "update": {
+          "n": 24,
+          "p50_ms": 0.033,
+          "p95_ms": 0.372,
+          "max_ms": 1.091,
+          "total_ms": 2.489800099283457
+        }
+      },
+      "query_plan": [
+        [
+          16,
+          0,
+          215,
+          "SCAN contracts USING INDEX sqlite_autoindex_contracts_1"
+        ],
+        [
+          19,
+          0,
+          46,
+          "SEARCH document_revisions USING INDEX sqlite_autoindex_document_revisions_2 (contract_id=? AND number=?) LEFT-JOIN"
+        ],
+        [
+          28,
+          0,
+          46,
+          "SEARCH manual_analyses USING INDEX sqlite_autoindex_manual_analyses_2 (contract_id=? AND number=?) LEFT-JOIN"
+        ],
+        [
+          40,
+          0,
+          46,
+          "SEARCH human_reviews USING INDEX sqlite_autoindex_human_reviews_2 (analysis_id=?) LEFT-JOIN"
+        ],
+        [
+          48,
+          0,
+          46,
+          "SEARCH extraction_runs USING INDEX sqlite_autoindex_extraction_runs_1 (id=?) LEFT-JOIN"
+        ],
+        [
+          51,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 2"
+        ],
+        [
+          66,
+          51,
+          61,
+          "SEARCH extraction_runs USING INDEX sqlite_autoindex_extraction_runs_2 (contract_id=?)"
+        ],
+        [
+          71,
+          51,
+          46,
+          "SEARCH document_revisions_1 USING INDEX sqlite_autoindex_document_revisions_1 (id=?)"
+        ],
+        [
+          89,
+          0,
+          46,
+          "SEARCH extraction_runs_1 USING INDEX sqlite_autoindex_extraction_runs_1 (id=?) LEFT-JOIN"
+        ],
+        [
+          103,
+          0,
+          62,
+          "SEARCH confirmed_events USING INDEX sqlite_autoindex_confirmed_events_2 (review_id=?) LEFT-JOIN"
+        ],
+        [
+          132,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 1"
+        ],
+        [
+          139,
+          132,
+          61,
+          "SEARCH document_revisions_1 USING INDEX ix_document_revisions_contract_id (contract_id=?)"
+        ],
+        [
+          144,
+          132,
+          61,
+          "SEARCH document_uploads USING INDEX ix_document_uploads_revision_id (revision_id=?)"
+        ]
+      ],
+      "read_profile_top": [
+        {
+          "file": "~",
+          "function": "<method 'fetchall' of 'sqlite3.Cursor' objects>",
+          "calls": 10,
+          "own_seconds": 0.4094874,
+          "cumulative_seconds": 0.4094874
+        },
+        {
+          "file": "agenda.py",
+          "function": "read_portfolio",
+          "calls": 10,
+          "own_seconds": 0.1116811,
+          "cumulative_seconds": 0.8590521000000001
+        },
+        {
+          "file": "loading.py",
+          "function": "chunks",
+          "calls": 20,
+          "own_seconds": 0.10276,
+          "cumulative_seconds": 0.523548
+        },
+        {
+          "file": "result.py",
+          "function": "all",
+          "calls": 10,
+          "own_seconds": 0.030526300000000003,
+          "cumulative_seconds": 0.5859905000000001
+        },
+        {
+          "file": "row.py",
+          "function": "_mapping",
+          "calls": 37740,
+          "own_seconds": 0.027740400000000002,
+          "cumulative_seconds": 0.0277586
+        },
+        {
+          "file": "~",
+          "function": "<method 'sort' of 'list' objects>",
+          "calls": 20,
+          "own_seconds": 0.022167000000000003,
+          "cumulative_seconds": 0.0434394
+        },
+        {
+          "file": "agenda.py",
+          "function": "build_agenda",
+          "calls": 10,
+          "own_seconds": 0.012591100000000001,
+          "cumulative_seconds": 0.048919000000000004
+        },
+        {
+          "file": "~",
+          "function": "<method 'append' of 'list' objects>",
+          "calls": 98890,
+          "own_seconds": 0.0114587,
+          "cumulative_seconds": 0.0114587
+        },
+        {
+          "file": "agenda.py",
+          "function": "read",
+          "calls": 10,
+          "own_seconds": 0.0105666,
+          "cumulative_seconds": 0.9185724000000001
+        },
+        {
+          "file": "agenda.py",
+          "function": "<lambda>",
+          "calls": 30000,
+          "own_seconds": 0.0087539,
+          "cumulative_seconds": 0.0141606
+        },
+        {
+          "file": "~",
+          "function": "<method 'casefold' of 'str' objects>",
+          "calls": 45480,
+          "own_seconds": 0.0074651000000000006,
+          "cumulative_seconds": 0.0074651000000000006
+        },
+        {
+          "file": "<string>",
+          "function": "__init__",
+          "calls": 15480,
+          "own_seconds": 0.007223200000000001,
+          "cumulative_seconds": 0.007223200000000001
+        }
+      ],
+      "journal_mode": "delete",
+      "synchronous": 2,
+      "invariants": {
+        "coverage": true,
+        "confirmed_once": true,
+        "foreign_keys": true,
+        "integrity": true
+      }
+    },
+    {
+      "round": 3,
+      "variant": "candidate",
+      "wall_seconds": 3.2443083999678493,
+      "operations": {
+        "confirm": {
+          "n": 48,
+          "p50_ms": 172.078,
+          "p95_ms": 1849.917,
+          "max_ms": 3243.199
+        },
+        "read": {
+          "n": 48,
+          "p50_ms": 123.831,
+          "p95_ms": 202.334,
+          "max_ms": 255.88
+        }
+      },
+      "sql": {
+        "commit": {
+          "n": 24,
+          "p50_ms": 114.164,
+          "p95_ms": 164.987,
+          "max_ms": 214.494,
+          "total_ms": 2767.9846996907145
+        },
+        "insert": {
+          "n": 96,
+          "p50_ms": 0.239,
+          "p95_ms": 1.071,
+          "max_ms": 13.764,
+          "total_ms": 53.11180115677416
+        },
+        "portfolio_execute": {
+          "n": 48,
+          "p50_ms": 0.905,
+          "p95_ms": 65.208,
+          "max_ms": 70.975,
+          "total_ms": 716.283300658688
+        },
+        "reserve_writer": {
+          "n": 37,
+          "p50_ms": 135.233,
+          "p95_ms": 1916.247,
+          "max_ms": 3231.19,
+          "total_ms": 14621.09879986383
+        },
+        "select": {
+          "n": 229,
+          "p50_ms": 0.089,
+          "p95_ms": 25.38,
+          "max_ms": 107.493,
+          "total_ms": 918.2232005987316
+        },
+        "update": {
+          "n": 24,
+          "p50_ms": 0.026,
+          "p95_ms": 0.688,
+          "max_ms": 2.472,
+          "total_ms": 5.034199450165033
+        }
+      },
+      "query_plan": [
+        [
+          16,
+          0,
+          215,
+          "SCAN contracts USING INDEX sqlite_autoindex_contracts_1"
+        ],
+        [
+          19,
+          0,
+          46,
+          "SEARCH document_revisions USING INDEX sqlite_autoindex_document_revisions_2 (contract_id=? AND number=?) LEFT-JOIN"
+        ],
+        [
+          28,
+          0,
+          46,
+          "SEARCH manual_analyses USING INDEX sqlite_autoindex_manual_analyses_2 (contract_id=? AND number=?) LEFT-JOIN"
+        ],
+        [
+          40,
+          0,
+          46,
+          "SEARCH human_reviews USING INDEX sqlite_autoindex_human_reviews_2 (analysis_id=?) LEFT-JOIN"
+        ],
+        [
+          48,
+          0,
+          46,
+          "SEARCH extraction_runs USING INDEX sqlite_autoindex_extraction_runs_1 (id=?) LEFT-JOIN"
+        ],
+        [
+          51,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 2"
+        ],
+        [
+          66,
+          51,
+          61,
+          "SEARCH extraction_runs USING INDEX sqlite_autoindex_extraction_runs_2 (contract_id=?)"
+        ],
+        [
+          71,
+          51,
+          46,
+          "SEARCH document_revisions_1 USING INDEX sqlite_autoindex_document_revisions_1 (id=?)"
+        ],
+        [
+          89,
+          0,
+          46,
+          "SEARCH extraction_runs_1 USING INDEX sqlite_autoindex_extraction_runs_1 (id=?) LEFT-JOIN"
+        ],
+        [
+          103,
+          0,
+          62,
+          "SEARCH confirmed_events USING INDEX sqlite_autoindex_confirmed_events_2 (review_id=?) LEFT-JOIN"
+        ],
+        [
+          132,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 1"
+        ],
+        [
+          139,
+          132,
+          61,
+          "SEARCH document_revisions_1 USING INDEX ix_document_revisions_contract_id (contract_id=?)"
+        ],
+        [
+          144,
+          132,
+          61,
+          "SEARCH document_uploads USING INDEX ix_document_uploads_revision_id (revision_id=?)"
+        ]
+      ],
+      "read_profile_top": [
+        {
+          "file": "~",
+          "function": "<method 'fetchall' of 'sqlite3.Cursor' objects>",
+          "calls": 10,
+          "own_seconds": 0.4025744,
+          "cumulative_seconds": 0.4025744
+        },
+        {
+          "file": "agenda.py",
+          "function": "read_portfolio",
+          "calls": 10,
+          "own_seconds": 0.1064872,
+          "cumulative_seconds": 0.7701022000000001
+        },
+        {
+          "file": "result.py",
+          "function": "all",
+          "calls": 10,
+          "own_seconds": 0.0560623,
+          "cumulative_seconds": 0.5096441
+        },
+        {
+          "file": "row.py",
+          "function": "_mapping",
+          "calls": 37740,
+          "own_seconds": 0.0389728,
+          "cumulative_seconds": 0.0390244
+        },
+        {
+          "file": "~",
+          "function": "<method 'sort' of 'list' objects>",
+          "calls": 20,
+          "own_seconds": 0.020431900000000003,
+          "cumulative_seconds": 0.040792600000000005
+        },
+        {
+          "file": "agenda.py",
+          "function": "build_agenda",
+          "calls": 10,
+          "own_seconds": 0.0119319,
+          "cumulative_seconds": 0.046646
+        },
+        {
+          "file": "~",
+          "function": "<method 'append' of 'list' objects>",
+          "calls": 98890,
+          "own_seconds": 0.011389400000000001,
+          "cumulative_seconds": 0.011389400000000001
+        },
+        {
+          "file": "agenda.py",
+          "function": "read",
+          "calls": 10,
+          "own_seconds": 0.0100079,
+          "cumulative_seconds": 0.8267561000000001
+        },
+        {
+          "file": "agenda.py",
+          "function": "<lambda>",
+          "calls": 30000,
+          "own_seconds": 0.0083432,
+          "cumulative_seconds": 0.013624500000000001
+        },
+        {
+          "file": "~",
+          "function": "<method 'casefold' of 'str' objects>",
+          "calls": 45480,
+          "own_seconds": 0.007168900000000001,
+          "cumulative_seconds": 0.007168900000000001
+        },
+        {
+          "file": "<string>",
+          "function": "__init__",
+          "calls": 15480,
+          "own_seconds": 0.007102600000000001,
+          "cumulative_seconds": 0.007102600000000001
+        },
+        {
+          "file": "base.py",
+          "function": "process",
+          "calls": 37740,
+          "own_seconds": 0.006696400000000001,
+          "cumulative_seconds": 0.008810700000000001
+        }
+      ],
+      "journal_mode": "delete",
+      "synchronous": 2,
+      "invariants": {
+        "coverage": true,
+        "confirmed_once": true,
+        "foreign_keys": true,
+        "integrity": true
+      }
+    }
+  ]
+}

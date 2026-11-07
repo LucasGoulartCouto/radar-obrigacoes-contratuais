@@ -7,7 +7,7 @@ from time import perf_counter
 
 from sqlalchemy import Engine, select
 from sqlalchemy.exc import OperationalError
-from sqlalchemy.orm import Session, aliased
+from sqlalchemy.orm import aliased
 
 from radar_contratos.domain import reviews as rules
 from radar_contratos.domain.agenda import (
@@ -109,8 +109,9 @@ class SqliteAgendaStore:
             .order_by(ContractRow.id, ConfirmedEventRow.kind)
         )
         try:
-            with Session(self.engine) as session:
-                rows = session.execute(query).mappings().all()
+            # A projeção contém apenas colunas; dispensar materialização ORM.
+            with self.engine.connect() as connection:
+                rows = connection.execute(query).mappings().all()
         except OperationalError as exc:
             code = getattr(exc.orig, "sqlite_errorcode", 0) & 0xFF
             logger.warning("operation=portfolio_read outcome=failed sqlite_code=%d", code)

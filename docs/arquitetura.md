@@ -1,5 +1,7 @@
 # Arquitetura — aplicação local modular
 
+**Desenvolvimento local em 07/11/2026:** [perfil e melhoria em revisão](validacao-desempenho-local.md). Recibo já persistido pode ser devolvido por leitura encerrada; operações novas mantêm reserva de escrita e rechecagem. Agenda executa a mesma projeção por conexão Core, sem processamento ORM. Sem mudança de regra, esquema ou autoridade; a meta de latência concorrente continua aberta.
+
 **M7 aprovada em 07/11/2026:** Lucas escolheu continuar na versão local L. [Aceite](entrega/aceite-m7.md), [estudo de evolução](m7-proposta.md), [baseline](validacao-m7.md) e [ADR-014 aceito para L](adrs/014-evolucao-condicional-para-uso-compartilhado.md). Protótipo C adiado; PostgreSQL, worker e controles remotos não foram implementados. As seções históricas abaixo descrevem a evolução da aplicação local.
 
 **Atualização de 02/11/2026:** a integração de desenvolvimento acrescenta [casos de uso de extração](../src/radar_contratos/application/extractions.py), [regras assistidas puras](../src/radar_contratos/domain/assisted.py), [adaptador local](../src/radar_contratos/infrastructure/local_classifier.py), tentativas persistidas e tela. [ADR-013](adrs/013-execucao-e-conferencia-assistidas.md) define seleção/recuperação e a [validação](validacao-integracao-assistida.md) distingue inferência real de simulação. As seções históricas da fundação abaixo não são a lista atual de pendências.
