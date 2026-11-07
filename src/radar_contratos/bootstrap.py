@@ -14,11 +14,20 @@ from radar_contratos.infrastructure.persistence.contracts import SqliteContractS
 from radar_contratos.infrastructure.persistence.database import make_engine, require_current_schema
 from radar_contratos.infrastructure.persistence.documents import SqliteDocumentStore
 from radar_contratos.infrastructure.persistence.extractions import SqliteExtractionStore
+from radar_contratos.infrastructure.persistence.read_errors import read_error
 from radar_contratos.infrastructure.persistence.reviews import SqliteReviewStore
 
 
 def build_service(settings: Settings) -> tuple[ContractService, Engine]:
-    engine = make_engine(settings.database_path)
+    try:
+        engine = make_engine(settings.database_path, create_if_missing=False)
+    except OSError as exc:
+        raise read_error(
+            exc,
+            operation="database_open",
+            message="Não foi possível acessar o armazenamento local. Verifique o acesso "
+            "e a preparação do ambiente antes de tentar novamente.",
+        ) from exc
     try:
         require_current_schema(engine)
     except Exception:

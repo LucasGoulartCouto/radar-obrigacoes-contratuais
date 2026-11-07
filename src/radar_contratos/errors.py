@@ -18,7 +18,11 @@ class IdempotencyConflictError(RadarError):
 
 
 class StorageBusyError(RadarError):
-    """O banco não conseguiu concluir a escrita no tempo permitido."""
+    """O banco não conseguiu concluir a operação no tempo permitido."""
+
+
+class StorageUnavailableError(RadarError):
+    """O armazenamento não pôde ser acessado; não representa resultado vazio."""
 
 
 class DatabaseNotReadyError(RadarError):

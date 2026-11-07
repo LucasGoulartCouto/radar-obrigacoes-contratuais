@@ -10,14 +10,23 @@ from alembic.config import Config
 from alembic.migration import MigrationContext
 from alembic.script import ScriptDirectory
 from sqlalchemy import URL, Engine, create_engine, event
+from sqlalchemy.exc import DBAPIError
 
 from radar_contratos.errors import DatabaseNotReadyError
+from radar_contratos.infrastructure.persistence.read_errors import read_error
 
 
-def make_engine(path: Path) -> Engine:
-    path.parent.mkdir(parents=True, exist_ok=True)
+def make_engine(path: Path, *, create_if_missing: bool = True) -> Engine:
+    if create_if_missing:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        url = URL.create("sqlite", database=str(path.resolve()))
+    else:
+        # A aplicação abre um arquivo preparado; só init-db pode criar o banco.
+        url = URL.create(
+            "sqlite", database=path.resolve().as_uri(), query={"mode": "rw", "uri": "true"}
+        )
     engine = create_engine(
-        URL.create("sqlite", database=str(path.resolve())),
+        url,
         connect_args={"autocommit": False, "timeout": 5.0},
         hide_parameters=True,
     )
@@ -49,8 +58,16 @@ def initialize_database(engine: Engine) -> None:
 
 def require_current_schema(engine: Engine) -> None:
     expected = ScriptDirectory.from_config(migration_config()).get_current_head()
-    with engine.connect() as connection:
-        actual = MigrationContext.configure(connection).get_current_revision()
+    try:
+        with engine.connect() as connection:
+            actual = MigrationContext.configure(connection).get_current_revision()
+    except DBAPIError as exc:
+        raise read_error(
+            exc,
+            operation="database_open",
+            message="Não foi possível abrir o banco local. Verifique o acesso e a preparação "
+            "do ambiente antes de tentar novamente. Preserve o arquivo e seus backups.",
+        ) from exc
     if actual != expected:
         raise DatabaseNotReadyError("Prepare ou atualize o ambiente antes de abrir o Radar.")
 
